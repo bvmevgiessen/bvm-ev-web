@@ -8,6 +8,8 @@ import Home from './pages/Home';
 import Jugend from './pages/Jugend';
 import Dialog from './pages/Dialog';
 import Integration from './pages/Integration';
+import EventsPage from './pages/EventsPage';
+import EventDetailPage from './pages/EventDetailPage';
 import Footer from './components/Footer';
 
 export default function App() {
@@ -19,6 +21,8 @@ export default function App() {
           <Route path="/jugend" element={<Jugend />} />
           <Route path="/dialog" element={<Dialog />} />
           <Route path="/integration" element={<Integration />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/events/:eventId" element={<EventDetailPage />} />
         </Routes>
         <Footer />
       </div>

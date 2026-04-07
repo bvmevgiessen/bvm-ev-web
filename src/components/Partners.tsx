@@ -5,28 +5,28 @@ export default function Partners() {
     { 
       name: 'Stiftung Dialog und Bildung', 
       location: 'Berlin',
-      logo: 'https://images.weserv.nl/?url=https://www.sdub.de/wp-content/uploads/2021/05/sdub-logo.png&w=400',
+      logo: 'https://wsrv.nl/?url=https://sdub.de/wp-content/uploads/2022/09/sdub-logo.svg&w=400&fit=contain',
       url: 'https://www.sdub.de/',
       fallback: 'SDB'
     },
     { 
       name: 'Forum für Interkulturellen Dialog', 
       location: 'Frankfurt',
-      logo: 'https://images.weserv.nl/?url=https://fidev.org/wp-content/uploads/2020/06/fid-logo.png&w=400',
+      logo: 'https://wsrv.nl/?url=https://static.wixstatic.com/media/2d6f92_4fbacb17f90f4b1e9d9267509d322be9~mv2.png/v1/fill/w_406,h_144,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Fid%20Logo.png&w=400&fit=contain',
       url: 'https://fidev.org/',
       fallback: 'FID'
     },
     { 
       name: 'Time to Help e.V.', 
       location: 'Offenbach',
-      logo: 'https://images.weserv.nl/?url=https://www.timetohelp.eu/wp-content/uploads/2021/03/TTH-Logo-2021.png&w=400',
+      logo: 'https://wsrv.nl/?url=https://timetohelp.eu/wp-content/uploads/2020/06/tth-logo-1a.png&w=400&fit=contain',
       url: 'https://www.timetohelp.eu/',
       fallback: 'TTH'
     },
     { 
       name: 'LDK e.V.', 
       location: 'Dillenburg',
-      logo: 'https://images.weserv.nl/?url=https://ldk-ev.de/wp-content/uploads/2021/05/ldk-logo.png&w=400',
+      logo: 'https://wsrv.nl/?url=https://ldk-ev.de/wp-content/uploads/2024/05/cropped-HomeLogo-1536x231aa.png&w=400&fit=contain',
       url: 'https://ldk-ev.de/',
       fallback: 'LDK'
     },
@@ -53,14 +53,15 @@ export default function Partners() {
               transition={{ delay: index * 0.1 }}
               className="group relative bg-slate-50/50 p-10 rounded-[2rem] border border-slate-100 hover:border-brand-teal/20 hover:bg-white hover:shadow-xl transition-all duration-500 text-center block"
             >
-              <div className="h-20 flex items-center justify-center mb-6 grayscale group-hover:grayscale-0 transition-all duration-500">
+              <div className="h-20 flex items-center justify-center mb-6 transition-all duration-500">
                 <img 
                   src={partner.logo} 
                   alt={partner.name}
-                  className="max-h-full max-w-full object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+                  className="max-h-full max-w-full object-contain opacity-90 group-hover:opacity-100 transition-opacity"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = 'none';
-                    (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    target.nextElementSibling?.classList.remove('hidden');
                   }}
                   referrerPolicy="no-referrer"
                 />

@@ -21,7 +21,7 @@ export default function Navbar() {
     { name: 'Startseite', href: isHome ? '#home' : import.meta.env.BASE_URL },
     { name: 'Über uns', href: isHome ? '#about' : `${import.meta.env.BASE_URL}#about` },
     { name: 'Impact', href: isHome ? '#impact' : `${import.meta.env.BASE_URL}#impact` },
-    { name: 'Events', href: isHome ? '#events' : `${import.meta.env.BASE_URL}#events` },
+    { name: 'Events', href: '/events' },
     { name: 'Kontakt', href: isHome ? '#contact' : `${import.meta.env.BASE_URL}#contact` },
   ];
 
@@ -73,13 +73,23 @@ export default function Navbar() {
           </div>
 
           {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-sm font-semibold text-slate-600 hover:text-brand-teal transition-colors"
-            >
-              {link.name}
-            </a>
+            link.href.startsWith('#') ? (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-sm font-semibold text-slate-600 hover:text-brand-teal transition-colors"
+              >
+                {link.name}
+              </a>
+            ) : (
+              <Link
+                key={link.name}
+                to={link.href}
+                className="text-sm font-semibold text-slate-600 hover:text-brand-teal transition-colors"
+              >
+                {link.name}
+              </Link>
+            )
           ))}
           <button className="btn-primary py-2 px-5 text-sm">
             Mitmachen
@@ -120,14 +130,25 @@ export default function Navbar() {
               </div>
               <div className="h-px bg-slate-100" />
               {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="text-lg font-semibold text-slate-900 hover:text-brand-teal"
-                >
-                  {link.name}
-                </a>
+                link.href.startsWith('#') ? (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className="text-lg font-semibold text-slate-900 hover:text-brand-teal"
+                  >
+                    {link.name}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className="text-lg font-semibold text-slate-900 hover:text-brand-teal"
+                  >
+                    {link.name}
+                  </Link>
+                )
               ))}
               <button className="btn-primary w-full">
                 Mitmachen

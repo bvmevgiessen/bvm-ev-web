@@ -1,0 +1,146 @@
+[
+  {
+    "id": "iftar-2026",
+    "title": "Iftar der Begegnung",
+    "category": "KULTUR",
+    "stream": "Festive Events",
+    "date": "2026-03-20T18:30:00",
+    "location": "BVM Zentrum, Gießen",
+    "image": "https://images.unsplash.com/photo-1580915411954-282cb1b0d780?auto=format&fit=crop&q=80&w=1200",
+    "description": "Ein gemeinsames Fastenbrechen für alle Bürgerinnen und Bürger, unabhängig von ihrer religiösen Zugehörigkeit.",
+    "wasErwartetSie": [
+      "Interkulturelle Begegnung",
+      "Der Moment des Iftar",
+      "Kulinarische Vielfalt"
+    ],
+    "fuerWen": "Jeder ist willkommen – Muslime und Nicht-Muslime – um den Dialog zu fördern."
+  },
+  {
+    "id": "zuckerfest-2026",
+    "title": "Zuckerfest (Eid al-Fitr)",
+    "category": "KULTUR",
+    "stream": "Festive Events",
+    "date": "2026-03-31T10:00:00",
+    "location": "Gießen Marktplatz",
+    "image": "https://images.unsplash.com/photo-1564182842519-8a3b2af3e228?auto=format&fit=crop&q=80&w=1200",
+    "description": "Feiern Sie mit uns das Ende des Ramadan mit Süßigkeiten und Gemeinschaft.",
+    "wasErwartetSie": [
+      "Gemeinsames Gebet",
+      "Süßigkeiten für Kinder",
+      "Nachbarschaftliches Beisammensein"
+    ],
+    "fuerWen": "Familien, Nachbarn und alle, die Freude teilen möchten."
+  },
+  {
+    "id": "opferfest-2026",
+    "title": "Opferfest (Eid al-Adha)",
+    "category": "KULTUR",
+    "stream": "Festive Events",
+    "date": "2026-06-07T09:00:00",
+    "location": "Wetzlar Festplatz",
+    "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200",
+    "description": "Eines der wichtigsten Feste im islamischen Kalender, gefeiert mit Wohltätigkeit und Gemeinschaft.",
+    "wasErwartetSie": [
+      "Verteilung von Gaben",
+      "Festessen",
+      "Gemeinschaftliche Aktivitäten"
+    ],
+    "fuerWen": "Alle Bürgerinnen und Bürger in Wetzlar und Umgebung."
+  },
+  {
+    "id": "frauentag-2026",
+    "title": "Internationaler Frauentag",
+    "category": "SOZIALES",
+    "stream": "Community Days",
+    "date": "2026-03-08T15:00:00",
+    "location": "BVM Zentrum, Gießen",
+    "image": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1200",
+    "description": "Ein Nachmittag gewidmet den Errungenschaften von Frauen in unserer Gesellschaft.",
+    "wasErwartetSie": [
+      "Inspirierende Vorträge",
+      "Networking-Kaffee",
+      "Kulturelle Darbietungen"
+    ],
+    "fuerWen": "Frauen aller Hintergründe und ihre Unterstützer."
+  },
+  {
+    "id": "muttertag-2026",
+    "title": "Muttertag Spezial",
+    "category": "SOZIALES",
+    "stream": "Community Days",
+    "date": "2026-05-10T11:00:00",
+    "location": "Wetzlar Altstadt",
+    "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&q=80&w=1200",
+    "description": "Wir ehren alle Mütter mit einem besonderen Frühstück und kleinen Überraschungen.",
+    "wasErwartetSie": [
+      "Festliches Frühstück",
+      "Blumenübergabe",
+      "Musikalisches Programm"
+    ],
+    "fuerWen": "Mütter, Großmütter und ihre Familien."
+  },
+  {
+    "id": "senioren-besuch-2026",
+    "title": "Besuch im Seniorenhaus",
+    "category": "SOZIALES",
+    "stream": "Community Days",
+    "date": "2026-04-15T14:00:00",
+    "location": "Seniorenheim Gießen",
+    "image": "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&q=80&w=1200",
+    "description": "Jung und Alt kommen zusammen für einen Nachmittag voller Geschichten und Lächeln.",
+    "wasErwartetSie": [
+      "Blumenübergabe durch Jugendliche",
+      "Gemeinsames Singen",
+      "Zeit für Gespräche"
+    ],
+    "fuerWen": "Jugendliche Freiwillige und Senioren."
+  },
+  {
+    "id": "spieleabend-2026",
+    "title": "Internationaler Spieleabend",
+    "category": "BILDUNG",
+    "stream": "Youth & Education",
+    "date": "2026-04-25T19:00:00",
+    "location": "Uni-Viertel, Gießen",
+    "image": "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&q=80&w=1200",
+    "description": "Ein gemütlicher Abend mit Brettspielen, Kaffee und neuen Freundschaften.",
+    "wasErwartetSie": [
+      "Große Auswahl an Brettspielen",
+      "Kaffee und Snacks",
+      "Lachen und Kennenlernen"
+    ],
+    "fuerWen": "Studierende und junge Erwachsene aus Gießen."
+  },
+  {
+    "id": "feriencamp-2026",
+    "title": "Sommer-Feriencamp",
+    "category": "JUGEND",
+    "stream": "Youth & Education",
+    "date": "2026-07-20T09:00:00",
+    "location": "Jugendherberge Wetzlar",
+    "image": "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&q=80&w=1200",
+    "description": "Eine Woche voller Abenteuer, Sport und Team-Building in der Natur.",
+    "wasErwartetSie": [
+      "Outdoor-Aktivitäten",
+      "Team-Building Spiele",
+      "Abendliches Lagerfeuer"
+    ],
+    "fuerWen": "Kinder und Jugendliche zwischen 10 und 16 Jahren."
+  },
+  {
+    "id": "sprachcafe-2026",
+    "title": "Sprachcafé Gießen",
+    "category": "BILDUNG",
+    "stream": "Youth & Education",
+    "date": "2026-05-05T17:00:00",
+    "location": "BVM Zentrum, Gießen",
+    "image": "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=1200",
+    "description": "Verbessern Sie Ihre Deutschkenntnisse in entspannter Atmosphäre bei Tee und Gebäck.",
+    "wasErwartetSie": [
+      "Konversationsgruppen",
+      "Sprachspiele",
+      "Kultureller Austausch"
+    ],
+    "fuerWen": "Alle, die Deutsch lernen oder ihre Kenntnisse vertiefen möchten."
+  }
+]
