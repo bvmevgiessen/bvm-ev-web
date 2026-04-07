@@ -1,32 +1,53 @@
-import { motion } from 'motion/react';
+import React, { useEffect, useState } from 'react';
+import { motion, useSpring, useTransform, animate } from 'motion/react';
 import { Globe, Users, Rocket, ArrowRight, Heart, MapPin, LayoutGrid, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import PuzzleBackground from './PuzzleBackground';
+
+function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    const controls = animate(0, value, {
+      duration: 2,
+      onUpdate: (latest) => setDisplayValue(Math.floor(latest)),
+    });
+    return () => controls.stop();
+  }, [value]);
+
+  return <span>{displayValue}{suffix}</span>;
+}
 
 export default function Impact() {
   const stats = [
     {
       label: 'Engagierte Familien',
-      value: '100',
-      description: 'Das Herzstück unseres Vereins.',
-      icon: <Heart className="text-brand-orange" size={24} fill="currentColor" />,
+      value: 100,
+      suffix: '+',
+      description: 'Das lebendige Herzstück unseres Vereins in der Region.',
+      icon: <Heart className="text-brand-teal" size={24} fill="currentColor" />,
+      color: 'text-brand-teal',
     },
     {
-      label: 'Aktive Städte',
-      value: '2',
-      description: 'Stolz in Mittelhessen verwurzelt.',
-      icon: <MapPin className="text-brand-teal" size={24} />,
+      label: 'Lokale Ankerpunkte',
+      value: 2,
+      description: 'Aktiv verwurzelt in Gießen und Wetzlar.',
+      icon: <MapPin className="text-brand-navy" size={24} />,
+      color: 'text-brand-navy',
     },
     {
-      label: 'Spezialisierte Plattformen',
-      value: '3',
-      description: 'Jugend, Dialog und Integration.',
-      icon: <LayoutGrid className="text-brand-navy" size={24} />,
+      label: 'Fachplattformen',
+      value: 3,
+      description: 'Gezielte Förderung in den Bereichen Jugend, Dialog und Integration.',
+      icon: <LayoutGrid className="text-brand-orange" size={24} />,
+      color: 'text-brand-orange',
     },
     {
-      label: 'Seit 2019',
-      value: '5+',
-      description: 'Kulturelle Brücken in Mittelhessen.',
+      label: 'Jahre Brückenbau',
+      value: 7,
+      description: 'Seit unserer Gründung im Jahr 2019 ein verlässlicher Partner für Integration.',
       icon: <Calendar className="text-brand-teal" size={24} />,
+      color: 'text-brand-teal',
     },
   ];
 
@@ -64,29 +85,10 @@ export default function Impact() {
   ];
 
   return (
-    <section id="impact" className="bg-slate-50 py-24 overflow-hidden">
-      <div className="section-padding">
-        {/* Heartbeat Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-32">
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="text-center"
-            >
-              <div className="w-16 h-16 bg-white rounded-2xl shadow-sm border border-slate-100 flex items-center justify-center mx-auto mb-6">
-                {stat.icon}
-              </div>
-              <div className="text-4xl font-extrabold text-brand-navy mb-2">{stat.value}</div>
-              <div className="text-sm font-bold text-brand-teal uppercase tracking-widest mb-2">{stat.label}</div>
-              <p className="text-slate-500 text-xs leading-relaxed max-w-[150px] mx-auto">{stat.description}</p>
-            </motion.div>
-          ))}
-        </div>
-
+    <section id="impact" className="relative bg-slate-50 py-20 overflow-hidden">
+      <PuzzleBackground color="#0D9488" className="opacity-[0.03]" />
+      
+      <div className="section-padding relative z-10">
         <div className="text-center mb-20">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -94,7 +96,7 @@ export default function Impact() {
             viewport={{ once: true }}
             className="text-3xl md:text-5xl font-extrabold text-brand-navy mb-6"
           >
-            Unsere drei <span className="text-brand-teal">Kernplattformen</span>
+            Gemeinsam Zeichen setzen: <span className="text-brand-teal">BVM in Zahlen</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -103,8 +105,42 @@ export default function Impact() {
             transition={{ delay: 0.1 }}
             className="text-slate-600 max-w-2xl mx-auto text-lg"
           >
-            Maßgeschneiderte Programme für eine inklusive und starke Gemeinschaft in Mittelhessen.
+            Seit 2019 bauen wir Brücken zwischen Kulturen und Generationen in Gießen und Wetzlar.
           </motion.p>
+        </div>
+
+        {/* Heartbeat Stats */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-32">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="bg-white p-8 rounded-[2rem] shadow-xl shadow-slate-200/50 border border-slate-100 text-center hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                {stat.icon}
+              </div>
+              <div className={`text-4xl font-extrabold ${stat.color} mb-2`}>
+                <Counter value={stat.value} suffix={stat.suffix} />
+              </div>
+              <div className="text-sm font-bold text-brand-navy uppercase tracking-widest mb-3">{stat.label}</div>
+              <p className="text-slate-500 text-xs leading-relaxed max-w-[180px] mx-auto">{stat.description}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="text-center mb-16">
+          <motion.h3
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-2xl md:text-4xl font-extrabold text-brand-navy mb-4"
+          >
+            Unsere drei <span className="text-brand-teal">Kernplattformen</span>
+          </motion.h3>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
