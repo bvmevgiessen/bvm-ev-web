@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Users, Anchor, Info, ArrowLeft, Heart, Shield, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PuzzleBackground from '../components/PuzzleBackground';
+import ShareButtons from '../components/ShareButtons';
 
 export default function Integration() {
   return (
@@ -145,6 +146,13 @@ export default function Integration() {
               <div className="text-xs text-slate-400 uppercase tracking-widest">Stärke</div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Share Section */}
+      <section className="py-16 bg-white border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">
+          <ShareButtons title="BVM e.V. Integrationsplattform - Zentraler Ankerpunkt für alle" className="items-center" />
         </div>
       </section>
     </div>

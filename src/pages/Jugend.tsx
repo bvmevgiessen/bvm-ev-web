@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Rocket, Target, MapPin, ArrowLeft, GraduationCap, Compass, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PuzzleBackground from '../components/PuzzleBackground';
+import ShareButtons from '../components/ShareButtons';
 
 export default function Jugend() {
   return (
@@ -122,6 +123,13 @@ export default function Jugend() {
             "A society where every young person, regardless of origin, can reach their full potential."
           </h2>
           <div className="w-20 h-1 bg-brand-teal mx-auto" />
+        </div>
+      </section>
+
+      {/* Share Section */}
+      <section className="py-16 bg-white border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">
+          <ShareButtons title="BVM e.V. Jugendplattform - Identität & Potenzial entfalten" className="items-center" />
         </div>
       </section>
     </div>

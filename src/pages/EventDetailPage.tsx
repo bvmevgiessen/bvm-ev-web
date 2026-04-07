@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'motion/react';
-import { Calendar, MapPin, Clock, ArrowLeft, CheckCircle2, Users } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Calendar, MapPin, Clock, ArrowLeft, CheckCircle2, Users, Info } from 'lucide-react';
+import { useForm, ValidationError } from '@formspree/react';
 import Navbar from '../components/Navbar';
+import ShareButtons from '../components/ShareButtons';
 import eventsData from '../data/events.json';
 
 export default function EventDetailPage() {
   const { eventId } = useParams();
   const event = eventsData.find(e => e.id === eventId);
-  const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [state, handleSubmit] = useForm('xbdpbjkb');
+  const [attendeeCount, setAttendeeCount] = useState(1);
 
   if (!event) {
     return (
@@ -20,12 +23,6 @@ export default function EventDetailPage() {
       </div>
     );
   }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormState('submitting');
-    setTimeout(() => setFormState('success'), 1500);
-  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -119,9 +116,14 @@ export default function EventDetailPage() {
               {/* Registration Form */}
               <div className="lg:col-span-1">
                 <div className="sticky top-32 bg-white p-8 rounded-[2rem] border border-slate-200 shadow-xl shadow-slate-200/50">
-                  <h2 className="text-2xl font-bold text-brand-navy mb-6">Anmeldung</h2>
+                  <div className="flex items-center justify-between mb-6">
+                    <h2 className="text-2xl font-bold text-brand-navy">Anmeldung</h2>
+                    <span className="text-[10px] font-bold text-brand-orange bg-brand-orange/10 px-3 py-1 rounded-full uppercase tracking-wider">
+                      Anfrage
+                    </span>
+                  </div>
                   
-                  {formState === 'success' ? (
+                  {state.succeeded ? (
                     <motion.div 
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
@@ -131,51 +133,126 @@ export default function EventDetailPage() {
                         <CheckCircle2 className="text-brand-teal" size={40} />
                       </div>
                       <h3 className="text-xl font-bold text-brand-navy mb-2">Vielen Dank!</h3>
-                      <p className="text-slate-500">Ihre Anmeldung war erfolgreich. Wir freuen uns auf Sie!</p>
+                      <p className="text-slate-600 text-sm leading-relaxed">
+                        Wir haben Ihre Anmeldung erhalten. Da unsere Plätze begrenzt sind, prüfen wir derzeit die Kapazität und senden Ihnen in Kürze eine verbindliche Bestätigung per E-Mail.
+                      </p>
                     </motion.div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-4">
+                      {/* Hidden fields for event context */}
+                      <input type="hidden" name="eventTitle" value={event.title} />
+                      <input type="hidden" name="eventDate" value={event.date} />
+                      <input type="hidden" name="location" value={event.location} />
+                      <input type="hidden" name="_subject" value={`Anmeldung (Prüfung ausstehend): ${event.title}`} />
+
                       <div>
-                        <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Vollständiger Name</label>
+                        <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Vollständiger Name (Kontaktperson)</label>
                         <input 
                           required
+                          name="name"
                           type="text" 
                           placeholder="Ihr Name"
                           className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal outline-none transition-all"
                         />
+                        <ValidationError prefix="Name" field="name" errors={state.errors} className="text-[10px] text-red-500 mt-1 ml-1" />
                       </div>
                       <div>
                         <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">E-Mail Adresse</label>
                         <input 
                           required
+                          name="email"
                           type="email" 
                           placeholder="beispiel@mail.de"
                           className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal outline-none transition-all"
                         />
+                        <ValidationError prefix="Email" field="email" errors={state.errors} className="text-[10px] text-red-500 mt-1 ml-1" />
                       </div>
                       <div>
                         <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Anzahl Personen</label>
                         <div className="relative">
                           <Users className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                          <select className="w-full pl-14 pr-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal outline-none transition-all appearance-none">
-                            <option>1 Person</option>
-                            <option>2 Personen</option>
-                            <option>3 Personen</option>
-                            <option>4+ Personen</option>
+                          <select 
+                            name="attendees"
+                            value={attendeeCount}
+                            onChange={(e) => setAttendeeCount(parseInt(e.target.value))}
+                            className="w-full pl-14 pr-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal outline-none transition-all appearance-none"
+                          >
+                            {[1, 2, 3, 4, 5].map(num => (
+                              <option key={num} value={num}>{num} {num === 1 ? 'Person' : 'Personen'}</option>
+                            ))}
                           </select>
                         </div>
+                        <ValidationError prefix="Attendees" field="attendees" errors={state.errors} className="text-[10px] text-red-500 mt-1 ml-1" />
                       </div>
+
+                      <AnimatePresence>
+                        {attendeeCount > 1 && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="space-y-4 overflow-hidden"
+                          >
+                            {Array.from({ length: attendeeCount - 1 }).map((_, i) => (
+                              <div key={i}>
+                                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">
+                                  Name von Teilnehmer {i + 2}
+                                </label>
+                                <input 
+                                  required
+                                  name={`attendee_name_${i + 2}`}
+                                  type="text" 
+                                  placeholder={`Name Teilnehmer ${i + 2}`}
+                                  className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal outline-none transition-all"
+                                />
+                                <ValidationError prefix={`Teilnehmer ${i + 2}`} field={`attendee_name_${i + 2}`} errors={state.errors} className="text-[10px] text-red-500 mt-1 ml-1" />
+                              </div>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      <div>
+                        <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 ml-1">Besondere Hinweise</label>
+                        <textarea 
+                          name="notes"
+                          placeholder="z.B. Allergien, vegetarisch, medizinische Hinweise..."
+                          rows={3}
+                          className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal outline-none transition-all resize-none"
+                        />
+                        <ValidationError prefix="Notes" field="notes" errors={state.errors} className="text-[10px] text-red-500 mt-1 ml-1" />
+                      </div>
+
+                      <div className="flex items-start gap-3 p-4 bg-brand-orange/5 rounded-2xl border border-brand-orange/10 mb-2">
+                        <Info className="text-brand-orange shrink-0 mt-0.5" size={16} />
+                        <p className="text-[10px] text-slate-600 leading-relaxed">
+                          Dies ist eine unverbindliche Anfrage. Wir prüfen die Kapazitäten und senden Ihnen eine Bestätigung.
+                        </p>
+                      </div>
+
                       <button 
-                        disabled={formState === 'submitting'}
+                        type="submit"
+                        disabled={state.submitting}
                         className="w-full py-5 bg-brand-teal text-white font-black rounded-2xl hover:bg-brand-navy transition-all shadow-lg shadow-brand-teal/20 disabled:opacity-50"
                       >
-                        {formState === 'submitting' ? 'Wird gesendet...' : 'Jetzt anmelden'}
+                        {state.submitting ? 'Wird gesendet...' : 'Anfrage senden'}
                       </button>
+                      
+                      {state.errors && !state.succeeded && (
+                        <p className="text-[10px] text-red-500 text-center px-4 mt-2">
+                          Es gab ein Problem bei der Anmeldung. Bitte versuchen Sie es später erneut.
+                        </p>
+                      )}
+
                       <p className="text-[10px] text-slate-400 text-center px-4">
                         Mit der Anmeldung stimmen Sie unseren Datenschutzbestimmungen zu.
                       </p>
                     </form>
                   )}
+
+                  <div className="mt-12 pt-12 border-t border-slate-100">
+                    <ShareButtons title={event.title} />
+                  </div>
                 </div>
               </div>
             </div>

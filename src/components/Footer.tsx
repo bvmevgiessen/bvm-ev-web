@@ -1,42 +1,13 @@
 import React, { useState } from 'react';
 import { Github, Mail, Phone, MapPin, Facebook, Instagram, Twitter, Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { useForm, ValidationError } from '@formspree/react';
 import LegalModal from './LegalModal';
 import Logo from './Logo';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [activeModal, setActiveModal] = useState<'none' | 'impressum' | 'privacy' | 'satzung' | 'donation'>('none');
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStatus('loading');
-    
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
-
-    try {
-      // Using Formspree for a functional static contact form
-      const response = await fetch('https://formspree.io/f/bvmevgiessen@gmail.com', {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        setStatus('success');
-        (e.target as HTMLFormElement).reset();
-        setTimeout(() => setStatus('idle'), 5000);
-      } else {
-        setStatus('error');
-      }
-    } catch (error) {
-      setStatus('error');
-    }
-  };
+  const [state, handleSubmit] = useForm('mwvwzkrr');
 
   const satzungContent = (
     <div className="space-y-6 text-sm">
@@ -203,6 +174,8 @@ export default function Footer() {
               required
               className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand-teal transition-colors"
             />
+            <ValidationError prefix="Name" field="name" errors={state.errors} className="text-xs text-red-400" />
+            
             <input
               type="email"
               name="email"
@@ -210,6 +183,8 @@ export default function Footer() {
               required
               className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand-teal transition-colors"
             />
+            <ValidationError prefix="Email" field="email" errors={state.errors} className="text-xs text-red-400" />
+
             <select
               name="inquiryType"
               required
@@ -222,6 +197,8 @@ export default function Footer() {
               <option value="support">Unterstützung</option>
               <option value="event">Veranstaltungsanfrage</option>
             </select>
+            <ValidationError prefix="Inquiry Type" field="inquiryType" errors={state.errors} className="text-xs text-red-400" />
+
             <input
               type="text"
               name="subject"
@@ -229,6 +206,8 @@ export default function Footer() {
               required
               className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand-teal transition-colors"
             />
+            <ValidationError prefix="Subject" field="subject" errors={state.errors} className="text-xs text-red-400" />
+
             <textarea
               name="message"
               placeholder="Ihre Nachricht"
@@ -236,22 +215,24 @@ export default function Footer() {
               rows={3}
               className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand-teal transition-colors resize-none"
             />
+            <ValidationError prefix="Message" field="message" errors={state.errors} className="text-xs text-red-400" />
+
             <button
               type="submit"
-              disabled={status === 'loading'}
+              disabled={state.submitting}
               className="w-full btn-primary py-2 text-sm flex items-center justify-center gap-2 disabled:opacity-50"
             >
-              {status === 'loading' ? 'Wird gesendet...' : (
+              {state.submitting ? 'Wird gesendet...' : (
                 <>Nachricht senden <Send size={16} /></>
               )}
             </button>
             
-            {status === 'success' && (
+            {state.succeeded && (
               <p className="text-xs text-green-400 flex items-center gap-1 mt-2">
                 <CheckCircle2 size={14} /> Nachricht erfolgreich gesendet!
               </p>
             )}
-            {status === 'error' && (
+            {state.errors && !state.succeeded && (
               <p className="text-xs text-red-400 flex items-center gap-1 mt-2">
                 <AlertCircle size={14} /> Fehler beim Senden. Bitte versuchen Sie es erneut.
               </p>

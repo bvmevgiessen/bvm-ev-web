@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Globe, Coffee, Users, ArrowLeft, Heart, MessageSquare, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PuzzleBackground from '../components/PuzzleBackground';
+import ShareButtons from '../components/ShareButtons';
 
 export default function Dialog() {
   return (
@@ -147,6 +148,13 @@ export default function Dialog() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Share Section */}
+      <section className="py-16 bg-white border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">
+          <ShareButtons title="BVM e.V. Dialogplattform - Respekt & Verständnis schaffen" className="items-center" />
         </div>
       </section>
     </div>
