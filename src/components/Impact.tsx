@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Globe, Users, Rocket, ArrowRight, Heart, MapPin, LayoutGrid, Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Impact() {
   const stats = [
@@ -38,6 +39,7 @@ export default function Impact() {
       icon: <Rocket className="text-brand-teal" size={32} />,
       color: 'bg-teal-50',
       accent: 'bg-brand-teal',
+      link: '/jugend'
     },
     {
       title: 'Dialogplattform',
@@ -47,6 +49,7 @@ export default function Impact() {
       icon: <Globe className="text-brand-orange" size={32} />,
       color: 'bg-orange-50',
       accent: 'bg-brand-orange',
+      link: '/dialog'
     },
     {
       title: 'Integrationsplattform',
@@ -56,6 +59,7 @@ export default function Impact() {
       icon: <Users className="text-brand-navy" size={32} />,
       color: 'bg-slate-100',
       accent: 'bg-brand-navy',
+      link: '/integration'
     },
   ];
 
@@ -111,7 +115,8 @@ export default function Impact() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="group relative p-10 rounded-[2.5rem] border border-slate-200 hover:border-brand-teal/20 hover:shadow-2xl transition-all duration-500 bg-white overflow-hidden"
+              whileHover={{ y: -10 }}
+              className="group relative p-10 rounded-[2.5rem] border border-slate-200 hover:border-brand-teal/20 hover:shadow-2xl transition-all duration-500 bg-white/80 backdrop-blur-sm overflow-hidden"
             >
               {/* Puzzle Metaphor Background Accent */}
               <div className={`absolute top-0 right-0 w-40 h-40 ${platform.color} rounded-bl-[5rem] -z-10 group-hover:scale-110 transition-transform duration-500 flex items-center justify-center`}>
@@ -122,6 +127,9 @@ export default function Impact() {
                   />
                 </svg>
               </div>
+              
+              {/* Hover Background Shift */}
+              <div className={`absolute inset-0 ${platform.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 -z-20`} />
               
               <div className="flex items-center gap-4 mb-8">
                 <div className={`w-16 h-16 ${platform.color} rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform`}>
@@ -148,9 +156,12 @@ export default function Impact() {
                 ))}
               </div>
               
-              <button className="w-full py-4 rounded-2xl bg-slate-50 text-brand-navy font-bold flex items-center justify-center gap-2 group-hover:bg-brand-teal group-hover:text-white transition-all duration-300">
+              <Link 
+                to={platform.link}
+                className="w-full py-4 rounded-2xl bg-slate-50 text-brand-navy font-bold flex items-center justify-center gap-2 group-hover:bg-brand-teal group-hover:text-white transition-all duration-300"
+              >
                 Details ansehen <ArrowRight size={18} />
-              </button>
+              </Link>
             </motion.div>
           ))}
         </div>

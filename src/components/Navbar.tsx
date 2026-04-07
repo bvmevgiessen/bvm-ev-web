@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showPlatforms, setShowPlatforms] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -14,22 +18,60 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'Startseite', href: '#home' },
-    { name: 'Über uns', href: '#about' },
-    { name: 'Impact', href: '#impact' },
-    { name: 'Events', href: '#events' },
-    { name: 'Kontakt', href: '#contact' },
+    { name: 'Startseite', href: isHome ? '#home' : import.meta.env.BASE_URL },
+    { name: 'Über uns', href: isHome ? '#about' : `${import.meta.env.BASE_URL}#about` },
+    { name: 'Impact', href: isHome ? '#impact' : `${import.meta.env.BASE_URL}#impact` },
+    { name: 'Events', href: isHome ? '#events' : `${import.meta.env.BASE_URL}#events` },
+    { name: 'Kontakt', href: isHome ? '#contact' : `${import.meta.env.BASE_URL}#contact` },
+  ];
+
+  const platforms = [
+    { name: 'Jugend', href: '/jugend' },
+    { name: 'Dialog', href: '/dialog' },
+    { name: 'Integration', href: '/integration' },
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled || !isHome ? 'bg-white/90 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <a href="#home" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <Logo className="scale-90 origin-left" />
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
+          <div className="relative group">
+            <button 
+              className="flex items-center gap-1 text-sm font-semibold text-slate-600 hover:text-brand-teal transition-colors"
+              onMouseEnter={() => setShowPlatforms(true)}
+              onMouseLeave={() => setShowPlatforms(false)}
+            >
+              Plattformen <ChevronDown size={16} />
+            </button>
+            <AnimatePresence>
+              {showPlatforms && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  onMouseEnter={() => setShowPlatforms(true)}
+                  onMouseLeave={() => setShowPlatforms(false)}
+                  className="absolute top-full left-0 w-48 bg-white shadow-xl rounded-2xl border border-slate-100 py-4 mt-2"
+                >
+                  {platforms.map((p) => (
+                    <Link
+                      key={p.name}
+                      to={p.href}
+                      className="block px-6 py-2 text-sm text-slate-600 hover:text-brand-teal hover:bg-slate-50 transition-colors"
+                    >
+                      {p.name}
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
           {navLinks.map((link) => (
             <a
               key={link.name}
@@ -63,6 +105,20 @@ export default function Navbar() {
             className="md:hidden bg-white border-b border-slate-100 overflow-hidden"
           >
             <div className="px-6 py-8 flex flex-col gap-6">
+              <div className="space-y-4">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Plattformen</p>
+                {platforms.map((p) => (
+                  <Link
+                    key={p.name}
+                    to={p.href}
+                    onClick={() => setIsOpen(false)}
+                    className="block text-lg font-semibold text-slate-900 hover:text-brand-teal"
+                  >
+                    {p.name}
+                  </Link>
+                ))}
+              </div>
+              <div className="h-px bg-slate-100" />
               {navLinks.map((link) => (
                 <a
                   key={link.name}

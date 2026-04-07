@@ -1,21 +1,12 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Globe, MapPin, Puzzle, Heart } from 'lucide-react';
+import PuzzleBackground from './PuzzleBackground';
 
 export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-white">
-      {/* Puzzle Metaphor Background Elements */}
-      <div className="absolute top-0 right-0 w-full h-full pointer-events-none -z-10 opacity-20">
-        <svg viewBox="0 0 800 800" className="absolute top-0 right-0 w-[600px] h-[600px] text-brand-teal transform translate-x-1/4 -translate-y-1/4">
-          <path fill="currentColor" d="M100,100 L300,100 L300,300 L100,300 Z" className="animate-pulse" />
-          <path fill="currentColor" d="M350,150 L550,150 L550,350 L350,350 Z" style={{ animationDelay: '1s' }} className="animate-pulse" />
-          <path fill="currentColor" d="M200,400 L400,400 L400,600 L200,600 Z" style={{ animationDelay: '2s' }} className="animate-pulse" />
-        </svg>
-      </div>
-
-      {/* Location Focus: Subtle Map Overlay (Conceptual) */}
-      <div className="absolute inset-0 bg-[url('https://picsum.photos/seed/map/1920/1080?blur=10')] bg-cover bg-center opacity-[0.03] -z-20" />
-
+      <PuzzleBackground color="#0D9488" className="opacity-[0.03]" />
+      
       <div className="section-padding grid lg:grid-cols-2 gap-16 items-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}

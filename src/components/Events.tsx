@@ -54,9 +54,9 @@ export default function Events() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group"
+              className={`bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group ${index === 0 ? 'md:col-span-2 md:row-span-1 flex flex-col md:flex-row' : ''}`}
             >
-              <div className="relative h-48 overflow-hidden">
+              <div className={`relative overflow-hidden ${index === 0 ? 'md:w-1/2 h-64 md:h-auto' : 'h-48'}`}>
                 <img
                   src={event.image}
                   alt={event.title}
@@ -68,8 +68,8 @@ export default function Events() {
                 </div>
               </div>
               
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-brand-navy mb-4 leading-tight group-hover:text-brand-teal transition-colors">
+              <div className={`p-6 ${index === 0 ? 'md:w-1/2 flex flex-col justify-center' : ''}`}>
+                <h3 className={`${index === 0 ? 'text-2xl md:text-3xl' : 'text-xl'} font-bold text-brand-navy mb-4 leading-tight group-hover:text-brand-teal transition-colors`}>
                   {event.title}
                 </h3>
                 

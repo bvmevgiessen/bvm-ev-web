@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Target, Eye, ShieldCheck, Users, Heart, Flower, Gamepad2, Stars } from 'lucide-react';
+import PuzzleBackground from './PuzzleBackground';
 
 export default function About() {
   const activities = [
@@ -24,8 +25,9 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="bg-white py-24 overflow-hidden">
-      <div className="section-padding">
+    <section id="about" className="bg-white py-24 overflow-hidden relative">
+      <PuzzleBackground color="#0D9488" className="opacity-[0.02]" />
+      <div className="section-padding relative z-10">
         <div className="grid lg:grid-cols-2 gap-20 items-center mb-32">
           <motion.div
             initial={{ opacity: 0, x: -50 }}

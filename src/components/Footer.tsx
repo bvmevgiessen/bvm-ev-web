@@ -153,7 +153,7 @@ export default function Footer() {
     <footer id="contact" className="bg-brand-navy text-white pt-24 pb-12 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
         <div className="space-y-6">
-          <a href="#home" className="flex items-center">
+          <a href={import.meta.env.BASE_URL} className="flex items-center">
             <Logo light className="scale-90 origin-left" />
           </a>
           <p className="text-slate-400 leading-relaxed text-sm">
@@ -185,11 +185,11 @@ export default function Footer() {
         <div>
           <h4 className="text-lg font-bold mb-8 text-brand-teal">Schnellzugriff</h4>
           <ul className="space-y-4 text-slate-400 text-sm">
-            <li><a href="#home" className="hover:text-white transition-colors">Startseite</a></li>
-            <li><a href="#about" className="hover:text-white transition-colors">Über uns</a></li>
-            <li><a href="#impact" className="hover:text-white transition-colors">Unsere Impact</a></li>
-            <li><a href="#events" className="hover:text-white transition-colors">Veranstaltungen</a></li>
-            <li><a href="#contact" className="hover:text-white transition-colors">Kontakt</a></li>
+            <li><a href={`${import.meta.env.BASE_URL}#home`} className="hover:text-white transition-colors">Startseite</a></li>
+            <li><a href={`${import.meta.env.BASE_URL}#about`} className="hover:text-white transition-colors">Über uns</a></li>
+            <li><a href={`${import.meta.env.BASE_URL}#impact`} className="hover:text-white transition-colors">Unsere Impact</a></li>
+            <li><a href={`${import.meta.env.BASE_URL}#events`} className="hover:text-white transition-colors">Veranstaltungen</a></li>
+            <li><a href={`${import.meta.env.BASE_URL}#contact`} className="hover:text-white transition-colors">Kontakt</a></li>
           </ul>
         </div>
 
@@ -270,7 +270,7 @@ export default function Footer() {
           
           <div className="mt-10 pt-10 border-t border-white/10">
             <a 
-              href="https://github.com/bvmevgiessen/website-bvm" 
+              href="https://github.com/bvmevgiessen/bvm-ev-web" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors text-sm"
