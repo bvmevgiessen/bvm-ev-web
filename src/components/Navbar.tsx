@@ -22,6 +22,7 @@ export default function Navbar() {
     { name: 'Über uns', href: isHome ? '#about' : `${import.meta.env.BASE_URL}#about` },
     { name: 'Impact', href: isHome ? '#impact' : `${import.meta.env.BASE_URL}#impact` },
     { name: 'Events', href: '/events' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Kontakt', href: isHome ? '#contact' : `${import.meta.env.BASE_URL}#contact` },
   ];
 

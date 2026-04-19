@@ -4,6 +4,7 @@ import Hero from '../components/Hero';
 import Impact from '../components/Impact';
 import About from '../components/About';
 import Events from '../components/Events';
+import Blog from '../components/Blog';
 import Partners from '../components/Partners';
 import CommunityPulse from '../components/CommunityPulse';
 import PuzzleBackground from '../components/PuzzleBackground';
@@ -19,6 +20,7 @@ export default function Home() {
         <About />
         <CommunityPulse />
         <Events />
+        <Blog />
         <Partners />
       </main>
     </div>

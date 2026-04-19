@@ -10,6 +10,8 @@ import Dialog from './pages/Dialog';
 import Integration from './pages/Integration';
 import EventsPage from './pages/EventsPage';
 import EventDetailPage from './pages/EventDetailPage';
+import BlogPage from './pages/BlogPage';
+import BlogDetailPage from './pages/BlogDetailPage';
 import Footer from './components/Footer';
 
 export default function App() {
@@ -23,6 +25,8 @@ export default function App() {
           <Route path="/integration" element={<Integration />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/events/:eventId" element={<EventDetailPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:blogId" element={<BlogDetailPage />} />
         </Routes>
         <Footer />
       </div>
