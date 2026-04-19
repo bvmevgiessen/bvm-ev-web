@@ -1,0 +1,54 @@
+[
+  {
+    "id": "blog-integration-2026",
+    "title": "Integration in Mittelhessen: Neue Perspektiven für Zusammenleben",
+    "author": "Stiftung Dialog und Bildung",
+    "partnerName": "Stiftung Dialog und Bildung",
+    "partnerUrl": "https://www.sdub.de/",
+    "category": "Integration",
+    "date": "2026-04-15T10:00:00",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800",
+    "excerpt": "In unserem neuesten Bericht beleuchten wir die aktuellen Herausforderungen und Chancen der Integration in der Mittelhessen-Region.",
+    "content": "Integration ist ein kontinuierlicher Prozess, der Engagement und Verständnis von allen Seiten erfordert. Unsere neue Studie zeigt, dass erfolgreiche Integration durch offene Dialoge und gegenseitigen Respekt gefördert wird.",
+    "tags": ["Integration", "Dialog", "Community"]
+  },
+  {
+    "id": "blog-dialog-2026",
+    "title": "Interkultureller Dialog: Brücken bauen in der Gesellschaft",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://fidev.org/",
+    "category": "Dialog",
+    "date": "2026-04-10T14:30:00",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800",
+    "excerpt": "Wie Dialog die Grundlage für eine erfolgreiche Gesellschaft schafft – Ein Erfahrungsbericht aus unserem neuesten Projekt.",
+    "content": "Der Dialog zwischen verschiedenen Kulturen ist mehr als nur ein Austausch von Worten. Es geht um das Verständnis von Perspektiven, das Respektieren von Unterschieden und das Finden von gemeinsamen Werten.",
+    "tags": ["Dialog", "Kultur", "Gesellschaft"]
+  },
+  {
+    "id": "blog-community-2026",
+    "title": "Gemeinsam für eine bessere Zukunft: Unsere Community-Projekte",
+    "author": "Time to Help e.V.",
+    "partnerName": "Time to Help e.V.",
+    "partnerUrl": "https://www.timetohelp.eu/",
+    "category": "Community",
+    "date": "2026-04-08T09:15:00",
+    "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=800",
+    "excerpt": "Erfahren Sie, wie unsere Freiwilligen und Partner zusammenarbeiten, um positive Veränderungen in der Gemeinschaft zu schaffen.",
+    "content": "Unsere Community-Projekte basieren auf dem Grundsatz der gegenseitigen Unterstützung und dem Glauben, dass jeder Einzelne einen Unterschied machen kann.",
+    "tags": ["Community", "Freiwilligenarbeit", "Soziales"]
+  },
+  {
+    "id": "blog-jugend-2026",
+    "title": "Jugendengagement: Die nächste Generation von Veränderungsträgern",
+    "author": "LDK e.V.",
+    "partnerName": "LDK e.V.",
+    "partnerUrl": "https://ldk-ev.de/",
+    "category": "Jugend",
+    "date": "2026-04-05T16:45:00",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800",
+    "excerpt": "Junge Menschen bringen frische Perspektiven und Leidenschaft mit – lesen Sie, wie wir Jugendliche in ihrer persönlichen Entwicklung unterstützen.",
+    "content": "Die Einbindung von jungen Menschen in gesellschaftliche Prozesse ist entscheidend für eine nachhaltige Veränderung. Durch Bildung, Mentoring und praktische Erfahrungen ermöglichen wir es ihnen, zu Führungskräften zu werden.",
+    "tags": ["Jugend", "Bildung", "Empowerment"]
+  }
+]
