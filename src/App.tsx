@@ -12,6 +12,7 @@ import EventsPage from './pages/EventsPage';
 import EventDetailPage from './pages/EventDetailPage';
 import BlogPage from './pages/BlogPage';
 import BlogDetailPage from './pages/BlogDetailPage';
+import MitmachenPage from './pages/MitmachenPage';
 import Footer from './components/Footer';
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="/events/:eventId" element={<EventDetailPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:blogId" element={<BlogDetailPage />} />
+          <Route path="/mitmachen" element={<MitmachenPage />} />
         </Routes>
         <Footer />
       </div>

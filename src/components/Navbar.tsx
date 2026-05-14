@@ -92,9 +92,13 @@ export default function Navbar() {
               </Link>
             )
           ))}
-          <button className="btn-primary py-2 px-5 text-sm">
+          <Link
+            to="/mitmachen"
+            data-testid="mitmachen-cta-desktop"
+            className="btn-primary py-2 px-5 text-sm"
+          >
             Mitmachen
-          </button>
+          </Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -151,9 +155,14 @@ export default function Navbar() {
                   </Link>
                 )
               ))}
-              <button className="btn-primary w-full">
+              <Link
+                to="/mitmachen"
+                onClick={() => setIsOpen(false)}
+                data-testid="mitmachen-cta-mobile"
+                className="btn-primary w-full text-center"
+              >
                 Mitmachen
-              </button>
+              </Link>
             </div>
           </motion.div>
         )}
