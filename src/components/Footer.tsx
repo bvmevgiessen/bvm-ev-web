@@ -111,7 +111,7 @@ export default function Footer() {
       <section>
         <h3 className="text-lg font-bold text-brand-navy mb-2">2. Datenerfassung auf unserer Website</h3>
         <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.</p>
-        <p className="mt-2">Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie in ein Kontaktformular eingeben.</p>
+        <p className="mt-2">Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie in ein Kontaktformular eingeben. eim Absenden des Mitgliedsantrags werden die Daten über Formspree Inc. (USA) verarbeitet.</p>
       </section>
       <section>
         <h3 className="text-lg font-bold text-brand-navy mb-2">3. Kontaktformular</h3>
