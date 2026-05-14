@@ -13,12 +13,12 @@ export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  // Stable category order
+  // Always show all 4 BVM categories so users always see the full filter set.
+  // Any extra categories that show up in the data are appended at the end.
   const categories = useMemo(() => {
     const present = new Set(updatesData.map((b) => b.category));
-    const ordered = PREFERRED_ORDER.filter((c) => present.has(c));
     const extras = Array.from(present).filter((c) => !PREFERRED_ORDER.includes(c));
-    return [...ordered, ...extras];
+    return [...PREFERRED_ORDER, ...extras];
   }, []);
 
   // Filter blogs

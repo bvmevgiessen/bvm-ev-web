@@ -41,7 +41,10 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r scripts/requirements.txt
 
-      - name: Fetch partner RSS feeds
+      - name: Install Playwright (Chromium for JS-rendered sources)
+        run: python -m playwright install --with-deps chromium
+
+      - name: Fetch partner feeds
         run: python scripts/fetch_feeds.py
 
       - name: Commit refreshed feed data
