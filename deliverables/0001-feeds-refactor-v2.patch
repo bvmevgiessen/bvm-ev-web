@@ -1,0 +1,1370 @@
+From 2d720816ecab87f4b7fde2f571f332750c6829a2 Mon Sep 17 00:00:00 2001
+From: tmp <tmp@tmp.dev>
+Date: Thu, 14 May 2026 22:04:20 +0000
+Subject: [PATCH] feat: keyword categorization, new sources (afsv, jwf, bddi,
+ house-of-one), German-only filter
+
+---
+ .github/workflows/update-feeds.yml |   5 +-
+ scripts/fetch_feeds.py             | 447 +++++++++++++++++++++-----
+ scripts/requirements.txt           |   2 +
+ src/data/latest_updates.json       | 497 ++++++++++++++++-------------
+ src/pages/BlogPage.tsx             |   6 +-
+ 5 files changed, 646 insertions(+), 311 deletions(-)
+
+diff --git a/.github/workflows/update-feeds.yml b/.github/workflows/update-feeds.yml
+index 665dba2..9c81c10 100644
+--- a/.github/workflows/update-feeds.yml
++++ b/.github/workflows/update-feeds.yml
+@@ -41,7 +41,10 @@ jobs:
+       - name: Install Python dependencies
+         run: pip install -r scripts/requirements.txt
+ 
+-      - name: Fetch partner RSS feeds
++      - name: Install Playwright (Chromium for JS-rendered sources)
++        run: python -m playwright install --with-deps chromium
++
++      - name: Fetch partner feeds
+         run: python scripts/fetch_feeds.py
+ 
+       - name: Commit refreshed feed data
+diff --git a/scripts/fetch_feeds.py b/scripts/fetch_feeds.py
+index 40d5c5e..187d187 100644
+--- a/scripts/fetch_feeds.py
++++ b/scripts/fetch_feeds.py
+@@ -1,19 +1,24 @@
+ """
+-Fetches RSS feeds from BVM partner organizations and writes a normalized
+-`src/data/latest_updates.json` file consumed by the React frontend.
++Fetches the latest posts from BVM partner organizations and writes a normalized
++`src/data/latest_updates.json` consumed by the React frontend.
+ 
+-Sources are configured in SOURCES below. Each item is mapped to one of the
+-BVM categories: Integration, Dialog, Community, Jugend.
++Key features (2026-Q2 refresh):
++  * RSS via `feedparser` for sources that publish a feed.
++  * Headless Chromium via Playwright for sites without a feed (House of One).
++  * German-only filter using `langdetect` – any post detected as non-German is
++    skipped (covers Turkish content on Time to Help / AFSV, English on JWF, …).
++  * Keyword-based category assignment (Integration | Dialog | Community | Jugend).
+ 
+ Run locally:
+-    pip install feedparser beautifulsoup4 lxml
++    pip install -r scripts/requirements.txt
++    python -m playwright install --with-deps chromium    # only for House of One
+     python scripts/fetch_feeds.py
+ """
+ 
+ from __future__ import annotations
+ 
+ import hashlib
+-import html
++import html as html_module
+ import json
+ import re
+ import sys
+@@ -23,48 +28,118 @@ from pathlib import Path
+ import feedparser
+ from bs4 import BeautifulSoup
+ 
++# langdetect is non-deterministic by default – seed it for reproducible runs.
++from langdetect import DetectorFactory, LangDetectException, detect
++
++DetectorFactory.seed = 0
++
+ # ---------------------------------------------------------------------------
+-# Configuration
++# Sources
+ # ---------------------------------------------------------------------------
+ 
+ SOURCES = [
+     {
+         "id": "sdub",
+         "feed": "https://sdub.de/feed/",
+-        "partner_name": "Stiftung Dialog und Bildung",
+-        "partner_url": "https://sdub.de/",
+-        "category": "Integration",
++        "source_name": "Stiftung Dialog und Bildung",
++        "url": "https://sdub.de/",
++        "type": "rss",
+     },
+     {
+         "id": "fidev",
+-        # Wix-hosted site -> blog-feed.xml (NOT /feed/ which 404s)
+-        "feed": "https://www.fidev.org/blog-feed.xml",
+-        "partner_name": "Forum für Interkulturellen Dialog",
+-        "partner_url": "https://www.fidev.org/",
+-        "category": "Dialog",
++        "feed": "https://www.fidev.org/blog-feed.xml",  # Wix
++        "source_name": "Forum für Interkulturellen Dialog",
++        "url": "https://www.fidev.org/",
++        "type": "rss",
+     },
+     {
+         "id": "timetohelp",
+-        "feed": "https://timetohelp.eu/feed/",
+-        "partner_name": "Time to Help e.V.",
+-        "partner_url": "https://timetohelp.eu/",
+-        "category": "Community",
++        # Try the German sub-directory feed first, fall back to the main feed.
++        "feed": "https://timetohelp.eu/de/feed/",
++        "fallback_feed": "https://timetohelp.eu/feed/",
++        "source_name": "Time to Help e.V.",
++        "url": "https://timetohelp.eu/",
++        "type": "rss",
+     },
+     {
+-        "id": "ldk",
+-        "feed": "https://ldk-ev.de/feed/",
+-        "partner_name": "LDK e.V.",
+-        "partner_url": "https://ldk-ev.de/",
+-        "category": "Jugend",
++        "id": "afsv",
++        "feed": "https://afsv.org/feed/",
++        "source_name": "AFSV",
++        "url": "https://afsv.org/",
++        "type": "rss",
++    },
++    {
++        "id": "jwf",
++        "feed": "https://jwf.org/feed/",
++        "source_name": "Journalists and Writers Foundation",
++        "url": "https://jwf.org/",
++        "type": "rss",
++    },
++    {
++        "id": "bddi",
++        "feed": "https://bddi.org/feed/",
++        "source_name": "Bund Deutscher Dialog Institutionen",
++        "url": "https://bddi.org/",
++        "type": "rss",
++    },
++    {
++        "id": "house-of-one",
++        "feed": "https://house-of-one.org/de/news",  # rendered, scraped via Playwright
++        "source_name": "House of One",
++        "url": "https://house-of-one.org/",
++        "type": "scrape",
+     },
+ ]
+ 
+-# Max items per source (keeps the JSON small + frontend snappy)
+ MAX_PER_SOURCE = 6
+-# Overall cap after merging + sorting
+-MAX_TOTAL = 24
++MAX_TOTAL = 30
++
++# ---------------------------------------------------------------------------
++# Keyword-based category mapping
++# ---------------------------------------------------------------------------
++CATEGORY_KEYWORDS: dict[str, tuple[str, ...]] = {
++    "Integration": (
++        "integration", "flüchtling", "fluechtling", "asylbewerber",
++        "integrationskurs", "sprachkurs", "fördern", "förderung",
++        "aufnahmegesellschaft", "migrationshintergrund", "migration",
++        "migrant", "geflüchtet", "gefluechtet", "einwanderung",
++        "ankommen", "willkommen", "einbürgerung", "asyl",
++        "neuzugewanderte", "teilhabe", "interkulturelle öffnung",
++        "ankunftsgesellschaft",
++    ),
++    "Dialog": (
++        "interreligiös", "interreligioes", "interkulturell",
++        "völkerverständigung", "voelkerverstaendigung",
++        "toleranz", "respekt", "abrahamitisch", "friedliches zusammenleben",
++        "dialog", "begegnung", "interfaith", "moschee", "kirche",
++        "synagoge", "christen", "muslime", "juden", "verständigung",
++        "verstaendigung", "ramadan", "iftar", "fastenbrechen",
++        "religion", "religiös", "religioes", "house of one",
++        "abrahamische religionen",
++    ),
++    "Community": (
++        "hilfsorganisation", "wohlfahrt", "wohlfahrtsverband", "ngo",
++        "gemeinde", "ehrenamt", "ehrenamtlich", "bürgerinitiative",
++        "buergerinitiative", "nachbarschaftshilfe", "freiwillig",
++        "freiwilligenarbeit", "gemeinnützig", "gemeinnuetzig",
++        "engagement", "spende", "solidarität", "solidaritaet",
++        "verein", "soziales", "zusammenhalt", "community",
++        "helfen", "kampagne", "stiftung", "wohltätigkeit",
++        "wohltaetigkeit",
++    ),
++    "Jugend": (
++        "jugend", "jugendlich", "jugendliche", "kinder", "kind",
++        "schule", "schüler", "schueler", "gymnasium", "universität",
++        "universitaet", "studierende", "studenten", "nachhilfe",
++        "sport", "turnen", "feriencamp", "ferienreise",
++        "hausaufgabenbetreuung", "kulturreisen", "spielabend",
++        "jugendarbeit", "jugendforum", "junge menschen", "jugendprojekt",
++        "jugendhilfe", "azubi", "kinderfest",
++    ),
++}
++
++DEFAULT_CATEGORY = "Community"
+ 
+-# Fallback image per category (Unsplash, royalty free) if a post has none.
+ FALLBACK_IMAGES = {
+     "Integration": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=1200",
+     "Dialog": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200",
+@@ -80,45 +155,75 @@ OUTPUT_PATH = Path(__file__).resolve().parent.parent / "src" / "data" / "latest_
+ # ---------------------------------------------------------------------------
+ 
+ def _strip_html(raw: str) -> str:
+-    """Return plain text from an HTML snippet, collapsed whitespace."""
+     if not raw:
+         return ""
+     text = BeautifulSoup(raw, "html.parser").get_text(separator=" ")
+-    text = html.unescape(text)
+-    return re.sub(r"\s+", " ", text).strip()
+-
+-
+-def _extract_image(entry: dict) -> str | None:
+-    """Try several common RSS fields to find a representative image URL."""
+-    # 1. <media:content> or <media:thumbnail>
++    return re.sub(r"\s+", " ", html_module.unescape(text)).strip()
++
++
++def _is_german(*chunks: str) -> bool:
++    """Return True if the concatenated text is detected as German.
++
++    Robust against very short snippets: anything < 25 chars is accepted (no
++    signal to detect language on)."""
++    sample = " ".join(c for c in chunks if c).strip()
++    if len(sample) < 25:
++        return True
++    try:
++        return detect(sample) == "de"
++    except LangDetectException:
++        return True  # be permissive on detector failure
++
++
++def categorize(title: str, excerpt: str) -> str:
++    """Pick the category with the most keyword hits across title + excerpt."""
++    title_l = title.lower()
++    haystack = f" {title_l} {excerpt.lower()} "
++    scores: dict[str, int] = {}
++    for category, keywords in CATEGORY_KEYWORDS.items():
++        score = 0
++        for kw in keywords:
++            kw_l = kw.lower()
++            if kw_l in title_l:
++                score += 2  # title hits weigh double
++            elif kw_l in haystack:
++                score += 1
++        if score:
++            scores[category] = score
++
++    if not scores:
++        return DEFAULT_CATEGORY
++
++    priority = list(CATEGORY_KEYWORDS.keys())  # tie-break order
++    return max(scores, key=lambda c: (scores[c], -priority.index(c)))
++
++
++def _extract_image_from_entry(entry: dict) -> str | None:
+     for key in ("media_content", "media_thumbnail"):
+         media = entry.get(key)
+         if media and isinstance(media, list) and media[0].get("url"):
+             return media[0]["url"]
+ 
+-    # 2. <enclosure> (Wix uses this)
+-    enclosures = entry.get("enclosures") or []
+-    for enc in enclosures:
++    for enc in entry.get("enclosures") or []:
+         url = enc.get("href") or enc.get("url")
+-        if url and re.search(r"\.(jpg|jpeg|png|webp|gif)", url, re.I):
+-            return url
+-        if url and "image" in (enc.get("type") or ""):
++        if url and (
++            re.search(r"\.(jpg|jpeg|png|webp|gif)", url, re.I)
++            or "image" in (enc.get("type") or "")
++        ):
+             return url
+ 
+-    # 3. First <img> inside content:encoded or summary
+     for field in ("content", "summary", "description"):
+         value = entry.get(field)
+         if isinstance(value, list) and value:
+             value = value[0].get("value", "")
+         if isinstance(value, str) and "<img" in value:
+-            soup = BeautifulSoup(value, "html.parser")
+-            img = soup.find("img")
++            img = BeautifulSoup(value, "html.parser").find("img")
+             if img and img.get("src"):
+                 return img["src"]
+     return None
+ 
+ 
+-def _excerpt(entry: dict, length: int = 200) -> str:
++def _excerpt_from_entry(entry: dict, length: int = 220) -> str:
+     raw = ""
+     if entry.get("summary"):
+         raw = entry["summary"]
+@@ -128,43 +233,39 @@ def _excerpt(entry: dict, length: int = 200) -> str:
+         content = entry["content"]
+         if isinstance(content, list) and content:
+             raw = content[0].get("value", "")
+-
+     text = _strip_html(raw)
+     if len(text) > length:
+         text = text[: length - 1].rstrip() + "…"
+     return text
+ 
+ 
+-def _parse_date(entry: dict) -> str:
+-    """Return ISO-8601 string (UTC) or now() as fallback."""
++def _parse_date_from_entry(entry: dict) -> str:
+     for key in ("published_parsed", "updated_parsed", "created_parsed"):
+         struct = entry.get(key)
+         if struct:
+             try:
+-                dt = datetime(*struct[:6], tzinfo=timezone.utc)
+-                return dt.isoformat()
++                return datetime(*struct[:6], tzinfo=timezone.utc).isoformat()
+             except (TypeError, ValueError):
+                 continue
+     return datetime.now(timezone.utc).isoformat()
+ 
+ 
+-def _tags(entry: dict, category: str) -> list[str]:
+-    """Pick up to 2 short, human-friendly tags. Always include the BVM category."""
+-    tags: list[str] = [category]
++def _tags_from_entry(entry: dict, category: str) -> list[str]:
++    """Up to 3 short, human-friendly tags. Always includes the BVM category."""
+     skip_lower = {
+         category.lower(),
+         "aktuelles", "uncategorized", "allgemein", "unkategorisiert",
+         "news", "blog", "post", "presseschau", "veranstaltungshinweise",
+     }
+-    raw = entry.get("tags") or []
+-    for t in raw:
++    tags = [category]
++    for t in entry.get("tags") or []:
+         name = (t.get("term") or "").strip()
+         if not name or len(name) > 24 or name.lower() in skip_lower:
+             continue
+         tags.append(name)
+         if len(tags) >= 3:
+             break
+-    # Dedupe while preserving order
++
+     seen, deduped = set(), []
+     for t in tags:
+         if t.lower() not in seen:
+@@ -173,65 +274,242 @@ def _tags(entry: dict, category: str) -> list[str]:
+     return deduped
+ 
+ 
+-def _stable_id(prefix: str, entry: dict) -> str:
+-    """Deterministic ID so the same post keeps the same id between runs."""
+-    seed = entry.get("id") or entry.get("guid") or entry.get("link") or entry.get("title", "")
++def _stable_id(prefix: str, *seed_parts: str) -> str:
++    seed = "|".join(p for p in seed_parts if p) or prefix
+     digest = hashlib.sha1(seed.encode("utf-8", errors="ignore")).hexdigest()[:10]
+     return f"{prefix}-{digest}"
+ 
+ 
+ # ---------------------------------------------------------------------------
+-# Main
++# Source readers
+ # ---------------------------------------------------------------------------
+ 
+-def fetch_source(source: dict) -> list[dict]:
+-    print(f"-> Fetching {source['feed']}", flush=True)
+-    parsed = feedparser.parse(source["feed"], agent="bvm-ev.de feed bot/1.0")
++def fetch_rss(source: dict) -> list[dict]:
++    feed_url = source["feed"]
++    print(f"-> RSS: {feed_url}", flush=True)
++
++    parsed = feedparser.parse(feed_url, agent="bvm-ev.de feed bot/1.0")
++    if (parsed.bozo and not parsed.entries) or not parsed.entries:
++        fallback = source.get("fallback_feed")
++        if fallback:
++            print(f"   primary empty – trying fallback {fallback}", flush=True)
++            parsed = feedparser.parse(fallback, agent="bvm-ev.de feed bot/1.0")
+ 
+     if parsed.bozo and not parsed.entries:
+         print(f"   !! parse error: {parsed.bozo_exception}", file=sys.stderr)
+         return []
+ 
+     items: list[dict] = []
+-    for entry in parsed.entries[:MAX_PER_SOURCE]:
++    skipped_lang = 0
++    skipped_junk = 0
++    for entry in parsed.entries:
+         title = _strip_html(entry.get("title", "")).strip()
+         link = entry.get("link") or ""
+         if not title or not link:
+             continue
+ 
+-        image = _extract_image(entry) or FALLBACK_IMAGES.get(source["category"])
++        # Skip obvious test posts / placeholder content.
++        if len(title) < 8 or title.lower() in {"test", "hello world", "lorem ipsum"}:
++            skipped_junk += 1
++            continue
++
++        excerpt = _excerpt_from_entry(entry)
++
++        if not _is_german(title, excerpt):
++            skipped_lang += 1
++            continue
++
++        category = categorize(title, excerpt)
++        image = _extract_image_from_entry(entry) or FALLBACK_IMAGES.get(category)
+ 
+         items.append(
+             {
+-                "id": _stable_id(source["id"], entry),
++                "id": _stable_id(source["id"], entry.get("id") or entry.get("guid") or link),
+                 "title": title,
+-                "author": source["partner_name"],
+-                "partnerName": source["partner_name"],
+-                "partnerUrl": source["partner_url"],
+-                "category": source["category"],
+-                "date": _parse_date(entry),
+-                "image": image,
+-                "excerpt": _excerpt(entry),
+-                "tags": _tags(entry, source["category"]),
+                 "link": link,
++                "date": _parse_date_from_entry(entry),
++                "source_name": source["source_name"],
++                "image_url": image,
++                "category": category,
++                # Frontend-friendly aliases (kept for backwards compatibility)
++                "author": source["source_name"],
++                "partnerName": source["source_name"],
++                "partnerUrl": source["url"],
++                "image": image,
++                "excerpt": excerpt,
++                "tags": _tags_from_entry(entry, category),
++                "external": True,
++                "sourceId": source["id"],
++            }
++        )
++        if len(items) >= MAX_PER_SOURCE:
++            break
++
++    msg = f"   <- {len(items)} item(s)"
++    if skipped_lang:
++        msg += f"  (skipped {skipped_lang} non-German"
++        if skipped_junk:
++            msg += f", {skipped_junk} junk"
++        msg += ")"
++    elif skipped_junk:
++        msg += f"  (skipped {skipped_junk} junk)"
++    print(msg, flush=True)
++    return items
++
++
++def fetch_scrape(source: dict) -> list[dict]:
++    """Headless scrape for sites without a feed (House of One)."""
++    print(f"-> SCRAPE: {source['feed']}", flush=True)
++    try:
++        from playwright.sync_api import sync_playwright
++    except ImportError:
++        print("   !! playwright not installed – skipping", file=sys.stderr)
++        return []
++
++    items: list[dict] = []
++
++    with sync_playwright() as p:
++        try:
++            browser = p.chromium.launch(headless=True)
++        except Exception as exc:  # noqa: BLE001
++            print(f"   !! could not launch chromium ({exc}) – skipping", file=sys.stderr)
++            return []
++
++        context = browser.new_context(user_agent="Mozilla/5.0 bvm-ev.de feed bot/1.0")
++        page = context.new_page()
++        try:
++            page.goto(source["feed"], wait_until="networkidle", timeout=30000)
++            page.wait_for_selector("a[href*='/news/']", timeout=10000)
++        except Exception as exc:  # noqa: BLE001
++            print(f"   !! page load issue: {exc}", file=sys.stderr)
++
++        cards = page.eval_on_selector_all(
++            "a[href*='/news/']",
++            """nodes => {
++                const seen = new Set();
++                return nodes.flatMap(a => {
++                    const href = a.href;
++                    // skip the listing page itself + newsletter signups
++                    if (/\\/news\\/?$/.test(href) || /newsletter/i.test(href)) return [];
++                    if (seen.has(href)) return [];
++                    seen.add(href);
++                    const text = (a.innerText || '').trim();
++                    if (text.length < 12) return [];
++                    let img = a.querySelector('img');
++                    if (!img) {
++                        const card = a.closest('article, li, div');
++                        if (card) img = card.querySelector('img');
++                    }
++                    return [{
++                        href,
++                        text,
++                        img: img ? img.src : null,
++                        date: (text.match(/\\d{1,2}\\.\\s*[A-ZÄÖÜa-zäöü]+\\.?\\s*\\d{4}/) || [null])[0]
++                    }];
++                });
++            }""",
++        )
++        browser.close()
++
++    months = {
++        "januar": 1, "jan": 1, "februar": 2, "feb": 2,
++        "märz": 3, "maerz": 3, "mär": 3, "mar": 3,
++        "april": 4, "apr": 4, "mai": 5,
++        "juni": 6, "jun": 6, "juli": 7, "jul": 7,
++        "august": 8, "aug": 8, "september": 9, "sep": 9, "sept": 9,
++        "oktober": 10, "okt": 10, "november": 11, "nov": 11,
++        "dezember": 12, "dez": 12,
++    }
++
++    def parse_de_date(text: str | None) -> str:
++        if not text:
++            return datetime.now(timezone.utc).isoformat()
++        m = re.match(r"(\d{1,2})\.\s*([A-Za-zÄÖÜäöü]+)\.?\s*(\d{4})", text)
++        if not m:
++            return datetime.now(timezone.utc).isoformat()
++        day, month_name, year = m.group(1), m.group(2).lower().rstrip("."), m.group(3)
++        month = months.get(month_name, 1)
++        try:
++            return datetime(int(year), month, int(day), tzinfo=timezone.utc).isoformat()
++        except ValueError:
++            return datetime.now(timezone.utc).isoformat()
++
++    seen_links: set[str] = set()
++    weekdays_re = re.compile(
++        r"^(montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag)\b",
++        re.I,
++    )
++    for card in cards:
++        href = card.get("href")
++        text = (card.get("text") or "").strip()
++        if not href or href in seen_links:
++            continue
++        seen_links.add(href)
++
++        lines = [ln.strip() for ln in text.split("\n") if ln.strip()]
++        # House of One cards start with "<Weekday>, <date>" – skip that line.
++        clean_lines = [
++            ln for ln in lines
++            if not weekdays_re.match(ln) and not re.match(r"^\d{1,2}\.\s*[A-Za-zÄÖÜäöü]+\s*\d{4}", ln)
++        ]
++        title = next(
++            (ln for ln in clean_lines if len(ln) > 15),
++            (clean_lines[0] if clean_lines else ""),
++        )
++        excerpt = " ".join(clean_lines[1:])[:220] if len(clean_lines) > 1 else ""
++
++        if not title or len(title) < 10 or not _is_german(title, excerpt):
++            continue
++
++        category = categorize(title, excerpt)
++        image = card.get("img") or FALLBACK_IMAGES.get(category)
++
++        items.append(
++            {
++                "id": _stable_id(source["id"], href),
++                "title": title,
++                "link": href,
++                "date": parse_de_date(card.get("date")),
++                "source_name": source["source_name"],
++                "image_url": image,
++                "category": category,
++                "author": source["source_name"],
++                "partnerName": source["source_name"],
++                "partnerUrl": source["url"],
++                "image": image,
++                "excerpt": excerpt or title,
++                "tags": [category],
+                 "external": True,
+                 "sourceId": source["id"],
+             }
+         )
++        if len(items) >= MAX_PER_SOURCE:
++            break
+ 
+     print(f"   <- {len(items)} item(s)", flush=True)
+     return items
+ 
+ 
++# ---------------------------------------------------------------------------
++# Orchestrator
++# ---------------------------------------------------------------------------
++
++def fetch_source(source: dict) -> list[dict]:
++    try:
++        if source["type"] == "rss":
++            return fetch_rss(source)
++        if source["type"] == "scrape":
++            return fetch_scrape(source)
++    except Exception as exc:  # noqa: BLE001
++        print(f"!! {source['id']} failed: {exc}", file=sys.stderr)
++    return []
++
++
+ def main() -> int:
+     all_items: list[dict] = []
+     for src in SOURCES:
+-        try:
+-            all_items.extend(fetch_source(src))
+-        except Exception as exc:  # noqa: BLE001
+-            print(f"!! failed for {src['feed']}: {exc}", file=sys.stderr)
++        all_items.extend(fetch_source(src))
+ 
+-    # Newest first
+     all_items.sort(key=lambda x: x["date"], reverse=True)
+     all_items = all_items[:MAX_TOTAL]
+ 
+@@ -244,7 +522,14 @@ def main() -> int:
+         json.dumps(all_items, ensure_ascii=False, indent=2) + "\n",
+         encoding="utf-8",
+     )
+-    print(f"\nWrote {len(all_items)} items to {OUTPUT_PATH.relative_to(OUTPUT_PATH.parent.parent.parent)}")
++
++    from collections import Counter
++    by_cat = Counter(i["category"] for i in all_items)
++    by_src = Counter(i["sourceId"] for i in all_items)
++    print()
++    print(f"Wrote {len(all_items)} items to {OUTPUT_PATH.relative_to(OUTPUT_PATH.parent.parent.parent)}")
++    print(f"  by category: {dict(by_cat)}")
++    print(f"  by source  : {dict(by_src)}")
+     return 0
+ 
+ 
+diff --git a/scripts/requirements.txt b/scripts/requirements.txt
+index 3d8bb29..37b2288 100644
+--- a/scripts/requirements.txt
++++ b/scripts/requirements.txt
+@@ -1,3 +1,5 @@
+ feedparser==6.0.11
+ beautifulsoup4==4.12.3
+ lxml==5.3.0
++langdetect==1.0.9
++playwright==1.49.1
+diff --git a/src/data/latest_updates.json b/src/data/latest_updates.json
+index ef52144..1befd82 100644
+--- a/src/data/latest_updates.json
++++ b/src/data/latest_updates.json
+@@ -1,428 +1,473 @@
+ [
+-  {
+-    "id": "timetohelp-7cf37eb07f",
+-    "title": "Zaman Az Kaldı: Bu Bayram 1,5 Milyon Tebessüme Ortak Olun! 🌙",
+-    "author": "Time to Help e.V.",
+-    "partnerName": "Time to Help e.V.",
+-    "partnerUrl": "https://timetohelp.eu/",
+-    "category": "Community",
+-    "date": "2026-05-13T12:09:28+00:00",
+-    "image": "https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?auto=format&fit=crop&q=80&w=1200",
+-    "excerpt": "Kurban Bayramı’nın bereketi kapımızda, ancak hazırlıklar için zaman daralıyor. Dünyanın dört bir yanındaki ihtiyaç sahipleri, sizin vesilenizle kurulacak bayram sofralarını bekliyor. 27–30 Mayıs 2026…",
+-    "tags": [
+-      "Community"
+-    ],
+-    "link": "https://timetohelp.eu/zaman-az-kaldi-bu-bayram-15-milyon-tebessueme-ortak-olun-%f0%9f%8c%99/",
+-    "external": true,
+-    "sourceId": "timetohelp"
+-  },
+   {
+     "id": "fidev-bd93b260f6",
+     "title": "Dialog: konkret – wir setzen auf Dialog. Hier und jetzt.",
++    "link": "https://www.fidev.org/post/dialog-konkret-wir-setzen-auf-dialog-hier-und-jetzt",
++    "date": "2026-05-12T11:11:07+00:00",
++    "source_name": "Forum für Interkulturellen Dialog",
++    "image_url": "https://static.wixstatic.com/media/2d6f92_76ed4d52f14143019e3188bcdbcf7182~mv2.jpg/v1/fit/w_1000,h_671,al_c,q_80/file.png",
++    "category": "Dialog",
+     "author": "Forum für Interkulturellen Dialog",
+     "partnerName": "Forum für Interkulturellen Dialog",
+     "partnerUrl": "https://www.fidev.org/",
+-    "category": "Dialog",
+-    "date": "2026-05-12T11:11:07+00:00",
+     "image": "https://static.wixstatic.com/media/2d6f92_76ed4d52f14143019e3188bcdbcf7182~mv2.jpg/v1/fit/w_1000,h_671,al_c,q_80/file.png",
+     "excerpt": "Von April bis Juni 2025 haben wir als FID e.V. zu einer besonderen Veranstaltungsreihe eingeladen: „Meet and Read“.",
+     "tags": [
+       "Dialog"
+     ],
+-    "link": "https://www.fidev.org/post/dialog-konkret-wir-setzen-auf-dialog-hier-und-jetzt",
+     "external": true,
+     "sourceId": "fidev"
+   },
+   {
+     "id": "fidev-1a0ea79d70",
+     "title": "Frankfurt hält zusammen – aber wie lange noch?",
++    "link": "https://www.fidev.org/post/frankfurt-h%C3%A4lt-zusammen-aber-wie-lange-noch",
++    "date": "2026-05-10T19:29:59+00:00",
++    "source_name": "Forum für Interkulturellen Dialog",
++    "image_url": "https://static.wixstatic.com/media/2d6f92_763ad3d04bc0421988269b5e85c35d84~mv2.webp/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
++    "category": "Community",
+     "author": "Forum für Interkulturellen Dialog",
+     "partnerName": "Forum für Interkulturellen Dialog",
+     "partnerUrl": "https://www.fidev.org/",
+-    "category": "Dialog",
+-    "date": "2026-05-10T19:29:59+00:00",
+     "image": "https://static.wixstatic.com/media/2d6f92_763ad3d04bc0421988269b5e85c35d84~mv2.webp/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
+-    "excerpt": "Gesellschaft und Politik Zusammenleben ist kein Zufall 10.05.2026 / Frankfurt am Main / Kadir Boyaci Frankfurt am Main - Stadt der Vielfalt Die Stadt ist bunt, laut, widersprüchlich. Über 180 Nationa…",
++    "excerpt": "Gesellschaft und Politik Zusammenleben ist kein Zufall 10.05.2026 / Frankfurt am Main / Kadir Boyaci Frankfurt am Main - Stadt der Vielfalt Die Stadt ist bunt, laut, widersprüchlich. Über 180 Nationalitäten leben hier,…",
+     "tags": [
+-      "Dialog"
++      "Community"
+     ],
+-    "link": "https://www.fidev.org/post/frankfurt-h%C3%A4lt-zusammen-aber-wie-lange-noch",
+     "external": true,
+     "sourceId": "fidev"
+   },
+   {
+     "id": "sdub-7799d125e0",
+     "title": "Podiumsdiskussion des Deutschen Dialogpreises: „Dialog: konkret“",
++    "link": "https://sdub.de/bddi-dialogkonkret/",
++    "date": "2026-05-08T01:21:40+00:00",
++    "source_name": "Stiftung Dialog und Bildung",
++    "image_url": "https://sdub.de/wp-content/uploads/2026/05/dialog-konkret-banner-1024x576.webp",
++    "category": "Dialog",
+     "author": "Stiftung Dialog und Bildung",
+     "partnerName": "Stiftung Dialog und Bildung",
+     "partnerUrl": "https://sdub.de/",
+-    "category": "Integration",
+-    "date": "2026-05-08T01:21:40+00:00",
+     "image": "https://sdub.de/wp-content/uploads/2026/05/dialog-konkret-banner-1024x576.webp",
+-    "excerpt": "Mit dem Deutschen Dialogpreis würdigt der Bund Deutscher Dialog Institutionen seit vielen Jahren Persönlichkeiten, die sich in besonderer Weise für den Dialog in unserer Gesellschaft einsetzen – Mens…",
++    "excerpt": "Mit dem Deutschen Dialogpreis würdigt der Bund Deutscher Dialog Institutionen seit vielen Jahren Persönlichkeiten, die sich in besonderer Weise für den Dialog in unserer Gesellschaft einsetzen – Menschen, die Brücken ba…",
+     "tags": [
+-      "Integration",
+       "Dialog",
+-      "Partner"
++      "Partner",
++      "Asfa-Wossen Asserate"
+     ],
+-    "link": "https://sdub.de/bddi-dialogkonkret/",
+     "external": true,
+     "sourceId": "sdub"
+   },
+   {
+     "id": "fidev-8ed6cddf3a",
+     "title": "Ausschreibung für den Bundesfreiwilligendienst (BFD) Jetzt bewerben! (m/w/d)",
++    "link": "https://www.fidev.org/post/ausschreibung-f%C3%BCr-den-bundesfreiwilligendienst-bfd-jetzt-bewerben-m-w-d",
++    "date": "2026-05-07T12:02:46+00:00",
++    "source_name": "Forum für Interkulturellen Dialog",
++    "image_url": "https://static.wixstatic.com/media/2d6f92_1521cc8517354cf6a231a613bc5dc391~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
++    "category": "Community",
+     "author": "Forum für Interkulturellen Dialog",
+     "partnerName": "Forum für Interkulturellen Dialog",
+     "partnerUrl": "https://www.fidev.org/",
+-    "category": "Dialog",
+-    "date": "2026-05-07T12:02:46+00:00",
+     "image": "https://static.wixstatic.com/media/2d6f92_1521cc8517354cf6a231a613bc5dc391~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
+     "excerpt": "FIDeV erhält das Qualitätssiegel des Europäischen Solidaritätskorps",
+     "tags": [
+-      "Dialog"
++      "Community"
+     ],
+-    "link": "https://www.fidev.org/post/ausschreibung-f%C3%BCr-den-bundesfreiwilligendienst-bfd-jetzt-bewerben-m-w-d",
+     "external": true,
+     "sourceId": "fidev"
+   },
+   {
+     "id": "fidev-a9589b4b31",
+     "title": "Meet and Read in Sachsenhausen",
++    "link": "https://www.fidev.org/post/meet-and-read-in-sachsenhausen",
++    "date": "2026-05-07T12:02:26+00:00",
++    "source_name": "Forum für Interkulturellen Dialog",
++    "image_url": "https://static.wixstatic.com/media/2d6f92_0a360210426f42b69a3cc12a518485b6~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
++    "category": "Dialog",
+     "author": "Forum für Interkulturellen Dialog",
+     "partnerName": "Forum für Interkulturellen Dialog",
+     "partnerUrl": "https://www.fidev.org/",
+-    "category": "Dialog",
+-    "date": "2026-05-07T12:02:26+00:00",
+     "image": "https://static.wixstatic.com/media/2d6f92_0a360210426f42b69a3cc12a518485b6~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
+-    "excerpt": "Interreligiöser Dialog 24.03. - 18.08.2025 • Sachsenhausen • Frankfurt am Main Herzliche Einladung zu einem besonderen interreligiösen Dialogprojekt: „meet and read“ – Gemeinsam lesen. Gemeinsam vers…",
++    "excerpt": "Interreligiöser Dialog 24.03. - 18.08.2025 • Sachsenhausen • Frankfurt am Main Herzliche Einladung zu einem besonderen interreligiösen Dialogprojekt: „meet and read“ – Gemeinsam lesen. Gemeinsam verstehen. “Von März bis…",
+     "tags": [
+       "Dialog"
+     ],
+-    "link": "https://www.fidev.org/post/meet-and-read-in-sachsenhausen",
+     "external": true,
+     "sourceId": "fidev"
+   },
+   {
+     "id": "fidev-b224794297",
+     "title": "Meet my Culture– Solidaritätsprojekt gefördert vom Europäischer Solidaritätskorps",
++    "link": "https://www.fidev.org/post/meet-my-culture-solidarit%C3%A4tsprojekt-gef%C3%B6rdert-vom-europ%C3%A4ischer-solidarit%C3%A4tskorps",
++    "date": "2026-05-05T07:50:56+00:00",
++    "source_name": "Forum für Interkulturellen Dialog",
++    "image_url": "https://static.wixstatic.com/media/2d6f92_71c994e4edd5410190b3551f265b2fdc~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
++    "category": "Community",
+     "author": "Forum für Interkulturellen Dialog",
+     "partnerName": "Forum für Interkulturellen Dialog",
+     "partnerUrl": "https://www.fidev.org/",
+-    "category": "Dialog",
+-    "date": "2026-05-05T07:50:56+00:00",
+     "image": "https://static.wixstatic.com/media/2d6f92_71c994e4edd5410190b3551f265b2fdc~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
+-    "excerpt": "„Zeig uns deinen Lieblingsfilm“ – Das war das Motto des Jugendprojekts Meet my Culture. Im Sommer 2025 wurde das Projekt „Meet my Culture“ vom Europäischen Solidaritätskorps der EU genehmigt. Damit s…",
++    "excerpt": "„Zeig uns deinen Lieblingsfilm“ – Das war das Motto des Jugendprojekts Meet my Culture. Im Sommer 2025 wurde das Projekt „Meet my Culture“ vom Europäischen Solidaritätskorps der EU genehmigt. Damit startete eine aufrege…",
+     "tags": [
+-      "Dialog"
++      "Community"
+     ],
+-    "link": "https://www.fidev.org/post/meet-my-culture-solidarit%C3%A4tsprojekt-gef%C3%B6rdert-vom-europ%C3%A4ischer-solidarit%C3%A4tskorps",
+     "external": true,
+     "sourceId": "fidev"
+   },
+   {
+     "id": "fidev-478898de27",
+     "title": "Brücken bauen - Europa entdecken: Inklusive Reiseerfahrungen",
++    "link": "https://www.fidev.org/post/br%C3%BCcken-bauen-europa-entdecken-inklusive-reiseerfahrungen",
++    "date": "2026-05-03T19:48:48+00:00",
++    "source_name": "Forum für Interkulturellen Dialog",
++    "image_url": "https://static.wixstatic.com/media/2d6f92_882d1fc4487641f08981d7646e8e2762~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
++    "category": "Integration",
+     "author": "Forum für Interkulturellen Dialog",
+     "partnerName": "Forum für Interkulturellen Dialog",
+     "partnerUrl": "https://www.fidev.org/",
+-    "category": "Dialog",
+-    "date": "2026-05-03T19:48:48+00:00",
+     "image": "https://static.wixstatic.com/media/2d6f92_882d1fc4487641f08981d7646e8e2762~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
+-    "excerpt": "Europa gemeinsam entdecken: 30 junge Menschen mit Migrations- und Fluchthintergrund erkunden per Zug Frankreich, Spanien, Oesterreich und Ungarn. Erasmus+ gefördert. Europa ist für viele junge Mensch…",
++    "excerpt": "Europa gemeinsam entdecken: 30 junge Menschen mit Migrations- und Fluchthintergrund erkunden per Zug Frankreich, Spanien, Oesterreich und Ungarn. Erasmus+ gefördert. Europa ist für viele junge Menschen ein ferner Traum…",
+     "tags": [
+-      "Dialog"
++      "Integration"
+     ],
+-    "link": "https://www.fidev.org/post/br%C3%BCcken-bauen-europa-entdecken-inklusive-reiseerfahrungen",
+     "external": true,
+     "sourceId": "fidev"
+   },
+   {
+-    "id": "timetohelp-624272527f",
+-    "title": "Murad’ın Hikâyesi: Oğlunun Sırtında Başlayan Yolculuk",
+-    "author": "Time to Help e.V.",
+-    "partnerName": "Time to Help e.V.",
+-    "partnerUrl": "https://timetohelp.eu/",
++    "id": "house-of-one-42d526426c",
++    "title": "Podcastfolge #113: Mythos Mutter - barmherzig und selbstbestimmt?",
++    "link": "https://house-of-one.org/news/podcastfolge-113-mythos-mutter-barmherzig-und-selbstbestimmt",
++    "date": "2026-04-28T00:00:00+00:00",
++    "source_name": "House of One",
++    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+     "category": "Community",
+-    "date": "2026-04-30T14:39:17+00:00",
+-    "image": "https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?auto=format&fit=crop&q=80&w=1200",
+-    "excerpt": "Time to Help olarak, hayırseverlerimizin desteğiyle bu alanda kalıcı ve doğrudan fayda sağlayan çalışmalar yürütüyoruz. 100 € ile bir kişinin katarakt tedavisine destek olabilirsiniz. Der Beitrag Mur…",
++    "author": "House of One",
++    "partnerName": "House of One",
++    "partnerUrl": "https://house-of-one.org/",
++    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
++    "excerpt": "Was Mutterschaft in Tora, Bibel und Koran bedeutet und wie wir heute darauf blicken. Drei Perspektiven Barmherzig, mütterlich, fürsorglich? Auf den er... Weiterlesen",
+     "tags": [
+       "Community"
+     ],
+-    "link": "https://timetohelp.eu/katarakt-tedavisiyle-yeniden-goermeye-destek-olun/",
+     "external": true,
+-    "sourceId": "timetohelp"
+-  },
+-  {
+-    "id": "timetohelp-12d75ed1ce",
+-    "title": "Kurban Kampanyası 2026",
+-    "author": "Time to Help e.V.",
+-    "partnerName": "Time to Help e.V.",
+-    "partnerUrl": "https://timetohelp.eu/",
+-    "category": "Community",
+-    "date": "2026-04-21T08:41:54+00:00",
+-    "image": "https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?auto=format&fit=crop&q=80&w=1200",
+-    "excerpt": "Time to Help olarak bu yıl tam 20 farklı ülkede Kurban organizasyonu gerçekleştirmek için tüm hazırlıklarımızı tamamladık. Dünyanın dört bir yanındaki ihtiyaç sahiplerine ulaşmak, sofralara bereket,…",
+-    "tags": [
+-      "Community"
+-    ],
+-    "link": "https://timetohelp.eu/kurban-kampanyasi-2026/",
+-    "external": true,
+-    "sourceId": "timetohelp"
+-  },
+-  {
+-    "id": "timetohelp-c6fe131cd9",
+-    "title": "Bir bağış, iki etki: House of One için destek olalım",
+-    "author": "Time to Help e.V.",
+-    "partnerName": "Time to Help e.V.",
+-    "partnerUrl": "https://timetohelp.eu/",
+-    "category": "Community",
+-    "date": "2026-04-15T19:17:30+00:00",
+-    "image": "https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?auto=format&fit=crop&q=80&w=1200",
+-    "excerpt": "Bu özel kampanya kapsamında yapılan bağışlar belirli şartlar altında ikiye katlanmaktadır. Verilen bilgiye göre kampanya 30 Nisan 2026 tarihine kadar geçerli olup, tek bir bağış için üst sınır 3.000…",
+-    "tags": [
+-      "Community"
+-    ],
+-    "link": "https://timetohelp.eu/bir-bagis-iki-etki-house-of-one-icin-destek-olalim/",
+-    "external": true,
+-    "sourceId": "timetohelp"
++    "sourceId": "house-of-one"
+   },
+   {
+     "id": "sdub-e50e58504a",
+     "title": "Nachruf auf Prof. Dr. Michael Langer: Ein unermüdlicher Brückenbauer",
++    "link": "https://sdub.de/gedenken-michael-langer/",
++    "date": "2026-04-15T12:04:08+00:00",
++    "source_name": "Stiftung Dialog und Bildung",
++    "image_url": "https://sdub.de/wp-content/uploads/2026/04/goranh-white-rose-42107191-768x512.jpg",
++    "category": "Dialog",
+     "author": "Stiftung Dialog und Bildung",
+     "partnerName": "Stiftung Dialog und Bildung",
+     "partnerUrl": "https://sdub.de/",
+-    "category": "Integration",
+-    "date": "2026-04-15T12:04:08+00:00",
+     "image": "https://sdub.de/wp-content/uploads/2026/04/goranh-white-rose-42107191-768x512.jpg",
+-    "excerpt": "Prof. Dr. Michael Langer, Theologe, Religionspädagoge und langjähriger Dialogpartner, ist vergangene Woche verstorben. Wir erinnern an einen Menschen, der das Gespräch zwischen den Religionen nicht a…",
++    "excerpt": "Prof. Dr. Michael Langer, Theologe, Religionspädagoge und langjähriger Dialogpartner, ist vergangene Woche verstorben. Wir erinnern an einen Menschen, der das Gespräch zwischen den Religionen nicht als Pflicht, sondern…",
+     "tags": [
+-      "Integration",
+       "Dialog",
+-      "Erinnerungskultur"
++      "Erinnerungskultur",
++      "Religion"
+     ],
+-    "link": "https://sdub.de/gedenken-michael-langer/",
+     "external": true,
+     "sourceId": "sdub"
+   },
++  {
++    "id": "house-of-one-8b3cc019a4",
++    "title": "Hilfsaktion zu Kurban (Eid al-Adha)",
++    "link": "https://house-of-one.org/news/hilfsaktion-zu-kurban-eid-al-adha",
++    "date": "2026-04-14T00:00:00+00:00",
++    "source_name": "House of One",
++    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
++    "category": "Dialog",
++    "author": "House of One",
++    "partnerName": "House of One",
++    "partnerUrl": "https://house-of-one.org/",
++    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
++    "excerpt": "Das House of One unterstützt seit 2018 jedes Jahr anlässlich des islamischen Festes „Eid al-Adha – Kurbanfest“ hilfsbedürftige Menschen in der Zentral... Weiterlesen",
++    "tags": [
++      "Dialog"
++    ],
++    "external": true,
++    "sourceId": "house-of-one"
++  },
+   {
+     "id": "sdub-f8147d4fb8",
+     "title": "DuB Essentials Nr. 2: Islam und Demokratie",
++    "link": "https://sdub.de/dub-essentials-2-islam-demokratie/",
++    "date": "2026-04-13T12:28:54+00:00",
++    "source_name": "Stiftung Dialog und Bildung",
++    "image_url": "https://sdub.de/wp-content/uploads/2026/04/0001-721x1024.jpg",
++    "category": "Community",
+     "author": "Stiftung Dialog und Bildung",
+     "partnerName": "Stiftung Dialog und Bildung",
+     "partnerUrl": "https://sdub.de/",
+-    "category": "Integration",
+-    "date": "2026-04-13T12:28:54+00:00",
+     "image": "https://sdub.de/wp-content/uploads/2026/04/0001-721x1024.jpg",
+-    "excerpt": "Den zweiten Beitrag der Reihe bildet der Essay Islam und Demokratie: Eine vergleichende Untersuchung des muslimischen Gelehrten M. Fethullah Gülen. Der Text erschien erstmals 1996 auf Türkisch und wu…",
++    "excerpt": "Den zweiten Beitrag der Reihe bildet der Essay Islam und Demokratie: Eine vergleichende Untersuchung des muslimischen Gelehrten M. Fethullah Gülen. Der Text erschien erstmals 1996 auf Türkisch und wurde 2001 in der amer…",
+     "tags": [
+-      "Integration",
++      "Community",
+       "DuB Zeitschrift",
+       "Islam"
+     ],
+-    "link": "https://sdub.de/dub-essentials-2-islam-demokratie/",
+     "external": true,
+     "sourceId": "sdub"
+   },
+   {
+-    "id": "ldk-136eae9233",
+-    "title": "Interkultureller Dialog im Dillenburger Krankenhaus",
+-    "author": "LDK e.V.",
+-    "partnerName": "LDK e.V.",
+-    "partnerUrl": "https://ldk-ev.de/",
+-    "category": "Jugend",
+-    "date": "2026-03-28T09:34:00+00:00",
+-    "image": "https://ldk-ev.de/wp-content/uploads/2026/03/Iftar-Krankenhaus-169x300.jpeg",
+-    "excerpt": "Begegnen, teilen, verbinden – unter diesem Motto stand unser gemeinsames Fastenbrechen am 13. März im Dillenburger Krankenhaus. Das interkulturelle Miteinander und der Austausch über Hintergründe hin…",
++    "id": "house-of-one-741047de90",
++    "title": "Podcastfolge #112: Religion und Zauberei – gibt es da einen Zusammenhang?",
++    "link": "https://house-of-one.org/news/podcastfolge-112-religion-und-zauberei-gibt-es-da-einen-zusammenhang",
++    "date": "2026-04-09T00:00:00+00:00",
++    "source_name": "House of One",
++    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
++    "category": "Dialog",
++    "author": "House of One",
++    "partnerName": "House of One",
++    "partnerUrl": "https://house-of-one.org/",
++    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
++    "excerpt": "Von Jewitches, über die heiligen drei Magier bis hin zu Dschinns geht es in dieser Folge ins Reich der Magie. Rebecca, Maike und Kübra vergleichen die... Weiterlesen",
+     "tags": [
+-      "Jugend",
+-      "Dialog",
+-      "Kultur"
++      "Dialog"
+     ],
+-    "link": "https://ldk-ev.de/interkultureller-dialog-im-dillenburger-krankenhaus/",
+     "external": true,
+-    "sourceId": "ldk"
++    "sourceId": "house-of-one"
+   },
+   {
+     "id": "sdub-1b2a03879c",
+     "title": "Wettbewerb Zukunft 2026",
++    "link": "https://sdub.de/zukunft2026/",
++    "date": "2026-03-25T14:46:26+00:00",
++    "source_name": "Stiftung Dialog und Bildung",
++    "image_url": "https://sdub.de/wp-content/uploads/2026/03/header-768x192.jpg",
++    "category": "Community",
+     "author": "Stiftung Dialog und Bildung",
+     "partnerName": "Stiftung Dialog und Bildung",
+     "partnerUrl": "https://sdub.de/",
+-    "category": "Integration",
+-    "date": "2026-03-25T14:46:26+00:00",
+     "image": "https://sdub.de/wp-content/uploads/2026/03/header-768x192.jpg",
+-    "excerpt": "Die Herausforderung der unsicheren Zukunft meistern – wie wollen wir unser Morgen gestalten? Hier geht es zur Teilnahme Deine Ideen. Unsere Zukunft.Wie wollen wir unser Morgen gestalten? Die Stiftung…",
++    "excerpt": "Die Herausforderung der unsicheren Zukunft meistern – wie wollen wir unser Morgen gestalten? Hier geht es zur Teilnahme Deine Ideen. Unsere Zukunft.Wie wollen wir unser Morgen gestalten? Die Stiftung lädt junge Menschen…",
+     "tags": [
+-      "Integration",
++      "Community",
+       "Teilhabe",
+       "Veranstaltungen"
+     ],
+-    "link": "https://sdub.de/zukunft2026/",
+     "external": true,
+     "sourceId": "sdub"
+   },
+-  {
+-    "id": "timetohelp-4ad2b79833",
+-    "title": "Bir Damla Su, Bin Umut",
+-    "author": "Time to Help e.V.",
+-    "partnerName": "Time to Help e.V.",
+-    "partnerUrl": "https://timetohelp.eu/",
+-    "category": "Community",
+-    "date": "2026-03-23T04:21:28+00:00",
+-    "image": "https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?auto=format&fit=crop&q=80&w=1200",
+-    "excerpt": "Time to Help olarak biz, temiz suyun sadece bir ihtiyaç değil, temel bir insani bir hak olduğuna inanıyoruz. UNICEF ve WHO verilerine göre, özellikle kırsal bölgelerdeki kadınlar ve çocuklar, temiz b…",
+-    "tags": [
+-      "Community"
+-    ],
+-    "link": "https://timetohelp.eu/bir-damla-su-bin-umut-duenya-su-guenue-kutlu-olsun/",
+-    "external": true,
+-    "sourceId": "timetohelp"
+-  },
+   {
+     "id": "sdub-562667fd43",
+     "title": "Ramadan 2026: Grußbotschaft von Bundespräsident Steinmeier",
++    "link": "https://sdub.de/ramadan-2026-grussbotschaft-steinmeier/",
++    "date": "2026-03-20T15:12:45+00:00",
++    "source_name": "Stiftung Dialog und Bildung",
++    "image_url": "https://sdub.de/wp-content/uploads/2026/03/bundespraesident_frank-walter_steinmeier_auf_den_stufen_der_villa_hammerschmidt_in_bonn-768x1024.jpg",
++    "category": "Dialog",
+     "author": "Stiftung Dialog und Bildung",
+     "partnerName": "Stiftung Dialog und Bildung",
+     "partnerUrl": "https://sdub.de/",
+-    "category": "Integration",
+-    "date": "2026-03-20T15:12:45+00:00",
+     "image": "https://sdub.de/wp-content/uploads/2026/03/bundespraesident_frank-walter_steinmeier_auf_den_stufen_der_villa_hammerschmidt_in_bonn-768x1024.jpg",
+-    "excerpt": "Grußbotschaft von Bundespräsident Steinmeier zum Fest des Fastenbrechens 2026 | Bayramgruß | Ramadan | Bundespräsident Frank-Walter Steinmeier hat an die Musliminnen und Muslime in Deutschland eine G…",
++    "excerpt": "Grußbotschaft von Bundespräsident Steinmeier zum Fest des Fastenbrechens 2026 | Bayramgruß | Ramadan | Bundespräsident Frank-Walter Steinmeier hat an die Musliminnen und Muslime in Deutschland eine Grußbotschaft zum Fes…",
+     "tags": [
+-      "Integration",
+       "Dialog",
+-      "Islam"
++      "Islam",
++      "Religion"
+     ],
+-    "link": "https://sdub.de/ramadan-2026-grussbotschaft-steinmeier/",
+     "external": true,
+     "sourceId": "sdub"
+   },
+   {
+-    "id": "timetohelp-3e614f1413",
+-    "title": "İyilikle Bereketlenen Bir Bayram",
+-    "author": "Time to Help e.V.",
+-    "partnerName": "Time to Help e.V.",
+-    "partnerUrl": "https://timetohelp.eu/",
+-    "category": "Community",
+-    "date": "2026-03-20T03:26:00+00:00",
+-    "image": "https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?auto=format&fit=crop&q=80&w=1200",
+-    "excerpt": "Time to Help olarak, 2006 yılından bu yana dünyanın dört bir yanında ihtiyaç sahiplerine ulaşıyoruz. Bu zamana kadar din, dil ve ırk ayrımı gözetmeksizin dünyanın dört bir yanındaki ihtiyaç sahipleri…",
++    "id": "house-of-one-14b9b1fcf9",
++    "title": "Podcastfolge #111: Gaming und Gott – Kann Religion auch in Minecraft funktionieren?",
++    "link": "https://house-of-one.org/news/podcastfolge-111-gaming-und-gott-kann-religion-auch-minecraft-funktionieren",
++    "date": "2026-03-20T00:00:00+00:00",
++    "source_name": "House of One",
++    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
++    "category": "Dialog",
++    "author": "House of One",
++    "partnerName": "House of One",
++    "partnerUrl": "https://house-of-one.org/",
++    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
++    "excerpt": "Wie können Videospiele Religiosität erlebbar machen? Mit künstlerischen und kulturellen Symboliken aufgeladen ist die digitale Spielewelt ein Spiegel ... Weiterlesen",
+     "tags": [
+-      "Community"
++      "Dialog"
+     ],
+-    "link": "https://timetohelp.eu/iyilikle-bereketlenen-bir-bayram/",
+     "external": true,
+-    "sourceId": "timetohelp"
++    "sourceId": "house-of-one"
+   },
+   {
+     "id": "sdub-708b349e55",
+     "title": "DuB Essentials Nr. 1: Gedankenfreiheit, Pluralismus, Demokratie",
++    "link": "https://sdub.de/dub-essentials-1-demokratie/",
++    "date": "2026-03-05T13:09:34+00:00",
++    "source_name": "Stiftung Dialog und Bildung",
++    "image_url": "https://sdub.de/wp-content/uploads/2026/03/dub-essentials-nr_1-721x1024.png",
++    "category": "Community",
+     "author": "Stiftung Dialog und Bildung",
+     "partnerName": "Stiftung Dialog und Bildung",
+     "partnerUrl": "https://sdub.de/",
+-    "category": "Integration",
+-    "date": "2026-03-05T13:09:34+00:00",
+     "image": "https://sdub.de/wp-content/uploads/2026/03/dub-essentials-nr_1-721x1024.png",
+-    "excerpt": "DuB Essentials – Prägende Texte neu zugänglich Manche Texte behalten ihre Aktualität weit über den Moment ihres ersten Erscheinens hinaus. Sie prägen Debatten, geben Orientierung und tragen zum inhal…",
++    "excerpt": "DuB Essentials – Prägende Texte neu zugänglich Manche Texte behalten ihre Aktualität weit über den Moment ihres ersten Erscheinens hinaus. Sie prägen Debatten, geben Orientierung und tragen zum inhaltlichen Profil einer…",
+     "tags": [
+-      "Integration",
++      "Community",
+       "DuB Zeitschrift",
+       "Islam"
+     ],
+-    "link": "https://sdub.de/dub-essentials-1-demokratie/",
+     "external": true,
+     "sourceId": "sdub"
+   },
+   {
+-    "id": "ldk-f423e5552b",
+-    "title": "Türkische Küche beim Jubiläum des Wilhelmsturms",
+-    "author": "LDK e.V.",
+-    "partnerName": "LDK e.V.",
+-    "partnerUrl": "https://ldk-ev.de/",
+-    "category": "Jugend",
+-    "date": "2025-07-03T19:43:37+00:00",
+-    "image": "https://ldk-ev.de/wp-content/uploads/2025/07/Tantuni3-212x300.jpg",
+-    "excerpt": "Anlässlich des 150-jährigen Jubiläums des Wiederaufbaus des Wilhelmsturms in Dillenburg durften wir als Verein mit einem besonderen kulturellen Beitrag an den Feierlichkeiten teilnehmen. Mit großer F…",
++    "id": "house-of-one-2ad4425fde",
++    "title": "Ramadan: House of One bei zahlreichen Iftaren engagiert",
++    "link": "https://house-of-one.org/news/ramadan-house-one-bei-zahlreichen-iftaren-engagiert",
++    "date": "2026-02-26T00:00:00+00:00",
++    "source_name": "House of One",
++    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
++    "category": "Dialog",
++    "author": "House of One",
++    "partnerName": "House of One",
++    "partnerUrl": "https://house-of-one.org/",
++    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
++    "excerpt": "Mit Beginn des Ramadan sind Mitarbeiterinnen und Mitarbeiter des House of One in den kommenden Wochen an zahlreichen Orten eingeladen, um Iftar-Abende... Weiterlesen",
+     "tags": [
+-      "Jugend",
+-      "Kultur"
++      "Dialog"
+     ],
+-    "link": "https://ldk-ev.de/tuerkische-kueche-beim-jubilaeum-des-wilhelmsturms/",
+     "external": true,
+-    "sourceId": "ldk"
++    "sourceId": "house-of-one"
+   },
+   {
+-    "id": "ldk-2b4692bcab",
+-    "title": "Kinderfeste mit Familien",
+-    "author": "LDK e.V.",
+-    "partnerName": "LDK e.V.",
+-    "partnerUrl": "https://ldk-ev.de/",
+-    "category": "Jugend",
+-    "date": "2025-07-03T19:05:34+00:00",
+-    "image": "https://s.w.org/images/core/emoji/15.0.3/72x72/2764.png",
+-    "excerpt": "In den letzten Wochen durften wir gleich mehrere wunderbare Feste feiern: Ein Kinderfest mit Familien aus verschiedenen Ländern – voller Farben, Spiele und leckerem Essen.Ein Kinderfest für die Kinde…",
++    "id": "house-of-one-37fbb75aa0",
++    "title": "Podcastfolge #109: Noah – Hoffnungserzählung oder düstere Warnung?",
++    "link": "https://house-of-one.org/news/podcastfolge-109-noah-hoffnungserzaehlung-oder-duestere-warnung",
++    "date": "2026-02-20T00:00:00+00:00",
++    "source_name": "House of One",
++    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
++    "category": "Dialog",
++    "author": "House of One",
++    "partnerName": "House of One",
++    "partnerUrl": "https://house-of-one.org/",
++    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
++    "excerpt": "Die Geschichte von Noah und der Arche gehört zu den bekanntesten Erzählungen der abrahamitischen Religionen. Eine gewaltige Flut, ein riesiges Holzsch... Weiterlesen",
+     "tags": [
+-      "Jugend",
+       "Dialog"
+     ],
+-    "link": "https://ldk-ev.de/5282-2/",
+     "external": true,
+-    "sourceId": "ldk"
++    "sourceId": "house-of-one"
+   },
+   {
+-    "id": "ldk-36c0e2a2dd",
+-    "title": "Ehemaliger NBA Spieler Enes Kanter Freedom zu Gast bei unserem Verein",
+-    "author": "LDK e.V.",
+-    "partnerName": "LDK e.V.",
+-    "partnerUrl": "https://ldk-ev.de/",
+-    "category": "Jugend",
+-    "date": "2025-05-27T13:48:16+00:00",
+-    "image": "https://ldk-ev.de/wp-content/uploads/2025/05/Enes-Kanter-240x300.jpg",
+-    "excerpt": "Wir hatten die große Freude, den ehemaligen NBA-Spieler Enes Kanter Freedom auf Einladung unseres Vereins begrüßen zu dürfen. Gemeinsam mit Kindern und Erwachsenen wurde in der Sporthalle eine besond…",
++    "id": "bddi-edcae1cb5f",
++    "title": "Ziviler Islam vs politischer Islam",
++    "link": "https://bddi.org/ziviler-islam-vs-politischer-islam/",
++    "date": "2017-10-30T20:54:04+00:00",
++    "source_name": "Bund Deutscher Dialog Institutionen",
++    "image_url": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200",
++    "category": "Dialog",
++    "author": "Bund Deutscher Dialog Institutionen",
++    "partnerName": "Bund Deutscher Dialog Institutionen",
++    "partnerUrl": "https://bddi.org/",
++    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200",
++    "excerpt": "Der Islam, auf der einen Seite beansprucht von Menschen, die eine zivile Auslegung der Religion befürworten und auf der anderen Seite von Menschen, die ein politisches Gefüge damit verbinden. Ein ziviler Islam, der die…",
+     "tags": [
+-      "Jugend",
+-      "Kultur"
++      "Dialog",
++      "Forum Dialog"
+     ],
+-    "link": "https://ldk-ev.de/ehemaliger-nba-spieler-enes-kanter-freedom-zu-gast-bei-unserem-verein/",
+     "external": true,
+-    "sourceId": "ldk"
++    "sourceId": "bddi"
+   },
+   {
+-    "id": "ldk-16533116ed",
+-    "title": "Kermes-Wochenende auf dem Wilhelmplatz",
+-    "author": "LDK e.V.",
+-    "partnerName": "LDK e.V.",
+-    "partnerUrl": "https://ldk-ev.de/",
+-    "category": "Jugend",
+-    "date": "2025-05-27T12:34:40+00:00",
+-    "image": "https://ldk-ev.de/wp-content/uploads/2025/05/Adana-Fruehlingsfest-224x300.jpg",
+-    "excerpt": "Ein gelungenes Kermes-Wochenende auf dem Wilhelmplatz Am 24. und 25. Mai 2025 fand unsere diesjährige Kermes auf dem Wilhelmplatz in Dillenburg statt – und wir blicken auf zwei wunderbare Tage…",
++    "id": "bddi-59d45c981e",
++    "title": "Ein Europäischer Islam – Geht Das Überhaupt?",
++    "link": "https://bddi.org/ein-europaeischer-islam-geht-das-ueberhaupt/",
++    "date": "2017-10-30T20:52:12+00:00",
++    "source_name": "Bund Deutscher Dialog Institutionen",
++    "image_url": "https://ikult.com/wp-content/uploads/2017/10/Ein-europ%C3%A4ischer-Islam-750x375.jpg",
++    "category": "Community",
++    "author": "Bund Deutscher Dialog Institutionen",
++    "partnerName": "Bund Deutscher Dialog Institutionen",
++    "partnerUrl": "https://bddi.org/",
++    "image": "https://ikult.com/wp-content/uploads/2017/10/Ein-europ%C3%A4ischer-Islam-750x375.jpg",
++    "excerpt": "Der Islam gehört zu Europa – aber den (einen) Islam gibt es gar nicht. Welche Strömungen des Islam können wir also unterscheiden und wie haben sich diese in den europäischen Ländern entwickelt? Ein wichtiger Aspekt ist…",
+     "tags": [
+-      "Jugend"
++      "Community",
++      "Interkultureller Dialog"
+     ],
+-    "link": "https://ldk-ev.de/kermes-wochenende-auf-dem-wilhelmplatz/",
+     "external": true,
+-    "sourceId": "ldk"
++    "sourceId": "bddi"
+   },
+   {
+-    "id": "ldk-1f1901ce1b",
+-    "title": "5. Frauentreffen Ebru-Malerei Workshop",
+-    "author": "LDK e.V.",
+-    "partnerName": "LDK e.V.",
+-    "partnerUrl": "https://ldk-ev.de/",
+-    "category": "Jugend",
+-    "date": "2025-05-13T10:35:08+00:00",
+-    "image": "https://ldk-ev.de/wp-content/uploads/2025/05/Ebru-300x300.jpg",
+-    "excerpt": "Als Lern-Dialog-Kultur e.V haben wir einen Workshop zur traditionellen türkischen Kunst der Ebru-Malerei durchgeführt. Die Teilnehmenden hatten die Möglichkeit, die faszinierende Technik des Malens a…",
++    "id": "bddi-cd4b710c59",
++    "title": "Pflege in Deutschland",
++    "link": "https://bddi.org/pflege-in-deutschland/",
++    "date": "2017-10-22T19:47:30+00:00",
++    "source_name": "Bund Deutscher Dialog Institutionen",
++    "image_url": "http://bddi.org/wp-content/uploads/2017/10/22687767_1168283973304956_2874337484879267879_n-300x300.jpg",
++    "category": "Community",
++    "author": "Bund Deutscher Dialog Institutionen",
++    "partnerName": "Bund Deutscher Dialog Institutionen",
++    "partnerUrl": "https://bddi.org/",
++    "image": "http://bddi.org/wp-content/uploads/2017/10/22687767_1168283973304956_2874337484879267879_n-300x300.jpg",
++    "excerpt": "Ein Radio Beitrag über die Pflege in Deutschland. Was sieht die Zukunft aus? Was kann die Pflege in Deutschland?",
+     "tags": [
+-      "Jugend",
+-      "Kultur"
++      "Community",
++      "Ruhrdialog"
++    ],
++    "external": true,
++    "sourceId": "bddi"
++  },
++  {
++    "id": "bddi-6396403bb7",
++    "title": "Veranstaltung: Dresscode(s)",
++    "link": "https://bddi.org/veranstaltung-dresscodes/",
++    "date": "2017-04-17T12:52:32+00:00",
++    "source_name": "Bund Deutscher Dialog Institutionen",
++    "image_url": "webkit-fake-url://3260F494-97E3-4C9B-BA60-C9CF62750C6B/17758366_1376960982343357_1251732557522670564_o.jpg",
++    "category": "Community",
++    "author": "Bund Deutscher Dialog Institutionen",
++    "partnerName": "Bund Deutscher Dialog Institutionen",
++    "partnerUrl": "https://bddi.org/",
++    "image": "webkit-fake-url://3260F494-97E3-4C9B-BA60-C9CF62750C6B/17758366_1376960982343357_1251732557522670564_o.jpg",
++    "excerpt": "60 jüdische, christliche, muslimische und ezidische Frauen kamen im Kulturhaus Milbertshofen anlässlich der Veranstaltung „Dresscode(s)“ zusammen. Eingeladen hatten neben IDIZEM die Europäische Janusz Korczak Akademie e…",
++    "tags": [
++      "Community"
++    ],
++    "external": true,
++    "sourceId": "bddi"
++  },
++  {
++    "id": "bddi-338070ad26",
++    "title": "muslimisch, “migrantisch”, weiblich” – Aus dem Leben einer Muslimin",
++    "link": "https://bddi.org/muslimisch-migrantisch-weiblich-aus-dem-leben-einer-muslimin/",
++    "date": "2017-04-17T12:48:46+00:00",
++    "source_name": "Bund Deutscher Dialog Institutionen",
++    "image_url": "webkit-fake-url://91B0C913-92F4-43B5-8173-186B6EA12EB5/17632356_1670700159899530_1849166096946495123_o.jpg",
++    "category": "Integration",
++    "author": "Bund Deutscher Dialog Institutionen",
++    "partnerName": "Bund Deutscher Dialog Institutionen",
++    "partnerUrl": "https://bddi.org/",
++    "image": "webkit-fake-url://91B0C913-92F4-43B5-8173-186B6EA12EB5/17632356_1670700159899530_1849166096946495123_o.jpg",
++    "excerpt": "Impressionen vom heutigen Abend mit Frau Berrin Illeri, zum Thema “muslimisch, “migrantisch”, weiblich” – Aus dem Leben einer Muslimin. Sehr informativer Vortrag. Interessante Gespräche.",
++    "tags": [
++      "Integration"
++    ],
++    "external": true,
++    "sourceId": "bddi"
++  },
++  {
++    "id": "bddi-db08014f44",
++    "title": "5. Abrahamitisches Symposium",
++    "link": "https://bddi.org/5-abrahamitisches-symposium/",
++    "date": "2017-04-17T12:45:01+00:00",
++    "source_name": "Bund Deutscher Dialog Institutionen",
++    "image_url": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200",
++    "category": "Dialog",
++    "author": "Bund Deutscher Dialog Institutionen",
++    "partnerName": "Bund Deutscher Dialog Institutionen",
++    "partnerUrl": "https://bddi.org/",
++    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1200",
++    "excerpt": "Was ist Fundamentalismus? Was versteht man unter Extremismus? Woher kommen extremistische Verhaltensweisen? Wie kann man ihnen begegnen? Können Verbote Probleme lösen? Wie und warum kommt es bei jungen Menschen hierzula…",
++    "tags": [
++      "Dialog"
+     ],
+-    "link": "https://ldk-ev.de/5-frauentreffen-ebru-malerei-workshop/",
+     "external": true,
+-    "sourceId": "ldk"
++    "sourceId": "bddi"
+   }
+ ]
+diff --git a/src/pages/BlogPage.tsx b/src/pages/BlogPage.tsx
+index 9f4a8b4..93cd697 100644
+--- a/src/pages/BlogPage.tsx
++++ b/src/pages/BlogPage.tsx
+@@ -13,12 +13,12 @@ export default function BlogPage() {
+   const [searchQuery, setSearchQuery] = useState('');
+   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+ 
+-  // Stable category order
++  // Always show all 4 BVM categories so users always see the full filter set.
++  // Any extra categories that show up in the data are appended at the end.
+   const categories = useMemo(() => {
+     const present = new Set(updatesData.map((b) => b.category));
+-    const ordered = PREFERRED_ORDER.filter((c) => present.has(c));
+     const extras = Array.from(present).filter((c) => !PREFERRED_ORDER.includes(c));
+-    return [...ordered, ...extras];
++    return [...PREFERRED_ORDER, ...extras];
+   }, []);
+ 
+   // Filter blogs
+-- 
+2.39.5
+
