@@ -146,6 +146,10 @@ export default function Footer() {
               <MapPin size={18} className="text-brand-teal shrink-0 mt-0.5" />
               <span>Siemensstr. 18, <br />35394 Gießen</span>
             </div>
+            <div className="flex items-start gap-3 text-slate-400 text-sm">
+              <MapPin size={18} className="text-brand-teal shrink-0 mt-0.5" />
+              <span>Bahnhofstr. 22, <br />35576 Wetzlar</span>
+            </div>
             <div className="flex items-center gap-3 text-slate-400 text-sm">
               <Mail size={18} className="text-brand-teal shrink-0" />
               <a href="mailto:bvmevgiessen@gmail.com" className="hover:text-white transition-colors">bvmevgiessen@gmail.com</a>
