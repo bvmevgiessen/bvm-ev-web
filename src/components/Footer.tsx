@@ -248,18 +248,6 @@ export default function Footer() {
             <li><button onClick={() => setActiveModal('satzung')} className="hover:text-white transition-colors text-left">Satzung</button></li>
             <li><button onClick={() => setActiveModal('donation')} className="hover:text-white transition-colors text-left">Spendenbescheinigung</button></li>
           </ul>
-          
-          <div className="mt-10 pt-10 border-t border-white/10">
-            <a 
-              href="https://github.com/bvmevgiessen/bvm-ev-web" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors text-sm"
-            >
-              <Github size={20} />
-              <span>GitHub Repository</span>
-            </a>
-          </div>
         </div>
       </div>
 
