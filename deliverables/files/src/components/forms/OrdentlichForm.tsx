@@ -215,7 +215,7 @@ export default function OrdentlichForm() {
 
       <Fieldset title="Mitgliedsbeitrag">
         <p className="text-sm text-slate-600 mb-4">
-          Der reguläre Beitrag liegt bei <strong>2,50 € monatlich</strong>. Eine
+          Der reguläre Beitrag liegt bei <strong>5 € monatlich</strong>. Eine
           beitragsfreie Mitgliedschaft ist auf Antrag möglich.
         </p>
         <Checkbox
