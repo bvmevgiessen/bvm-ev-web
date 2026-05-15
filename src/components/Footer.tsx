@@ -111,7 +111,7 @@ export default function Footer() {
       <section>
         <h3 className="text-lg font-bold text-brand-navy mb-2">2. Datenerfassung auf unserer Website</h3>
         <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.</p>
-        <p className="mt-2">Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie in ein Kontaktformular eingeben.</p>
+        <p className="mt-2">Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie in ein Kontaktformular eingeben. eim Absenden des Mitgliedsantrags werden die Daten über Formspree Inc. (USA) verarbeitet.</p>
       </section>
       <section>
         <h3 className="text-lg font-bold text-brand-navy mb-2">3. Kontaktformular</h3>
@@ -145,6 +145,10 @@ export default function Footer() {
             <div className="flex items-start gap-3 text-slate-400 text-sm">
               <MapPin size={18} className="text-brand-teal shrink-0 mt-0.5" />
               <span>Siemensstr. 18, <br />35394 Gießen</span>
+            </div>
+            <div className="flex items-start gap-3 text-slate-400 text-sm">
+              <MapPin size={18} className="text-brand-teal shrink-0 mt-0.5" />
+              <span>Bahnhofstr. 22, <br />35576 Wetzlar</span>
             </div>
             <div className="flex items-center gap-3 text-slate-400 text-sm">
               <Mail size={18} className="text-brand-teal shrink-0" />
@@ -248,18 +252,6 @@ export default function Footer() {
             <li><button onClick={() => setActiveModal('satzung')} className="hover:text-white transition-colors text-left">Satzung</button></li>
             <li><button onClick={() => setActiveModal('donation')} className="hover:text-white transition-colors text-left">Spendenbescheinigung</button></li>
           </ul>
-          
-          <div className="mt-10 pt-10 border-t border-white/10">
-            <a 
-              href="https://github.com/bvmevgiessen/bvm-ev-web" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors text-sm"
-            >
-              <Github size={20} />
-              <span>GitHub Repository</span>
-            </a>
-          </div>
         </div>
       </div>
 

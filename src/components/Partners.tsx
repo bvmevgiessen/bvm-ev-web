@@ -24,6 +24,13 @@ export default function Partners() {
       fallback: 'TTH'
     },
     { 
+      name: 'Stiftung House of One', 
+      location: 'Berlin',
+      logo: 'https://wsrv.nl/?url=https://house-of-one.org/favicon.ico&w=200&output=png',
+      url: 'https://house-of-one.org/',
+      fallback: 'HOO'
+    },
+    { 
       name: 'LDK e.V.', 
       location: 'Dillenburg',
       logo: 'https://wsrv.nl/?url=https://ldk-ev.de/wp-content/uploads/2024/05/cropped-HomeLogo-1536x231aa.png&w=400&fit=contain',

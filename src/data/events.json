@@ -4,9 +4,41 @@
     "title": "Iftar der Begegnung",
     "category": "KULTUR",
     "stream": "Festive Events",
-    "date": "2026-03-20T18:30:00",
-    "location": "BVM Zentrum, Gießen",
-    "image": "https://images.unsplash.com/photo-1580915411954-282cb1b0d780?auto=format&fit=crop&q=80&w=1200",
+    "date": "2026-02-21T17:30:00",
+    "location": "Bieber Bürgerhaus, Biebertal",
+    "image": "https://images.unsplash.com/photo-1477506350614-fcdc29a3b157?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGlmdGFyfGVufDB8fDB8fHwy",
+    "description": "Ein gemeinsames Fastenbrechen für alle Bürgerinnen und Bürger, unabhängig von ihrer religiösen Zugehörigkeit.",
+    "wasErwartetSie": [
+      "Interkulturelle Begegnung",
+      "Der Moment des Iftar",
+      "Kulinarische Vielfalt"
+    ],
+    "fuerWen": "Jeder ist willkommen – Muslime und Nicht-Muslime – um den Dialog zu fördern."
+  },
+  {
+    "id": "iftar-2026",
+    "title": "Iftar der Begegnung",
+    "category": "KULTUR",
+    "stream": "Festive Events",
+    "date": "2026-02-28T17:30:00",
+    "location": "Bieber Bürgerhaus, Biebertal",
+    "image": "https://images.unsplash.com/photo-1477506350614-fcdc29a3b157?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGlmdGFyfGVufDB8fDB8fHwy",
+    "description": "Ein gemeinsames Fastenbrechen für alle Bürgerinnen und Bürger, unabhängig von ihrer religiösen Zugehörigkeit.",
+    "wasErwartetSie": [
+      "Interkulturelle Begegnung",
+      "Der Moment des Iftar",
+      "Kulinarische Vielfalt"
+    ],
+    "fuerWen": "Jeder ist willkommen – Muslime und Nicht-Muslime – um den Dialog zu fördern."
+  },
+    {
+    "id": "iftar-2026",
+    "title": "Iftar der Begegnung",
+    "category": "KULTUR",
+    "stream": "Festive Events",
+    "date": "2026-03-14T17:30:00",
+    "location": "BVM, Wetzlar",
+    "image": "https://images.unsplash.com/photo-1477506350614-fcdc29a3b157?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGlmdGFyfGVufDB8fDB8fHwy",
     "description": "Ein gemeinsames Fastenbrechen für alle Bürgerinnen und Bürger, unabhängig von ihrer religiösen Zugehörigkeit.",
     "wasErwartetSie": [
       "Interkulturelle Begegnung",
@@ -20,9 +52,9 @@
     "title": "Zuckerfest (Eid al-Fitr)",
     "category": "KULTUR",
     "stream": "Festive Events",
-    "date": "2026-03-31T10:00:00",
-    "location": "Gießen Marktplatz",
-    "image": "https://images.unsplash.com/photo-1564182842519-8a3b2af3e228?auto=format&fit=crop&q=80&w=1200",
+    "date": "2026-03-21T10:00:00",
+    "location": "Garbenteich Kulturhalle, Pohlheim",
+    "image": "https://images.unsplash.com/photo-1512731762289-4ea947d516a7?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cmFtYWRhbiUyMGZlc3R8ZW58MHx8MHx8fDI%3D",
     "description": "Feiern Sie mit uns das Ende des Ramadan mit Süßigkeiten und Gemeinschaft.",
     "wasErwartetSie": [
       "Gemeinsames Gebet",
@@ -36,16 +68,16 @@
     "title": "Opferfest (Eid al-Adha)",
     "category": "KULTUR",
     "stream": "Festive Events",
-    "date": "2026-06-07T09:00:00",
-    "location": "Wetzlar Festplatz",
-    "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200",
+    "date": "2026-06-27T16:00:00",
+    "location": "Muschenheim Kulturhalle, Lich",
+    "image": "https://images.unsplash.com/photo-1658758062547-3dc96542eae6?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZWlkJTIwYWwlMjBhZGhhfGVufDB8fDB8fHwy",
     "description": "Eines der wichtigsten Feste im islamischen Kalender, gefeiert mit Wohltätigkeit und Gemeinschaft.",
     "wasErwartetSie": [
       "Verteilung von Gaben",
       "Festessen",
       "Gemeinschaftliche Aktivitäten"
     ],
-    "fuerWen": "Alle Bürgerinnen und Bürger in Wetzlar und Umgebung."
+    "fuerWen": "Familien, Nachbarn und alle, die Freude teilen möchten."
   },
   {
     "id": "frauentag-2026",
