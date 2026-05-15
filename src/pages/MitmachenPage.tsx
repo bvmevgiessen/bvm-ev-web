@@ -57,7 +57,7 @@ export default function MitmachenPage() {
                     bullets={[
                       'Aktives Stimm- und Wahlrecht',
                       'Teilnahme an der Mitgliederversammlung',
-                      'Mitgliedsbeitrag 2,50 € / Monat (oder beitragsfrei)',
+                      'Mitgliedsbeitrag 5 € / Monat (oder beitragsfrei)',
                     ]}
                     cta="Antrag stellen"
                     onClick={() => setKind('ordentlich')}

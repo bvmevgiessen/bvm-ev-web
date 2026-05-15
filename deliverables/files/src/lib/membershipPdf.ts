@@ -108,7 +108,7 @@ export function generateMembershipPdf(data: MembershipData): jsPDF {
     if (data.beitragsfrei) {
       row('Mitgliedsbeitrag', 'Beitragsfreie Mitgliedschaft');
     } else {
-      row('Beitragshöhe', `${data.beitragMonatlich || '2,50'} € monatlich`);
+      row('Beitragshöhe', `${data.beitragMonatlich || '5'} € monatlich`);
       row('Abbuchungstag', `${data.abbuchungstag || '1'}. des Monats`);
     }
   } else {
