@@ -1,0 +1,264 @@
+import React, { useState, useMemo } from 'react';
+import { motion } from 'motion/react';
+import { Calendar, User, Tag, Search, X, ExternalLink } from 'lucide-react';
+import Navbar from '../components/Navbar';
+import updatesData from '../data/latest_updates.json';
+
+type UpdateItem = (typeof updatesData)[number];
+
+// Order the category pills the way they appear in the screenshot:
+const PREFERRED_ORDER = ['Integration', 'Dialog', 'Community', 'Jugend'];
+
+export default function BlogPage() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  // Always show all 4 BVM categories so users always see the full filter set.
+  // Any extra categories that show up in the data are appended at the end.
+  const categories = useMemo(() => {
+    const present = new Set(updatesData.map((b) => b.category));
+    const extras = Array.from(present).filter((c) => !PREFERRED_ORDER.includes(c));
+    return [...PREFERRED_ORDER, ...extras];
+  }, []);
+
+  // Filter blogs
+  const filteredBlogs: UpdateItem[] = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    return updatesData.filter((blog) => {
+      const matchesSearch =
+        !query ||
+        blog.title.toLowerCase().includes(query) ||
+        blog.excerpt.toLowerCase().includes(query) ||
+        blog.author.toLowerCase().includes(query);
+
+      const matchesCategory = !selectedCategory || blog.category === selectedCategory;
+
+      return matchesSearch && matchesCategory;
+    });
+  }, [searchQuery, selectedCategory]);
+
+  // Sort by date (newest first)
+  const sortedBlogs = [...filteredBlogs].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
+  return (
+    <div className="min-h-screen bg-slate-50">
+      <Navbar />
+
+      {/* Hero Section */}
+      <section className="pt-20 pb-4 border-b border-slate-100 bg-white">
+        <div className="section-padding">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-teal/10 rounded-full text-brand-teal text-[10px] font-black uppercase tracking-[0.2em] mb-2">
+              <Tag size={12} /> Latest Updates
+            </div>
+            <h1 className="text-2xl md:text-3xl font-extrabold text-brand-navy mb-1 leading-tight">
+              Blog & News
+            </h1>
+            <p className="text-slate-600 text-sm">
+              Live aus den Newsrooms unserer Partner – täglich automatisch aktualisiert.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Search and Filter Section */}
+      <section className="py-4 bg-slate-50 border-b border-slate-100 sticky top-[4rem] z-40">
+        <div className="section-padding">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-5">
+            {/* Search Bar */}
+            <div className="relative lg:w-72 shrink-0">
+              <Search
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+                size={18}
+              />
+              <input
+                type="text"
+                placeholder="Beiträge durchsuchen..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-11 pr-9 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/50 transition-all"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                  aria-label="Suche zurücksetzen"
+                >
+                  <X size={18} />
+                </button>
+              )}
+            </div>
+
+            {/* Category Filter */}
+            <div className="flex flex-wrap gap-2 flex-1 min-w-0">
+              <button
+                onClick={() => setSelectedCategory(null)}
+                className={`px-3.5 py-1.5 text-sm rounded-full font-semibold transition-all ${
+                  selectedCategory === null
+                    ? 'bg-brand-teal text-white'
+                    : 'bg-white text-slate-600 border border-slate-200 hover:border-brand-teal'
+                }`}
+              >
+                Alle Kategorien
+              </button>
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-3.5 py-1.5 text-sm rounded-full font-semibold transition-all ${
+                    selectedCategory === category
+                      ? 'bg-brand-teal text-white'
+                      : 'bg-white text-slate-600 border border-slate-200 hover:border-brand-teal'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+
+            {/* Results Count */}
+            <p className="text-xs text-slate-500 whitespace-nowrap">
+              {sortedBlogs.length} {sortedBlogs.length === 1 ? 'Beitrag' : 'Beiträge'}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Grid */}
+      <section className="py-4 md:py-6">
+        <div className="section-padding">
+          {sortedBlogs.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {sortedBlogs.map((blog, index) => (
+                <motion.article
+                  key={blog.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  className="group bg-white rounded-[2rem] overflow-hidden shadow-md hover:shadow-xl border border-slate-100 transition-all duration-500 flex flex-col"
+                >
+                  {/* Image Container */}
+                  <a
+                    href={blog.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <div className="relative h-64 overflow-hidden bg-slate-100">
+                      {blog.image && (
+                        <img
+                          src={blog.image}
+                          alt={blog.title}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          referrerPolicy="no-referrer"
+                          loading="lazy"
+                        />
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/20 to-transparent" />
+
+                      {/* Category Badge */}
+                      <div className="absolute top-4 right-4">
+                        <span className="inline-flex items-center px-4 py-2 bg-white/95 backdrop-blur-sm text-brand-teal text-xs font-black uppercase tracking-[0.15em] rounded-full border border-white/50">
+                          {blog.category}
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+
+                  {/* Content Container */}
+                  <div className="p-8 flex-1 flex flex-col">
+                    {/* Meta Information */}
+                    <div className="flex flex-wrap gap-4 mb-4 text-slate-500 text-sm">
+                      <div className="flex items-center gap-1.5">
+                        <Calendar size={14} className="text-brand-teal" />
+                        <span>
+                          {new Date(blog.date).toLocaleDateString('de-DE', {
+                            day: '2-digit',
+                            month: 'long',
+                            year: 'numeric',
+                          })}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <User size={14} className="text-brand-teal" />
+                        <span className="font-medium">{blog.author}</span>
+                      </div>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-xl font-extrabold text-brand-navy mb-3 leading-tight line-clamp-2 group-hover:text-brand-teal transition-colors">
+                      <a href={blog.link} target="_blank" rel="noopener noreferrer">
+                        {blog.title}
+                      </a>
+                    </h3>
+
+                    {/* Excerpt */}
+                    <p className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-3 flex-grow">
+                      {blog.excerpt}
+                    </p>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mb-6">
+                      {blog.tags.slice(0, 2).map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-semibold rounded-full"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Partner Link */}
+                    <div className="text-xs text-slate-500 mb-4 pb-4 border-t border-slate-100 pt-4">
+                      von{' '}
+                      <a
+                        href={blog.partnerUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-brand-teal font-semibold hover:underline"
+                      >
+                        {blog.partnerName}
+                      </a>
+                    </div>
+
+                    {/* Read More Link */}
+                    <a
+                      href={blog.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-brand-teal font-black group/link hover:gap-3 transition-all mt-auto"
+                    >
+                      Mehr lesen
+                      <ExternalLink
+                        size={14}
+                        className="group-hover/link:translate-x-1 transition-transform"
+                      />
+                    </a>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-16"
+            >
+              <p className="text-xl text-slate-600 mb-4">Keine Beiträge gefunden</p>
+              <p className="text-slate-500">
+                Versuchen Sie, Ihre Suchkriterien anzupassen oder alle Kategorien anzuzeigen.
+              </p>
+            </motion.div>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+}
