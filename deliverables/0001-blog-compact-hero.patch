@@ -1,0 +1,121 @@
+From 0dce9fb0163ede69259071e4f0873ab9048b7940 Mon Sep 17 00:00:00 2001
+From: tmp <tmp@tmp.dev>
+Date: Fri, 15 May 2026 15:50:46 +0000
+Subject: [PATCH] style(blog): compact hero, smaller title, single-row filter,
+ grid above the fold
+
+---
+ src/pages/BlogPage.tsx | 39 +++++++++++++++++++--------------------
+ 1 file changed, 19 insertions(+), 20 deletions(-)
+
+diff --git a/src/pages/BlogPage.tsx b/src/pages/BlogPage.tsx
+index 93cd697..78f00e4 100644
+--- a/src/pages/BlogPage.tsx
++++ b/src/pages/BlogPage.tsx
+@@ -47,60 +47,59 @@ export default function BlogPage() {
+       <Navbar />
+ 
+       {/* Hero Section */}
+-      <section className="pt-32 pb-16 border-b border-slate-100 bg-white">
++      <section className="pt-20 pb-4 border-b border-slate-100 bg-white">
+         <div className="section-padding">
+           <motion.div
+             initial={{ opacity: 0, y: -20 }}
+             animate={{ opacity: 1, y: 0 }}
+             className="max-w-3xl mx-auto text-center"
+           >
+-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand-teal/10 rounded-full text-brand-teal text-xs font-black uppercase tracking-[0.2em] mb-6">
+-              <Tag size={14} /> Latest Updates
++            <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-teal/10 rounded-full text-brand-teal text-[10px] font-black uppercase tracking-[0.2em] mb-2">
++              <Tag size={12} /> Latest Updates
+             </div>
+-            <h1 className="text-5xl md:text-6xl font-extrabold text-brand-navy mb-6 leading-tight">
++            <h1 className="text-2xl md:text-3xl font-extrabold text-brand-navy mb-1 leading-tight">
+               Blog & News
+             </h1>
+-            <p className="text-slate-600 text-lg md:text-xl">
+-              Live aus den Newsrooms unserer Partner aus Mittelhessen – täglich automatisch
+-              aktualisiert.
++            <p className="text-slate-600 text-sm">
++              Live aus den Newsrooms unserer Partner – täglich automatisch aktualisiert.
+             </p>
+           </motion.div>
+         </div>
+       </section>
+ 
+       {/* Search and Filter Section */}
+-      <section className="py-12 bg-slate-50 border-b border-slate-100 sticky top-[4rem] z-40">
++      <section className="py-4 bg-slate-50 border-b border-slate-100 sticky top-[4rem] z-40">
+         <div className="section-padding">
+-          <div className="space-y-6">
++          <div className="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-5">
+             {/* Search Bar */}
+-            <div className="relative">
++            <div className="relative lg:w-72 shrink-0">
+               <Search
+                 className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+-                size={20}
++                size={18}
+               />
+               <input
+                 type="text"
+                 placeholder="Beiträge durchsuchen..."
+                 value={searchQuery}
+                 onChange={(e) => setSearchQuery(e.target.value)}
+-                className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-teal/50 transition-all"
++                className="w-full pl-11 pr-9 py-2.5 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal/50 transition-all"
+               />
+               {searchQuery && (
+                 <button
+                   onClick={() => setSearchQuery('')}
+-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
++                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                   aria-label="Suche zurücksetzen"
+                 >
+-                  <X size={20} />
++                  <X size={18} />
+                 </button>
+               )}
+             </div>
+ 
+             {/* Category Filter */}
+-            <div className="flex flex-wrap gap-3">
++            <div className="flex flex-wrap gap-2 flex-1 min-w-0">
+               <button
+                 onClick={() => setSelectedCategory(null)}
+-                className={`px-4 py-2 rounded-full font-semibold transition-all ${
++                className={`px-3.5 py-1.5 text-sm rounded-full font-semibold transition-all ${
+                   selectedCategory === null
+                     ? 'bg-brand-teal text-white'
+                     : 'bg-white text-slate-600 border border-slate-200 hover:border-brand-teal'
+@@ -112,7 +111,7 @@ export default function BlogPage() {
+                 <button
+                   key={category}
+                   onClick={() => setSelectedCategory(category)}
+-                  className={`px-4 py-2 rounded-full font-semibold transition-all ${
++                  className={`px-3.5 py-1.5 text-sm rounded-full font-semibold transition-all ${
+                     selectedCategory === category
+                       ? 'bg-brand-teal text-white'
+                       : 'bg-white text-slate-600 border border-slate-200 hover:border-brand-teal'
+@@ -124,15 +123,15 @@ export default function BlogPage() {
+             </div>
+ 
+             {/* Results Count */}
+-            <p className="text-sm text-slate-600">
+-              {sortedBlogs.length} {sortedBlogs.length === 1 ? 'Beitrag' : 'Beiträge'} gefunden
++            <p className="text-xs text-slate-500 whitespace-nowrap">
++              {sortedBlogs.length} {sortedBlogs.length === 1 ? 'Beitrag' : 'Beiträge'}
+             </p>
+           </div>
+         </div>
+       </section>
+ 
+       {/* Blog Grid */}
+-      <section className="py-16">
++      <section className="py-4 md:py-6">
+         <div className="section-padding">
+           {sortedBlogs.length > 0 ? (
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+-- 
+2.39.5
+
