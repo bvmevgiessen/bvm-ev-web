@@ -37,7 +37,7 @@ const INITIAL: FormState = {
   email: '',
   telefon: '',
   beitragsfrei: false,
-  beitragMonatlich: '2,50',
+  beitragMonatlich: '5',
   abbuchungstag: '1',
   kontoinhaber: '',
   kreditinstitut: '',
