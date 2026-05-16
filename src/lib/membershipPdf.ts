@@ -4,6 +4,9 @@
 import { PDFDocument } from 'pdf-lib';
 import { formatIban } from './iban';
 
+import ordentlichPdfTemplate from '/Ordentliches_mitglied_antrag.pdf?url';
+import foerderPdfTemplate from '/Foerdermitgliedschaftsantrag.pdf?url';
+
 export type MembershipKind = 'ordentlich' | 'foerder';
 
 export interface MembershipData {
@@ -96,10 +99,14 @@ const FOERDER_PDF_CONFIG = {
 export async function downloadMembershipPdf(data: MembershipData) {
   try {
     const isOrdentlich = data.kind === 'ordentlich';
-    const pdfUrl = isOrdentlich ? '/Ordentliches_mitglied_antrag.pdf' : '/Foerdermitgliedschaftsantrag.pdf';
+    const pdfUrl = isOrdentlich ? ordentlichPdfTemplate : foerderPdfTemplate;
     
-    const existingPdfBytes = await fetch(pdfUrl).then((res) => {
-      if (!res.ok) throw new Error(`Failed to load PDF from ${pdfUrl}`);
+    const existingPdfBytes = await fetch(pdfUrl).then(async (res) => {
+      if (!res.ok) throw new Error(`Failed to load PDF from ${pdfUrl}: ${res.statusText}`);
+      const contentType = res.headers.get('content-type');
+      if (contentType && !contentType.includes('application/pdf')) {
+        throw new Error(`Expected application/pdf but got ${contentType}. Are you sure the file exists at ${pdfUrl}?`);
+      }
       return res.arrayBuffer();
     });
 
@@ -222,6 +229,7 @@ export async function downloadMembershipPdf(data: MembershipData) {
 
   } catch (err) {
     console.error('Error generating PDF:', err);
-    alert('Fehler beim Generieren der PDF. Bitte stellen Sie sicher, dass die PDF-Vorlagen verfügbar sind.');
+    alert('Fehler beim Generieren der PDF: ' + (err instanceof Error ? err.message : String(err)));
   }
 }
+
