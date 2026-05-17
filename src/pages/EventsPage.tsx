@@ -8,7 +8,8 @@ import eventsData from '../data/events.json';
 const streams = [
   { name: "Festive Events", description: "Religiös & Kulturell" },
   { name: "Community Days", description: "Soziales Miteinander" },
-  { name: "Youth & Education", description: "Jugend & Bildung" }
+  { name: "Youth & Education", description: "Jugend & Bildung" },
+  { name: "Interreligiöser Austausch", description: "Dialog & Begegnung" }
 ];
 
 export default function EventsPage() {
@@ -28,7 +29,11 @@ export default function EventsPage() {
           </header>
 
           <div className="space-y-24">
-            {streams.map((stream) => (
+            {streams.map((stream) => {
+              const streamEvents = eventsData.filter(event => event.stream === stream.name);
+              if (streamEvents.length === 0) return null;
+              
+              return (
               <section key={stream.name}>
                 <div className="mb-10 border-b border-slate-200 pb-4">
                   <h2 className="text-3xl font-bold text-brand-navy">{stream.name}</h2>
@@ -86,7 +91,8 @@ export default function EventsPage() {
                     ))}
                 </div>
               </section>
-            ))}
+              );
+            })}
           </div>
         </div>
       </main>
