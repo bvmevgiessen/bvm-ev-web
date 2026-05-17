@@ -6,6 +6,7 @@ import { useForm, ValidationError } from '@formspree/react';
 import Navbar from '../components/Navbar';
 import ShareButtons from '../components/ShareButtons';
 import eventsData from '../data/events.json';
+import { parseDateSafe } from '../utils/date';
 
 export default function EventDetailPage() {
   const { eventId } = useParams();
@@ -24,7 +25,7 @@ export default function EventDetailPage() {
     );
   }
 
-  const isPastEvent = new Date(event.date) < new Date();
+  const isPastEvent = parseDateSafe(event.date).getTime() < new Date().getTime();
 
   return (
     <div className="min-h-screen bg-white">
@@ -97,14 +98,14 @@ export default function EventDetailPage() {
                     <Calendar className="text-brand-teal mb-3" size={32} />
                     <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Datum</span>
                     <span className="font-bold text-brand-navy">
-                      {new Date(event.date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' })}
+                      {parseDateSafe(event.date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' })}
                     </span>
                   </div>
                   <div className="flex flex-col items-center text-center p-6 bg-slate-50 rounded-3xl">
                     <Clock className="text-brand-teal mb-3" size={32} />
                     <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">Uhrzeit</span>
                     <span className="font-bold text-brand-navy">
-                      {new Date(event.date).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' })} Uhr
+                      {parseDateSafe(event.date).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' })} Uhr
                     </span>
                   </div>
                   <div className="flex flex-col items-center text-center p-6 bg-slate-50 rounded-3xl">
