@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, MapPin, Clock, ArrowRight, Timer } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import eventsData from '../data/events.json';
+import { parseDateSafe } from '../utils/date';
 
 // Countdown component
 const Countdown = ({ targetDate }: { targetDate: string }) => {
@@ -51,8 +52,8 @@ const Countdown = ({ targetDate }: { targetDate: string }) => {
 export default function Events() {
   // Get the next 3 upcoming events
   const upcomingEvents = [...eventsData]
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-    .filter(e => new Date(e.date).getTime() > new Date().getTime())
+    .sort((a, b) => parseDateSafe(a.date).getTime() - parseDateSafe(b.date).getTime())
+    .filter(e => parseDateSafe(e.date).getTime() > new Date().getTime())
     .slice(0, 3);
 
   return (
@@ -145,7 +146,7 @@ export default function Events() {
                   <div className="flex flex-wrap gap-6 text-white/80 text-sm font-medium">
                     <div className="flex items-center gap-2">
                       <Calendar size={16} className="text-brand-teal" />
-                      <span>{new Date(event.date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long' })}</span>
+                      <span>{parseDateSafe(event.date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long' })}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <MapPin size={16} className="text-brand-teal" />

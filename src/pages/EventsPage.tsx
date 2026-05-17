@@ -4,6 +4,7 @@ import { Calendar, MapPin, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import eventsData from '../data/events.json';
+import { parseDateSafe } from '../utils/date';
 
 const streams = [
   { name: "Festive Events", description: "Religiös & Kulturell" },
@@ -72,7 +73,7 @@ export default function EventsPage() {
                           <div className="space-y-3 mb-8">
                             <div className="flex items-center gap-3 text-slate-500 text-sm">
                               <Calendar size={16} className="text-brand-teal" />
-                              <span>{new Date(event.date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' })}</span>
+                              <span>{parseDateSafe(event.date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' })}</span>
                             </div>
                             <div className="flex items-center gap-3 text-slate-500 text-sm">
                               <MapPin size={16} className="text-brand-teal" />
@@ -84,7 +85,7 @@ export default function EventsPage() {
                             to={`/events/${event.id}`}
                             className="inline-flex items-center gap-2 font-bold text-brand-teal hover:gap-3 transition-all"
                           >
-                            {new Date(event.date) < new Date() ? 'Details ansehen' : 'Details & Anmeldung'} <ArrowRight size={18} />
+                            {parseDateSafe(event.date).getTime() < new Date().getTime() ? 'Details ansehen' : 'Details & Anmeldung'} <ArrowRight size={18} />
                           </Link>
                         </div>
                       </motion.div>
