@@ -6,11 +6,13 @@
     "stream": "Festive Events",
     "date": "2026-02-21T17:30:00",
     "location": "Bieber Bürgerhaus, Biebertal",
-    "image": "https://images.unsplash.com/photo-1477506350614-fcdc29a3b157?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGlmdGFyfGVufDB8fDB8fHwy",
+    "image": "https://images.unsplash.com/photo-1577214407836-1f3a0604ecb2?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "description": "Ein gemeinsames Fastenbrechen für alle Bürgerinnen und Bürger, unabhängig von ihrer religiösen Zugehörigkeit.",
     "wasErwartetSie": [
       "Interkulturelle Begegnung",
       "Der Moment des Iftar",
+      "Impulsvortrag und Ramadan-Quiz",
+      "Musikalische Beiträge",
       "Kulinarische Vielfalt"
     ],
     "fuerWen": "Jeder ist willkommen – Muslime und Nicht-Muslime – um den Dialog zu fördern."
@@ -31,7 +33,56 @@
     ],
     "fuerWen": "Jeder ist willkommen – Muslime und Nicht-Muslime – um den Dialog zu fördern."
   },
-    {
+  {
+  "id": "jugendiftar-2026",
+  "title": "Gießen Jugend-Iftar",
+  "category": "KULTUR",
+  "stream": "Festive Events",
+  "date": "2026-02-26T17:30:00",
+  "location": "Siemensstraße 18, 35394 Gießen",
+  "image": "https://images.unsplash.com/photo-1587617425953-9075d28b8c46?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "description": "Ein besonderer Abend im Monat Ramadan, an dem junge Menschen in Gießen zusammenkommen, um das Fasten zu brechen, Gemeinschaft zu erleben und den Segen des Teilens zu spüren.",
+  "wasErwartetSie": [
+    "Gemeinsames Fastenbrechen",
+    "Jugendliche Begegnung und Austausch",
+    "Spirituelle Atmosphäre und Herzlichkeit"
+  ],
+  "fuerWen": "Jugendliche und junge Erwachsene, offen für alle Interessierten."
+  },
+  {
+  "id": "willkommen-ramadan-2026",
+  "title": "Willkommen Ramadan – Kinderveranstaltung",
+  "category": "KULTUR",
+  "stream": "Festive Events",
+  "date": "2026-02-07T13:00:00",
+  "location": "Siemensstraße 18, 35394 Gießen",
+  "image": "https://images.unsplash.com/photo-1617142860117-c1097c5f9373?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "description": "Eine besondere Ramadan-Veranstaltung für Kinder im Kulturzentrum. Gemeinsam entdecken wir die Bedeutung und den Wert des Monats Ramadan. Es wird gebastelt, gespielt und gelacht – mit einem fröhlichen Ramadan-Kalender, Gesprächen und kleinen Überraschungen.",
+  "wasErwartetSie": [
+    "Basteln eines Ramadan-Kalenders",
+    "Spiele und Gespräche",
+    "Kleine Überraschungen für Kinder",
+    "Gemeinsames Lernen über Ramadan"
+  ],
+  "fuerWen": "Kinder und Familien, die die Freude des Ramadans gemeinsam erleben möchten."
+  },
+  {
+  "id": "iftarprogramm-2026",
+  "title": "Besonderes Iftar-Programm",
+  "category": "KULTUR",
+  "stream": "Festive Events",
+  "date": "2026-03-07T17:15:00",
+  "location": "Sport- und Kulturhalle Garbenteich, Fröbelstraße 1, 35415 Pohlheim",
+  "image": "https://images.unsplash.com/photo-1587409059079-e1f9f840caa0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "description": "Ein herzliches Iftar-Programm zum gesegneten Ramadan-Abend. Wir freuen uns, das Fastenbrechen gemeinsam zu erleben und den Segen, Frieden und die Brüderlichkeit miteinander zu teilen.",
+  "wasErwartetSie": [
+    "Gemeinsames Fastenbrechen",
+    "Spirituelle Atmosphäre",
+    "Kulturelle Begegnung und Austausch"
+  ],
+  "fuerWen": "Alle Freundinnen und Freunde des Hauses – Muslime und Nicht-Muslime."
+  },
+  {
     "id": "iftar-2026",
     "title": "Iftar der Begegnung",
     "category": "KULTUR",
@@ -83,7 +134,7 @@
     "id": "frauentag-2026",
     "title": "Internationaler Frauentag",
     "category": "SOZIALES",
-    "stream": "Community Days",
+    "stream": "Community Begegnungen",
     "date": "2026-03-08T15:00:00",
     "location": "BVM Zentrum, Gießen",
     "image": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1200",
@@ -99,24 +150,24 @@
     "id": "muttertag-2026",
     "title": "Muttertag Spezial",
     "category": "SOZIALES",
-    "stream": "Community Days",
-    "date": "2026-05-10T11:00:00",
-    "location": "Wetzlar Altstadt",
-    "image": "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&q=80&w=1200",
-    "description": "Wir ehren alle Mütter mit einem besonderen Frühstück und kleinen Überraschungen.",
+    "stream": "Community Begegnungen",
+    "date": "2026-05-16T14:00:00",
+    "location": "Siemensstraße 18, 35394 Gießen",
+    "image": "https://images.unsplash.com/photo-1619903180479-6602d32de99c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Ein besonderer Nachmittag voller Kunst, Freude und schöner Erinnerungen. Das Muttertagsprogramm lädt Mütter und Damen zu einem kreativen und herzlichen Austausch ein – mit Kalligrafie-Kunst, Überraschungen, Spielen, Leckereien und netten Gesprächen.",
     "wasErwartetSie": [
-      "Festliches Frühstück",
-      "Blumenübergabe",
-      "Musikalisches Programm"
+    "Kalligrafie-Kunst mit Maltechnik",
+    "Überraschungen & Spiele",
+    "Leckereien und nette Gespräche"
     ],
     "fuerWen": "Mütter, Großmütter und ihre Familien."
   },
   {
-    "id": "senioren-besuch-2026",
+    "id": "senioren-besuch-2025",
     "title": "Besuch im Seniorenhaus",
     "category": "SOZIALES",
-    "stream": "Community Days",
-    "date": "2026-04-15T14:00:00",
+    "stream": "Community Begegnungen",
+    "date": "2025-04-15T14:00:00",
     "location": "Seniorenheim Gießen",
     "image": "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&q=80&w=1200",
     "description": "Jung und Alt kommen zusammen für einen Nachmittag voller Geschichten und Lächeln.",
@@ -128,11 +179,11 @@
     "fuerWen": "Jugendliche Freiwillige und Senioren."
   },
   {
-    "id": "spieleabend-2026",
+    "id": "spieleabend-2025",
     "title": "Internationaler Spieleabend",
     "category": "BILDUNG",
     "stream": "Youth & Education",
-    "date": "2026-04-25T19:00:00",
+    "date": "2025-04-25T19:00:00",
     "location": "Uni-Viertel, Gießen",
     "image": "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&q=80&w=1200",
     "description": "Ein gemütlicher Abend mit Brettspielen, Kaffee und neuen Freundschaften.",
@@ -144,11 +195,11 @@
     "fuerWen": "Studierende und junge Erwachsene aus Gießen."
   },
   {
-    "id": "feriencamp-2026",
+    "id": "feriencamp-2025",
     "title": "Sommer-Feriencamp",
     "category": "JUGEND",
     "stream": "Youth & Education",
-    "date": "2026-07-20T09:00:00",
+    "date": "2025-07-20T09:00:00",
     "location": "Jugendherberge Wetzlar",
     "image": "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&q=80&w=1200",
     "description": "Eine Woche voller Abenteuer, Sport und Team-Building in der Natur.",
@@ -160,18 +211,35 @@
     "fuerWen": "Kinder und Jugendliche zwischen 10 und 16 Jahren."
   },
   {
+    "id": "karrieretag-2026",
+    "title": "Karrieretag – BVM e.V.",
+    "category": "SOZIALES",
+    "stream": "Community Days”,
+    "date": "2026-04-18T14:00:00",
+    "location": "Siemensstraße 18, Gießen",
+    "image": "https://images.unsplash.com/photo-1483213097419-365e22f0f258?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fEthcnJpZXJlfGVufDB8fDB8fHww",
+    "description": "Ihre Chance, mit führenden Organisationen in Mittelhessen ins Gespräch zu kommen, Karrierewege zu entdecken und wertvolle Netzwerke zu knüpfen. Der Karrieretag bietet Perspektiven in der Sozialen Arbeit und richtet sich an alle, die sich beruflich weiterentwickeln möchten.",
+    "wasErwartetSie": [
+      "Gespräche mit führenden Organisationen",
+      "Einblicke in Karrierewege der Sozialen Arbeit",
+      "Networking und Erfahrungsaustausch"
+    ],
+    "fuerWen": "Interessierte an sozialer Arbeit, Studierende und Berufseinsteiger. Veranstaltungssprache: Türkisch."
+  },
+  {
     "id": "sprachcafe-2026",
     "title": "Sprachcafé Gießen",
     "category": "BILDUNG",
-    "stream": "Youth & Education",
+    "stream": "Community Begegnungen",
     "date": "2026-05-05T17:00:00",
     "location": "BVM Zentrum, Gießen",
     "image": "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=1200",
     "description": "Verbessern Sie Ihre Deutschkenntnisse in entspannter Atmosphäre bei Tee und Gebäck.",
     "wasErwartetSie": [
       "Konversationsgruppen",
-      "Sprachspiele",
-      "Kultureller Austausch"
+      "Kultureller Austausch und gegenseitiges Kennenlernen",
+      "Offene und herzliche Atmosphäre",
+      "Unterstützung durch erfahrene Sprachlehrer"
     ],
     "fuerWen": "Alle, die Deutsch lernen oder ihre Kenntnisse vertiefen möchten."
   }
