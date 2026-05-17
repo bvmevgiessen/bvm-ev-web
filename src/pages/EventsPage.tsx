@@ -84,7 +84,7 @@ export default function EventsPage() {
                             to={`/events/${event.id}`}
                             className="inline-flex items-center gap-2 font-bold text-brand-teal hover:gap-3 transition-all"
                           >
-                            Details & Anmeldung <ArrowRight size={18} />
+                            {new Date(event.date) < new Date() ? 'Details ansehen' : 'Details & Anmeldung'} <ArrowRight size={18} />
                           </Link>
                         </div>
                       </motion.div>

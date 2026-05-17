@@ -24,6 +24,8 @@ export default function EventDetailPage() {
     );
   }
 
+  const isPastEvent = new Date(event.date) < new Date();
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
@@ -118,12 +120,26 @@ export default function EventDetailPage() {
                 <div className="sticky top-32 bg-white p-8 rounded-[2rem] border border-slate-200 shadow-xl shadow-slate-200/50">
                   <div className="flex items-center justify-between mb-6">
                     <h2 className="text-2xl font-bold text-brand-navy">Anmeldung</h2>
-                    <span className="text-[10px] font-bold text-brand-orange bg-brand-orange/10 px-3 py-1 rounded-full uppercase tracking-wider">
-                      Anfrage
+                    <span className={`text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider ${
+                      isPastEvent 
+                        ? 'text-slate-500 bg-slate-100' 
+                        : 'text-brand-orange bg-brand-orange/10'
+                    }`}>
+                      {isPastEvent ? 'Geschlossen' : 'Anfrage'}
                     </span>
                   </div>
                   
-                  {state.succeeded ? (
+                  {isPastEvent ? (
+                    <div className="text-center py-10 bg-slate-50 rounded-2xl border border-slate-100">
+                      <div className="w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Clock className="text-slate-500" size={32} />
+                      </div>
+                      <h3 className="text-lg font-bold text-brand-navy mb-2">Anmeldung geschlossen</h3>
+                      <p className="text-slate-500 text-sm px-4">
+                        Dieses Event hat bereits stattgefunden. Eine Anmeldung ist daher nicht mehr möglich.
+                      </p>
+                    </div>
+                  ) : state.succeeded ? (
                     <motion.div 
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
