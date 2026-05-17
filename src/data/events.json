@@ -227,23 +227,6 @@
     "fuerWen": "Interessierte an sozialer Arbeit, Studierende und Berufseinsteiger. Veranstaltungssprache: Türkisch."
   },
   {
-    "id": "sprachcafe-2026",
-    "title": "Sprachcafé Gießen",
-    "category": "BILDUNG",
-    "stream": "Community Begegnungen",
-    "date": "2026-05-05T17:00:00",
-    "location": "BVM Zentrum, Gießen",
-    "image": "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=1200",
-    "description": "Verbessern Sie Ihre Deutschkenntnisse in entspannter Atmosphäre bei Tee und Gebäck.",
-    "wasErwartetSie": [
-      "Konversationsgruppen",
-      "Kultureller Austausch und gegenseitiges Kennenlernen",
-      "Offene und herzliche Atmosphäre",
-      "Unterstützung durch erfahrene Sprachlehrer"
-    ],
-    "fuerWen": "Alle, die Deutsch lernen oder ihre Kenntnisse vertiefen möchten."
-  },
-  {
     "id": "abrahamisches-cafe-2026",
     "title": "Abrahamisches Café: Glaube & Demokratie",
     "category": "DIALOG",
