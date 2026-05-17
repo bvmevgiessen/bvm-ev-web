@@ -37,6 +37,13 @@ export default function Partners() {
       url: 'https://ldk-ev.de/',
       fallback: 'LDK'
     },
+    {
+      name: 'LBE-BW e.V.',
+      location: 'Baden-Württemberg',
+      logo: 'https://wsrv.nl/?url=https://www.lbe-bw.de/wp-content/uploads/2018/08/lbe_logo.svg&w=400&fit=contain',
+      url: 'https://lbe-bw.de/',
+      fallback: 'LBE'
+    },
   ];
 
   return (
