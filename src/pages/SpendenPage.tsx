@@ -206,11 +206,11 @@ export default function SpendenPage() {
                        <div className="bg-brand-navy text-white p-6 rounded-2xl relative overflow-hidden">
                           <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none" />
                           <p className="mb-4 text-white/80">Bitte überweisen Sie Ihre Spende auf folgendes Konto:</p>
-                          <div className="space-y-2 font-mono text-sm sm:text-base">
-                            <p><span className="text-white/60 inline-block w-24">Empfänger:</span> <span className="font-bold">BILDUNG UND VERSTÄNDIGUNG MITTELHESSEN E.V.</span></p>
-                            <p><span className="text-white/60 inline-block w-24">IBAN:</span> <span className="font-bold">DE67 5135 0025 0205 0833 07</span></p>
-                            <p><span className="text-white/60 inline-block w-24">BIC:</span> <span className="font-bold">SKGIDE5FXXX</span></p>
-                            <p><span className="text-white/60 inline-block w-30">Verwendungszweck:</span> <span className="font-bold text-brand-teal">"Spende [Ihr Name]"</span></p>
+                          <div className="grid grid-cols-1 sm:grid-cols-[auto_1fr] gap-x-4 gap-y-2 sm:gap-y-3 font-mono text-sm sm:text-base">
+                            <span className="text-white/60">Empfänger:</span> <span className="font-bold break-all sm:break-normal">BVM e.V. Gießen</span>
+                            <span className="text-white/60">IBAN:</span> <span className="font-bold break-all sm:break-normal">DE00 0000 0000 0000 0000 00</span>
+                            <span className="text-white/60">BIC:</span> <span className="font-bold break-all sm:break-normal">XXXXXXXXXXX</span>
+                            <span className="text-white/60">Verwendungszweck:</span> <span className="font-bold text-brand-teal break-all sm:break-normal">"Spende [Ihr Name]"</span>
                           </div>
                        </div>
                     </motion.section>
