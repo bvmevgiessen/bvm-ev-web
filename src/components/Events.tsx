@@ -91,7 +91,7 @@ export default function Events() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {upcomingEvents.map((event, index) => (
             <motion.div
-              key={event.id}
+              key={`${event.id}-${index}`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

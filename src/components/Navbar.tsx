@@ -24,6 +24,7 @@ export default function Navbar() {
     { name: 'Events', href: '/events' },
     { name: 'Blog', href: '/blog' },
     { name: 'Kontakt', href: isHome ? '#contact' : `${import.meta.env.BASE_URL}#contact` },
+    { name: 'Spenden', href: '/spenden' },
   ];
 
   const platforms = [

@@ -13,6 +13,7 @@ import EventDetailPage from './pages/EventDetailPage';
 import BlogPage from './pages/BlogPage';
 import BlogDetailPage from './pages/BlogDetailPage';
 import MitmachenPage from './pages/MitmachenPage';
+import SpendenPage from './pages/SpendenPage';
 import Footer from './components/Footer';
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:blogId" element={<BlogDetailPage />} />
           <Route path="/mitmachen" element={<MitmachenPage />} />
+          <Route path="/spenden" element={<SpendenPage />} />
         </Routes>
         <Footer />
       </div>
