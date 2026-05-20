@@ -116,6 +116,25 @@
     "sourceId": "fidev"
   },
   {
+    "id": "house-of-one-f4fdb88646",
+    "title": "Konferenz der Mehrreligionenhäuser 2026",
+    "link": "https://house-of-one.org/news/konferenz-der-mehrreligionenhaeuser-2026",
+    "date": "2026-05-04T00:00:00+00:00",
+    "source_name": "House of One",
+    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "category": "Dialog",
+    "author": "House of One",
+    "partnerName": "House of One",
+    "partnerUrl": "https://house-of-one.org/",
+    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "excerpt": "Die Konferenz der Mehrreligionenhäuser bringt seit ihrer Gründung während der Pandemie Initiativen, Projekte und engagierte Akteurinnen und Akteure zu... Weiterlesen",
+    "tags": [
+      "Dialog"
+    ],
+    "external": true,
+    "sourceId": "house-of-one"
+  },
+  {
     "id": "fidev-478898de27",
     "title": "Brücken bauen - Europa entdecken: Inklusive Reiseerfahrungen",
     "link": "https://www.fidev.org/post/br%C3%BCcken-bauen-europa-entdecken-inklusive-reiseerfahrungen",
@@ -328,25 +347,6 @@
     "partnerUrl": "https://house-of-one.org/",
     "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
     "excerpt": "Mit Beginn des Ramadan sind Mitarbeiterinnen und Mitarbeiter des House of One in den kommenden Wochen an zahlreichen Orten eingeladen, um Iftar-Abende... Weiterlesen",
-    "tags": [
-      "Dialog"
-    ],
-    "external": true,
-    "sourceId": "house-of-one"
-  },
-  {
-    "id": "house-of-one-37fbb75aa0",
-    "title": "Podcastfolge #109: Noah – Hoffnungserzählung oder düstere Warnung?",
-    "link": "https://house-of-one.org/news/podcastfolge-109-noah-hoffnungserzaehlung-oder-duestere-warnung",
-    "date": "2026-02-20T00:00:00+00:00",
-    "source_name": "House of One",
-    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "category": "Dialog",
-    "author": "House of One",
-    "partnerName": "House of One",
-    "partnerUrl": "https://house-of-one.org/",
-    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "excerpt": "Die Geschichte von Noah und der Arche gehört zu den bekanntesten Erzählungen der abrahamitischen Religionen. Eine gewaltige Flut, ein riesiges Holzsch... Weiterlesen",
     "tags": [
       "Dialog"
     ],
