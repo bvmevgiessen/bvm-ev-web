@@ -179,22 +179,6 @@
     "fuerWen": "Jugendliche Freiwillige und Senioren."
   },
   {
-    "id": "spieleabend-2025",
-    "title": "Internationaler Spieleabend",
-    "category": "BILDUNG",
-    "stream": "Youth & Education",
-    "date": "2025-04-25T19:00:00",
-    "location": "Uni-Viertel, Gießen",
-    "image": "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&q=80&w=1200",
-    "description": "Ein gemütlicher Abend mit Brettspielen, Kaffee und neuen Freundschaften.",
-    "wasErwartetSie": [
-      "Große Auswahl an Brettspielen",
-      "Kaffee und Snacks",
-      "Lachen und Kennenlernen"
-    ],
-    "fuerWen": "Studierende und junge Erwachsene aus Gießen."
-  },
-  {
     "id": "feriencamp-2025",
     "title": "Sommer-Feriencamp",
     "category": "JUGEND",
@@ -278,8 +262,8 @@
   {
   "id": "halloween-spieleabend-2025",
   "title": "Halloween Spieleabend",
-  "category": "JUGEND",
-  "stream": "Jugendplattform",
+    "category": "JUGEND",
+    "stream": "Youth & Education",
   "date": "2025-10-24T20:00:00",
   "location": "Siemensstraße 18, 35394 Gießen",
   "image": "https://images.unsplash.com/photo-1740381347162-bf9ca4b517c4?q=80&w=2590&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
