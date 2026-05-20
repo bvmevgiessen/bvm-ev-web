@@ -208,7 +208,7 @@ export default function SpendenPage() {
                           <p className="mb-4 text-white/80">Bitte überweisen Sie Ihre Spende auf folgendes Konto:</p>
                           <div className="space-y-2 font-mono text-sm sm:text-base">
                             <p><span className="text-white/60 inline-block w-24">Empfänger:</span> <span className="font-bold">BILDUNG UND VERSTÄNDIGUNG MITTELHESSEN E.V.</span></p>
-                            <p><span className="text-white/60 inline-block w-24">IBAN:</span> <span className="font-bold">DEDE67 5135 0025 0205 0833 07</span></p>
+                            <p><span className="text-white/60 inline-block w-24">IBAN:</span> <span className="font-bold">DE67 5135 0025 0205 0833 07</span></p>
                             <p><span className="text-white/60 inline-block w-24">BIC:</span> <span className="font-bold">SKGIDE5FXXX</span></p>
                             <p><span className="text-white/60 inline-block w-24">Verwendungszweck:</span> <span className="font-bold text-brand-teal">"Spende [Ihr Name]"</span></p>
                           </div>
