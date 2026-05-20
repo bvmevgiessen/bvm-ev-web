@@ -207,9 +207,9 @@ export default function SpendenPage() {
                           <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl -mr-16 -mt-16 pointer-events-none" />
                           <p className="mb-4 text-white/80">Bitte überweisen Sie Ihre Spende auf folgendes Konto:</p>
                           <div className="space-y-2 font-mono text-sm sm:text-base">
-                            <p><span className="text-white/60 inline-block w-24">Empfänger:</span> <span className="font-bold">BVM e.V. Gießen</span></p>
-                            <p><span className="text-white/60 inline-block w-24">IBAN:</span> <span className="font-bold">DE00 0000 0000 0000 0000 00</span></p>
-                            <p><span className="text-white/60 inline-block w-24">BIC:</span> <span className="font-bold">XXXXXXXXXXX</span></p>
+                            <p><span className="text-white/60 inline-block w-24">Empfänger:</span> <span className="font-bold">BILDUNG UND VERSTÄNDIGUNG MITTELHESSEN E.V.</span></p>
+                            <p><span className="text-white/60 inline-block w-24">IBAN:</span> <span className="font-bold">DEDE67 5135 0025 0205 0833 07</span></p>
+                            <p><span className="text-white/60 inline-block w-24">BIC:</span> <span className="font-bold">SKGIDE5FXXX</span></p>
                             <p><span className="text-white/60 inline-block w-24">Verwendungszweck:</span> <span className="font-bold text-brand-teal">"Spende [Ihr Name]"</span></p>
                           </div>
                        </div>
