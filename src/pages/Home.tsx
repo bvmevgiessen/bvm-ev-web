@@ -9,6 +9,7 @@ import Partners from '../components/Partners';
 import CommunityPulse from '../components/CommunityPulse';
 import PuzzleBackground from '../components/PuzzleBackground';
 import EventPopup from '../components/EventPopup';
+import Newsletter from '../components/Newsletter';
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
         <About />
         <CommunityPulse />
         <Events />
+        <Newsletter />
         <Blog />
         <Partners />
       </main>
