@@ -244,6 +244,71 @@
     "fuerWen": "Offen für alle – unabhängig von Glaubensrichtung oder Weltanschauung. Ein Ort des Dialogs und der Freundschaft."
   },
   {
+  "id": "weihnachts-vortrag-2025",
+  "title": "Weihnachts-Vortrag",
+  "category": "DIALOG",
+  "stream": "Interreligiöser Austausch",
+  "date": "2025-12-15T18:00:00",
+  "location": "Siemensstraße 18, 35394 Gießen",
+  "image": "https://images.unsplash.com/photo-1482517967863-00e15c9b44be?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "description": "Ein Vortrag über die Bedeutung und Wichtigkeit von Weihnachten im baptistischen Glauben. Geistliche der International Baptist Church teilen ihre Perspektiven auf die spirituelle und gesellschaftliche Bedeutung des Weihnachtsfestes.",
+  "wasErwartetSie": [
+    "Vorträge von Geistlichen der International Baptist Church",
+    "Einblicke in den baptistischen Glauben und die Bedeutung von Weihnachten",
+    "Gelegenheit zum Austausch und zur Diskussion"
+  ],
+  "fuerWen": "Alle Interessierten, die mehr über die religiöse Bedeutung von Weihnachten erfahren möchten."
+  },
+  {
+  "id": "aschura-event-2025",
+  "title": "Aschura Event",
+  "category": "DIALOG",
+  "stream": "Kulturelle Begegnungen",
+  "date": "2025-07-10T17:30:00",
+  "location": "Siemensstraße 18, 35394 Gießen",
+  "image": "https://www.erk-bs.ch/_upload/15601.jpg",
+  "description": "Ein Event der Besinnung und des Gedenkens. Das Aschura-Event lädt dazu ein, gemeinsam in Gemeinschaft zu feiern und die Werte von Mitgefühl, Dankbarkeit und Zusammenhalt zu erleben.",
+  "wasErwartetSie": [
+    "Gemeinsames Beisammensein und Austausch",
+    "Traditionelle Aschura-Speisen",
+    "Reflexion über die Bedeutung des Aschura-Events"
+  ],
+  "fuerWen": "Alle Interessierten, die das Aschura-Event in Gemeinschaft erleben möchten."
+  },
+  {
+  "id": "halloween-spieleabend-2025",
+  "title": "Halloween Spieleabend",
+  "category": "JUGEND",
+  "stream": "Jugendplattform",
+  "date": "2025-10-24T20:00:00",
+  "location": "Siemensstraße 18, 35394 Gießen",
+  "image": "https://images.unsplash.com/photo-1740381347162-bf9ca4b517c4?q=80&w=2590&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "description": "Ein Abend voller Grusel, Spannung und Spaß! Der Halloween-Spieleabend der Jugendplattform war einfach nur gruselig-gut. Spiele, Snacks und Spuk sorgten für eine großartige Stimmung in Gießen – ein perfekter Mix für alle, die Halloween lieben.",
+  "wasErwartetSie": [
+    "Spieleabend mit Halloween-Thema",
+    "Snacks und Getränke",
+    "Gruselige Atmosphäre und Spaß in Gemeinschaft"
+  ],
+  "fuerWen": "Jugendliche und junge Erwachsene, die Lust auf einen spannenden und unterhaltsamen Abend haben."
+  },
+  {
+  "id": "tag-der-offenen-tuer-2025",
+  "title": "Tag der offenen Tür",
+  "category": "SOZIALES",
+  "stream": "Community Begegnungen",
+  "date": "2025-01-22T12:00:00",
+  "location": "Siemensstraße 18, Gebäude 2, 35394 Gießen",
+  "image": "https://images.unsplash.com/photo-1664562780891-78cd08e2cc6c?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "description": "Ein Tag der offenen Tür bei Bildung und Verständigung Mittelhessen e.V. – entdecken Sie unser Vereinshaus, lernen Sie Mitglieder und den Vorstand kennen und erfahren Sie mehr über unsere Aktivitäten. Dazu gibt es leckere türkische Fingerfoods und viele Gelegenheiten zum Austausch.",
+  "wasErwartetSie": [
+    "Kennenlernen des Vorstands und der Mitglieder",
+    "Führung durch das Vereinshaus",
+    "Informationsveranstaltung über Vereinsaktivitäten",
+    "Leckere türkische Fingerfoods"
+  ],
+  "fuerWen": "Alle Interessierten, die unseren Verein und seine Arbeit kennenlernen möchten."
+  },
+  {
     "id": "sprachcafe-2026",
     "title": "Sprachcafé",
     "category": "SOZIALES",
