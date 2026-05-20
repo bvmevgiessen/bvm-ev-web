@@ -60,6 +60,29 @@ def strip_tags(text):
      """Simple method to strip html tags if they exist"""
      return re.sub('<[^<]+?>', '', text)
 
+def sanitize_text(text):
+    """Sanitize text to support latin-1 encoding for standard PDF fonts."""
+    if not isinstance(text, str):
+        return str(text)
+    replacements = {
+        '„': '"',
+        '“': '"',
+        '”': '"',
+        '‚': "'",
+        '‘': "'",
+        '’': "'",
+        '–': '-',
+        '—': '-',
+        '…': '...',
+        '\u2028': '\n',
+        '\u2029': '\n',
+        '\xad': '',
+        '\xa0': ' '
+    }
+    for search, replace in replacements.items():
+        text = text.replace(search, replace)
+    return text.encode('latin-1', 'replace').decode('latin-1')
+
 def generate_ai_editorial(compiled_raw_content):
     """Generate the AI editorial using Gemini API."""
     prompt = f"Du bist der digitale Redakteur für den Verein BVM e.V. Schreibe ein herzliches, professionelles und motivierendes Vorwort (ca. 150-200 Wörter) für unseren vierteljährlichen Newsletter auf Deutsch. Basierend auf folgenden Themen, Blogbeiträgen und Events der letzten 3 Monate, fasse zusammen, worum es in dieser Ausgabe geht, und bedanke dich bei den Unterstützern:\n\n{compiled_raw_content}"
@@ -124,7 +147,7 @@ def main():
     pdf.ln(20)
     
     # Editorial Section
-    editorial_text = generate_ai_editorial(compiled_raw_content)
+    editorial_text = sanitize_text(generate_ai_editorial(compiled_raw_content))
 
     # Box for editorial
     pdf.set_font("helvetica", 'B', 16)
@@ -145,15 +168,15 @@ def main():
     if recent_blogs:
         for post in recent_blogs:
             pdf.set_font("helvetica", 'B', 14)
-            title = post.get('title', 'Ohne Titel')
+            title = sanitize_text(post.get('title', 'Ohne Titel'))
             pdf.cell(0, 10, title, border=0, new_x='LMARGIN', new_y='NEXT')
             
             pdf.set_font("helvetica", 'I', 11)
-            date_str = post.get('date', '')
+            date_str = sanitize_text(post.get('date', ''))
             pdf.cell(0, 6, date_str, border=0, new_x='LMARGIN', new_y='NEXT')
             
             pdf.set_font("helvetica", size=11)
-            excerpt = strip_tags(post.get('excerpt', ''))
+            excerpt = sanitize_text(strip_tags(post.get('excerpt', '')))
             pdf.multi_cell(0, 6, excerpt)
             
             # Divider
@@ -176,16 +199,16 @@ def main():
     if recent_events:
         for event in recent_events:
             pdf.set_font("helvetica", 'B', 14)
-            title = event.get('title', 'Event')
+            title = sanitize_text(event.get('title', 'Event'))
             pdf.cell(0, 10, title, border=0, new_x='LMARGIN', new_y='NEXT')
             
             pdf.set_font("helvetica", 'I', 11)
-            date_str = event.get('date', '')
-            loc_str = event.get('location', '')
+            date_str = sanitize_text(event.get('date', ''))
+            loc_str = sanitize_text(event.get('location', ''))
             pdf.cell(0, 6, f"{date_str} - {loc_str}", border=0, new_x='LMARGIN', new_y='NEXT')
             
             pdf.set_font("helvetica", size=11)
-            desc = strip_tags(event.get('description', ''))
+            desc = sanitize_text(strip_tags(event.get('description', '')))
             pdf.multi_cell(0, 6, desc)
             
             # Divider
