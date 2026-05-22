@@ -1,5 +1,24 @@
 [
   {
+    "id": "fidev-28bcd9680e",
+    "title": "Wo Glaube Gesellschaft gestaltet",
+    "link": "https://www.fidev.org/post/wo-glaube-gesellschaft-gestaltet",
+    "date": "2026-05-21T08:53:11+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/2d6f92_5c9258924ac44bea935b90069f40b344~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
+    "category": "Community",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/2d6f92_5c9258924ac44bea935b90069f40b344~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
+    "excerpt": "",
+    "tags": [
+      "Community"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
     "id": "fidev-bd93b260f6",
     "title": "Dialog: konkret – wir setzen auf Dialog. Hier und jetzt.",
     "link": "https://www.fidev.org/post/dialog-konkret-wir-setzen-auf-dialog-hier-und-jetzt",
@@ -133,25 +152,6 @@
     ],
     "external": true,
     "sourceId": "house-of-one"
-  },
-  {
-    "id": "fidev-478898de27",
-    "title": "Brücken bauen - Europa entdecken: Inklusive Reiseerfahrungen",
-    "link": "https://www.fidev.org/post/br%C3%BCcken-bauen-europa-entdecken-inklusive-reiseerfahrungen",
-    "date": "2026-05-03T19:48:48+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/2d6f92_882d1fc4487641f08981d7646e8e2762~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
-    "category": "Integration",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/2d6f92_882d1fc4487641f08981d7646e8e2762~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
-    "excerpt": "Europa gemeinsam entdecken: 30 junge Menschen mit Migrations- und Fluchthintergrund erkunden per Zug Frankreich, Spanien, Oesterreich und Ungarn. Erasmus+ gefördert. Europa ist für viele junge Menschen ein ferner Traum…",
-    "tags": [
-      "Integration"
-    ],
-    "external": true,
-    "sourceId": "fidev"
   },
   {
     "id": "house-of-one-42d526426c",
