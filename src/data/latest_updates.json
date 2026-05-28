@@ -1,9 +1,9 @@
 [
   {
     "id": "fidev-bd93b260f6",
-    "title": "Dialog: konkret – wir setzen auf Dialog. Hier und jetzt.",
+    "title": "Dialog: konkret – Vielfalt. Streit. Kompromiss.",
     "link": "https://www.fidev.org/post/dialog-konkret-wir-setzen-auf-dialog-hier-und-jetzt",
-    "date": "2026-05-12T11:11:07+00:00",
+    "date": "2026-05-27T11:11:07+00:00",
     "source_name": "Forum für Interkulturellen Dialog",
     "image_url": "https://static.wixstatic.com/media/2d6f92_76ed4d52f14143019e3188bcdbcf7182~mv2.jpg/v1/fit/w_1000,h_671,al_c,q_80/file.png",
     "category": "Dialog",
@@ -17,6 +17,25 @@
     ],
     "external": true,
     "sourceId": "fidev"
+  },
+  {
+    "id": "house-of-one-b335730ecd",
+    "title": "Über 200.000 Euro Spenden für House of One",
+    "link": "https://house-of-one.org/news/ueber-200000-euro-spenden-fuer-house-one",
+    "date": "2026-05-19T00:00:00+00:00",
+    "source_name": "House of One",
+    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "category": "Dialog",
+    "author": "House of One",
+    "partnerName": "House of One",
+    "partnerUrl": "https://house-of-one.org/",
+    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "excerpt": "Herzlichen Dank an alle unsere Spenderinnen und Spender, ob engagierte Privatpersonen, Firmen oder Organisationen! In drei Monaten, von 30. Januar bis... Weiterlesen",
+    "tags": [
+      "Dialog"
+    ],
+    "external": true,
+    "sourceId": "house-of-one"
   },
   {
     "id": "fidev-1a0ea79d70",
@@ -333,25 +352,6 @@
     ],
     "external": true,
     "sourceId": "sdub"
-  },
-  {
-    "id": "house-of-one-2ad4425fde",
-    "title": "Ramadan: House of One bei zahlreichen Iftaren engagiert",
-    "link": "https://house-of-one.org/news/ramadan-house-one-bei-zahlreichen-iftaren-engagiert",
-    "date": "2026-02-26T00:00:00+00:00",
-    "source_name": "House of One",
-    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "category": "Dialog",
-    "author": "House of One",
-    "partnerName": "House of One",
-    "partnerUrl": "https://house-of-one.org/",
-    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "excerpt": "Mit Beginn des Ramadan sind Mitarbeiterinnen und Mitarbeiter des House of One in den kommenden Wochen an zahlreichen Orten eingeladen, um Iftar-Abende... Weiterlesen",
-    "tags": [
-      "Dialog"
-    ],
-    "external": true,
-    "sourceId": "house-of-one"
   },
   {
     "id": "bddi-edcae1cb5f",
