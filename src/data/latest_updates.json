@@ -19,6 +19,25 @@
     "sourceId": "fidev"
   },
   {
+    "id": "house-of-one-61f8c3cbb2",
+    "title": "#115: Zahlen und Codes – mehr als nur Mathematik?",
+    "link": "https://house-of-one.org/news/115-zahlen-und-codes-mehr-als-nur-mathematik",
+    "date": "2026-05-25T00:00:00+00:00",
+    "source_name": "House of One",
+    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "category": "Community",
+    "author": "House of One",
+    "partnerName": "House of One",
+    "partnerUrl": "https://house-of-one.org/",
+    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "excerpt": "In dieser Folge tauchen wir - Rebecca, Maike und Kübra - ein in die faszinierende Welt der Zahlen und fragen uns: Sind Zahlen mehr als nur Mathematik?... Weiterlesen",
+    "tags": [
+      "Community"
+    ],
+    "external": true,
+    "sourceId": "house-of-one"
+  },
+  {
     "id": "house-of-one-b335730ecd",
     "title": "Über 200.000 Euro Spenden für House of One",
     "link": "https://house-of-one.org/news/ueber-200000-euro-spenden-fuer-house-one",
@@ -33,6 +52,25 @@
     "excerpt": "Herzlichen Dank an alle unsere Spenderinnen und Spender, ob engagierte Privatpersonen, Firmen oder Organisationen! In drei Monaten, von 30. Januar bis... Weiterlesen",
     "tags": [
       "Dialog"
+    ],
+    "external": true,
+    "sourceId": "house-of-one"
+  },
+  {
+    "id": "house-of-one-8cf15a22c0",
+    "title": "Podcastfolge #114: Heilige Väter? Über Vatervorstellungen in Tora, Bibel und Koran sowie echte Erfahrungen",
+    "link": "https://house-of-one.org/news/podcastfolge-114-heilige-vaeter-ueber-vatervorstellungen-tora-bibel-und-koran-sowie-echte",
+    "date": "2026-05-11T00:00:00+00:00",
+    "source_name": "House of One",
+    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "category": "Community",
+    "author": "House of One",
+    "partnerName": "House of One",
+    "partnerUrl": "https://house-of-one.org/",
+    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "excerpt": "In dieser Folge tauchen wir tief in die Rolle der Väter ein – zwischen gesellschaftlichen Erwartungen, kulturellen Mythen und persönlichen Erfahrungen... Weiterlesen",
+    "tags": [
+      "Community"
     ],
     "external": true,
     "sourceId": "house-of-one"
@@ -253,25 +291,6 @@
     "sourceId": "sdub"
   },
   {
-    "id": "house-of-one-741047de90",
-    "title": "Podcastfolge #112: Religion und Zauberei – gibt es da einen Zusammenhang?",
-    "link": "https://house-of-one.org/news/podcastfolge-112-religion-und-zauberei-gibt-es-da-einen-zusammenhang",
-    "date": "2026-04-09T00:00:00+00:00",
-    "source_name": "House of One",
-    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "category": "Dialog",
-    "author": "House of One",
-    "partnerName": "House of One",
-    "partnerUrl": "https://house-of-one.org/",
-    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "excerpt": "Von Jewitches, über die heiligen drei Magier bis hin zu Dschinns geht es in dieser Folge ins Reich der Magie. Rebecca, Maike und Kübra vergleichen die... Weiterlesen",
-    "tags": [
-      "Dialog"
-    ],
-    "external": true,
-    "sourceId": "house-of-one"
-  },
-  {
     "id": "sdub-1b2a03879c",
     "title": "Wettbewerb Zukunft 2026",
     "link": "https://sdub.de/zukunft2026/",
@@ -312,25 +331,6 @@
     ],
     "external": true,
     "sourceId": "sdub"
-  },
-  {
-    "id": "house-of-one-14b9b1fcf9",
-    "title": "Podcastfolge #111: Gaming und Gott – Kann Religion auch in Minecraft funktionieren?",
-    "link": "https://house-of-one.org/news/podcastfolge-111-gaming-und-gott-kann-religion-auch-minecraft-funktionieren",
-    "date": "2026-03-20T00:00:00+00:00",
-    "source_name": "House of One",
-    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "category": "Dialog",
-    "author": "House of One",
-    "partnerName": "House of One",
-    "partnerUrl": "https://house-of-one.org/",
-    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "excerpt": "Wie können Videospiele Religiosität erlebbar machen? Mit künstlerischen und kulturellen Symboliken aufgeladen ist die digitale Spielewelt ein Spiegel ... Weiterlesen",
-    "tags": [
-      "Dialog"
-    ],
-    "external": true,
-    "sourceId": "house-of-one"
   },
   {
     "id": "sdub-708b349e55",
