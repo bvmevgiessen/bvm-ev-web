@@ -1,5 +1,43 @@
 [
   {
+    "id": "fidev-20ade7c14f",
+    "title": "Rückblick: Medien, Macht und Meinung",
+    "link": "https://www.fidev.org/post/r%C3%BCckblick-medien-macht-und-meinung",
+    "date": "2026-06-02T13:38:57+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/2d6f92_f614cca5a3e74ec19cd3cf0b2ca8af03~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
+    "category": "Community",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/2d6f92_f614cca5a3e74ec19cd3cf0b2ca8af03~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
+    "excerpt": "Zwischen Algorithmen, Glauben und Desinformation: Wer beherrscht die öffentliche Meinung? In einer Ära beispielloser medialer Dynamik steht unsere demokratische Gesellschaft vor einer Zerreißprobe. Während die Digitalis…",
+    "tags": [
+      "Community"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
+    "id": "timetohelp-c76dc12e6f",
+    "title": "Kurban 2026: Foto Galeri",
+    "link": "https://timetohelp.eu/kurban-2026-foto-galeri/",
+    "date": "2026-06-02T09:11:46+00:00",
+    "source_name": "Time to Help e.V.",
+    "image_url": "https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?auto=format&fit=crop&q=80&w=1200",
+    "category": "Community",
+    "author": "Time to Help e.V.",
+    "partnerName": "Time to Help e.V.",
+    "partnerUrl": "https://timetohelp.eu/",
+    "image": "https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?auto=format&fit=crop&q=80&w=1200",
+    "excerpt": "Kurban 2026 Foto Galeri Der Beitrag Kurban 2026: Foto Galeri erschien zuerst auf Time to Help .",
+    "tags": [
+      "Community"
+    ],
+    "external": true,
+    "sourceId": "timetohelp"
+  },
+  {
     "id": "fidev-bd93b260f6",
     "title": "Dialog: konkret – Vielfalt. Streit. Kompromiss.",
     "link": "https://www.fidev.org/post/dialog-konkret-wir-setzen-auf-dialog-hier-und-jetzt",
@@ -190,25 +228,6 @@
     ],
     "external": true,
     "sourceId": "house-of-one"
-  },
-  {
-    "id": "fidev-478898de27",
-    "title": "Brücken bauen - Europa entdecken: Inklusive Reiseerfahrungen",
-    "link": "https://www.fidev.org/post/br%C3%BCcken-bauen-europa-entdecken-inklusive-reiseerfahrungen",
-    "date": "2026-05-03T19:48:48+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/2d6f92_882d1fc4487641f08981d7646e8e2762~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
-    "category": "Integration",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/2d6f92_882d1fc4487641f08981d7646e8e2762~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
-    "excerpt": "Europa gemeinsam entdecken: 30 junge Menschen mit Migrations- und Fluchthintergrund erkunden per Zug Frankreich, Spanien, Oesterreich und Ungarn. Erasmus+ gefördert. Europa ist für viele junge Menschen ein ferner Traum…",
-    "tags": [
-      "Integration"
-    ],
-    "external": true,
-    "sourceId": "fidev"
   },
   {
     "id": "house-of-one-42d526426c",
