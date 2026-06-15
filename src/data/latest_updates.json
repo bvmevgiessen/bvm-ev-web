@@ -1,5 +1,26 @@
 [
   {
+    "id": "sdub-d2591f068d",
+    "title": "DuB Essentials Nr. 3: Notwendigkeit des interreligiösen Dialogs",
+    "link": "https://sdub.de/dub-essentials-nr-3-interreligioeser-dialog/",
+    "date": "2026-06-15T09:38:43+00:00",
+    "source_name": "Stiftung Dialog und Bildung",
+    "image_url": "https://sdub.de/wp-content/uploads/2026/06/dub-essentials-3-cover-721x1024.jpg",
+    "category": "Dialog",
+    "author": "Stiftung Dialog und Bildung",
+    "partnerName": "Stiftung Dialog und Bildung",
+    "partnerUrl": "https://sdub.de/",
+    "image": "https://sdub.de/wp-content/uploads/2026/06/dub-essentials-3-cover-721x1024.jpg",
+    "excerpt": "In der dritten Ausgabe dieser Reihe widmen wir uns dem Text „Die Notwendigkeit interreligiösen Dialogs“ des muslimischen Gelehrten M. Fethullah Gülen. Dieser Beitrag macht deutlich, dass der Dialog der Weltreligionen fe…",
+    "tags": [
+      "Dialog",
+      "DuB Zeitschrift",
+      "Islam"
+    ],
+    "external": true,
+    "sourceId": "sdub"
+  },
+  {
     "id": "fidev-20ade7c14f",
     "title": "Rückblick: Medien, Macht und Meinung",
     "link": "https://www.fidev.org/post/r%C3%BCckblick-medien-macht-und-meinung",
@@ -347,27 +368,6 @@
       "Dialog",
       "Islam",
       "Religion"
-    ],
-    "external": true,
-    "sourceId": "sdub"
-  },
-  {
-    "id": "sdub-708b349e55",
-    "title": "DuB Essentials Nr. 1: Gedankenfreiheit, Pluralismus, Demokratie",
-    "link": "https://sdub.de/dub-essentials-1-demokratie/",
-    "date": "2026-03-05T13:09:34+00:00",
-    "source_name": "Stiftung Dialog und Bildung",
-    "image_url": "https://sdub.de/wp-content/uploads/2026/03/dub-essentials-nr_1-721x1024.png",
-    "category": "Community",
-    "author": "Stiftung Dialog und Bildung",
-    "partnerName": "Stiftung Dialog und Bildung",
-    "partnerUrl": "https://sdub.de/",
-    "image": "https://sdub.de/wp-content/uploads/2026/03/dub-essentials-nr_1-721x1024.png",
-    "excerpt": "DuB Essentials – Prägende Texte neu zugänglich Manche Texte behalten ihre Aktualität weit über den Moment ihres ersten Erscheinens hinaus. Sie prägen Debatten, geben Orientierung und tragen zum inhaltlichen Profil einer…",
-    "tags": [
-      "Community",
-      "DuB Zeitschrift",
-      "Islam"
     ],
     "external": true,
     "sourceId": "sdub"
