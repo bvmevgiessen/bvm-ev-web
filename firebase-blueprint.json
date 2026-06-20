@@ -1,0 +1,13 @@
+{
+  "collections": {
+    "users": {
+        "documentId": "uid",
+        "fields": {
+            "completedModules": {
+                "type": "array",
+                "items": { "type": "string" }
+            }
+        }
+    }
+  }
+}
