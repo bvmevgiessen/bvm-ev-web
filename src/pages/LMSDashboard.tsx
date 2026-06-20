@@ -158,7 +158,6 @@ export default function LMSDashboard() {
             )
           })}
         </div>
-
       </div>
     </div>
   );

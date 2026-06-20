@@ -28,8 +28,6 @@ const AuthContext = createContext<AuthContextType>({
   markModuleCompleted: async () => {},
 });
 
-export const useAuth = () => useContext(AuthContext);
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -68,7 +66,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setLoading(false);
     });
 
-    return () => unsubscribe();
+    return unsubscribe;
   }, []);
 
   const signOut = async () => {
@@ -77,6 +75,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const markModuleCompleted = async (moduleId: string) => {
     if (!user || !profile) return;
+    
     if (profile.completedModules.includes(moduleId)) return;
 
     const newCompleted = [...profile.completedModules, moduleId];
@@ -96,3 +95,5 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     </AuthContext.Provider>
   );
 }
+
+export const useAuth = () => useContext(AuthContext);
