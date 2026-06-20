@@ -18,12 +18,12 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'Startseite', href: isHome ? '#home' : import.meta.env.BASE_URL },
-    { name: 'Über uns', href: isHome ? '#about' : `${import.meta.env.BASE_URL}#about` },
-    { name: 'Impact', href: isHome ? '#impact' : `${import.meta.env.BASE_URL}#impact` },
+    { name: 'Startseite', href: isHome ? '#home' : '/' },
+    { name: 'Über uns', href: isHome ? '#about' : '/#about' },
+    { name: 'Impact', href: isHome ? '#impact' : '/#impact' },
     { name: 'Events', href: '/events' },
     { name: 'Blog', href: '/blog' },
-    { name: 'Kontakt', href: isHome ? '#contact' : `${import.meta.env.BASE_URL}#contact` },
+    { name: 'Kontakt', href: isHome ? '#contact' : '/#contact' },
     { name: 'Spenden', href: '/spenden' },
   ];
 

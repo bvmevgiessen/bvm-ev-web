@@ -28,6 +28,8 @@ const AuthContext = createContext<AuthContextType>({
   markModuleCompleted: async () => {},
 });
 
+export const useAuth = () => useContext(AuthContext);
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
@@ -42,7 +44,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           const docRef = doc(db, 'users', firebaseUser.uid);
           const docSnap = await getDoc(docRef);
           if (docSnap.exists()) {
-            setProfile(docSnap.data() as UserProfile);
+            const data = docSnap.data() as UserProfile;
+            if (firebaseUser.email === 'bvmevgiessen@gmail.com' && (data.role !== 'admin' || data.status !== 'approved')) {
+              const updatedProfile = { ...data, role: 'admin', status: 'approved', completedModules: data.completedModules || [] } as UserProfile;
+              await setDoc(docRef, { role: 'admin', status: 'approved' }, { merge: true });
+              setProfile(updatedProfile);
+            } else {
+              setProfile({ ...data, completedModules: data.completedModules || [] });
+            }
           } else {
             const isAdmin = firebaseUser.email === 'bvmevgiessen@gmail.com';
             const newProfile: UserProfile = { 
@@ -66,7 +75,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setLoading(false);
     });
 
-    return unsubscribe;
+    return () => unsubscribe();
   }, []);
 
   const signOut = async () => {
@@ -75,10 +84,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const markModuleCompleted = async (moduleId: string) => {
     if (!user || !profile) return;
-    
-    if (profile.completedModules.includes(moduleId)) return;
+    if (profile.completedModules?.includes(moduleId)) return;
 
-    const newCompleted = [...profile.completedModules, moduleId];
+    const newCompleted = [...(profile.completedModules || []), moduleId];
     setProfile({ ...profile, completedModules: newCompleted });
     
     try {
@@ -95,5 +103,3 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     </AuthContext.Provider>
   );
 }
-
-export const useAuth = () => useContext(AuthContext);
