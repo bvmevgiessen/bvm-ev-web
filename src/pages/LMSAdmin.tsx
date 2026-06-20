@@ -4,7 +4,6 @@ import { collection, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, UserCheck, UserX, Clock, User as UserIcon } from 'lucide-react';
-import { motion } from 'motion/react';
 
 interface UserData {
   id: string;
@@ -153,11 +152,11 @@ export default function LMSAdmin() {
                             <button
                               onClick={() => {
                                 updateUserStatus(u.id, 'approved');
-                                window.location.href = `mailto:${u.email}?subject=Zertifikatsprogramm - Anmeldung genehmigt&body=Hallo ${u.name || ''},%0D%0A%0D%0AIhre Anmeldung wurde genehmigt! Sie können sich nun einloggen und die Module bearbeiten.%0D%0A%0D%0AViele Grüße%0D%0AIhr Diyalog Team`;
+                                window.open(`mailto:${u.email}?subject=Zertifikatsprogramm - Anmeldung genehmigt&body=Hallo ${u.name || ''},%0D%0A%0D%0AIhre Anmeldung wurde genehmigt! Sie können sich nun einloggen und die Module bearbeiten.%0D%0A%0D%0AViele Grüße%0D%0AIhr Diyalog Team`, '_blank');
                               }}
                               className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors border border-green-200"
                               title="Genehmigen & E-Mail senden"
-                            >
+                            > 
                               <UserCheck size={18} />
                             </button>
                             <button

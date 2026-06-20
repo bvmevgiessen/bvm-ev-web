@@ -63,22 +63,22 @@ export default function LMSLogin() {
   return (
     <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
         className="max-w-md w-full bg-white rounded-3xl shadow-xl overflow-hidden"
       >
-        <div className="bg-brand-navy p-8 text-center">
-          <h1 className="text-3xl font-bold text-white mb-2">
-            Zertifikatsprogramm
-          </h1>
-          <p className="text-slate-300">
-            Diyalog Sertifika Programı - {isLogin ? 'Anmeldung' : 'Registrierung'}
-          </p>
-        </div>
-
         <div className="p-8">
+          <div className="text-center mb-8">
+            <h1 className="text-2xl font-black text-brand-navy mb-2">
+              Zertifikatsprogramm
+            </h1>
+            <p className="text-slate-500">
+              Diyalog Sertifika Programı - {isLogin ? 'Anmeldung' : 'Registrierung'}
+            </p>
+          </div>
+
           {error && (
-            <div className="bg-red-50 text-red-600 p-4 rounded-xl text-sm mb-6 border border-red-100">
+            <div className="mb-6 p-4 bg-red-50 border border-red-100 rounded-xl text-red-600 text-sm">
               {error}
             </div>
           )}

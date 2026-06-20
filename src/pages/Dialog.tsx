@@ -37,9 +37,17 @@ export default function Dialog() {
             <h1 className="text-5xl md:text-7xl font-black text-brand-navy mb-6 leading-tight">
               Respekt & <span className="text-brand-orange">Verständnis</span> schaffen
             </h1>
-            <p className="text-xl text-slate-600 leading-relaxed">
+            <p className="text-xl text-slate-600 leading-relaxed mb-8">
               Die Dialogplattform ist der zentrale Ort für Begegnung, Austausch und interkulturelles Lernen.
             </p>
+            <div className="flex flex-wrap gap-4">
+              <Link 
+                to="/lms/dashboard" 
+                className="bg-brand-orange hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-full transition-all inline-flex items-center gap-2 shadow-lg shadow-brand-orange/20"
+              >
+                Zum Dialog Zertifikatsprogramm <Globe size={20} />
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
