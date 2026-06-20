@@ -57,7 +57,7 @@ export default function LMSDashboard() {
     );
   }
 
-  const completedCount = profile?.completedModules.length || 0;
+  const completedCount = profile?.completedModules?.length || 0;
   const totalCount = lmsModules.length;
   const progressPercent = Math.round((completedCount / totalCount) * 100);
 
@@ -130,7 +130,7 @@ export default function LMSDashboard() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {lmsModules.map((moduleItem, index) => {
-            const isCompleted = profile?.completedModules.includes(moduleItem.id);
+            const isCompleted = profile?.completedModules?.includes(moduleItem.id);
             return (
               <Link 
                 key={moduleItem.id}
@@ -158,6 +158,7 @@ export default function LMSDashboard() {
             )
           })}
         </div>
+
       </div>
     </div>
   );

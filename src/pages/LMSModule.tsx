@@ -33,7 +33,7 @@ export default function LMSModule() {
     );
   }
 
-  const isCompleted = profile?.completedModules.includes(moduleItem.id);
+  const isCompleted = profile?.completedModules?.includes(moduleItem.id);
   
   const handleMarkComplete = async () => {
     if (!isCompleted) {
