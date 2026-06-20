@@ -1,0 +1,55 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Jugend from './pages/Jugend';
+import Dialog from './pages/Dialog';
+import Integration from './pages/Integration';
+import EventsPage from './pages/EventsPage';
+import EventDetailPage from './pages/EventDetailPage';
+import BlogPage from './pages/BlogPage';
+import BlogDetailPage from './pages/BlogDetailPage';
+import MitmachenPage from './pages/MitmachenPage';
+import SpendenPage from './pages/SpendenPage';
+import Footer from './components/Footer';
+
+// LMS Pages
+import { AuthProvider } from './contexts/AuthContext';
+import LMSLogin from './pages/LMSLogin';
+import LMSDashboard from './pages/LMSDashboard';
+import LMSModule from './pages/LMSModule';
+import LMSAdmin from './pages/LMSAdmin';
+
+export default function App() {
+  return (
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <AuthProvider>
+        <div className="min-h-screen bg-slate-50 selection:bg-brand-teal/30 selection:text-brand-navy">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/jugend" element={<Jugend />} />
+            <Route path="/dialog" element={<Dialog />} />
+            <Route path="/integration" element={<Integration />} />
+            <Route path="/events" element={<EventsPage />} />
+            <Route path="/events/:eventId" element={<EventDetailPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:blogId" element={<BlogDetailPage />} />
+            <Route path="/mitmachen" element={<MitmachenPage />} />
+            <Route path="/spenden" element={<SpendenPage />} />
+            
+            {/* LMS Routes */}
+            <Route path="/lms/login" element={<LMSLogin />} />
+            <Route path="/lms/dashboard" element={<LMSDashboard />} />
+            <Route path="/lms/module/:moduleId" element={<LMSModule />} />
+            <Route path="/lms/admin" element={<LMSAdmin />} />
+          </Routes>
+          <Footer />
+        </div>
+      </AuthProvider>
+    </BrowserRouter>
+  );
+}
+
