@@ -46,7 +46,7 @@ export default function Hero() {
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="w-12 h-12 rounded-2xl border-4 border-white overflow-hidden shadow-sm">
                   <img
-                    src={`https://picsum.photos/seed/member${i}/100/100`}
+                    src={`https://i.pravatar.cc/150?img=${i + 10}`}
                     alt="Member"
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
@@ -76,7 +76,7 @@ export default function Hero() {
               whileHover={{ scale: 1.02, rotate: -1 }}
               className="rounded-[2rem] overflow-hidden shadow-xl aspect-square"
             >
-              <img src="https://picsum.photos/seed/p1/600/600" alt="Community" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80&w=600" alt="Community" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             </motion.div>
             <motion.div 
               whileHover={{ scale: 1.02, rotate: 1 }}
@@ -100,26 +100,9 @@ export default function Hero() {
               whileHover={{ scale: 1.02, rotate: 1 }}
               className="rounded-[2rem] overflow-hidden shadow-xl aspect-square"
             >
-              <img src="https://picsum.photos/seed/p2/600/600" alt="Youth" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=600" alt="Youth" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
             </motion.div>
           </div>
-          
-          {/* Floating Badge */}
-          <motion.div 
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute -bottom-8 -right-8 bg-white p-6 rounded-3xl shadow-2xl border border-slate-100 z-20"
-          >
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-brand-teal/10 rounded-2xl flex items-center justify-center text-brand-teal">
-                <Heart size={24} fill="currentColor" />
-              </div>
-              <div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Gründung</p>
-                <p className="text-2xl font-extrabold text-brand-navy">2019</p>
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>
