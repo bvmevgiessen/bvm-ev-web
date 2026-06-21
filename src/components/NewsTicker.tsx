@@ -4,6 +4,7 @@ import eventsData from '../data/events.json';
 import blogsData from '../data/blogs.json';
 import { Calendar, FileText } from 'lucide-react';
 import { parseDateSafe } from '../utils/date';
+import { motion } from 'framer-motion';
 
 export default function NewsTicker() {
   const now = new Date();
@@ -51,8 +52,12 @@ export default function NewsTicker() {
 
   return (
     <div className="bg-brand-navy text-white overflow-hidden py-3 border-y border-white/10 relative z-20">
-      <div className="flex whitespace-nowrap overflow-hidden group">
-        <div className="flex animate-[ticker_45s_linear_infinite] group-hover:[animation-play-state:paused] w-max">
+      <div className="flex whitespace-nowrap overflow-hidden">
+        <motion.div 
+          className="flex w-max"
+          animate={{ x: ["0%", "-33.3333%"] }}
+          transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
+        >
           {[...tickerItems, ...tickerItems, ...tickerItems].map((item, index) => {
             const dateObj = parseDateSafe(item.date);
             const formattedDate = dateObj 
@@ -79,7 +84,7 @@ export default function NewsTicker() {
               </Link>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
