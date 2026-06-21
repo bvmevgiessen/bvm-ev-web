@@ -176,6 +176,7 @@ export default function Footer() {
               name="name"
               placeholder="Name"
               required
+              autoComplete="name"
               className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand-teal transition-colors"
             />
             <ValidationError prefix="Name" field="name" errors={state.errors} className="text-xs text-red-400" />
@@ -185,6 +186,7 @@ export default function Footer() {
               name="email"
               placeholder="E-Mail"
               required
+              autoComplete="email"
               className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand-teal transition-colors"
             />
             <ValidationError prefix="Email" field="email" errors={state.errors} className="text-xs text-red-400" />

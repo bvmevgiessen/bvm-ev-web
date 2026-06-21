@@ -37,12 +37,13 @@ export default function Newsletter() {
               Erhalten Sie jeden Monat die neuesten Nachrichten direkt in Ihr Postfach. Bleiben Sie am Puls der Zeit.
             </p>
             
-            <form action="https://formspree.io/f/xqejpyol" method="POST" className="flex flex-col sm:flex-row gap-3">
+            <form action="https://formspree.io/f/YOUR_ENDPOINT" method="POST" className="flex flex-col sm:flex-row gap-3">
               <input 
                 type="email" 
                 name="email"
                 placeholder="Ihre E-Mail-Adresse" 
                 required
+                autoComplete="email"
                 className="flex-grow bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 placeholder:text-slate-400 focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none"
               />
               <button 
