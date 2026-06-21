@@ -4,7 +4,7 @@ import PuzzleBackground from './PuzzleBackground';
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-white">
+    <section id="home" className="relative min-h-[calc(100vh-72px)] flex items-center overflow-hidden bg-white">
       <PuzzleBackground color="#0D9488" className="opacity-[0.03]" />
       
       <div className="section-padding grid lg:grid-cols-2 gap-16 items-center">
