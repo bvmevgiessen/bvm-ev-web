@@ -315,28 +315,15 @@
   "stream": "Jugend & Sport",
   "date": "2026-08-03T12:45:00",
   "location": "Ginnheimer Landstraße 39, 60487 Frankfurt am Main",
-  "image": "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=80&w=1200",
-  "description": "Ein spannendes Basketball-Turnier für junge Frauen im Alter von 17 bis 25 Jahren. Unter dem Motto „Wer ist die beste Basketball-Stadt Hessens?“ treten Teams gegeneinander an, um sportlichen Ehrgeiz, Teamgeist und Fairplay zu zeigen. Das Event wird von Fid e.V. organisiert – Bildung und Verständigung Mittelhessen e.V. ist stolzer Partner.",
+  "image": "https://i.etsystatic.com/8809174/r/il/bfd9f5/7278945186/il_fullxfull.7278945186_efsc.jpg",
+  "description": "Ein spannendes Basketball-Turnier für junge Frauen im Alter von 17 bis 25 Jahren. Unter dem Motto „Wer ist die beste Basketball-Stadt Hessens?“ treten Teams gegeneinander an, um sportlichen Ehrgeiz, Teamgeist und Fairplay zu zeigen. Das Event wird vom Forum für Interkulturellen Dialog (Fid e.V.) organisiert – Bildung und Verständigung Mittelhessen e.V. ist stolzer Partner. Weitere Partner sind Mosaik e.V., Rumi Maximum, Merak und Kunterbunt Kulturzentrum e.V. Die Anmeldung ist erforderlich und erfolgt per E-Mail an anmeldung@fidev.org bis zum 28. Juli 2026.",
   "wasErwartetSie": [
     "Basketball-Turnier für junge Frauen (17–25 Jahre)",
     "Sportlicher Wettbewerb und Teamgeist",
     "Kooperation zwischen mehreren Vereinen",
     "Motivierende Atmosphäre und Fairplay"
   ],
-  "fuerWen": "Junge Frauen im Alter von 17 bis 25 Jahren, die Spaß am Basketball und Teamgeist haben.",
-  "anmeldung": {
-    "erforderlich": true,
-    "email": "anmeldung@fidev.org",
-    "frist": "2026-07-28"
-  },
-  "veranstalter": "Forum für Interkulturellen Dialog (Fid e.V.)",
-  "partner": [
-    "Bildung und Verständigung Mittelhessen e.V.",
-    "Mosaik e.V.",
-    "Rumi Maximum",
-    "Merak",
-    "Kunterbunt Kulturzentrum e.V."
-  ]
+  "fuerWen": "Junge Frauen im Alter von 17 bis 25 Jahren, die Spaß am Basketball und Teamgeist haben."
   },
   {
     "id": "sprachcafe-2026",
