@@ -8,11 +8,13 @@
   --color-brand-teal: #0d9488;
   --color-brand-orange: #f97316;
   --color-brand-navy: #0f172a;
-}
 
-@keyframes ticker {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-33.333333%); }
+  --animate-ticker: ticker 45s linear infinite;
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.333333%); }
+  }
 }
 
 @layer base {
