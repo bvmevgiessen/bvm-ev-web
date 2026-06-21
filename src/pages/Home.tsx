@@ -8,7 +8,6 @@ import Blog from '../components/Blog';
 import Partners from '../components/Partners';
 import CommunityPulse from '../components/CommunityPulse';
 import PuzzleBackground from '../components/PuzzleBackground';
-import EventPopup from '../components/EventPopup';
 import Newsletter from '../components/Newsletter';
 
 export default function Home() {
@@ -26,7 +25,6 @@ export default function Home() {
         <Blog />
         <Partners />
       </main>
-      <EventPopup />
     </div>
   );
 }
