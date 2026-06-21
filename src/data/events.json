@@ -243,11 +243,27 @@
   ],
   "fuerWen": "Alle Interessierten, die mehr über die religiöse Bedeutung von Weihnachten erfahren möchten."
   },
+{
+  "id": "aschura-tag-event-2026",
+  "title": "Aschura-Tag Event",
+  "category": "DIALOG",
+  "stream": "Interreligiöser Austausch",
+  "date": "2026-06-26T19:00:00",
+  "location": "Bahnhofstraße 22, 35576 Wetzlar",
+  "image": "https://images.unsplash.com/photo-1607082349566-187342175e3b?auto=format&fit=crop&q=80&w=1200",
+  "description": "Der Tag der Besinnung und des Gedenkens. Das Aschura-Tag Event lädt dazu ein, gemeinsam in Gemeinschaft zu feiern und die Werte von Mitgefühl, Dankbarkeit und Zusammenhalt zu erleben.",
+  "wasErwartetSie": [
+    "Gemeinsames Beisammensein und Austausch",
+    "Traditionelle Aschura-Speisen",
+    "Reflexion über die Bedeutung des Aschura-Tages"
+  ],
+  "fuerWen": "Alle Interessierten, die das Aschura-Tag Event in Gemeinschaft erleben möchten."
+  },
   {
   "id": "aschura-event-2025",
   "title": "Aschura Event",
   "category": "DIALOG",
-  "stream": "Kulturelle Begegnungen",
+  "stream": "Interreligiöser Austausch",
   "date": "2025-07-10T17:30:00",
   "location": "Siemensstraße 18, 35394 Gießen",
   "image": "https://www.erk-bs.ch/_upload/15601.jpg",
