@@ -52,7 +52,7 @@ export default function NewsTicker() {
   return (
     <div className="bg-brand-navy text-white overflow-hidden py-3 border-y border-white/10 relative z-20">
       <div className="flex whitespace-nowrap overflow-hidden group">
-        <div className="flex animate-ticker group-hover:[animation-play-state:paused] w-max">
+        <div className="flex animate-[ticker_45s_linear_infinite] group-hover:[animation-play-state:paused] w-max">
           {[...tickerItems, ...tickerItems, ...tickerItems].map((item, index) => {
             const dateObj = parseDateSafe(item.date);
             const formattedDate = dateObj 
