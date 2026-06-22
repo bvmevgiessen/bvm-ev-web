@@ -4,10 +4,22 @@ import { Link, useNavigate } from 'react-router-dom';
 import { lmsModules } from '../data/lmsData';
 import { useAuth } from '../contexts/AuthContext';
 import { LogOut, BookOpen, CheckCircle, ArrowRight } from 'lucide-react';
+import { translations, LMSLanguage } from '../utils/lmsTranslations';
 
 export default function LMSDashboard() {
   const { user, profile, loading, signOut } = useAuth();
   const navigate = useNavigate();
+  
+  const [lang, setLang] = React.useState<LMSLanguage>(() => {
+    return (localStorage.getItem('lms_lang') as LMSLanguage) || 'de';
+  });
+
+  const handleLanguageChange = (newLang: LMSLanguage) => {
+    setLang(newLang);
+    localStorage.setItem('lms_lang', newLang);
+  };
+
+  const t = translations[lang];
 
   React.useEffect(() => {
     if (!loading && !user) {
@@ -15,13 +27,33 @@ export default function LMSDashboard() {
     }
   }, [user, loading, navigate]);
 
-  if (loading || !user || !profile) {
-    return <div className="min-h-screen bg-slate-50 flex items-center justify-center">Lade...</div>;
+  if (loading) {
+    return <div className="min-h-screen bg-slate-50 flex items-center justify-center">Lade... / Yükleniyor...</div>;
+  }
+
+  if (!user || !profile) {
+    return null;
   }
 
   if (profile.status === 'pending') {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
+      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6">
+        {/* Floating Language Switcher */}
+        <div className="mb-4 flex bg-slate-200/50 rounded-xl p-0.5 border border-slate-200">
+          <button 
+            onClick={() => handleLanguageChange('de')} 
+            className={`px-3 py-1 text-xs font-bold rounded-lg transition-all ${lang === 'de' ? 'bg-white text-brand-navy shadow-sm' : 'text-slate-600 hover:text-brand-navy'}`}
+          >
+            DE
+          </button>
+          <button 
+            onClick={() => handleLanguageChange('tr')} 
+            className={`px-3 py-1 text-xs font-bold rounded-lg transition-all ${lang === 'tr' ? 'bg-white text-brand-navy shadow-sm' : 'text-slate-600 hover:text-brand-navy'}`}
+          >
+            TR
+          </button>
+        </div>
+
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -30,15 +62,15 @@ export default function LMSDashboard() {
           <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6 text-brand-orange">
             <BookOpen size={32} />
           </div>
-          <h1 className="text-2xl font-bold text-brand-navy mb-4">Anmeldung wird geprüft</h1>
+          <h1 className="text-2xl font-bold text-brand-navy mb-4">{t.pendingTitle}</h1>
           <p className="text-slate-600 mb-8">
-            Vielen Dank für Ihre Registrierung! Ihre Anmeldung wird derzeit von einem Administrator überprüft. Sie erhalten den Zugang zur Lernplattform, sobald Ihr Konto freigeschaltet wurde.
+            {t.pendingText}
           </p>
           <button 
             onClick={signOut}
             className="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium rounded-xl transition-colors"
           >
-            <LogOut size={18} /> Abmelden
+            <LogOut size={18} /> {t.signOut}
           </button>
         </motion.div>
       </div>
@@ -47,11 +79,27 @@ export default function LMSDashboard() {
 
   if (profile.status === 'rejected') {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
+      <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6">
+        {/* Floating Language Switcher */}
+        <div className="mb-4 flex bg-slate-200/50 rounded-xl p-0.5 border border-slate-200">
+          <button 
+            onClick={() => handleLanguageChange('de')} 
+            className={`px-3 py-1 text-xs font-bold rounded-lg transition-all ${lang === 'de' ? 'bg-white text-brand-navy shadow-sm' : 'text-slate-600 hover:text-brand-navy'}`}
+          >
+            DE
+          </button>
+          <button 
+            onClick={() => handleLanguageChange('tr')} 
+            className={`px-3 py-1 text-xs font-bold rounded-lg transition-all ${lang === 'tr' ? 'bg-white text-brand-navy shadow-sm' : 'text-slate-600 hover:text-brand-navy'}`}
+          >
+            TR
+          </button>
+        </div>
+
         <div className="max-w-md w-full bg-white rounded-3xl shadow-xl p-8 text-center border-t-4 border-red-500">
-          <h1 className="text-2xl font-bold text-red-600 mb-4">Zugang verweigert</h1>
-          <p className="text-slate-600 mb-8">Leider wurde Ihr Zugang zur Plattform nicht genehmigt.</p>
-          <button onClick={signOut} className="px-6 py-3 bg-slate-100 rounded-xl">Abmelden</button>
+          <h1 className="text-2xl font-bold text-red-600 mb-4">{t.rejectedTitle}</h1>
+          <p className="text-slate-600 mb-8">{t.rejectedText}</p>
+          <button onClick={signOut} className="px-6 py-3 bg-slate-100 rounded-xl font-medium text-slate-700 hover:bg-slate-200 transition-colors">{t.signOut}</button>
         </div>
       </div>
     );
@@ -69,24 +117,40 @@ export default function LMSDashboard() {
         <div className="max-w-6xl mx-auto relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <Link to="/dialog" className="text-white/60 hover:text-white mb-6 animate-fade-in inline-flex items-center gap-2 text-sm font-medium transition-colors">
-              <ArrowRight className="rotate-180" size={16} /> Zurück zur Dialogplattform
+              <ArrowRight className="rotate-180" size={16} /> {t.backToDialog}
             </Link>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Diyalog Sertifika Programı</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">{t.certProgram}</h1>
             <p className="text-lg text-slate-300 max-w-2xl">
-              Ihre Lernfortschritte im Zertifikatsprogramm zur Förderung des interkulturellen und interreligiösen Dialogs.
+              {t.progressDesc}
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 mt-6 md:mt-0">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mt-6 md:mt-0">
+            {/* Language Selection Buttons */}
+            <div className="flex bg-white/10 rounded-xl p-0.5 border border-white/10">
+              <button 
+                onClick={() => handleLanguageChange('de')} 
+                className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${lang === 'de' ? 'bg-white text-brand-navy shadow-sm' : 'text-white/70 hover:text-white'}`}
+              >
+                DE
+              </button>
+              <button 
+                onClick={() => handleLanguageChange('tr')} 
+                className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${lang === 'tr' ? 'bg-white text-brand-navy shadow-sm' : 'text-white/70 hover:text-white'}`}
+              >
+                TR
+              </button>
+            </div>
+
             {profile?.role === 'admin' && (
-              <Link to="/lms/admin" className="inline-flex items-center gap-2 px-4 py-2 bg-brand-orange hover:bg-orange-500 text-white font-medium rounded-xl transition-colors">
-                Admin Panel
+              <Link to="/lms/admin" className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-brand-orange hover:bg-orange-500 text-white font-medium rounded-xl transition-colors">
+                {t.adminPanel}
               </Link>
             )}
             <button 
               onClick={signOut}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl transition-colors shrink-0"
+              className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl transition-colors shrink-0"
             >
-              <LogOut size={18} /> Abmelden
+              <LogOut size={18} /> {t.signOut}
             </button>
           </div>
         </div>
@@ -114,9 +178,9 @@ export default function LMSDashboard() {
             </div>
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-brand-navy mb-2">Ihr Fortschritt</h2>
+            <h2 className="text-2xl font-bold text-brand-navy mb-2">{t.yourProgress}</h2>
             <p className="text-slate-600">
-              Sie haben {completedCount} von {totalCount} Wochen abgeschlossen. Bleiben Sie motiviert!
+              {t.completedOf.replace('{completed}', completedCount.toString()).replace('{total}', totalCount.toString())}
             </p>
           </div>
         </div>
@@ -124,7 +188,7 @@ export default function LMSDashboard() {
         {/* Modules Grid */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-brand-navy mb-6 flex items-center gap-2">
-            <BookOpen className="text-brand-orange" /> Curriculum Verlauf
+            <BookOpen className="text-brand-orange" /> {t.curriculumVerlauf}
           </h2>
         </div>
 
@@ -139,20 +203,20 @@ export default function LMSDashboard() {
               >
                 <div className="flex justify-between items-start mb-4">
                   <div className={`px-3 py-1 rounded-full text-xs font-bold ${isCompleted ? 'bg-brand-teal/10 text-brand-teal' : 'bg-slate-100 text-slate-500'}`}>
-                    Woche {moduleItem.week}
+                    {t.module} {moduleItem.week}
                   </div>
                   {isCompleted && (
                     <CheckCircle className="text-brand-teal" size={24} />
                   )}
                 </div>
                 <h3 className="text-lg font-bold text-brand-navy mb-2 group-hover:text-brand-orange transition-colors line-clamp-2">
-                  {moduleItem.title}
+                  {moduleItem.title[lang]}
                 </h3>
                 <p className="text-slate-500 text-sm line-clamp-2">
-                  {moduleItem.description}
+                  {moduleItem.description[lang]}
                 </p>
                 <div className="mt-6 flex items-center text-sm font-medium text-brand-teal opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
-                  Kurs ansehen <ArrowRight className="ml-1" size={16} />
+                  {t.viewCourse} <ArrowRight className="ml-1" size={16} />
                 </div>
               </Link>
             )

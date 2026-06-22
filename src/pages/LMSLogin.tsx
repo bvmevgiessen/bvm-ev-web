@@ -5,6 +5,7 @@ import { auth } from '../lib/firebase';
 import { useAuth } from '../contexts/AuthContext';
 import { motion } from 'motion/react';
 import { Lock, Mail, ArrowRight, UserPlus } from 'lucide-react';
+import { translations, LMSLanguage } from '../utils/lmsTranslations';
 
 export default function LMSLogin() {
   const [isLogin, setIsLogin] = useState(true);
@@ -15,6 +16,17 @@ export default function LMSLogin() {
   
   const navigate = useNavigate();
   const { user } = useAuth();
+
+  const [lang, setLang] = React.useState<LMSLanguage>(() => {
+    return (localStorage.getItem('lms_lang') as LMSLanguage) || 'de';
+  });
+
+  const handleLanguageChange = (newLang: LMSLanguage) => {
+    setLang(newLang);
+    localStorage.setItem('lms_lang', newLang);
+  };
+
+  const t = translations[lang];
 
   React.useEffect(() => {
     if (user) {
@@ -39,7 +51,7 @@ export default function LMSLogin() {
       }
       navigate('/lms/dashboard');
     } catch (err: any) {
-      setError(err.message || 'Ein Fehler ist bei der Authentifizierung aufgetreten.');
+      setError(err.message || (lang === 'tr' ? 'Kimlik doğrulama sırasında bir hata oluştu.' : 'Ein Fehler ist bei der Authentifizierung aufgetreten.'));
     } finally {
       setLoading(false);
     }
@@ -54,60 +66,77 @@ export default function LMSLogin() {
       await signInWithPopup(auth, provider);
       navigate('/lms/dashboard');
     } catch (err: any) {
-      setError(err.message || 'Ein Fehler ist bei der Authentifizierung aufgetreten.');
+      setError(err.message || (lang === 'tr' ? 'Kimlik doğrulama sırasında bir hata oluştu.' : 'Ein Fehler ist bei der Authentifizierung aufgetreten.'));
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-6">
+      
+      {/* Floating Language Switcher */}
+      <div className="mb-6 flex bg-slate-200/50 rounded-xl p-0.5 border border-slate-200">
+        <button 
+          onClick={() => handleLanguageChange('de')} 
+          className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${lang === 'de' ? 'bg-white text-brand-navy shadow-sm' : 'text-slate-600 hover:text-brand-navy'}`}
+        >
+          DE
+        </button>
+        <button 
+          onClick={() => handleLanguageChange('tr')} 
+          className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${lang === 'tr' ? 'bg-white text-brand-navy shadow-sm' : 'text-slate-600 hover:text-brand-navy'}`}
+        >
+          TR
+        </button>
+      </div>
+
       <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         className="max-w-md w-full bg-white rounded-3xl shadow-xl overflow-hidden"
       >
-        <div className="p-8">
-          <div className="text-center mb-8">
-            <h1 className="text-2xl font-black text-brand-navy mb-2">
-              Zertifikatsprogramm
-            </h1>
-            <p className="text-slate-500">
-              Diyalog Sertifika Programı - {isLogin ? 'Anmeldung' : 'Registrierung'}
-            </p>
-          </div>
+        <div className="bg-brand-navy p-8 text-center relative">
+          <h1 className="text-3xl font-bold text-white mb-2">
+            {t.certProgram}
+          </h1>
+          <p className="text-slate-300 text-sm">
+            {isLogin ? t.loginSub : t.registerSub}
+          </p>
+        </div>
 
+        <div className="p-8">
           {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-100 rounded-xl text-red-600 text-sm">
+            <div className="bg-red-50 text-red-600 p-4 rounded-xl text-sm mb-6 border border-red-100">
               {error}
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">E-Mail Adresse</label>
+              <label className="block text-sm font-medium text-slate-700 mb-2">{t.emailLabel}</label>
               <div className="relative">
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none"
-                  placeholder="name@beispiel.de"
+                  className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none text-slate-700"
+                  placeholder={lang === 'tr' ? 'isminiz@ornek.com' : 'name@beispiel.de'}
                 />
                 <Mail className="absolute left-4 top-3.5 text-slate-400" size={20} />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Passwort</label>
+              <label className="block text-sm font-medium text-slate-700 mb-2">{t.passwordLabel}</label>
               <div className="relative">
                 <input
                   type="password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none"
+                  className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none text-slate-700"
                   placeholder="••••••••"
                 />
                 <Lock className="absolute left-4 top-3.5 text-slate-400" size={20} />
@@ -117,21 +146,21 @@ export default function LMSLogin() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-brand-teal hover:bg-teal-500 text-white font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-center gap-2"
+              className="w-full bg-brand-teal hover:bg-teal-500 text-white font-bold py-3 px-4 rounded-xl transition-colors flex items-center justify-center gap-2 shadow-sm"
             >
               {loading ? (
-                'Bitte warten...'
+                t.pleaseWait
               ) : isLogin ? (
-                <>Anmelden <ArrowRight size={20} /></>
+                <>{t.loginBtn} <ArrowRight size={20} /></>
               ) : (
-                <>Registrieren <UserPlus size={20} /></>
+                <>{t.registerBtn} <UserPlus size={20} /></>
               )}
             </button>
           </form>
 
-          <div className="my-6 flex items-center">
+          <div className="my-6 flex items-center col-span-2">
             <div className="flex-1 border-t border-slate-200"></div>
-            <div className="px-4 text-sm text-slate-400">ODER</div>
+            <div className="px-4 text-sm text-slate-400 font-bold">{t.or}</div>
             <div className="flex-1 border-t border-slate-200"></div>
           </div>
 
@@ -147,18 +176,16 @@ export default function LMSLogin() {
               <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
               <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
             </svg>
-            Mit Google anmelden
+            {t.googleBtn}
           </button>
 
-          <div className="mt-8 text-center">
+          <div className="mt-8 text-center col-span-2">
             <button
               type="button"
               onClick={() => setIsLogin(!isLogin)}
-              className="text-brand-teal hover:text-teal-700 font-medium text-sm"
+              className="text-brand-teal hover:text-teal-700 font-bold text-sm transition-colors"
             >
-              {isLogin 
-                ? 'Noch kein Konto? Hier registrieren' 
-                : 'Bereits ein Konto? Hier anmelden'}
+              {isLogin ? t.noAccount : t.hasAccount}
             </button>
           </div>
         </div>
