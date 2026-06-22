@@ -77,44 +77,272 @@ export const lmsModules: ModuleContent[] = [
     ],
     readingMaterials: [
       {
-        id: "mod1-r1",
+        id: "mod1-r-is",
         title: {
-          de: "Dialog-Leitfaden: Grundlagen und Grenzen",
-          tr: "Diyalog Rehberi: Temeller ve Sınırlar"
+          de: "Die Liebe zum Menschen (İnsan Sevgisi)",
+          tr: "İnsan Sevgisi"
         },
         description: {
-          de: "Ein theoretisches Handbuch über Philosophie und Methodik der Dialogarbeit.",
-          tr: "Diyalog çalışmalarının felsefesi ve metodu üzerine teorik el kitabı."
+          de: "Ein grundlegender Aufsatz über universelle Menschenliebe, Toleranz und Respekt.",
+          tr: "İnsan sevgisi, hoşgörü ve evrensel insani değerler üzerine bir kılavuz."
+        },
+        url: "https://fgulen.com/tr/eserleri/kirik-testi/insan-sevgisi"
+      },
+      {
+        id: "mod1-r-kik",
+        title: {
+          de: "Globalisierung, Rassismus und Identitäten",
+          tr: "Küreselleşme, Irkçılık ve Kimlikler"
+        },
+        description: {
+          de: "Herausforderungen und Gefahren rassistischer Einstellungen in einer sich globalisierenden Welt.",
+          tr: "Küreselleşme sürecinde kimliklerin korunması ve ırkçılıkla mücadele felsefesi."
+        },
+        url: "https://herkul.org/kirik-testi/kuresellesme-irkcilik-ve-kimlikler"
+      },
+      {
+        id: "mod1-r-c",
+        title: {
+          de: "Pluralismus (Çoğulculuk)",
+          tr: "Çoğulculuk"
+        },
+        description: {
+          de: "Betrachtungen über gesellschaftliche Vielfalt, gegenseitige Akzeptanz und soziale Harmonie.",
+          tr: "Çok kültürlü ve çok sesli bir toplumda bir arada yaşamanın esasları."
+        },
+        url: "https://www.herkul.org/kirik-testi/cogulculuk"
+      },
+      {
+        id: "mod1-r-ikd",
+        title: {
+          de: "Ungläubige sollten nicht als 'Kafir' bezeichnet werden",
+          tr: "İnançsızlara kâfir denmemeli"
+        },
+        description: {
+          de: "Über theologische Terminologie und die Notwendigkeit von respektvoller und inklusiver Sprache.",
+          tr: "Teolojik kavramların kullanımı ve insanlara saygılı hitap üslubu üzerine önemli bir makale."
+        },
+        url: "https://fgulen.com/tr/eserleri/fikir-atlasi/inancsizlara-kafir-denmemeli"
+      },
+      {
+        id: "mod1-r-m",
+        title: {
+          de: "Nichtgläubige nicht pauschal in dieselbe Kategorie einordnen",
+          tr: "İman etmeyenlerin hepsini aynı kategoride mütalaa etmemeli"
+        },
+        description: {
+          de: "Umfassende theologische Einblicke zur Differenzierung im Umgang mit Nichtglaubenden.",
+          tr: "İnançsızlık kategorilerinin teolojik açıdan analizi ve ayrımcı dilden kaçınma üzerine bir yazı."
+        },
+        url: "https://fgulen.com/tr/eserleri/cizgimizi-hecelerken/la-ilahe-illallah-demek-kurtulusa-yeter-mi"
+      },
+      {
+        id: "mod1-r-dk",
+        title: {
+          de: "Handbuch: Errungenschaften des Dialogs",
+          tr: "Diyaloğun Kazanımları El Kitapçığı"
+        },
+        description: {
+          de: "Broschüre über den Nutzen des Dialogs auf individueller, gesellschaftlicher und institutioneller Ebene.",
+          tr: "Diyaloğun bireysel, toplumsal ve kurumsal düzeydeki kazanımlarını ele alan el kitapçığı."
         },
         url: "#"
+      },
+      {
+        id: "mod1-r-dt-da",
+        title: {
+          de: "Lesebegleiter: Interreligiöser Dialog im Wandel der Geschichte (D. Aydüz)",
+          tr: "Diyaloğun Temelleri Okuma Rehberi: Tarih Boyunca Dinlerarası Diyalog (D. Aydüz)"
+        },
+        description: {
+          de: "Analyse der geschichtlichen Entwicklung des Dialogs als eine zeitlose, menschliche Praxis.",
+          tr: "Diyalog kavramının tarih boyunca gösterdiği dönüşüm ve peygamberlerin pratiklerine dair analiz."
+        },
+        url: "https://can-ada.net/wp-content/uploads/2023/02/Davut-Ayduz-Tarih-Boyunca-Dinler-Arasi-Diyalog-IsikYayinlari.pdf"
+      },
+      {
+        id: "mod1-r-dt-ak",
+        title: {
+          de: "Lesebegleiter: Warum Dialog? (A. Kurucan)",
+          tr: "Diyaloğun Temelleri Okuma Rehberi: Niçin Diyalog? (A. Kurucan)"
+        },
+        description: {
+          de: "Theologische Begründung des Dialogs aus Sicht des Korans und der Sunna als Widerspiegelung des Glaubens.",
+          tr: "Dinlerarası diyaloğun bir iman zafiyeti değil, aksine imanın bir yansıması olduğuna dair makale."
+        },
+        url: "https://cetele.org/wp-content/uploads/2017/12/Ahmet-Kurucan-Nicin-Diyalog-Diyalogun-Temelleri-IsikYayinlari.pdf"
+      },
+      {
+        id: "mod1-r-dt-fg",
+        title: {
+          de: "Lesebegleiter: Beharrlichkeit im Dialog (F. Gülen)",
+          tr: "Diyaloğun Temelleri Okuma Rehberi: Diyalogta Israr (F. Gülen)"
+        },
+        description: {
+          de: "Die Bedeutung von Geduld, Kontinuität und Aufrichtigkeit angesichts von Kritik und Hindernissen.",
+          tr: "Diyalog çalışmalarında karşılaşılan zorluklar karşısında sabır, kararlılık ve niyet temizliği."
+        },
+        url: "https://herkul.org/kirik-testi/diyalogda-israr/"
+      },
+      {
+        id: "mod1-r-dt-hs",
+        title: {
+          de: "Lesebegleiter: Warum Dialog? (H. Şener)",
+          tr: "Diyaloğun Temelleri Okuma Rehberi: Neden Diyalog? (H. Şener)"
+        },
+        description: {
+          de: "Über das Verständnisdefizit im Kommunikationszeitalter und den Dialog zum Schutz der Menschenwürde.",
+          tr: "Müslüman kimliğin korunması ve küresel barış adına diyaloğun kaçınılmaz bir gereklilik olduğu üzerine."
+        },
+        url: "https://fgulen.com/tr/basindan-tr/kose-yazilari/Halid-Sener-HaberX-Neden-Diyalog-1"
       }
     ],
     bookRecommendations: [
       {
-        id: "mod1-b1",
+        id: "mod1-b-nd",
         title: {
-          de: "Benevolence and Dialogue: Intercultural & Interfaith Communication",
-          tr: "Diyalog: Kültürler ve İnançlar Arası İletişim"
+          de: "Warum Dialog? (Niçin Diyalog)",
+          tr: "Niçin Diyalog"
         },
-        author: "Kolektif",
+        author: "Ahmet Kurucan",
         description: {
-          de: "Die wesentliche Philosophie der Kunst des Zusammenlebens.",
-          tr: "Birlikte yaşama sanatının temel felsefesi."
+          de: "Ein wichtiges Werk, das die Notwendigkeit, theologische Grundlagen und Praxis des interkulturellen Dialogs analysiert.",
+          tr: "Diyaloğun dinlerarası ve insani temellerini, günümüz dünyasındaki lüzumunu ele alan kapsamlı çalışma."
+        }
+      },
+      {
+        id: "mod1-b-ddht",
+        title: {
+          de: "Religiöse und historische Grundlagen des Dialogs",
+          tr: "Diyaloğun Dini ve Tarihi Temelleri"
+        },
+        author: "Derleme",
+        description: {
+          de: "Eine wissenschaftliche Sammlung über den historischen Verlauf und die religionswissenschaftliche Notwendigkeit des Friedensadler-Dialogs.",
+          tr: "Dinler arası diyaloğun referans kaynaklarından ve tarihteki uygulamalarından derlenmiş nitelikli bir eser."
+        }
+      },
+      {
+        id: "mod1-b-di",
+        title: {
+          de: "Dialogue in Islam",
+          tr: "Dialogue in Islam"
+        },
+        author: "Ahmet Kurucan",
+        description: {
+          de: "Eine englischsprachige Einführung in das Dialogverständnis aus der Perspektive islamischer Kernquellen.",
+          tr: "İslam'ın temel kaynaklarından hareketle diyalog vizyonunu İngilizce okuyuculara sunan kitap."
+        }
+      },
+      {
+        id: "mod1-b-nbd",
+        title: {
+          de: "Was für ein Dialog? (Nasıl Bir Diyalog)",
+          tr: "Nasıl Bir Diyalog"
+        },
+        author: "Şerif Ali Tekalan",
+        description: {
+          de: "Ein Buch über die Prinzipien, Werte und methodischen Standards für einen aufrichtigen, nachhaltigen Dialog.",
+          tr: "Dürüst, seviyeli ve kalıcı bir diyalog kurabilmenin adabı, metodolojisi ve sınırları üzerine."
         }
       }
     ],
     videos: [
       {
-        id: "mod1-v1",
+        id: "mod1-v-de",
         title: {
-          de: "Grundlagen des Dialogs und der Kommunikation",
-          tr: "Diyaloğun Temelleri ve İletişim"
+          de: "Dialog und Integration",
+          tr: "Diyalog ve Entegrasyon"
         },
         description: {
-          de: "Einführungsvideo über die Kernkonzepte des interkulturellen und interreligiösen Dialogs.",
-          tr: "Kültürlerarası ve dinlerarası diyaloğun temel kavramları üzerine video."
+          de: "Ein Dialog- und Integrationsdiskurs zur Überwindung gesellschaftlicher Spaltung.",
+          tr: "Toplumsal uyum ve sivil katılımda diyaloğun ve entegrasyonun rolü."
         },
-        youtubeId: "dQw4w9WgXcQ"
+        youtubeId: "NWuNA3z3rBA"
+      },
+      {
+        id: "mod1-v-kd",
+        title: {
+          de: "Welches Dialogverständnis in einer sich globalisierenden Welt?",
+          tr: "Küreselleşen dünyada nasıl bir diyalog anlayışımız olmalı?"
+        },
+        description: {
+          de: "Analysen über die Art und die Grundwerte des Dialogs, die im globalen Zeitalter erforderlich sind.",
+          tr: "Küresel çağın gereksinimlerine göre şekillenen yapıcı diyalog anlayışı ve yaklaşımları."
+        },
+        youtubeId: "6HQH1IB7Lt4"
+      },
+      {
+        id: "mod1-v-ddnd",
+        title: {
+          de: "Was interreligiöser Dialog NICHT ist | Ahmet Kurucan",
+          tr: "Dinlerarası Diyalog Ne Değildir? | AHMET KURUCAN"
+        },
+        description: {
+          de: "Aufklärung über häufige Missverständnisse und Fehlinterpretationen über interreligiösen Dialog.",
+          tr: "Dinlerarası diyaloğa yönelik haksız ithamlar, şüpheler ve kavramsal doğrulardan bahseden bir video."
+        },
+        youtubeId: "HqD_ACBtQ1E"
+      },
+      {
+        id: "mod1-v-ddzm",
+        title: {
+          de: "Ist interreligiöser Dialog eine Notwendigkeit? | Ahmet Kurucan",
+          tr: "Dinler Arası Diyalog Zaruri mi? | AHMET KURUCAN"
+        },
+        description: {
+          de: "Über die theologische und gesellschaftliche Unerlässlichkeit des Dialogs im heutigen Zeitalter.",
+          tr: "Günümüz çoğulcu dünyasında dinler arası ve kültürlerarası diyaloğun dini ve akli zaruretleri."
+        },
+        youtubeId: "SSHyKHZJnx0"
+      },
+      {
+        id: "mod1-v-hhsa",
+        title: {
+          de: "Hizmet-Bewegung und bürgerschaftliches Engagement",
+          tr: "Hizmet Hareketi ve Sivil Angajman"
+        },
+        description: {
+          de: "Die Grundlagen des bürgerschaftlichen und sozialen Engagements der Hizmet-Bewegung im Westen.",
+          tr: "Hizmet Hareketi'nin sivil toplum bilinci ve demokratik katılım felsefesi üzerine değerlendirme."
+        },
+        youtubeId: "LhfRBPyOKGQ"
+      },
+      {
+        id: "mod1-v-db1",
+        title: {
+          de: "Dialog-Treffen: Warum Dialog? Buchbesprechung Teil 1",
+          tr: "Diyalog Buluşmaları: Niçin Diyalog? Kitap Müzakeresi 1.Kısım"
+        },
+        description: {
+          de: "Erster Teil der Müzakere des bekannten Buchs 'Niçin Diyalog' von Ahmet Kurucan.",
+          tr: "Ahmet Kurucan'ın 'Niçin Diyalog?' eseri üzerine gerçekleştirilen kitap müzakeresinin ilk durağı."
+        },
+        youtubeId: "38a82Jo1vO4"
+      },
+      {
+        id: "mod1-v-db2",
+        title: {
+          de: "Dialog-Treffen: Warum Dialog? Buchbesprechung Teil 2",
+          tr: "Diyalog Buluşmaları: Niçin Diyalog? Kitap Müzakeresi 2. Kısım"
+        },
+        description: {
+          de: "Zweiter Teil der Müzakere des bekannten Buchs 'Niçin Diyalog' von Ahmet Kurucan.",
+          tr: "Ahmet Kurucan'ın 'Niçin Diyalog?' eseri üzerine gerçekleştirilen kitap müzakeresinin ikinci halkası."
+        },
+        youtubeId: "FEBFt_5qMK8"
+      },
+      {
+        id: "mod1-v-db3",
+        title: {
+          de: "Dialog-Treffen: Warum Dialog? Buchbesprechung Teil 3",
+          tr: "Diyalog Buluşmaları: Niçin Diyalog? Kitap Müzakeresi 3. Kısım"
+        },
+        description: {
+          de: "Dritter Teil der Müzakere des bekannten Buchs 'Niçin Diyalog' von Ahmet Kurucan.",
+          tr: "Ahmet Kurucan'ın 'Niçin Diyalog?' eseri üzerine gerçekleştirilen kitap müzakeresinin üçüncü halkası."
+        },
+        youtubeId: "I70Avnbr8Sg"
       }
     ]
   },
