@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { lmsModules, ModuleContent, LearningTarget, ReadingMaterial, VideoMaterial } from '../data/lmsData';
 import { useAuth } from '../contexts/AuthContext';
-import { ArrowLeft, CheckCircle, Book, Circle, PlayCircle, Award, Target, FileText, Download, Check, ArrowRight } from 'lucide-react';
+import { ArrowLeft, CheckCircle, Book, Circle, PlayCircle, Award, Target, FileText, Download, Check, ArrowRight, ExternalLink } from 'lucide-react';
 import jsPDF from 'jspdf';
 import { translations, LMSLanguage } from '../utils/lmsTranslations';
 
@@ -157,6 +157,158 @@ export default function LMSModule() {
     } catch (e) {
       console.error('Fehler beim E-Mail-Versand', e);
     }
+  };
+
+  const downloadReadingMaterialPdf = (docItem: ReadingMaterial) => {
+    const pdfDoc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4'
+    });
+
+    // Elegant heading
+    pdfDoc.setLineWidth(1);
+    pdfDoc.setDrawColor(21, 94, 117); // brand-teal
+    pdfDoc.line(15, 25, 195, 25);
+
+    pdfDoc.setFont("helvetica", "bold");
+    pdfDoc.setFontSize(20);
+    pdfDoc.setTextColor(30, 58, 138); // brand-navy
+    pdfDoc.text(lang === 'tr' ? 'BVM e.V. Okuma Materyali' : 'BVM e.V. Lesematerial', 15, 20);
+
+    pdfDoc.setFontSize(15);
+    pdfDoc.setTextColor(21, 94, 117); // brand-teal
+    const titleLines = pdfDoc.splitTextToSize(docItem.title[lang], 180);
+    pdfDoc.text(titleLines, 15, 35);
+    
+    let textY = 35 + (titleLines.length * 6) + 4;
+
+    // Let's add sub-header / description
+    pdfDoc.setFont("helvetica", "italic");
+    pdfDoc.setFontSize(11);
+    pdfDoc.setTextColor(100, 116, 139); // slate-500
+    const descLines = pdfDoc.splitTextToSize(docItem.description[lang], 180);
+    pdfDoc.text(descLines, 15, textY);
+    
+    textY += (descLines.length * 5) + 6;
+
+    pdfDoc.setDrawColor(226, 232, 240); // slate-200
+    pdfDoc.line(15, textY, 195, textY);
+
+    textY += 12;
+
+    // Content body
+    pdfDoc.setFont("helvetica", "normal");
+    pdfDoc.setFontSize(11);
+    pdfDoc.setTextColor(51, 65, 85); // slate-700
+
+    const writeParagraph = (text: string) => {
+      // Check if page height boundary is reached
+      if (textY > 260) {
+        pdfDoc.addPage();
+        textY = 20;
+      }
+      const splitText = pdfDoc.splitTextToSize(text, 180);
+      pdfDoc.text(splitText, 15, textY);
+      textY += splitText.length * 6 + 5;
+    };
+
+    const writeHeading = (text: string) => {
+      if (textY > 250) {
+        pdfDoc.addPage();
+        textY = 20;
+      }
+      pdfDoc.setFont("helvetica", "bold");
+      pdfDoc.setFontSize(12);
+      pdfDoc.setTextColor(30, 58, 138);
+      pdfDoc.text(text, 15, textY);
+      textY += 8;
+      pdfDoc.setFont("helvetica", "normal");
+      pdfDoc.setFontSize(11);
+      pdfDoc.setTextColor(51, 65, 85);
+    };
+
+    if (lang === 'tr') {
+      writeHeading("1. Giriş: Birlikte Yaşama Felsefesi");
+      writeParagraph(
+        "Diyalog, barış içinde bir arada yaşama sanatı ve toplumsal ayrışmaları aşmanın yoludur. " +
+        "Günümüz dünyasında, farklı inanç, kültür ve arka planlardan gelen insanların karşılıklı saygı " +
+        "ve anlayış temelinde konuşabilmeleri ortak geleceğimiz için en hayati gereksinimdir. " +
+        "Bu rehber el kitapçığı, diyalog çalışmalarının bireysel ve toplumsal kazanımlarını ortaya koymaktadır."
+      );
+
+      writeHeading("2. Diyaloğun Temel Kazanımları");
+      writeParagraph(
+        "- Ön Yargıların Aşılması: Birebir yüz yüze gerçekleştirilen samimi temaslar sayesinde, gruplar arasındaki " +
+        "kalıplaşmış yargılar, korkular ve mesafeler hızla ortadan kalkar."
+      );
+      writeParagraph(
+        "- Empati ve Güven Gelişimi: Diğer inanç ve yaşam tarzlarını doğrudan kendi mensuplarından tanımak, " +
+        "empati becerisini artırır, toplumsal dayanıklılığı ve güven bağlarını pekiştirir."
+      );
+      writeParagraph(
+        "- Toplumsal Huzur ve Barış: Çatışma zeminleri yerini hoşgörü, saygıyla bir arada yaşama ve yapıcı " +
+        "işbirliklerine bırakır. Farklılıklar tehdit olmaktan çıkıp birer zenginliğe dönüşür."
+      );
+      writeParagraph(
+        "- Evrensel Değerlerde Buluşma: Çevre sorunları, temel insan haklarının korunması, yoksullukla mücadele " +
+        "ve sosyal yardım projelerinde ortak insani sorumluluk altında birleşme bilinci gelişir."
+      );
+      
+      writeHeading("3. Diyalogda Üslup Esasları");
+      writeParagraph(
+        "Diyalog çalışmalarında samimiyet, her inanç sahibinin kendi kimliğini koruyarak diğeriyle " +
+        "ilişki kurması esastır. Karşısındakini dönüştürme gayesi olmaksızın, sadece tanışma, " +
+        "sorunları tespit etme ve ortak çözümler üzerinde el birliğiyle çalışma hedeflenir."
+      );
+    } else {
+      writeHeading("1. Einleitung: Philosophie des Zusammenlebens");
+      writeParagraph(
+        "Der Dialog ist die fundamentale Kunst des friedlichen Zusammenlebens und die wirksame Methode, " +
+        "gesellschaftliche Spaltungen dauerhaft zu überwinden. In unserer globalisierten Welt ist die Fähigkeit, " +
+        "einander mit Respekt und Offenheit zu begegnen, die wichtigste Säule einer stabilen Demokratie. " +
+        "Dieses Handbuch beschreibt die wesentlichen Nutzen und Leitlinien erfolgreicher Dialogarbeit."
+      );
+
+      writeHeading("2. Kernbereiche und Errungenschaften des Dialogs");
+      writeParagraph(
+        "- Abbau von Vorurteilen: Durch die direkte persönliche Begegnung werden tief sitzende Stereotypen " +
+        "und Fremdheitsängste nachweislich überwunden."
+      );
+      writeParagraph(
+        "- Förderung von Empathie: Das Verstehen anderer religiöser und weltanschaulicher Horizonte " +
+        "stärkt das gegenseitige Vertrauen und festigt das gesellschaftliche Gefüge."
+      );
+      writeParagraph(
+        "- Gesellschaftliche Harmonie: Konfliktherde werden durch präventive Kommunikation entschärft, " +
+        "sodass Unterschiede nicht mehr als Bedrohung, sondern als Bereicherung erlebt werden."
+      );
+      writeParagraph(
+        "- Kooperation bei universellen Werten: Gemeinsames Engagement gegen soziale Missstände, " +
+        "für den Umweltschutz und die Förderung der universellen Menschenrechte."
+      );
+
+      writeHeading("3. Methoden und Verhaltenskodizes");
+      writeParagraph(
+        "Ein erfolgreicher Dialog basiert auf Aufrichtigkeit. Jede Seite bewahrt ihre eigene Identität und " +
+        "verzichtet auf jegliche Bekehrungsabsichten oder theologische Kompromisse. " +
+        "Es geht primär um das Kennenlernen, die Kooperation und das gegenseitige Verständnis."
+      );
+    }
+
+    // Footnote
+    pdfDoc.setFont("helvetica", "italic");
+    pdfDoc.setFontSize(8);
+    pdfDoc.setTextColor(148, 163, 184); // slate-400
+    pdfDoc.text(
+      lang === 'tr' 
+        ? 'BVM e.V. Dialog Sertifika Programı | Güvenli ve Huzurlu Bir Gelecek İçin' 
+        : 'BVM e.V. Dialog Zertifikatsprogramm | Für eine sichere und friedliche Zukunft', 
+      15, 285
+    );
+
+    const safeFileName = docItem.title[lang].replace(/[^a-zA-Z0-9]/g, '_') + '.pdf';
+    pdfDoc.save(safeFileName);
   };
 
   return (
@@ -318,6 +470,9 @@ export default function LMSModule() {
                   <div className="grid md:grid-cols-2 gap-4">
                     {moduleItem.readingMaterials.map((doc) => {
                       const isItemDone = completedItems.includes(doc.id);
+                      const isPdf = doc.url.toLowerCase().endsWith('.pdf');
+                      const isWebLink = doc.url.startsWith('http') && !isPdf;
+
                       return (
                         <div key={doc.id} className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm flex flex-col justify-between">
                           <div>
@@ -325,9 +480,33 @@ export default function LMSModule() {
                             <p className="text-slate-600 text-sm mb-4">{doc.description[lang]}</p>
                           </div>
                           <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-100 gap-4">
-                            <a href={doc.url} onClick={(e) => { e.preventDefault(); alert(lang === 'tr' ? 'Materyal indiriliyor...' : 'Material wird heruntergeladen...'); }} className="text-sm font-semibold text-brand-teal hover:underline flex items-center gap-1">
-                              <Download size={16} /> {t.download}
-                            </a>
+                            {isWebLink ? (
+                              <a 
+                                href={doc.url} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-sm font-semibold text-brand-teal hover:underline flex items-center gap-1.5"
+                              >
+                                <ExternalLink size={16} /> {t.openLink}
+                              </a>
+                            ) : isPdf ? (
+                              <a 
+                                href={doc.url} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                download 
+                                className="text-sm font-semibold text-brand-teal hover:underline flex items-center gap-1.5"
+                              >
+                                <Download size={16} /> {t.download}
+                              </a>
+                            ) : (
+                              <button 
+                                onClick={() => downloadReadingMaterialPdf(doc)}
+                                className="text-sm font-semibold text-brand-teal hover:underline flex items-center gap-1.5 text-left"
+                              >
+                                <Download size={16} /> {t.download}
+                              </button>
+                            )}
                             <button 
                               onClick={() => handleMarkItem(doc.id)}
                               className={`text-sm px-3 py-1.5 rounded-lg border font-semibold transition-colors flex items-center gap-2 ${

@@ -32,6 +32,8 @@ export interface TranslationDictionary {
   noVideos: string;
   noBooks: string;
   download: string;
+  openLink: string;
+  downloading: string;
   read: string;
   markAsRead: string;
   watched: string;
@@ -86,6 +88,8 @@ export const translations: Record<LMSLanguage, TranslationDictionary> = {
     noVideos: "Keine Videos für dieses Modul.",
     noBooks: "Keine Buchempfehlungen für dieses Modul.",
     download: "Herunterladen",
+    openLink: "Link öffnen",
+    downloading: "Material wird heruntergeladen...",
     read: "Gelesen",
     markAsRead: "Als gelesen markieren",
     watched: "Gesehen",
@@ -138,6 +142,8 @@ export const translations: Record<LMSLanguage, TranslationDictionary> = {
     noVideos: "Bu modül için henüz video bulunmuyor.",
     noBooks: "Bu modül için henüz kitap önerisi bulunmuyor.",
     download: "İndir",
+    openLink: "Bağlantıyı Aç",
+    downloading: "Materyal indiriliyor...",
     read: "Okundu",
     markAsRead: "Okundu olarak işaretle",
     watched: "İzlendi",
