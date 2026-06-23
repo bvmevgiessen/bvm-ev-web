@@ -135,6 +135,25 @@
     "sourceId": "house-of-one"
   },
   {
+    "id": "fidev-ea44fdf052",
+    "title": "MediaAct – Workshops gegen Mobbing und Cybermobbing",
+    "link": "https://www.fidev.org/post/mediaact-workshops-mobbing-cybermobbing-praevention",
+    "date": "2026-05-18T12:47:55+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/a7ec0d_e2ce2a5724c94a8e94ed69ca5814659e~mv2.png/v1/fit/w_1000,h_941,al_c,q_80/file.png",
+    "category": "Jugend",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/a7ec0d_e2ce2a5724c94a8e94ed69ca5814659e~mv2.png/v1/fit/w_1000,h_941,al_c,q_80/file.png",
+    "excerpt": "Jugendliche beim MediaAct Workshop – Cybermobbing Prävention FIDeV Frankfurt Mit MediaAct – Junge Stimmen gegen Ausgrenzung bietet FIDeV Frankfurt praxisnahe Workshops zur Prävention von Mobbing und Cybermobbing für Sch…",
+    "tags": [
+      "Jugend"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
     "id": "house-of-one-8cf15a22c0",
     "title": "Podcastfolge #114: Heilige Väter? Über Vatervorstellungen in Tora, Bibel und Koran sowie echte Erfahrungen",
     "link": "https://house-of-one.org/news/podcastfolge-114-heilige-vaeter-ueber-vatervorstellungen-tora-bibel-und-koran-sowie-echte",
@@ -208,25 +227,6 @@
     "excerpt": "FIDeV erhält das Qualitätssiegel des Europäischen Solidaritätskorps",
     "tags": [
       "Community"
-    ],
-    "external": true,
-    "sourceId": "fidev"
-  },
-  {
-    "id": "fidev-a9589b4b31",
-    "title": "Meet and Read in Sachsenhausen",
-    "link": "https://www.fidev.org/post/meet-and-read-in-sachsenhausen",
-    "date": "2026-05-07T12:02:26+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/2d6f92_0a360210426f42b69a3cc12a518485b6~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
-    "category": "Dialog",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/2d6f92_0a360210426f42b69a3cc12a518485b6~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
-    "excerpt": "Interreligiöser Dialog 24.03. - 18.08.2025 • Sachsenhausen • Frankfurt am Main Herzliche Einladung zu einem besonderen interreligiösen Dialogprojekt: „meet and read“ – Gemeinsam lesen. Gemeinsam verstehen. “Von März bis…",
-    "tags": [
-      "Dialog"
     ],
     "external": true,
     "sourceId": "fidev"
