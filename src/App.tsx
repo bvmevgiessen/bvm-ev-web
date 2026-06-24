@@ -16,13 +16,6 @@ import MitmachenPage from './pages/MitmachenPage';
 import SpendenPage from './pages/SpendenPage';
 import Footer from './components/Footer';
 
-// LMS Pages
-import { AuthProvider } from './contexts/AuthContext';
-import LMSLogin from './pages/LMSLogin';
-import LMSDashboard from './pages/LMSDashboard';
-import LMSModule from './pages/LMSModule';
-import LMSAdmin from './pages/LMSAdmin';
-
 export default function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
@@ -39,16 +32,9 @@ export default function App() {
             <Route path="/blog/:blogId" element={<BlogDetailPage />} />
             <Route path="/mitmachen" element={<MitmachenPage />} />
             <Route path="/spenden" element={<SpendenPage />} />
-            
-            {/* LMS Routes */}
-            <Route path="/lms/login" element={<LMSLogin />} />
-            <Route path="/lms/dashboard" element={<LMSDashboard />} />
-            <Route path="/lms/module/:moduleId" element={<LMSModule />} />
-            <Route path="/lms/admin" element={<LMSAdmin />} />
           </Routes>
           <Footer />
         </div>
-      </AuthProvider>
     </BrowserRouter>
   );
 }
