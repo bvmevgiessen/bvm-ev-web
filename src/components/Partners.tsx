@@ -44,6 +44,70 @@ export default function Partners() {
       url: 'https://lbe-bw.de/',
       fallback: 'LBE'
     },
+,
+    {
+      name: 'Dialogue Society',
+      location: 'London',
+      logo: 'https://wsrv.nl/?url=https://www.dialoguesociety.org/wp-content/themes/periwinkle/public/icons/brand/ds-logo.svg&w=400&fit=contain',
+      url: 'https://www.dialoguesociety.org/',
+      fallback: 'DS'
+    },
+    {
+      name: 'Alliance for Shared Values',
+      location: 'New York',
+      logo: 'https://wsrv.nl/?url=https://afsv.org/wp-content/uploads/2020/05/Alliance-for-Shared-Values-AfSV-1-600x151-min.png&w=400&fit=contain',
+      url: 'https://afsv.org/',
+      fallback: 'AfSV'
+    },
+    {
+      name: 'Maximum e.V.',
+      location: 'Stuttgart',
+      logo: 'https://wsrv.nl/?url=https://www.maximum-ev.de/-_-/res/2364335b-4369-42e2-bf92-35c3a702aac2/images/files/2364335b-4369-42e2-bf92-35c3a702aac2/61353cfe-a284-4159-a6b4-88504d8be30d/160-43/880805c8f2cba4885ec84ed9eb8bd2b08a91adf2&w=400&fit=contain',
+      url: 'https://www.maximum-ev.de/',
+      fallback: 'MAXIMUM'
+    },
+    {
+      name: 'Avicenna e.V.',
+      location: 'Wetzlar',
+      logo: 'https://wsrv.nl/?url=https://www.avicenna-ev.de/favicon.ico&w=200&output=png',
+      url: 'https://www.avicenna-ev.de/',
+      fallback: 'AVICENNA'
+    },
+    {
+      name: 'Mosaik e.V.',
+      location: 'Offenbach',
+      logo: 'https://wsrv.nl/?url=https://mosaik-offenbach.de/media/public/images/logo-11111111.png&w=200&output=png',
+      url: 'https://mosaik-offenbach.de/',
+      fallback: 'MOSAIK'
+    },
+    {
+      name: 'Forum Dialog e.V.',
+      location: 'Berlin',
+      logo: 'https://wsrv.nl/?url=https://www.forumdialog.org/wp-content/uploads/2021/04/forumdialog-logo.svg&w=200&output=png',
+      url: 'https://www.forumdialog.org/',
+      fallback: 'FORUM'
+    },
+    {
+      name: 'Rumi Kulturzentrum e.V.',
+      location: 'Kassel',
+      logo: 'https://wsrv.nl/?url=https://rumi-kulturzentrum.de/wp-content/uploads/2023/12/Rumi-Logo-G.png&w=200&output=png',
+      url: 'https://rumi-kulturzentrum.de/',
+      fallback: 'RUMIK'
+    },
+    {
+      name: 'Rumi Kulturzentrum Frankfurt e.V.',
+      location: 'Frankfurt',
+      logo: 'https://wsrv.nl/?url=https://rumikultur.org/wp-content/uploads/2023/06/RUMI-Logo-320-300x171-fotor-bg-remover-2023061614919.png&w=200&output=png',
+      url: 'https://rumikultur.org/',
+      fallback: 'RUMIORG'
+    },
+    {
+      name: 'Rumi Kultur e.V.',
+      location: 'Bad Nauheim',
+      logo: 'https://wsrv.nl/?url=https://rumikultur.de/wp-content/uploads/2025/05/logo_1-2.svg&w=200&output=png',
+      url: 'https://rumikultur.de/',
+      fallback: 'RUMIDE'
+    },
   ];
 
   return (
