@@ -44,7 +44,6 @@ export default function Partners() {
       url: 'https://lbe-bw.de/',
       fallback: 'LBE'
     },
-,
     {
       name: 'Dialogue Society',
       location: 'London',
@@ -95,7 +94,7 @@ export default function Partners() {
       fallback: 'RUMIK'
     },
     {
-      name: 'Rumi Kulturzentrum Frankfurt e.V.',
+      name: 'Rumi Kultur e.V.',
       location: 'Frankfurt',
       logo: 'https://wsrv.nl/?url=https://rumikultur.org/wp-content/uploads/2023/06/RUMI-Logo-320-300x171-fotor-bg-remover-2023061614919.png&w=200&output=png',
       url: 'https://rumikultur.org/',
@@ -121,7 +120,7 @@ export default function Partners() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
           {partners.map((partner, index) => (
             <motion.a
-              key={partner.name}
+              key={`${partner.name}-${partner.location}`}
               href={partner.url}
               target="_blank"
               rel="noopener noreferrer"
