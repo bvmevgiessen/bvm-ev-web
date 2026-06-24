@@ -94,12 +94,6 @@ export default function Navbar() {
             )
           ))}
           <Link
-            to="/lms/login"
-            className="text-sm font-semibold text-brand-teal hover:text-teal-700 transition-colors"
-          >
-            Zertifikat Login
-          </Link>
-          <Link
             to="/mitmachen"
             data-testid="mitmachen-cta-desktop"
             className="btn-primary py-2 px-5 text-sm"
@@ -162,13 +156,6 @@ export default function Navbar() {
                   </Link>
                 )
               ))}
-              <Link
-                to="/lms/login"
-                onClick={() => setIsOpen(false)}
-                className="text-lg font-semibold text-brand-teal hover:text-teal-700"
-              >
-                Zertifikat Login
-              </Link>
               <Link
                 to="/mitmachen"
                 onClick={() => setIsOpen(false)}
