@@ -1,5 +1,24 @@
 [
   {
+    "id": "fidev-ecc07f2561",
+    "title": "FRIEDEPlus",
+    "link": "https://www.fidev.org/post/friedeplus",
+    "date": "2026-06-23T11:36:22+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/a7ec0d_c83c199014b6448483915fa1718f0bdc~mv2.png/v1/fit/w_1000,h_859,al_c,q_80/file.png",
+    "category": "Dialog",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/a7ec0d_c83c199014b6448483915fa1718f0bdc~mv2.png/v1/fit/w_1000,h_859,al_c,q_80/file.png",
+    "excerpt": "Interkultureller und Interreligiöser Dialog Vertiefung interreligiöser Dialogkompetenz September 26 - Februar 2027 - Frankfurt am Main FRIEDE – Multiplikator:innen für Verständigung in Vielfalt Ein Programm des Forum fü…",
+    "tags": [
+      "Dialog"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
     "id": "fidev-aba35d52bc",
     "title": "FIDeV und die UN-Nachhaltigkeitsziele (SDGs): Unser Beitrag zur Agenda 2030",
     "link": "https://www.fidev.org/post/fidev-und-die-un-nachhaltigkeitsziele-sdgs-unser-beitrag-zur-agenda-2030",
@@ -38,6 +57,25 @@
     ],
     "external": true,
     "sourceId": "sdub"
+  },
+  {
+    "id": "house-of-one-8d2366b3f7",
+    "title": "#116: Füße in religiösen Traditionen – rein gewaschen?",
+    "link": "https://house-of-one.org/news/116-fuesse-religioesen-traditionen-rein-gewaschen",
+    "date": "2026-06-08T00:00:00+00:00",
+    "source_name": "House of One",
+    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "category": "Dialog",
+    "author": "House of One",
+    "partnerName": "House of One",
+    "partnerUrl": "https://house-of-one.org/",
+    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "excerpt": "In dieser Folge sprechen wir über ein völlig unterschätztes Thema: Füße! Dabei spielen sie eine wichtige Rolle, tatsächlich auch in unseren Religionen... Weiterlesen",
+    "tags": [
+      "Dialog"
+    ],
+    "external": true,
+    "sourceId": "house-of-one"
   },
   {
     "id": "fidev-20ade7c14f",
@@ -95,6 +133,25 @@
     ],
     "external": true,
     "sourceId": "fidev"
+  },
+  {
+    "id": "house-of-one-3dc72c07f4",
+    "title": "Jahrestag Grundsteinlegung: House of One erhält 90.000 Euro-Spende",
+    "link": "https://house-of-one.org/news/jahrestag-grundsteinlegung-house-one-erhaelt-90000-euro-spende",
+    "date": "2026-05-27T00:00:00+00:00",
+    "source_name": "House of One",
+    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "category": "Community",
+    "author": "House of One",
+    "partnerName": "House of One",
+    "partnerUrl": "https://house-of-one.org/",
+    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "excerpt": "Mit einem Frühlingsfest am Berliner Petriplatz hat das House of One gleich doppelt gefeiert: Vor fünf Jahren hat die Stiftung den Grundstein für das w... Weiterlesen",
+    "tags": [
+      "Community"
+    ],
+    "external": true,
+    "sourceId": "house-of-one"
   },
   {
     "id": "house-of-one-61f8c3cbb2",
@@ -213,25 +270,6 @@
     "sourceId": "sdub"
   },
   {
-    "id": "fidev-8ed6cddf3a",
-    "title": "Ausschreibung für den Bundesfreiwilligendienst (BFD) Jetzt bewerben! (m/w/d)",
-    "link": "https://www.fidev.org/post/ausschreibung-f%C3%BCr-den-bundesfreiwilligendienst-bfd-jetzt-bewerben-m-w-d",
-    "date": "2026-05-07T12:02:46+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/2d6f92_1521cc8517354cf6a231a613bc5dc391~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
-    "category": "Community",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/2d6f92_1521cc8517354cf6a231a613bc5dc391~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
-    "excerpt": "FIDeV erhält das Qualitätssiegel des Europäischen Solidaritätskorps",
-    "tags": [
-      "Community"
-    ],
-    "external": true,
-    "sourceId": "fidev"
-  },
-  {
     "id": "house-of-one-f4fdb88646",
     "title": "Konferenz der Mehrreligionenhäuser 2026",
     "link": "https://house-of-one.org/news/konferenz-der-mehrreligionenhaeuser-2026",
@@ -246,25 +284,6 @@
     "excerpt": "Die Konferenz der Mehrreligionenhäuser bringt seit ihrer Gründung während der Pandemie Initiativen, Projekte und engagierte Akteurinnen und Akteure zu... Weiterlesen",
     "tags": [
       "Dialog"
-    ],
-    "external": true,
-    "sourceId": "house-of-one"
-  },
-  {
-    "id": "house-of-one-42d526426c",
-    "title": "Podcastfolge #113: Mythos Mutter - barmherzig und selbstbestimmt?",
-    "link": "https://house-of-one.org/news/podcastfolge-113-mythos-mutter-barmherzig-und-selbstbestimmt",
-    "date": "2026-04-28T00:00:00+00:00",
-    "source_name": "House of One",
-    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "category": "Community",
-    "author": "House of One",
-    "partnerName": "House of One",
-    "partnerUrl": "https://house-of-one.org/",
-    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "excerpt": "Was Mutterschaft in Tora, Bibel und Koran bedeutet und wie wir heute darauf blicken. Drei Perspektiven Barmherzig, mütterlich, fürsorglich? Auf den er... Weiterlesen",
-    "tags": [
-      "Community"
     ],
     "external": true,
     "sourceId": "house-of-one"
@@ -289,25 +308,6 @@
     ],
     "external": true,
     "sourceId": "sdub"
-  },
-  {
-    "id": "house-of-one-8b3cc019a4",
-    "title": "Hilfsaktion zu Kurban (Eid al-Adha)",
-    "link": "https://house-of-one.org/news/hilfsaktion-zu-kurban-eid-al-adha",
-    "date": "2026-04-14T00:00:00+00:00",
-    "source_name": "House of One",
-    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "category": "Dialog",
-    "author": "House of One",
-    "partnerName": "House of One",
-    "partnerUrl": "https://house-of-one.org/",
-    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "excerpt": "Das House of One unterstützt seit 2018 jedes Jahr anlässlich des islamischen Festes „Eid al-Adha – Kurbanfest“ hilfsbedürftige Menschen in der Zentral... Weiterlesen",
-    "tags": [
-      "Dialog"
-    ],
-    "external": true,
-    "sourceId": "house-of-one"
   },
   {
     "id": "sdub-f8147d4fb8",
