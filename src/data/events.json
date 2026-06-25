@@ -257,7 +257,12 @@
     "Traditionelle Aschura-Speisen",
     "Reflexion über die Bedeutung des Aschura-Tages"
   ],
-  "fuerWen": "Alle Interessierten, die das Aschura-Tag Event in Gemeinschaft erleben möchten."
+  "fuerWen": "Alle Interessierten, die das Aschura-Tag Event in Gemeinschaft erleben möchten.",
+  "notice": {
+    "type": "delay",
+    "title": "Wichtige Information: Veranstaltung verschoben",
+    "message": "Aufgrund von extremen Wetterbedingungen durch das El-Niño-Phänomen musste diese Veranstaltung leider verschoben werden. Das Event findet nun am Freitag, den 28. August 2026 statt. Wir bitten um Ihr Verständnis!"
+  }
   },
   {
   "id": "aschura-event-2025",
