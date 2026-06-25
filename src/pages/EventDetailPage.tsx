@@ -71,6 +71,24 @@ export default function EventDetailPage() {
             <div className="grid lg:grid-cols-3 gap-16">
               {/* Main Info */}
               <div className="lg:col-span-2 space-y-12">
+                {(event as any).notice && (
+                  <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-3xl shadow-sm">
+                    <div className="flex items-start gap-4">
+                      <div className="bg-amber-500 text-white p-2 rounded-2xl shrink-0 mt-0.5 animate-pulse">
+                        <Info size={20} />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-amber-900 mb-1">
+                          {(event as any).notice.title}
+                        </h3>
+                        <p className="text-amber-800 leading-relaxed text-sm font-medium">
+                          {(event as any).notice.message}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 <div>
                   <h2 className="text-2xl font-bold text-brand-navy mb-6">Was erwartet Sie?</h2>
                   <p className="text-slate-600 text-lg mb-8 leading-relaxed">

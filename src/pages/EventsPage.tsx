@@ -63,6 +63,11 @@ export default function EventsPage() {
                           <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black text-brand-teal uppercase tracking-[0.2em]">
                             {event.category}
                           </div>
+                          {(event as any).notice && (
+                            <div className="absolute top-4 right-4 bg-amber-500 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-sm animate-pulse">
+                              Verschoben
+                            </div>
+                          )}
                         </div>
                         
                         <div className="p-8">
