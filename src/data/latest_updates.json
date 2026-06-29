@@ -1,5 +1,24 @@
 [
   {
+    "id": "fidev-7fc49cab2c",
+    "title": "Democracy SafeSpace – Frankfurter Jugend im Dialog",
+    "link": "https://www.fidev.org/post/democracy-safespace",
+    "date": "2026-06-28T14:30:00+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/2d6f92_fe9e9624961845ca94a2001cbef8abcf~mv2.png/v1/fit/w_1000,h_600,al_c,q_80/file.png",
+    "category": "Jugend",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/2d6f92_fe9e9624961845ca94a2001cbef8abcf~mv2.png/v1/fit/w_1000,h_600,al_c,q_80/file.png",
+    "excerpt": "Ein Raum für junge Menschen in Frankfurt – zum Reden, Zuhören und Mitgestalten. Weil Demokratie nur lebt, wenn wir sie gemeinsam erleben Democrac SafeSpace - Frankfurt - Jugendarbeit Was ist Democracy SafeSpace? Wer ent…",
+    "tags": [
+      "Jugend"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
     "id": "fidev-ecc07f2561",
     "title": "FRIEDEPlus",
     "link": "https://www.fidev.org/post/friedeplus",
@@ -228,25 +247,6 @@
     ],
     "external": true,
     "sourceId": "house-of-one"
-  },
-  {
-    "id": "fidev-1a0ea79d70",
-    "title": "Frankfurt hält zusammen – aber wie lange noch?",
-    "link": "https://www.fidev.org/post/frankfurt-h%C3%A4lt-zusammen-aber-wie-lange-noch",
-    "date": "2026-05-10T19:29:59+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/2d6f92_763ad3d04bc0421988269b5e85c35d84~mv2.webp/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
-    "category": "Community",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/2d6f92_763ad3d04bc0421988269b5e85c35d84~mv2.webp/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
-    "excerpt": "Gesellschaft und Politik Zusammenleben ist kein Zufall 10.05.2026 / Frankfurt am Main / Kadir Boyaci Frankfurt am Main - Stadt der Vielfalt Die Stadt ist bunt, laut, widersprüchlich. Über 180 Nationalitäten leben hier,…",
-    "tags": [
-      "Community"
-    ],
-    "external": true,
-    "sourceId": "fidev"
   },
   {
     "id": "sdub-7799d125e0",
