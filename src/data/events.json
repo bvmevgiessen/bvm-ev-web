@@ -362,5 +362,21 @@
       "Dankeschön an die Eltern und Lehrkräfte für die wöchentliche Unterstützung"
     ],
     "fuerWen": "Exklusiv für die Eltern der Kinder unseres Vereins (BVM e.V.), die an den wöchentlichen Kultur- und Bildungskursen teilnehmen."
+  },
+  {
+    "id": "picknick-asure-tag-2026",
+    "title": "Einladung zum Picknick: Asure-Tag",
+    "category": "KULTUR",
+    "stream": "Festive Events",
+    "date": "2026-07-04T15:00:00",
+    "location": "Wieseckaue Park, Ringallee, 35390 Gießen",
+    "image": "https://images.pexels.com/photos/32963318/pexels-photo-32963318.jpeg?_gl=1*5sg1ht*_ga*NjQ5ODcwODg0LjE3ODI3NjYzMDA.*_ga_8JE65Q40S6*czE3ODI3NjYyOTkkbzEkZzEkdDE3ODI3NjYzOTkkajI3JGwwJGgw?auto=format&fit=crop&q=80&w=1200",
+    "description": "Im Rahmen unseres traditionellen Aşure-Tages lädt der Verein BVM e.V. (Bildung und Verständigung Mittelhessen e.V.) Sie herzlich zu einem schönen Picknick im Freien ein. Gemeinsam möchten wir einen angenehmen Nachmittag voller Begegnungen, Gespräche, Spiele und köstlicher Speisen verbringen und die Gemeinschaft sowie den Zusammenhalt stärken. Wir freuen uns sehr, Sie bei unserem Programm begrüßen zu dürfen!",
+    "wasErwartetSie": [
+      "Begegnung, Austausch und nette Gespräche",
+      "Unterhaltsame Spiele im Freien für die ganze Familie",
+      "Köstliche Verpflegung mit der traditionellen Asure-Speise (Noahs Pudding)"
+    ],
+    "fuerWen": "Offen für alle – wir laden alle Nachbarn, Familien, Freunde und Interessierte herzlich ein, einen unbeschwerten Nachmittag in Gemeinschaft zu verbringen."
   }
 ]
