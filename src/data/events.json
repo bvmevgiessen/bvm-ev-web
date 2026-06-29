@@ -345,5 +345,22 @@
       "Offene und herzliche Atmosphäre"
     ],
     "fuerWen": "Frauen/ Männer aller Altersgruppen und Herkunft, die sich austauschen und ihre Sprachkenntnisse erweitern möchten."
+  },
+  {
+    "id": "kulturzentrum-kapanis-2026",
+    "title": "Abschlussfeier der kulturellen Bildung (Kapanış Programı)",
+    "category": "KULTUR",
+    "stream": "Festive Events",
+    "date": "2026-06-30T18:00:00",
+    "location": "Am Hain 1 a, 35444 Biebertal",
+    "image": "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?auto=format&fit=crop&q=80&w=1200",
+    "description": "Die wöchentlichen Kurse unserer kulturellen Bildung für Kinder gehen für dieses Schuljahr zu Ende – Zeit, die großartigen Erfolge unserer Jüngsten gebührend zu feiern! Der Verein BVM e.V. (Bildung und Verständigung Mittelhessen e.V.) lädt alle Eltern unserer Vereinskinder ganz herzlich zu diesem besonderen Abschluss-Programm (Kapanış Programı) im Gießen Kültür Merkezi ein. Gemeinsam möchten wir auf ein erfolgreiches Bildungsjahr zurückblicken und die Fortschritte der Kinder würdigen.\n\nHinweis: Das Programm wird vollständig in türkischer Sprache durchgeführt.",
+    "wasErwartetSie": [
+      "Kreative Vorführungen und Präsentationen unserer Vereinskinder",
+      "Feierliche Übergabe der Teilnahmeurkunden an alle Kinder",
+      "Gemütliches Beisammensein bei traditionellem Tee und Gebäck",
+      "Dankeschön an die Eltern und Lehrkräfte für die wöchentliche Unterstützung"
+    ],
+    "fuerWen": "Exklusiv für die Eltern der Kinder unseres Vereins (BVM e.V.), die an den wöchentlichen Kultur- und Bildungskursen teilnehmen."
   }
 ]
