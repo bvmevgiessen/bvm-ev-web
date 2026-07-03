@@ -14,6 +14,7 @@ import BlogPage from './pages/BlogPage';
 import BlogDetailPage from './pages/BlogDetailPage';
 import MitmachenPage from './pages/MitmachenPage';
 import SpendenPage from './pages/SpendenPage';
+import TaetigkeitsberichtPage from './pages/TaetigkeitsberichtPage';
 import Footer from './components/Footer';
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/blog/:blogId" element={<BlogDetailPage />} />
           <Route path="/mitmachen" element={<MitmachenPage />} />
           <Route path="/spenden" element={<SpendenPage />} />
+          <Route path="/taetigkeitsbericht" element={<TaetigkeitsberichtPage />} />
         </Routes>
         <Footer />
       </div>
