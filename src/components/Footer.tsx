@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Github, Mail, Phone, MapPin, Facebook, Instagram, Twitter, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 import { useForm, ValidationError } from '@formspree/react';
+import { Link } from 'react-router-dom';
 import LegalModal from './LegalModal';
 import Logo from './Logo';
 
@@ -164,6 +165,7 @@ export default function Footer() {
             <li><a href={`${import.meta.env.BASE_URL}#about`} className="hover:text-white transition-colors">Über uns</a></li>
             <li><a href={`${import.meta.env.BASE_URL}#impact`} className="hover:text-white transition-colors">Unsere Impact</a></li>
             <li><a href={`${import.meta.env.BASE_URL}#events`} className="hover:text-white transition-colors">Veranstaltungen</a></li>
+            <li><Link to="/taetigkeitsbericht" className="hover:text-white transition-colors">Tätigkeitsbericht</Link></li>
             <li><a href={`${import.meta.env.BASE_URL}#contact`} className="hover:text-white transition-colors">Kontakt</a></li>
           </ul>
         </div>
