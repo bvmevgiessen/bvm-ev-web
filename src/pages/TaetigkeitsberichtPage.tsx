@@ -20,6 +20,7 @@ import {
   ChevronRight,
   ClipboardList
 } from 'lucide-react';
+import { jsPDF } from 'jspdf';
 import Navbar from '../components/Navbar';
 import PuzzleBackground from '../components/PuzzleBackground';
 
@@ -79,6 +80,22 @@ export default function TaetigkeitsberichtPage() {
   // Custom Google Apps Script Config
   const [gasUrl, setGasUrl] = useState('');
   const [showConfig, setShowConfig] = useState(false);
+
+  // Admin Mode state (hidden by default, activated via URL ?admin=true or a tiny subtle link)
+  const [isAdmin, setIsAdmin] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('admin') === 'true') {
+        localStorage.setItem('bvm_admin_mode', 'true');
+        return true;
+      } else if (urlParams.get('admin') === 'false') {
+        localStorage.setItem('bvm_admin_mode', 'false');
+        return false;
+      }
+      return localStorage.getItem('bvm_admin_mode') === 'true';
+    }
+    return false;
+  });
 
   // Helper to add repeatable finance items
   const addEinnahme = () => {
@@ -146,6 +163,275 @@ export default function TaetigkeitsberichtPage() {
     });
   };
 
+  // Build formal PDF document for Finanzamt / Verein Archive
+  const buildPDFDoc = () => {
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4'
+    });
+
+    const margin = 15;
+    const pageWidth = 210;
+    let y = 20;
+
+    // Helper for clean borders and separators
+    const addHeader = (text: string, yPos: number) => {
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(13);
+      doc.setTextColor(13, 148, 136); // #0D9488 (brand-teal)
+      doc.text(text, margin, yPos);
+      doc.setDrawColor(203, 213, 225); // slate-300
+      doc.setLineWidth(0.4);
+      doc.line(margin, yPos + 2, pageWidth - margin, yPos + 2);
+      doc.setTextColor(51, 65, 85); // slate-700
+      return yPos + 8;
+    };
+
+    // 1. Header Banner
+    doc.setFillColor(13, 148, 136); // Teal banner
+    doc.rect(0, 0, pageWidth, 38, 'F');
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(22);
+    doc.text('TÄTIGKEITSBERICHT', margin, 18);
+    
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(10);
+    doc.text('Bildung und Verständigung Mittelhessen e.V. (BVM)', margin, 26);
+    doc.text(`Erstellt am: ${erstellungsDatum ? new Date(erstellungsDatum).toLocaleDateString('de-DE') : new Date().toLocaleDateString('de-DE')}`, pageWidth - margin - 50, 26);
+
+    y = 48;
+
+    // 2. Section 1: General
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(15, 23, 42); // slate-900
+    doc.text('1. Allgemeine Informationen zur Tätigkeit', margin, y);
+    doc.setDrawColor(226, 232, 240); // slate-200
+    doc.line(margin, y + 2, pageWidth - margin, y + 2);
+    y += 8;
+
+    const infoFields = [
+      ['Verein:', verein || 'Bildung und Verständigung Mittelhessen e.V. (BVM)'],
+      ['Titel / Bezeichnung:', titel || '(Keine Angabe)'],
+      ['Datum der Durchführung:', datum ? new Date(datum).toLocaleDateString('de-DE') : '(Keine Angabe)'],
+      ['Veranstaltungsort:', ort || '(Keine Angabe)'],
+      ['Verantwortliche Person:', verantwortlichePerson || '(Keine Angabe)']
+    ];
+
+    doc.setFontSize(9.5);
+    infoFields.forEach(([label, val]) => {
+      if (y > 270) { doc.addPage(); y = 20; }
+      doc.setFont('helvetica', 'bold');
+      doc.setTextColor(71, 85, 105); // slate-600
+      doc.text(label, margin, y);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(15, 23, 42); // slate-900
+      
+      const wrappedText = doc.splitTextToSize(val, 125);
+      doc.text(wrappedText, margin + 45, y);
+      y += (wrappedText.length * 4.8) + 1.2;
+    });
+
+    y += 4;
+
+    // Descriptions
+    const descriptions = [
+      ['Ziel & Zweck des Vorhabens:', ziel || 'Keine Angabe.'],
+      ['Kurzprotokoll / Zusammenfassung:', kurzprotokoll || 'Keine Angabe.'],
+      ['Beschreibung des Ablaufs & Teilnehmerzahl:', beschreibung || 'Keine Angabe.']
+    ];
+
+    descriptions.forEach(([headerText, textContent]) => {
+      if (y > 250) { doc.addPage(); y = 20; }
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(10);
+      doc.setTextColor(15, 23, 42);
+      doc.text(headerText, margin, y);
+      y += 5;
+
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(9.5);
+      doc.setTextColor(51, 65, 85);
+      const splitLines = doc.splitTextToSize(textContent, pageWidth - (margin * 2));
+      doc.text(splitLines, margin, y);
+      y += (splitLines.length * 4.8) + 6;
+    });
+
+    // 3. Section 2: Finances
+    if (y > 210) { doc.addPage(); y = 20; }
+    y = addHeader('2. Einnahmen- & Ausgabenübersicht (Finanzbericht)', y);
+
+    // Financial Items Table
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setFillColor(241, 245, 249); // slate-100
+    doc.rect(margin, y, pageWidth - (margin * 2), 7, 'F');
+    doc.setTextColor(51, 65, 85);
+    doc.text('Datum', margin + 3, y + 4.8);
+    doc.text('Kategorie', margin + 30, y + 4.8);
+    doc.text('Beschreibung / Verwendung', margin + 62, y + 4.8);
+    doc.text('Betrag (EUR)', pageWidth - margin - 3, y + 4.8, { align: 'right' });
+    y += 10;
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    
+    let itemsList: { date: string; cat: string; desc: string; amount: number; isEinnahme: boolean }[] = [];
+    einnahmen.forEach(e => {
+      itemsList.push({ date: e.datum, cat: 'Einnahme', desc: e.beschreibung, amount: Number(e.betrag), isEinnahme: true });
+    });
+    ausgaben.forEach(a => {
+      itemsList.push({ date: a.datum, cat: 'Ausgabe', desc: a.beschreibung, amount: Number(a.betrag), isEinnahme: false });
+    });
+
+    if (itemsList.length === 0) {
+      doc.setTextColor(100, 116, 139);
+      doc.text('Keine finanziellen Posten erfasst.', margin + 3, y);
+      y += 8;
+    } else {
+      // Sort items by date
+      itemsList.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+      itemsList.forEach((item) => {
+        if (y > 270) { doc.addPage(); y = 20; }
+        const fDate = item.date ? new Date(item.date).toLocaleDateString('de-DE') : '-';
+        doc.setTextColor(15, 23, 42);
+        doc.text(fDate, margin + 3, y);
+        
+        doc.setFont('helvetica', 'bold');
+        if (item.isEinnahme) {
+          doc.setTextColor(13, 148, 136); // teal
+          doc.text('Einnahme', margin + 30, y);
+        } else {
+          doc.setTextColor(220, 38, 38); // red
+          doc.text('Ausgabe', margin + 30, y);
+        }
+        doc.setFont('helvetica', 'normal');
+        doc.setTextColor(51, 65, 85);
+
+        const descLines = doc.splitTextToSize(item.desc || '(Keine Beschreibung)', 80);
+        doc.text(descLines, margin + 62, y);
+
+        const amtStr = `${item.isEinnahme ? '+' : '-'}${item.amount.toFixed(2)} €`;
+        doc.setFont('helvetica', 'bold');
+        if (item.isEinnahme) {
+          doc.setTextColor(13, 148, 136);
+        } else {
+          doc.setTextColor(220, 38, 38);
+        }
+        doc.text(amtStr, pageWidth - margin - 3, y, { align: 'right' });
+        doc.setFont('helvetica', 'normal');
+
+        y += Math.max(descLines.length * 4.5, 6);
+      });
+    }
+
+    // Financial balance summary box
+    if (y > 240) { doc.addPage(); y = 20; }
+    doc.setFillColor(248, 250, 252); // slate-50
+    doc.setDrawColor(226, 232, 240);
+    doc.rect(margin, y, pageWidth - (margin * 2), 24, 'FD');
+
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9.5);
+    doc.setTextColor(71, 85, 105);
+    doc.text('Einnahmen Gesamt:', margin + 6, y + 6);
+    doc.text('Ausgaben Gesamt:', margin + 6, y + 13);
+    doc.text('Netto Saldo (Gewinn/Verlust):', margin + 6, y + 20);
+
+    doc.setFont('helvetica', 'normal');
+    doc.text(`${totalEinnahmen.toFixed(2)} €`, margin + 65, y + 13);
+
+    doc.setFont('helvetica', 'bold');
+    if (bilanz >= 0) {
+      doc.setTextColor(13, 148, 136);
+    } else {
+      doc.setTextColor(220, 38, 38);
+    }
+    doc.text(`${bilanz.toFixed(2)} €`, margin + 65, y + 20);
+    y += 32;
+
+    // 4. Section 3: Signatures & Verification
+    if (y > 230) { doc.addPage(); y = 20; }
+    y = addHeader('3. Freigabe & Elektronische Signatur', y);
+
+    doc.setFontSize(9.5);
+    doc.setTextColor(51, 65, 85);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Ersteller/in:', margin, y);
+    doc.setFont('helvetica', 'normal');
+    doc.text(erstellerName || '(Nicht angegeben)', margin + 25, y);
+
+    doc.setFont('helvetica', 'bold');
+    doc.text('Funktion:', margin, y + 6);
+    doc.setFont('helvetica', 'normal');
+    doc.text(funktion || '(Nicht angegeben)', margin + 25, y + 6);
+
+    doc.setFont('helvetica', 'bold');
+    doc.text('Erstellungsdatum:', margin, y + 12);
+    doc.setFont('helvetica', 'normal');
+    doc.text(erstellungsDatum ? new Date(erstellungsDatum).toLocaleDateString('de-DE') : '-', margin + 35, y + 12);
+
+    // Signature line on the right side
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(12);
+    doc.setTextColor(13, 148, 136);
+    doc.text(unterschrift || '(Keine Unterschrift)', margin + 115, y + 4);
+    
+    doc.setDrawColor(13, 148, 136);
+    doc.setLineWidth(0.5);
+    doc.line(margin + 110, y + 7, pageWidth - margin, y + 7);
+
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7.5);
+    doc.setTextColor(148, 163, 184); // slate-400
+    doc.text('Elektronische Unterschrift (vollständiger Name)', margin + 110, y + 11);
+
+    y += 20;
+
+    // 5. Google Drive location metadata if set
+    if (ablageort) {
+      if (y > 265) { doc.addPage(); y = 20; }
+      doc.setFillColor(240, 253, 250); // Teal light
+      doc.rect(margin, y, pageWidth - (margin * 2), 11, 'F');
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8);
+      doc.setTextColor(13, 148, 136);
+      doc.text('Digitaler Archivierungsort:', margin + 4, y + 4.5);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(15, 23, 42);
+      doc.text(ablageort, margin + 4, y + 8.2);
+    }
+
+    // Add simple footer with page numbers
+    const totalPages = (doc as any).internal.getNumberOfPages();
+    for (let i = 1; i <= totalPages; i++) {
+      doc.setPage(i);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(7.5);
+      doc.setTextColor(148, 163, 184);
+      doc.text('Bildung und Verständigung Mittelhessen e.V. (BVM)  |  Siemensstraße 18, 35394 Gießen  |  Registernummer: VR-4953', margin, 288);
+      doc.text(`Seite ${i} von ${totalPages}`, pageWidth - margin, 288, { align: 'right' });
+    }
+
+    return doc;
+  };
+
+  // Generate formal PDF for Finanzamt / Verein Archive & trigger download
+  const generatePDF = () => {
+    try {
+      const doc = buildPDFDoc();
+      const fileSafeTitle = (titel || 'Tätigkeitsbericht').replace(/[^a-zA-Z0-9]/g, '_');
+      doc.save(`BVM_Taetigkeitsbericht_${fileSafeTitle}.pdf`);
+    } catch (error) {
+      console.error('Fehler bei PDF-Generierung:', error);
+      alert('Es gab einen Fehler beim Erstellen der PDF-Datei.');
+    }
+  };
+
   // Drag-and-drop helpers
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -169,6 +455,21 @@ export default function TaetigkeitsberichtPage() {
     setSubmitError(null);
     setSubmitting(true);
 
+    // Generate the official PDF on the fly and add to uploads payload
+    let pdfData = null;
+    try {
+      const pdfDoc = buildPDFDoc();
+      const pdfBase64Str = pdfDoc.output('datauristring').split(',')[1];
+      const fileSafeTitle = (titel || 'Tätigkeitsbericht').replace(/[^a-zA-Z0-9]/g, '_');
+      pdfData = {
+        name: `BVM_Taetigkeitsbericht_${fileSafeTitle}.pdf`,
+        type: 'application/pdf',
+        data: pdfBase64Str
+      };
+    } catch (err) {
+      console.error('Fehler bei der PDF-Generierung für Google Drive:', err);
+    }
+
     const payload = {
       verein,
       titel,
@@ -188,6 +489,7 @@ export default function TaetigkeitsberichtPage() {
       funktion,
       erstellungsDatum,
       unterschrift,
+      pdf: pdfData,
       fotos: fotos.map(f => ({ name: f.name, type: f.type, data: f.base64.split(',')[1] })),
       belege: belege.map(f => ({ name: f.name, type: f.type, data: f.base64.split(',')[1] }))
     };
@@ -254,77 +556,81 @@ export default function TaetigkeitsberichtPage() {
           </div>
 
           {/* Quick Config Modal Trigger for Developer/Vereinsadmin */}
-          <div className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="flex items-start gap-3">
-              <div className="bg-brand-teal/10 text-brand-teal p-3 rounded-2xl shrink-0 mt-0.5">
-                <Info size={20} />
-              </div>
-              <div>
-                <h3 className="font-bold text-slate-800">Schnittstellen-Einstellung</h3>
-                <p className="text-sm text-slate-500">
-                  Verbinden Sie dieses Formular mit Ihrem vereinseigenen Google Drive & Google Sheets Account über ein einfaches Google Apps Script.
-                </p>
-              </div>
-            </div>
-            <button 
-              onClick={() => setShowConfig(!showConfig)}
-              className="text-xs font-bold text-brand-teal bg-brand-teal/5 hover:bg-brand-teal/10 px-4 py-2.5 rounded-full transition-all border border-brand-teal/20 self-start md:self-auto shrink-0"
-            >
-              {showConfig ? 'Einstellung schließen' : 'Schnittstelle konfigurieren'}
-            </button>
-          </div>
-
-          <AnimatePresence>
-            {showConfig && (
-              <motion.div 
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                className="overflow-hidden mb-8"
-              >
-                <div className="bg-slate-900 text-slate-300 rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 space-y-6">
-                  <div>
-                    <h3 className="text-white text-lg font-bold mb-2">Google Apps Script Web-App URL</h3>
-                    <p className="text-xs text-slate-400 leading-relaxed mb-4">
-                      Fügen Sie hier die bereitgestellte Web-App URL Ihres Google-Skripts ein. Nach der Konfiguration werden alle Einträge, Belege und Fotos vollautomatisch in Ihrem vereinseigenen Google Sheet protokolliert und in Ihren Google Drive Ordner hochgeladen.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <input 
-                        type="url"
-                        placeholder="https://script.google.com/macros/s/.../exec"
-                        value={gasUrl}
-                        onChange={(e) => setGasUrl(e.target.value)}
-                        className="flex-1 bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-brand-teal"
-                      />
-                      <button 
-                        onClick={() => setShowConfig(false)}
-                        className="bg-brand-teal text-white hover:bg-brand-teal-dark px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors shrink-0"
-                      >
-                        Speichern & Schließen
-                      </button>
-                    </div>
-                    {!gasUrl && (
-                      <p className="text-xs text-amber-400 mt-2 flex items-center gap-1.5">
-                        <AlertCircle size={12} /> Ohne eingetragene URL wird das Einreichen lokal simuliert und ein schöner Beleg generiert.
-                      </p>
-                    )}
+          {isAdmin && (
+            <>
+              <div className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div className="flex items-start gap-3">
+                  <div className="bg-brand-teal/10 text-brand-teal p-3 rounded-2xl shrink-0 mt-0.5">
+                    <Info size={20} />
                   </div>
-                  
-                  <div className="border-t border-slate-800 pt-6">
-                    <h4 className="text-white text-sm font-bold mb-2">Wie richte ich das im Google-Konto ein?</h4>
-                    <ol className="list-decimal pl-5 text-xs text-slate-400 space-y-2 leading-relaxed">
-                      <li>Erstellen Sie ein Google Sheet mit dem Namen <code className="text-brand-teal">BVM_Taetigkeitsberichte</code>.</li>
-                      <li>Gehen Sie auf <strong className="text-white">Erweiterungen &gt; Apps Script</strong>.</li>
-                      <li>Ersetzen Sie den dortigen Code durch das standardisierte Google Apps Script (Skriptcode am Ende dieser Seite herunterladbar).</li>
-                      <li>Klicken Sie oben rechts auf <strong className="text-white">Bereitstellen &gt; Neue Bereitstellung</strong>.</li>
-                      <li>Wählen Sie den Typ <strong className="text-white">Web-App</strong>. Ausführen als: <strong className="text-white">Sie selbst</strong>. Wer hat Zugriff: <strong className="text-white">Jeder</strong>.</li>
-                      <li>Kopieren Sie die erzeugte Web-App-URL und fügen Sie diese oben ein. Fertig!</li>
-                    </ol>
+                  <div>
+                    <h3 className="font-bold text-slate-800">Schnittstellen-Einstellung</h3>
+                    <p className="text-sm text-slate-500">
+                      Verbinden Sie dieses Formular mit Ihrem vereinseigenen Google Drive & Google Sheets Account über ein einfaches Google Apps Script.
+                    </p>
                   </div>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                <button 
+                  onClick={() => setShowConfig(!showConfig)}
+                  className="text-xs font-bold text-brand-teal bg-brand-teal/5 hover:bg-brand-teal/10 px-4 py-2.5 rounded-full transition-all border border-brand-teal/20 self-start md:self-auto shrink-0"
+                >
+                  {showConfig ? 'Einstellung schließen' : 'Schnittstelle konfigurieren'}
+                </button>
+              </div>
+
+              <AnimatePresence>
+                {showConfig && (
+                  <motion.div 
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="overflow-hidden mb-8"
+                  >
+                    <div className="bg-slate-900 text-slate-300 rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 space-y-6">
+                      <div>
+                        <h3 className="text-white text-lg font-bold mb-2">Google Apps Script Web-App URL</h3>
+                        <p className="text-xs text-slate-400 leading-relaxed mb-4">
+                          Fügen Sie hier die bereitgestellte Web-App URL Ihres Google-Skripts ein. Nach der Konfiguration werden alle Einträge, Belege und Fotos vollautomatisch in Ihrem vereinseigenen Google Sheet protokolliert und in Ihren Google Drive Ordner hochgeladen.
+                        </p>
+                        <div className="flex flex-col sm:flex-row gap-3">
+                          <input 
+                            type="url"
+                            placeholder="https://script.google.com/macros/s/.../exec"
+                            value={gasUrl}
+                            onChange={(e) => setGasUrl(e.target.value)}
+                            className="flex-1 bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-brand-teal"
+                          />
+                          <button 
+                            onClick={() => setShowConfig(false)}
+                            className="bg-brand-teal text-white hover:bg-brand-teal-dark px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors shrink-0"
+                          >
+                            Speichern & Schließen
+                          </button>
+                        </div>
+                        {!gasUrl && (
+                          <p className="text-xs text-amber-400 mt-2 flex items-center gap-1.5">
+                            <AlertCircle size={12} /> Ohne eingetragene URL wird das Einreichen lokal simuliert und ein schöner Beleg generiert.
+                          </p>
+                        )}
+                      </div>
+                      
+                      <div className="border-t border-slate-800 pt-6">
+                        <h4 className="text-white text-sm font-bold mb-2">Wie richte ich das im Google-Konto ein?</h4>
+                        <ol className="list-decimal pl-5 text-xs text-slate-400 space-y-2 leading-relaxed">
+                          <li>Erstellen Sie ein Google Sheet mit dem Namen <code className="text-brand-teal">BVM_Taetigkeitsberichte</code>.</li>
+                          <li>Gehen Sie auf <strong className="text-white">Erweiterungen &gt; Apps Script</strong>.</li>
+                          <li>Ersetzen Sie den dortigen Code durch das standardisierte Google Apps Script (Skriptcode am Ende dieser Seite herunterladbar).</li>
+                          <li>Klicken Sie oben rechts auf <strong className="text-white">Bereitstellen &gt; Neue Bereitstellung</strong>.</li>
+                          <li>Wählen Sie den Typ <strong className="text-white">Web-App</strong>. Ausführen als: <strong className="text-white">Sie selbst</strong>. Wer hat Zugriff: <strong className="text-white">Jeder</strong>.</li>
+                          <li>Kopieren Sie die erzeugte Web-App-URL und fügen Sie diese oben ein. Fertig!</li>
+                        </ol>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </>
+          )}
 
           {/* Progress Tracker */}
           {step < 4 && (
@@ -885,29 +1191,40 @@ export default function TaetigkeitsberichtPage() {
                       </div>
                     )}
 
-                    <div className="flex justify-between pt-4">
+                    <div className="flex flex-col sm:flex-row justify-between gap-4 pt-4 border-t border-slate-100">
                       <button
                         type="button"
                         onClick={() => setStep(2)}
-                        className="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold flex items-center gap-2 py-3 px-6 text-sm rounded-xl transition-colors"
+                        className="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold flex items-center justify-center gap-2 py-3 px-6 text-sm rounded-xl transition-colors w-full sm:w-auto cursor-pointer"
                       >
                         <ArrowLeft size={16} /> Zurück
                       </button>
-                      <button
-                        type="submit"
-                        disabled={submitting || !isStep3Valid()}
-                        className="bg-brand-teal hover:bg-brand-teal-dark text-white font-bold flex items-center justify-center gap-2 py-3 px-8 text-sm rounded-xl transition-all disabled:opacity-50"
-                      >
-                        {submitting ? (
-                          <>
-                            <Loader2 className="animate-spin" size={16} /> Übermittlung läuft...
-                          </>
-                        ) : (
-                          <>
-                            Tätigkeitsbericht einreichen <CheckCircle size={16} />
-                          </>
-                        )}
-                      </button>
+                      
+                      <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+                        <button
+                          type="button"
+                          onClick={generatePDF}
+                          className="bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-700 font-bold flex items-center justify-center gap-2 py-3 px-6 text-sm rounded-xl transition-all cursor-pointer"
+                        >
+                          <FileText size={16} className="text-brand-teal" /> PDF Vorschau laden
+                        </button>
+
+                        <button
+                          type="submit"
+                          disabled={submitting || !isStep3Valid()}
+                          className="bg-brand-teal hover:bg-brand-teal-dark text-white font-bold flex items-center justify-center gap-2 py-3 px-8 text-sm rounded-xl transition-all disabled:opacity-50 cursor-pointer w-full sm:w-auto"
+                        >
+                          {submitting ? (
+                            <>
+                              <Loader2 className="animate-spin" size={16} /> Übermittlung läuft...
+                            </>
+                          ) : (
+                            <>
+                              Tätigkeitsbericht einreichen <CheckCircle size={16} />
+                            </>
+                          )}
+                        </button>
+                      </div>
                     </div>
                   </motion.div>
                 )}
@@ -941,7 +1258,14 @@ export default function TaetigkeitsberichtPage() {
                       <p><span className="text-slate-400 font-semibold">Eingereicht von:</span> {erstellerName} ({funktion})</p>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4">
+                    <div className="flex flex-col sm:flex-row gap-3 justify-center pt-4 max-w-xl mx-auto">
+                      <button
+                        type="button"
+                        onClick={generatePDF}
+                        className="bg-brand-teal hover:bg-brand-teal-dark text-white font-bold py-3 px-6 rounded-xl text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-brand-teal/10"
+                      >
+                        <FileText size={18} /> PDF Beleg herunterladen
+                      </button>
                       <button
                         type="button"
                         onClick={() => {
@@ -963,7 +1287,7 @@ export default function TaetigkeitsberichtPage() {
                           setBelege([]);
                           setStep(1);
                         }}
-                        className="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-6 rounded-xl text-sm transition-colors"
+                        className="bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold py-3 px-6 rounded-xl text-sm transition-colors cursor-pointer"
                       >
                         Weiteren Bericht einreichen
                       </button>
@@ -982,181 +1306,201 @@ export default function TaetigkeitsberichtPage() {
           </div>
 
           {/* Detailed Instructions and Developer Materials (Apps Script code) */}
-          <div className="mt-12 bg-white border border-slate-100 rounded-3xl p-6 sm:p-10 shadow-sm space-y-6">
-            <h3 className="text-lg font-bold text-brand-navy flex items-center gap-2 border-b border-slate-100 pb-4">
-              <FileCode className="text-brand-teal" size={20} /> 🛠️ Technische Dokumentation & Integration (Google Workspace)
-            </h3>
-            
-            <p className="text-sm text-slate-600 leading-relaxed">
-              Da Ihre Webseite auf GitHub Pages als statisches Frontend läuft, greifen wir auf ein <strong>serverloses Integrationsverfahren</strong> via <strong>Google Apps Script</strong> zurück. Das ist für Sie komplett kostenlos, sicher und speichert sämtliche Tätigkeitsberichte direkt in Ihrer vereinseigenen Cloud (Google Drive + Google Sheet) ab, inklusive vollautomatischem E-Mail-Versand an <strong>bvmevgiessen@gmail.com</strong>.
-            </p>
+          {isAdmin && (
+            <div className="mt-12 bg-white border border-slate-100 rounded-3xl p-6 sm:p-10 shadow-sm space-y-6">
+              <h3 className="text-lg font-bold text-brand-navy flex items-center gap-2 border-b border-slate-100 pb-4">
+                <FileCode className="text-brand-teal" size={20} /> 🛠️ Technische Dokumentation & Integration (Google Workspace)
+              </h3>
+              
+              <p className="text-sm text-slate-600 leading-relaxed">
+                Da Ihre Webseite auf GitHub Pages als statisches Frontend läuft, greifen wir auf ein <strong>serverloses Integrationsverfahren</strong> via <strong>Google Apps Script</strong> zurück. Das ist für Sie komplett kostenlos, sicher und speichert sämtliche Tätigkeitsberichte direkt in Ihrer vereinseigenen Cloud (Google Drive + Google Sheet) ab, inklusive vollautomatischem E-Mail-Versand an <strong>bvmevgiessen@gmail.com</strong>.
+              </p>
 
-            <div className="space-y-4">
-              <h4 className="font-bold text-slate-800 text-sm">Ablauf der Integration:</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2">
-                  <div className="w-6 h-6 bg-brand-teal text-white rounded-full flex items-center justify-center font-bold text-[10px]">1</div>
-                  <h5 className="font-bold text-slate-700">Formular absenden</h5>
-                  <p className="text-slate-500">Das React-Formular konvertiert Fotos und Belege in Base64-Formate und sendet sie gebündelt mit den Texten als JSON.</p>
-                </div>
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2">
-                  <div className="w-6 h-6 bg-brand-teal text-white rounded-full flex items-center justify-center font-bold text-[10px]">2</div>
-                  <h5 className="font-bold text-slate-700">Google Apps Script</h5>
-                  <p className="text-slate-500">Das Skript empfängt die Anfrage, trägt eine Zeile in Ihr Google Sheet ein und speichert Dateien strukturiert in Ihrem Google Drive ab.</p>
-                </div>
-                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2">
-                  <div className="w-6 h-6 bg-brand-teal text-white rounded-full flex items-center justify-center font-bold text-[10px]">3</div>
-                  <h5 className="font-bold text-slate-700">E-Mail Benachrichtigung</h5>
-                  <p className="text-slate-500">Es generiert eine ansprechende Zusammenfassung und versendet sie automatisch per Gmail mit den Links zum Drive-Ordner.</p>
+              <div className="space-y-4">
+                <h4 className="font-bold text-slate-800 text-sm">Ablauf der Integration:</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2">
+                    <div className="w-6 h-6 bg-brand-teal text-white rounded-full flex items-center justify-center font-bold text-[10px]">1</div>
+                    <h5 className="font-bold text-slate-700">Formular absenden</h5>
+                    <p className="text-slate-500">Das React-Formular konvertiert Fotos und Belege in Base64-Formate und sendet sie gebündelt mit den Texten als JSON.</p>
+                  </div>
+                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2">
+                    <div className="w-6 h-6 bg-brand-teal text-white rounded-full flex items-center justify-center font-bold text-[10px]">2</div>
+                    <h5 className="font-bold text-slate-700">Google Apps Script</h5>
+                    <p className="text-slate-500">Das Skript empfängt die Anfrage, trägt eine Zeile in Ihr Google Sheet ein und speichert Dateien strukturiert in Ihrem Google Drive ab.</p>
+                  </div>
+                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2">
+                    <div className="w-6 h-6 bg-brand-teal text-white rounded-full flex items-center justify-center font-bold text-[10px]">3</div>
+                    <h5 className="font-bold text-slate-700">E-Mail Benachrichtigung</h5>
+                    <p className="text-slate-500">Es generiert eine ansprechende Zusammenfassung und versendet sie automatisch per Gmail mit den Links zum Drive-Ordner.</p>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="space-y-3">
-              <h4 className="font-bold text-slate-800 text-sm">Der Google Apps Script Code zum Kopieren:</h4>
-              <div className="relative">
-                <pre className="bg-slate-900 text-slate-300 text-xs font-mono rounded-2xl p-5 overflow-x-auto max-h-96 leading-relaxed border border-slate-800">
-{`/**
- * Google Apps Script für BVM Tätigkeitsberichte
- * Web-App Empfänger für das statische GitHub-Pages Formular
- */
+              <div className="space-y-3">
+                <h4 className="font-bold text-slate-800 text-sm">Der Google Apps Script Code zum Kopieren:</h4>
+                <div className="relative">
+                  <pre className="bg-slate-900 text-slate-300 text-xs font-mono rounded-2xl p-5 overflow-x-auto max-h-96 leading-relaxed border border-slate-800">
+  {`/**
+   * Google Apps Script für BVM Tätigkeitsberichte
+   * Web-App Empfänger für das statische GitHub-Pages Formular
+   */
 
-function doPost(e) {
-  try {
-    var data = JSON.parse(e.postData.contents);
-    
-    // 1. Google Sheet öffnen oder erstellen
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    
-    // Header schreiben, falls das Sheet leer ist
-    if (sheet.getLastRow() === 0) {
+  function doPost(e) {
+    try {
+      var data = JSON.parse(e.postData.contents);
+      
+      // 1. Google Sheet öffnen oder erstellen
+      var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+      
+      // Header schreiben, falls das Sheet leer ist
+      if (sheet.getLastRow() === 0) {
+        sheet.appendRow([
+          "Zeitstempel", "Verein", "Titel der Veranstaltung", "Datum", "Ort", 
+          "Verantwortliche Person", "Ziel / Zweck", "Kurzprotokoll", "Beschreibung", 
+          "Einnahmen (Gesamt)", "Ausgaben (Gesamt)", "Netto Saldo", "Erstellt von", 
+          "Funktion", "Erstellungsdatum", "Unterschrift", "Ablageort", "Dateilinks"
+        ]);
+      }
+      
+      // 2. Drive Ordner holen/erstellen
+      var folderName = "BVM_Taetigkeitsberichte_Uploads";
+      var folders = DriveApp.getFoldersByName(folderName);
+      var folder = folders.hasNext() ? folders.next() : DriveApp.createFolder(folderName);
+      
+      // 3. Unterordner für dieses Event erstellen
+      var eventDateStr = data.datum.split("T")[0];
+      var subFolder = folder.createFolder("Bericht_" + eventDateStr + "_" + data.titel.replace(/[^a-z0-9]/gi, "_"));
+      
+      var fileUrls = [];
+      
+      // Fotos abspeichern
+      if (data.fotos && data.fotos.length > 0) {
+        data.fotos.forEach(function(foto, index) {
+          var blob = Utilities.newBlob(Utilities.base64Decode(foto.data), foto.type, "Foto_" + (index + 1) + "_" + foto.name);
+          var file = subFolder.createFile(blob);
+          fileUrls.push(file.getUrl());
+        });
+      }
+      
+      // Belege abspeichern
+      if (data.belege && data.belege.length > 0) {
+        data.belege.forEach(function(beleg, index) {
+          var blob = Utilities.newBlob(Utilities.base64Decode(beleg.data), beleg.type, "Beleg_" + (index + 1) + "_" + beleg.name);
+          var file = subFolder.createFile(blob);
+          fileUrls.push(file.getUrl());
+        });
+      }
+
+      // Generierten PDF-Tätigkeitsbericht abspeichern
+      if (data.pdf && data.pdf.data) {
+        var blob = Utilities.newBlob(Utilities.base64Decode(data.pdf.data), data.pdf.type, data.pdf.name);
+        var file = subFolder.createFile(blob);
+        fileUrls.push(file.getUrl());
+      }
+      
+      // 4. Zeile in Sheet eintragen
       sheet.appendRow([
-        "Zeitstempel", "Verein", "Titel der Veranstaltung", "Datum", "Ort", 
-        "Verantwortliche Person", "Ziel / Zweck", "Kurzprotokoll", "Beschreibung", 
-        "Einnahmen (Gesamt)", "Ausgaben (Gesamt)", "Netto Saldo", "Erstellt von", 
-        "Funktion", "Erstellungsdatum", "Unterschrift", "Ablageort", "Dateilinks"
+        new Date(),
+        data.verein,
+        data.titel,
+        data.datum,
+        data.ort,
+        data.verantwortlichePerson,
+        data.ziel,
+        data.kurzprotokoll,
+        data.beschreibung,
+        data.totalEinnahmen + " €",
+        data.totalAusgaben + " €",
+        data.bilanz + " €",
+        data.erstellerName,
+        data.funktion,
+        data.erstellungsDatum,
+        data.unterschrift,
+        data.ablageort || "Google Drive Ordner",
+        fileUrls.join("\\n")
       ]);
-    }
-    
-    // 2. Drive Ordner holen/erstellen
-    var folderName = "BVM_Taetigkeitsberichte_Uploads";
-    var folders = DriveApp.getFoldersByName(folderName);
-    var folder = folders.hasNext() ? folders.next() : DriveApp.createFolder(folderName);
-    
-    // 3. Unterordner für dieses Event erstellen
-    var eventDateStr = data.datum.split("T")[0];
-    var subFolder = folder.createFolder("Bericht_" + eventDateStr + "_" + data.titel.replace(/[^a-z0-9]/gi, "_"));
-    
-    var fileUrls = [];
-    
-    // Fotos abspeichern
-    if (data.fotos && data.fotos.length > 0) {
-      data.fotos.forEach(function(foto, index) {
-        var blob = Utilities.newBlob(Utilities.base64Decode(foto.data), foto.type, "Foto_" + (index + 1) + "_" + foto.name);
-        var file = subFolder.createFile(blob);
-        fileUrls.push(file.getUrl());
-      });
-    }
-    
-    // Belege abspeichern
-    if (data.belege && data.belege.length > 0) {
-      data.belege.forEach(function(beleg, index) {
-        var blob = Utilities.newBlob(Utilities.base64Decode(beleg.data), beleg.type, "Beleg_" + (index + 1) + "_" + beleg.name);
-        var file = subFolder.createFile(blob);
-        fileUrls.push(file.getUrl());
-      });
-    }
-    
-    // 4. Zeile in Sheet eintragen
-    sheet.appendRow([
-      new Date(),
-      data.verein,
-      data.titel,
-      data.datum,
-      data.ort,
-      data.verantwortlichePerson,
-      data.ziel,
-      data.kurzprotokoll,
-      data.beschreibung,
-      data.totalEinnahmen + " €",
-      data.totalAusgaben + " €",
-      data.bilanz + " €",
-      data.erstellerName,
-      data.funktion,
-      data.erstellungsDatum,
-      data.unterschrift,
-      data.ablageort || "Google Drive Ordner",
-      fileUrls.join("\\n")
-    ]);
-    
-    // 5. Automatische E-Mail Benachrichtigung an bvmevgiessen@gmail.com
-    var emailRecipient = "bvmevgiessen@gmail.com";
-    var emailSubject = "Ein neuer Tätigkeitsbericht wurde eingereicht: " + data.titel;
-    
-    var htmlBody = \`
-      <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #f1f5f9; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
-        <div style="background-color: #0d9488; color: white; padding: 24px; text-align: center;">
-          <h2 style="margin: 0; font-size: 20px;">Neuer Tätigkeitsbericht erfasst</h2>
-          <p style="margin: 8px 0 0 0; font-size: 14px; opacity: 0.9;">BVM e.V. Vereinsportal</p>
+      
+      // 5. Automatische E-Mail Benachrichtigung an bvmevgiessen@gmail.com
+      var emailRecipient = "bvmevgiessen@gmail.com";
+      var emailSubject = "Ein neuer Tätigkeitsbericht wurde eingereicht: " + data.titel;
+      
+      var htmlBody = \`
+        <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #f1f5f9; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);">
+          <div style="background-color: #0d9488; color: white; padding: 24px; text-align: center;">
+            <h2 style="margin: 0; font-size: 20px;">Neuer Tätigkeitsbericht erfasst</h2>
+            <p style="margin: 8px 0 0 0; font-size: 14px; opacity: 0.9;">BVM e.V. Vereinsportal</p>
+          </div>
+          <div style="padding: 24px; color: #334155; line-height: 1.6;">
+            <p>Hallo Vorstandsteam,</p>
+            <p>ein neuer Tätigkeitsbericht wurde über die Website eingereicht und erfolgreich in Google Drive archiviert.</p>
+            
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+              <tr style="background-color: #f8fafc;">
+                <td style="padding: 10px; font-weight: bold; border-bottom: 1px solid #f1f5f9; width: 40%;">Tätigkeit / Event:</td>
+                <td style="padding: 10px; border-bottom: 1px solid #f1f5f9;">\${data.titel}</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Datum & Ort:</td>
+                <td style="padding: 10px; border-bottom: 1px solid #f1f5f9;">\${data.datum} in \${data.ort}</td>
+              </tr>
+              <tr style="background-color: #f8fafc;">
+                <td style="padding: 10px; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Verantwortlich:</td>
+                <td style="padding: 10px; border-bottom: 1px solid #f1f5f9;">\${data.verantwortlichePerson}</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Einnahmen / Ausgaben:</td>
+                <td style="padding: 10px; border-bottom: 1px solid #f1f5f9;">Einnahmen: \${data.totalEinnahmen} € | Ausgaben: \${data.totalAusgaben} €</td>
+              </tr>
+              <tr style="background-color: #f8fafc;">
+                <td style="padding: 10px; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Netto-Bilanz:</td>
+                <td style="padding: 10px; border-bottom: 1px solid #f1f5f9; font-weight: bold; color: \${data.bilanz >= 0 ? '#0d9488' : '#ef4444'}">\${data.bilanz} €</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Eingereicht von:</td>
+                <td style="padding: 10px; border-bottom: 1px solid #f1f5f9;">\${data.erstellerName} (\${data.funktion})</td>
+              </tr>
+            </table>
+            
+            <p style="margin-top: 24px;">
+              <a href="\${subFolder.getUrl()}" style="background-color: #0d9488; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">Uploads in Google Drive ansehen</a>
+            </p>
+            
+            <p style="font-size: 11px; color: #94a3b8; margin-top: 40px; border-top: 1px solid #f1f5f9; pt-10;">
+              Diese E-Mail wurde automatisch vom Tätigkeitsbericht-Formular des BVM e.V. gesendet.
+            </p>
+          </div>
         </div>
-        <div style="padding: 24px; color: #334155; line-height: 1.6;">
-          <p>Hallo Vorstandsteam,</p>
-          <p>ein neuer Tätigkeitsbericht wurde über die Website eingereicht und erfolgreich in Google Drive archiviert.</p>
-          
-          <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-            <tr style="background-color: #f8fafc;">
-              <td style="padding: 10px; font-weight: bold; border-bottom: 1px solid #f1f5f9; width: 40%;">Tätigkeit / Event:</td>
-              <td style="padding: 10px; border-bottom: 1px solid #f1f5f9;">\${data.titel}</td>
-            </tr>
-            <tr>
-              <td style="padding: 10px; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Datum & Ort:</td>
-              <td style="padding: 10px; border-bottom: 1px solid #f1f5f9;">\${data.datum} in \${data.ort}</td>
-            </tr>
-            <tr style="background-color: #f8fafc;">
-              <td style="padding: 10px; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Verantwortlich:</td>
-              <td style="padding: 10px; border-bottom: 1px solid #f1f5f9;">\${data.verantwortlichePerson}</td>
-            </tr>
-            <tr>
-              <td style="padding: 10px; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Einnahmen / Ausgaben:</td>
-              <td style="padding: 10px; border-bottom: 1px solid #f1f5f9;">Einnahmen: \${data.totalEinnahmen} € | Ausgaben: \${data.totalAusgaben} €</td>
-            </tr>
-            <tr style="background-color: #f8fafc;">
-              <td style="padding: 10px; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Netto-Bilanz:</td>
-              <td style="padding: 10px; border-bottom: 1px solid #f1f5f9; font-weight: bold; color: \${data.bilanz >= 0 ? '#0d9488' : '#ef4444'}">\${data.bilanz} €</td>
-            </tr>
-            <tr>
-              <td style="padding: 10px; font-weight: bold; border-bottom: 1px solid #f1f5f9;">Eingereicht von:</td>
-              <td style="padding: 10px; border-bottom: 1px solid #f1f5f9;">\${data.erstellerName} (\${data.funktion})</td>
-            </tr>
-          </table>
-          
-          <p style="margin-top: 24px;">
-            <a href="\${subFolder.getUrl()}" style="background-color: #0d9488; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">Uploads in Google Drive ansehen</a>
-          </p>
-          
-          <p style="font-size: 11px; color: #94a3b8; margin-top: 40px; border-top: 1px solid #f1f5f9; pt-10;">
-            Diese E-Mail wurde automatisch vom Tätigkeitsbericht-Formular des BVM e.V. gesendet.
-          </p>
-        </div>
-      </div>
-    \`;
-    
-    MailApp.sendEmail({
-      to: emailRecipient,
-      subject: emailSubject,
-      htmlBody: htmlBody
-    });
-    
-    return ContentService.createTextOutput(JSON.stringify({ "status": "success", "folder": subFolder.getUrl() }))
-                         .setMimeType(ContentService.MimeType.JSON);
-  } catch (err) {
-    return ContentService.createTextOutput(JSON.stringify({ "status": "error", "message": err.toString() }))
-                         .setMimeType(ContentService.MimeType.JSON);
-  }
-}`}
-                </pre>
+      \`;
+      
+      MailApp.sendEmail({
+        to: emailRecipient,
+        subject: emailSubject,
+        htmlBody: htmlBody
+      });
+      
+      return ContentService.createTextOutput(JSON.stringify({ "status": "success", "folder": subFolder.getUrl() }))
+                           .setMimeType(ContentService.MimeType.JSON);
+    } catch (err) {
+      return ContentService.createTextOutput(JSON.stringify({ "status": "error", "message": err.toString() }))
+                           .setMimeType(ContentService.MimeType.JSON);
+    }
+  }`}
+                  </pre>
+                </div>
               </div>
             </div>
+          )}
+
+          {/* Subtle toggle button for BVM e.V. Admin setup panel */}
+          <div className="mt-12 text-center text-xs text-slate-400 border-t border-slate-200/50 pt-6">
+            <button 
+              type="button" 
+              onClick={() => setIsAdmin(!isAdmin)} 
+              className="text-slate-400 hover:text-slate-600 transition-colors bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-full cursor-pointer font-medium"
+            >
+              {isAdmin ? '🔑 Admin-Modus beenden' : '⚙️ Technische Schnittstellen-Einstellung (nur für Vereins-Admin)'}
+            </button>
           </div>
 
         </div>
