@@ -1,5 +1,64 @@
 [
   {
+    "id": "sdub-c1bd1343d7",
+    "title": "1. Juli – Gedenktag gegen antimuslimischen Rassismus",
+    "link": "https://sdub.de/gedenktag-gegen-antimuslimischen-rassismus/",
+    "date": "2026-07-01T11:04:00+00:00",
+    "source_name": "Stiftung Dialog und Bildung",
+    "image_url": "https://sdub.de/wp-content/uploads/2026/07/tag-gegen-antimuslimischen-rassismus-768x614.jpg",
+    "category": "Dialog",
+    "author": "Stiftung Dialog und Bildung",
+    "partnerName": "Stiftung Dialog und Bildung",
+    "partnerUrl": "https://sdub.de/",
+    "image": "https://sdub.de/wp-content/uploads/2026/07/tag-gegen-antimuslimischen-rassismus-768x614.jpg",
+    "excerpt": "Rassismus hat keinen Platz in unserer Gesellschaft – gegen niemanden. Heute erinnern wir an die Menschen, die antimuslimischen Rassismus erfahren, und setzen ein Zeichen für Respekt, Menschenwürde und Zusammenhalt. Wer…",
+    "tags": [
+      "Dialog",
+      "Erinnerungskultur",
+      "Pressemitteilungen"
+    ],
+    "external": true,
+    "sourceId": "sdub"
+  },
+  {
+    "id": "fidev-5b6f841c9b",
+    "title": "Hessisches Basketballturnier für Frauen und Mädchen",
+    "link": "https://www.fidev.org/post/hessisches-basketballturnier-f%C3%BCr-frauen-und-m%C3%A4dchen",
+    "date": "2026-06-30T11:30:27+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/2d6f92_ae7472eb4d7147c8aa948bdbdc5ca085~mv2.png/v1/fit/w_1000,h_176,al_c,q_80/file.png",
+    "category": "Jugend",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/2d6f92_ae7472eb4d7147c8aa948bdbdc5ca085~mv2.png/v1/fit/w_1000,h_176,al_c,q_80/file.png",
+    "excerpt": "Beim von FID e.V. organisierten Hessischen Basketballturnier geht es vor allem darum Basketball auszuprobieren, gemeinsam aktiv zu sein und einen sportlichen Tag mit anderen jungen Frauen zu verbringen. Im Mittelpunkt s…",
+    "tags": [
+      "Jugend"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
+    "id": "fidev-ac55700fc0",
+    "title": "Tage des Exils",
+    "link": "https://www.fidev.org/post/tage-des-exils",
+    "date": "2026-06-30T11:18:17+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/2d6f92_423246972f384c12a7f43b981afece03~mv2.jpg/v1/fit/w_900,h_676,al_c,q_80/file.png",
+    "category": "Community",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/2d6f92_423246972f384c12a7f43b981afece03~mv2.jpg/v1/fit/w_900,h_676,al_c,q_80/file.png",
+    "excerpt": "Film und Diskussionsabend: Being a Refugee „Heimat ist, woher man kommt, aber auch das, was man verloren hat.“ Mit diesen Worten eröffnete der Schirmherr Christopher Hope die Tage des Exils 2024 in Bonn. Seit 8 Jahren b…",
+    "tags": [
+      "Community"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
     "id": "fidev-7fc49cab2c",
     "title": "Democracy SafeSpace – Frankfurter Jugend im Dialog",
     "link": "https://www.fidev.org/post/democracy-safespace",
@@ -36,6 +95,25 @@
     ],
     "external": true,
     "sourceId": "fidev"
+  },
+  {
+    "id": "house-of-one-31108d01ce",
+    "title": "#117: Haare – Was verraten sie über unseren Glauben?",
+    "link": "https://house-of-one.org/news/117-haare-was-verraten-sie-ueber-unseren-glauben",
+    "date": "2026-06-22T00:00:00+00:00",
+    "source_name": "House of One",
+    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "category": "Dialog",
+    "author": "House of One",
+    "partnerName": "House of One",
+    "partnerUrl": "https://house-of-one.org/",
+    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "excerpt": "In dieser Folge sprechen wir ganz offen über Haare und warum sie in unseren Religionen, Kulturen und Lebensgeschichten so viel mehr bedeuten als bloße... Weiterlesen",
+    "tags": [
+      "Dialog"
+    ],
+    "external": true,
+    "sourceId": "house-of-one"
   },
   {
     "id": "fidev-aba35d52bc",
@@ -135,25 +213,6 @@
     "sourceId": "timetohelp"
   },
   {
-    "id": "fidev-bd93b260f6",
-    "title": "Dialog: konkret – Vielfalt. Streit. Kompromiss.",
-    "link": "https://www.fidev.org/post/dialog-konkret-wir-setzen-auf-dialog-hier-und-jetzt",
-    "date": "2026-05-27T11:11:07+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/2d6f92_76ed4d52f14143019e3188bcdbcf7182~mv2.jpg/v1/fit/w_1000,h_671,al_c,q_80/file.png",
-    "category": "Dialog",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/2d6f92_76ed4d52f14143019e3188bcdbcf7182~mv2.jpg/v1/fit/w_1000,h_671,al_c,q_80/file.png",
-    "excerpt": "Von April bis Juni 2025 haben wir als FID e.V. zu einer besonderen Veranstaltungsreihe eingeladen: „Meet and Read“.",
-    "tags": [
-      "Dialog"
-    ],
-    "external": true,
-    "sourceId": "fidev"
-  },
-  {
     "id": "house-of-one-3dc72c07f4",
     "title": "Jahrestag Grundsteinlegung: House of One erhält 90.000 Euro-Spende",
     "link": "https://house-of-one.org/news/jahrestag-grundsteinlegung-house-one-erhaelt-90000-euro-spende",
@@ -211,25 +270,6 @@
     "sourceId": "house-of-one"
   },
   {
-    "id": "fidev-ea44fdf052",
-    "title": "MediaAct – Workshops gegen Mobbing und Cybermobbing",
-    "link": "https://www.fidev.org/post/mediaact-workshops-mobbing-cybermobbing-praevention",
-    "date": "2026-05-18T12:47:55+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/a7ec0d_e2ce2a5724c94a8e94ed69ca5814659e~mv2.png/v1/fit/w_1000,h_941,al_c,q_80/file.png",
-    "category": "Jugend",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/a7ec0d_e2ce2a5724c94a8e94ed69ca5814659e~mv2.png/v1/fit/w_1000,h_941,al_c,q_80/file.png",
-    "excerpt": "Jugendliche beim MediaAct Workshop – Cybermobbing Prävention FIDeV Frankfurt Mit MediaAct – Junge Stimmen gegen Ausgrenzung bietet FIDeV Frankfurt praxisnahe Workshops zur Prävention von Mobbing und Cybermobbing für Sch…",
-    "tags": [
-      "Jugend"
-    ],
-    "external": true,
-    "sourceId": "fidev"
-  },
-  {
     "id": "house-of-one-8cf15a22c0",
     "title": "Podcastfolge #114: Heilige Väter? Über Vatervorstellungen in Tora, Bibel und Koran sowie echte Erfahrungen",
     "link": "https://house-of-one.org/news/podcastfolge-114-heilige-vaeter-ueber-vatervorstellungen-tora-bibel-und-koran-sowie-echte",
@@ -268,25 +308,6 @@
     ],
     "external": true,
     "sourceId": "sdub"
-  },
-  {
-    "id": "house-of-one-f4fdb88646",
-    "title": "Konferenz der Mehrreligionenhäuser 2026",
-    "link": "https://house-of-one.org/news/konferenz-der-mehrreligionenhaeuser-2026",
-    "date": "2026-05-04T00:00:00+00:00",
-    "source_name": "House of One",
-    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "category": "Dialog",
-    "author": "House of One",
-    "partnerName": "House of One",
-    "partnerUrl": "https://house-of-one.org/",
-    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "excerpt": "Die Konferenz der Mehrreligionenhäuser bringt seit ihrer Gründung während der Pandemie Initiativen, Projekte und engagierte Akteurinnen und Akteure zu... Weiterlesen",
-    "tags": [
-      "Dialog"
-    ],
-    "external": true,
-    "sourceId": "house-of-one"
   },
   {
     "id": "sdub-e50e58504a",
@@ -347,27 +368,6 @@
       "Community",
       "Teilhabe",
       "Veranstaltungen"
-    ],
-    "external": true,
-    "sourceId": "sdub"
-  },
-  {
-    "id": "sdub-562667fd43",
-    "title": "Ramadan 2026: Grußbotschaft von Bundespräsident Steinmeier",
-    "link": "https://sdub.de/ramadan-2026-grussbotschaft-steinmeier/",
-    "date": "2026-03-20T15:12:45+00:00",
-    "source_name": "Stiftung Dialog und Bildung",
-    "image_url": "https://sdub.de/wp-content/uploads/2026/03/bundespraesident_frank-walter_steinmeier_auf_den_stufen_der_villa_hammerschmidt_in_bonn-768x1024.jpg",
-    "category": "Dialog",
-    "author": "Stiftung Dialog und Bildung",
-    "partnerName": "Stiftung Dialog und Bildung",
-    "partnerUrl": "https://sdub.de/",
-    "image": "https://sdub.de/wp-content/uploads/2026/03/bundespraesident_frank-walter_steinmeier_auf_den_stufen_der_villa_hammerschmidt_in_bonn-768x1024.jpg",
-    "excerpt": "Grußbotschaft von Bundespräsident Steinmeier zum Fest des Fastenbrechens 2026 | Bayramgruß | Ramadan | Bundespräsident Frank-Walter Steinmeier hat an die Musliminnen und Muslime in Deutschland eine Grußbotschaft zum Fes…",
-    "tags": [
-      "Dialog",
-      "Islam",
-      "Religion"
     ],
     "external": true,
     "sourceId": "sdub"
