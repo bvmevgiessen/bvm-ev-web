@@ -1,5 +1,24 @@
 [
   {
+    "id": "fidev-8b45628938",
+    "title": "Projektwoche für Schulklassen",
+    "link": "https://www.fidev.org/post/projektwoche-f%C3%BCr-schulklassen",
+    "date": "2026-07-06T10:21:03+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/2d6f92_f23d066ad9f04626954b5cb8d5efa2bc~mv2.png/v1/fit/w_412,h_232,al_c,q_80/file.png",
+    "category": "Jugend",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/2d6f92_f23d066ad9f04626954b5cb8d5efa2bc~mv2.png/v1/fit/w_412,h_232,al_c,q_80/file.png",
+    "excerpt": "Besuch der Goethe Universität mit der Ricarda- Huch- Schule Dreieich Angesichts einer sich schnell wandelnden Arbeitswelt, vielfältiger Bildungswege und gesellschaftlicher Unsicherheiten stehen viele junge Menschen heut…",
+    "tags": [
+      "Jugend"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
     "id": "sdub-c1bd1343d7",
     "title": "1. Juli – Gedenktag gegen antimuslimischen Rassismus",
     "link": "https://sdub.de/gedenktag-gegen-antimuslimischen-rassismus/",
@@ -173,25 +192,6 @@
     ],
     "external": true,
     "sourceId": "house-of-one"
-  },
-  {
-    "id": "fidev-20ade7c14f",
-    "title": "Rückblick: Medien, Macht und Meinung",
-    "link": "https://www.fidev.org/post/r%C3%BCckblick-medien-macht-und-meinung",
-    "date": "2026-06-02T13:38:57+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/2d6f92_f614cca5a3e74ec19cd3cf0b2ca8af03~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
-    "category": "Community",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/2d6f92_f614cca5a3e74ec19cd3cf0b2ca8af03~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
-    "excerpt": "Zwischen Algorithmen, Glauben und Desinformation: Wer beherrscht die öffentliche Meinung? In einer Ära beispielloser medialer Dynamik steht unsere demokratische Gesellschaft vor einer Zerreißprobe. Während die Digitalis…",
-    "tags": [
-      "Community"
-    ],
-    "external": true,
-    "sourceId": "fidev"
   },
   {
     "id": "timetohelp-c76dc12e6f",
