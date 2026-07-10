@@ -63,8 +63,9 @@ export default function MitmachenPage() {
                   Fördermitglied
                 </button>
                 <div
-                  className="absolute inset-y-1.5 w-[calc(50%-0.375rem)] bg-brand-teal rounded-full transition-transform duration-300 ease-out z-0"
-                  style={{ transform: kind === 'ordentlich' ? 'translateX(0)' : 'translateX(100%)' }}
+                  className={`absolute inset-y-1.5 w-[calc(50%-0.375rem)] bg-brand-teal rounded-full transition-transform duration-300 ease-out z-0 ${
+                    kind === 'ordentlich' ? 'translate-x-0' : 'translate-x-full'
+                  }`}
                 />
               </div>
             </div>
