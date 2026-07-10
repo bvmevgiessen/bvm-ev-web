@@ -31,7 +31,10 @@ export default function EventsPage() {
 
           <div className="space-y-24">
             {streams.map((stream) => {
-              const streamEvents = eventsData.filter(event => event.stream === stream.name);
+              const streamEvents = [...eventsData]
+                .filter(event => event.stream === stream.name)
+                .sort((a, b) => parseDateSafe(b.date).getTime() - parseDateSafe(a.date).getTime());
+
               if (streamEvents.length === 0) return null;
               
               return (
@@ -42,59 +45,57 @@ export default function EventsPage() {
                 </div>
                 
                 <div className="grid md:grid-cols-3 gap-8">
-                  {eventsData
-                    .filter(event => event.stream === stream.name)
-                    .map((event, index) => (
-                      <motion.div
-                        key={`${event.id}-${index}`}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 }}
-                        className="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all group border border-slate-100"
-                      >
-                        <div className="relative h-56 overflow-hidden">
-                          <img
-                            src={event.image}
-                            alt={event.title}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            referrerPolicy="no-referrer"
-                          />
-                          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black text-brand-teal uppercase tracking-[0.2em]">
-                            {event.category}
+                  {streamEvents.map((event, index) => (
+                    <motion.div
+                      key={`${event.id}-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      className="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all group border border-slate-100"
+                    >
+                      <div className="relative h-56 overflow-hidden">
+                        <img
+                          src={event.image}
+                          alt={event.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          referrerPolicy="no-referrer"
+                        />
+                        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black text-brand-teal uppercase tracking-[0.2em]">
+                          {event.category}
+                        </div>
+                        {(event as any).notice && (
+                          <div className="absolute top-4 right-4 bg-amber-500 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-sm animate-pulse">
+                            Verschoben
                           </div>
-                          {(event as any).notice && (
-                            <div className="absolute top-4 right-4 bg-amber-500 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-sm animate-pulse">
-                              Verschoben
-                            </div>
-                          )}
+                        )}
+                      </div>
+                      
+                      <div className="p-8">
+                        <h3 className="text-xl font-bold text-brand-navy mb-4 group-hover:text-brand-teal transition-colors">
+                          {event.title}
+                        </h3>
+                        
+                        <div className="space-y-3 mb-8">
+                          <div className="flex items-center gap-3 text-slate-500 text-sm">
+                            <Calendar size={16} className="text-brand-teal" />
+                            <span>{parseDateSafe(event.date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' })}</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-slate-500 text-sm">
+                            <MapPin size={16} className="text-brand-teal" />
+                            <span>{event.location}</span>
+                          </div>
                         </div>
                         
-                        <div className="p-8">
-                          <h3 className="text-xl font-bold text-brand-navy mb-4 group-hover:text-brand-teal transition-colors">
-                            {event.title}
-                          </h3>
-                          
-                          <div className="space-y-3 mb-8">
-                            <div className="flex items-center gap-3 text-slate-500 text-sm">
-                              <Calendar size={16} className="text-brand-teal" />
-                              <span>{parseDateSafe(event.date).toLocaleDateString('de-DE', { day: '2-digit', month: 'long', year: 'numeric' })}</span>
-                            </div>
-                            <div className="flex items-center gap-3 text-slate-500 text-sm">
-                              <MapPin size={16} className="text-brand-teal" />
-                              <span>{event.location}</span>
-                            </div>
-                          </div>
-                          
-                          <Link 
-                            to={`/events/${event.id}`}
-                            className="inline-flex items-center gap-2 font-bold text-brand-teal hover:gap-3 transition-all"
-                          >
-                            {parseDateSafe(event.date).getTime() < new Date().getTime() ? 'Details ansehen' : 'Details & Anmeldung'} <ArrowRight size={18} />
-                          </Link>
-                        </div>
-                      </motion.div>
-                    ))}
+                        <Link 
+                          to={`/events/${event.id}`}
+                          className="inline-flex items-center gap-2 font-bold text-brand-teal hover:gap-3 transition-all"
+                        >
+                          {parseDateSafe(event.date).getTime() < new Date().getTime() ? 'Details ansehen' : 'Details & Anmeldung'} <ArrowRight size={18} />
+                        </Link>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </section>
               );
