@@ -5,18 +5,23 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+# Restrict workflow-level permissions to none by default for maximum security.
+permissions: {}
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      # Required for checkout step to read repository content.
+      contents: read
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Security: Disable credential persisting since this workflow doesn't perform authenticated git push operations.
+          # This limits attack surface area by preventing subsequent steps or third-party actions from reading GITHUB_TOKEN.
+          persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -50,6 +55,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      # Required to deploy pages and authenticate with GitHub Pages OIDC.
+      pages: write
+      id-token: write
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
