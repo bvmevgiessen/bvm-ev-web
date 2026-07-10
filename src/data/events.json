@@ -378,5 +378,22 @@
       "Köstliche Verpflegung mit der traditionellen Asure-Speise (Noahs Pudding)"
     ],
     "fuerWen": "Offen für alle – wir laden alle Nachbarn, Familien, Freunde und Interessierte herzlich ein, einen unbeschwerten Nachmittag in Gemeinschaft zu verbringen."
-  }
+  },
+  {
+  "id": "Frauenmatinee-2026",
+  "title": "Frauen-Matinée – Verbirg deinen Glanz nicht!",
+  "category": "SOZIALES",
+  "stream": "Festive Events",
+  "date": "2026-08-15T16:00:00",
+  "location": "Am Hain 1A, 35444 Biebertal – Bieber",
+  "image": "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200",
+  "description": "Ein glamouröser Nachmittag unter dem Motto „Verbirg deinen Glanz nicht!“ – Parla, çünkü sen zaten sahnesin! Die Veranstaltung richtet sich ausschließlich an Frauen und bietet ein abwechslungsreiches Programm mit Verlosung, Shopping, Tanz und Bewirtung. Der Eintritt beträgt 15 € pro Person, Kinder ab 7 Jahren zahlen 7 €. Jungen über 6 Jahre sind nicht gestattet. Dresscode: Zeig dich von deiner besten Seite – mach dich schick, nimm deine Absätze und komm vorbei! Organisiert von Bildung und Verständigung Mittelhessen e.V.",
+  "wasErwartetSie": [
+    "Verlosung und Überraschungen",
+    "Shopping und kleine Stände",
+    "Tanz und Unterhaltung",
+    "Bewirtung mit Snacks und Getränken"
+  ],
+  "fuerWen": "Frauen ab 7 Jahren – eine Veranstaltung voller Glanz, Freude und Gemeinschaft."
+}
 ]
