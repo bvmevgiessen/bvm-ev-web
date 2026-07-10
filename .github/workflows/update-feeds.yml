@@ -12,10 +12,8 @@ on:
     - cron: '0 5 * * *'
   workflow_dispatch:
 
-permissions:
-  contents: write   # to commit the JSON update
-  pages: write
-  id-token: write
+# Restrict workflow-level permissions to none by default for maximum security.
+permissions: {}
 
 # Avoid clashing with the regular Deploy workflow.
 concurrency:
@@ -25,6 +23,12 @@ concurrency:
 jobs:
   update-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      # Required to check out code and push refreshed RSS data to latest_updates.json.
+      contents: write
+      # Required to deploy GitHub Pages and authenticate with OIDC.
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
