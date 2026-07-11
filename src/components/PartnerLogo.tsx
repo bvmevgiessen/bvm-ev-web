@@ -17,10 +17,28 @@ import {
 interface PartnerLogoProps {
   name: string;
   fallback: string;
+  logoUrl?: string;
   className?: string;
 }
 
-export default function PartnerLogo({ name, fallback, className = '' }: PartnerLogoProps) {
+export default function PartnerLogo({ name, fallback, logoUrl, className = '' }: PartnerLogoProps) {
+  const [hasError, setHasError] = React.useState(false);
+
+  // If we have a logoUrl and it hasn't errored out, try to render the real image logo
+  if (logoUrl && !hasError) {
+    return (
+      <div className={`flex items-center justify-center w-full h-16 p-2 bg-white rounded-2xl ${className}`}>
+        <img 
+          src={logoUrl} 
+          alt={name} 
+          className="max-h-full max-w-full object-contain filter hover:brightness-105 transition-all duration-300"
+          onError={() => setHasError(true)}
+          referrerPolicy="no-referrer"
+        />
+      </div>
+    );
+  }
+
   // Normalize key to match specific brands
   const key = fallback.toUpperCase();
 
