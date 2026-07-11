@@ -18,9 +18,7 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'Startseite', href: isHome ? '#home' : '/' },
     { name: 'Über uns', href: isHome ? '#about' : '/#about' },
-    { name: 'Impact', href: isHome ? '#impact' : '/#impact' },
     { name: 'Events', href: '/events' },
     { name: 'Blog', href: '/blog' },
     { name: 'Kontakt', href: isHome ? '#contact' : '/#contact' },
