@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Target, Eye, ShieldCheck, Users, Heart, Flower, Gamepad2, Stars } from 'lucide-react';
 import PuzzleBackground from './PuzzleBackground';
+import SafeImage from './SafeImage';
 
 export default function About() {
   const activities = [
@@ -36,14 +37,15 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl aspect-square md:aspect-[4/3]">
-              <img
-                src="https://picsum.photos/seed/about/1200/900"
+            <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl aspect-square md:aspect-[4/3] bg-slate-100">
+              <SafeImage
+                src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=1200"
                 alt="BVM Giessen Team"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
+                fallbackType="team"
               />
-              <div className="absolute inset-0 bg-brand-teal/10 mix-blend-multiply" />
+              <div className="absolute inset-0 bg-brand-teal/10 mix-blend-multiply pointer-events-none" />
             </div>
             
             <div className="absolute -bottom-10 -right-10 bg-white p-8 rounded-3xl shadow-2xl z-20 hidden md:block border border-slate-100">

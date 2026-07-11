@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import PartnerLogo from './PartnerLogo';
 
 export default function Partners() {
   const partners = [
@@ -60,7 +61,7 @@ export default function Partners() {
     },
     {
       name: 'Maximum e.V.',
-      location: 'Stuttgart',
+      location: 'Marburg',
       logo: 'https://wsrv.nl/?url=https://www.maximum-ev.de/-_-/res/2364335b-4369-42e2-bf92-35c3a702aac2/images/files/2364335b-4369-42e2-bf92-35c3a702aac2/61353cfe-a284-4159-a6b4-88504d8be30d/160-43/880805c8f2cba4885ec84ed9eb8bd2b08a91adf2&w=400&fit=contain',
       url: 'https://www.maximum-ev.de/',
       fallback: 'MAXIMUM'
@@ -130,21 +131,8 @@ export default function Partners() {
               transition={{ delay: index * 0.1 }}
               className="group relative bg-slate-50/50 p-10 rounded-[2rem] border border-slate-100 hover:border-brand-teal/20 hover:bg-white hover:shadow-xl transition-all duration-500 text-center block"
             >
-              <div className="h-20 flex items-center justify-center mb-6 transition-all duration-500">
-                <img 
-                  src={partner.logo} 
-                  alt={partner.name}
-                  className="max-h-full max-w-full object-contain opacity-90 group-hover:opacity-100 transition-opacity"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                    target.nextElementSibling?.classList.remove('hidden');
-                  }}
-                  referrerPolicy="no-referrer"
-                />
-                <div className="hidden text-3xl font-black text-brand-teal/20 group-hover:text-brand-teal/40 transition-colors">
-                  {partner.fallback}
-                </div>
+              <div className="h-24 flex items-center justify-center mb-6 transition-all duration-500">
+                <PartnerLogo name={partner.name} fallback={partner.fallback} className="scale-95 group-hover:scale-100 transition-transform duration-300" />
               </div>
               <h3 className="font-bold text-brand-navy mb-1 leading-tight text-sm md:text-base">{partner.name}</h3>
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em]">{partner.location}</p>

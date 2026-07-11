@@ -14,7 +14,7 @@ export default function Dialog() {
       <section className="relative h-[70vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://picsum.photos/seed/dialog-cafe/1920/1080" 
+            src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=1920" 
             alt="Sprachcafé" 
             className="w-full h-full object-cover opacity-20"
             referrerPolicy="no-referrer"
@@ -40,14 +40,6 @@ export default function Dialog() {
             <p className="text-xl text-slate-600 leading-relaxed mb-8">
               Die Dialogplattform ist der zentrale Ort für Begegnung, Austausch und interkulturelles Lernen.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link 
-                to="/lms/dashboard" 
-                className="bg-brand-orange hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-full transition-all inline-flex items-center gap-2 shadow-lg shadow-brand-orange/20"
-              >
-                Zum Dialog Zertifikatsprogramm <Globe size={20} />
-              </Link>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -118,7 +110,7 @@ export default function Dialog() {
             </div>
             <div className="relative h-[500px] rounded-[3rem] overflow-hidden shadow-2xl">
               <img 
-                src="https://picsum.photos/seed/dialog-learning/800/1000" 
+                src="https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?auto=format&fit=crop&q=80&w=800" 
                 alt="Learning" 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"

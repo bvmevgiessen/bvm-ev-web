@@ -1,8 +1,16 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Globe, MapPin, Puzzle, Heart } from 'lucide-react';
 import PuzzleBackground from './PuzzleBackground';
+import SafeImage from './SafeImage';
 
 export default function Hero() {
+  const avatarMembers = [
+    { name: 'Ayse M.', bg: 'bg-brand-teal text-white' },
+    { name: 'Jonas F.', bg: 'bg-brand-orange text-white' },
+    { name: 'Katarina V.', bg: 'bg-brand-navy text-white' },
+    { name: 'Bilal I.', bg: 'bg-emerald-600 text-white' },
+  ];
+
   return (
     <section id="home" className="relative min-h-[calc(100vh-72px)] flex items-center overflow-hidden bg-white">
       <PuzzleBackground color="#0D9488" className="opacity-[0.03]" />
@@ -42,18 +50,17 @@ export default function Hero() {
           </div>
 
           <div className="flex items-center gap-12 p-6 bg-slate-50 rounded-3xl border border-slate-100 max-w-md">
-            <div className="flex -space-x-4">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className="w-12 h-12 rounded-2xl border-4 border-white overflow-hidden shadow-sm">
-                  <img
-                    src={`https://i.pravatar.cc/150?img=${i + 10}`}
-                    alt="Member"
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
+            <div className="flex -space-x-3">
+              {avatarMembers.map((member, i) => (
+                <div 
+                  key={i} 
+                  className={`w-12 h-12 rounded-2xl border-4 border-white ${member.bg} flex items-center justify-center font-bold text-xs tracking-wider shadow-sm select-none`}
+                  title={member.name}
+                >
+                  {member.name.split(' ').map(n => n[0]).join('')}
                 </div>
               ))}
-              <div className="w-12 h-12 rounded-2xl border-4 border-white bg-brand-orange flex items-center justify-center text-white text-xs font-bold shadow-sm">
+              <div className="w-12 h-12 rounded-2xl border-4 border-white bg-slate-200 text-slate-700 flex items-center justify-center text-xs font-bold shadow-sm select-none">
                 +100
               </div>
             </div>
@@ -74,9 +81,15 @@ export default function Hero() {
           <div className="grid grid-cols-2 gap-4">
             <motion.div 
               whileHover={{ scale: 1.02, rotate: -1 }}
-              className="rounded-[2rem] overflow-hidden shadow-xl aspect-square"
+              className="rounded-[2rem] overflow-hidden shadow-xl aspect-square relative bg-slate-100"
             >
-              <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80&w=600" alt="Community" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <SafeImage 
+                src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80&w=600" 
+                alt="Community" 
+                className="w-full h-full object-cover" 
+                referrerPolicy="no-referrer"
+                fallbackType="community"
+              />
             </motion.div>
             <motion.div 
               whileHover={{ scale: 1.02, rotate: 1 }}
@@ -98,9 +111,15 @@ export default function Hero() {
             </motion.div>
             <motion.div 
               whileHover={{ scale: 1.02, rotate: 1 }}
-              className="rounded-[2rem] overflow-hidden shadow-xl aspect-square"
+              className="rounded-[2rem] overflow-hidden shadow-xl aspect-square relative bg-slate-100"
             >
-              <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=600" alt="Youth" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <SafeImage 
+                src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=600" 
+                alt="Youth" 
+                className="w-full h-full object-cover" 
+                referrerPolicy="no-referrer"
+                fallbackType="youth"
+              />
             </motion.div>
           </div>
         </motion.div>

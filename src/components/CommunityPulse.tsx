@@ -1,13 +1,19 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Users, Heart, Handshake } from 'lucide-react';
+import PartnerLogo from './PartnerLogo';
 
 export default function CommunityPulse() {
   const partners = [
-    { name: 'FID', logo: 'https://picsum.photos/seed/fid/100/100' },
-    { name: 'LDK', logo: 'https://picsum.photos/seed/ldk/100/100' },
-    { name: 'Time to Help', logo: 'https://picsum.photos/seed/tth/100/100' },
-    { name: 'Stiftung Dialog und Bildung', logo: 'https://picsum.photos/seed/sdb/100/100' },
+    { name: 'Forum für Interkulturellen Dialog e.V.', fallback: 'FID' },
+    { name: 'LDK e.V.', fallback: 'LDK' },
+    { name: 'Time to Help e.V.', fallback: 'TTH' },
+    { name: 'Stiftung Dialog und Bildung', fallback: 'SDB' },
+    { name: 'Stiftung House of One', fallback: 'HOO' },
+    { name: 'Avicenna e.V.', fallback: 'AVICENNA' },
+    { name: 'Maximum e.V.', fallback: 'MAXIMUM' },
+    { name: 'Rumi Kultur e.V. (Frankfurt)', fallback: 'RUMIORG' },
+    { name: 'Rumi Kulturzentrum e.V. (Kassel)', fallback: 'RUMIK' },
   ];
 
   return (
@@ -54,15 +60,15 @@ export default function CommunityPulse() {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center items-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10">
           {partners.map((partner) => (
-            <img 
+            <motion.div 
               key={partner.name}
-              src={partner.logo} 
-              alt={partner.name} 
-              className="h-12 md:h-16 object-contain"
-              referrerPolicy="no-referrer"
-            />
+              whileHover={{ scale: 1.03, y: -2 }}
+              className="p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-brand-teal/20 hover:bg-white hover:shadow-xl transition-all duration-300 min-w-[200px]"
+            >
+              <PartnerLogo name={partner.name} fallback={partner.fallback} />
+            </motion.div>
           ))}
         </div>
       </div>
