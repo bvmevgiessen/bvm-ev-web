@@ -16,10 +16,12 @@ import MitmachenPage from './pages/MitmachenPage';
 import SpendenPage from './pages/SpendenPage';
 import TaetigkeitsberichtPage from './pages/TaetigkeitsberichtPage';
 import Footer from './components/Footer';
+import ScrollToHash from './components/ScrollToHash';
 
 export default function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <ScrollToHash />
       <div className="min-h-screen bg-slate-50 selection:bg-brand-teal/30 selection:text-brand-navy">
         <Routes>
           <Route path="/" element={<Home />} />
