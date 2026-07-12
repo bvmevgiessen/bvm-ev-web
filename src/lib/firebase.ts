@@ -22,8 +22,24 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
-// Use the databaseId from the applet config if we are falling back to the AI Studio project
-const databaseId = !import.meta.env.VITE_FIREBASE_PROJECT_ID ? firebaseAppletConfig.firestoreDatabaseId : undefined;
+// Resolve the databaseId:
+// 1. Check for a custom VITE_FIREBASE_DATABASE_ID env variable
+// 2. If no database ID is set, check if the project is one of the AI Studio workspace projects (using firebaseConfig.projectId)
+// 3. If it is an AI Studio project, use the dedicated database ID from the config file.
+// 4. Otherwise, for custom external projects, default to undefined (which uses the standard "(default)" database).
+let databaseId: string | undefined = import.meta.env.VITE_FIREBASE_DATABASE_ID || undefined;
+
+if (!databaseId) {
+  const currentProjectId = firebaseConfig.projectId;
+  const isAIStudioProject = 
+    currentProjectId === "composite-advice-ljcsn" || 
+    currentProjectId === "gen-lang-client-0427689132" ||
+    (currentProjectId && currentProjectId.startsWith("gen-lang-client-"));
+    
+  if (isAIStudioProject) {
+    databaseId = firebaseAppletConfig.firestoreDatabaseId;
+  }
+}
 
 export const db = databaseId 
   ? initializeFirestore(app, { experimentalForceLongPolling: true }, databaseId)
