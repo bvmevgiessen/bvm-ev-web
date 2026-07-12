@@ -43,6 +43,14 @@ if (isAIStudioProject) {
   }
 }
 
+console.info("[Firebase] Configuration initialized:", {
+  projectId: currentProjectId,
+  databaseId: databaseId || "(default)",
+  isAIStudioProject,
+  hasApiKey: !!firebaseConfig.apiKey,
+  apiKeySnippet: firebaseConfig.apiKey ? `${firebaseConfig.apiKey.slice(0, 8)}...` : "none"
+});
+
 export const db = databaseId 
   ? initializeFirestore(app, { experimentalForceLongPolling: true }, databaseId)
   : initializeFirestore(app, { experimentalForceLongPolling: true });
