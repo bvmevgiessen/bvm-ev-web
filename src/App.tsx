@@ -15,6 +15,7 @@ import BlogDetailPage from './pages/BlogDetailPage';
 import MitmachenPage from './pages/MitmachenPage';
 import SpendenPage from './pages/SpendenPage';
 import TaetigkeitsberichtPage from './pages/TaetigkeitsberichtPage';
+import AdminSurveys from './pages/AdminSurveys';
 import Footer from './components/Footer';
 import ScrollToHash from './components/ScrollToHash';
 
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/mitmachen" element={<MitmachenPage />} />
           <Route path="/spenden" element={<SpendenPage />} />
           <Route path="/taetigkeitsbericht" element={<TaetigkeitsberichtPage />} />
+          <Route path="/admin/surveys" element={<AdminSurveys />} />
         </Routes>
         <Footer />
       </div>

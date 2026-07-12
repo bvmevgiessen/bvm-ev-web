@@ -8,6 +8,38 @@
                 "items": { "type": "string" }
             }
         }
+    },
+    "survey_responses": {
+        "documentId": "responseId",
+        "fields": {
+            "language": { "type": "string" },
+            "usability_intuitive": { "type": "number" },
+            "usability_navigation": { "type": "number" },
+            "usability_quick_find": { "type": "number" },
+            "usability_clear_menus": { "type": "number" },
+            "usability_logical_structure": { "type": "number" },
+            "content_helpful": { "type": "number" },
+            "content_clear_texts": { "type": "number" },
+            "content_appealing": { "type": "number" },
+            "content_more_desired": { "type": "string" },
+            "content_less_desired": { "type": "string" },
+            "design_clarity": { "type": "number" },
+            "design_readability": { "type": "number" },
+            "design_modernity": { "type": "number" },
+            "design_images_quality": { "type": "number" },
+            "tech_loading_speed": { "type": "number" },
+            "tech_mobile_usability": { "type": "number" },
+            "tech_has_bugs": { "type": "boolean" },
+            "tech_bugs_description": { "type": "string" },
+            "improvement_suggestions": { "type": "string" },
+            "timestamp": { "type": "string" }
+        }
+    },
+    "survey_settings": {
+        "documentId": "settingId",
+        "fields": {
+            "googleSheetsUrl": { "type": "string" }
+        }
     }
   }
 }
