@@ -152,6 +152,8 @@ export default function FeedbackSurvey() {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     setSubmitError(null);
+    let firestoreSaved = false;
+
     try {
       // Save survey response to Firestore
       await addDoc(collection(db, 'survey_responses'), {
@@ -160,38 +162,52 @@ export default function FeedbackSurvey() {
         userAgent: navigator.userAgent,
         timestamp: new Date().toISOString()
       });
-
-      // Forward to Google Sheets Web App if configured
-      if (googleSheetsUrl) {
-        try {
-          await fetch(googleSheetsUrl, {
-            method: 'POST',
-            mode: 'no-cors', // Standard Apps Script POST redirection
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              ...survey,
-              timestamp: new Date().toISOString()
-            })
-          });
-        } catch (postErr) {
-          console.error("Error posting to Google Sheet:", postErr);
-        }
-      }
-
-      // Mark as completed in local storage
-      localStorage.setItem('bvm_survey_status', 'completed');
-      setCurrentStep(6); // Thank you step
+      firestoreSaved = true;
     } catch (err: any) {
-      console.error("Failed to submit survey:", err);
-      setSubmitError(survey.language === 'de' 
-        ? 'Fehler beim Speichern. Bitte versuchen Sie es erneut.' 
-        : 'Kaydedilirken bir hata oluştu. Lütfen tekrar deneyin.'
-      );
-    } finally {
-      setIsSubmitting(false);
+      console.warn("Firestore save failed, using local offline queue:", err);
+      // Store in offline queue for future sync
+      try {
+        const queue = JSON.parse(localStorage.getItem('bvm_offline_surveys_queue') || '[]');
+        queue.push({
+          ...survey,
+          id: 'offline_' + Date.now(),
+          userAgent: navigator.userAgent,
+          timestamp: new Date().toISOString()
+        });
+        localStorage.setItem('bvm_offline_surveys_queue', JSON.stringify(queue));
+      } catch (queueErr) {
+        console.error("Failed to write to local offline queue:", queueErr);
+      }
     }
+
+    // Forward to Google Sheets Web App if configured
+    if (googleSheetsUrl) {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 6000);
+
+        await fetch(googleSheetsUrl, {
+          method: 'POST',
+          mode: 'no-cors', // Standard Apps Script POST redirection
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8',
+          },
+          body: JSON.stringify({
+            ...survey,
+            timestamp: new Date().toISOString()
+          }),
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+      } catch (postErr) {
+        console.error("Error posting to Google Sheet:", postErr);
+      }
+    }
+
+    // Mark as completed in local storage and proceed to thank you step
+    localStorage.setItem('bvm_survey_status', 'completed');
+    setCurrentStep(6); // Thank you step
+    setIsSubmitting(false);
   };
 
   if (!isVisible) return null;

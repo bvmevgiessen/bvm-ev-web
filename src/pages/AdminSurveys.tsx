@@ -143,11 +143,13 @@ export default function AdminSurveys() {
         timestamp: new Date().toISOString()
       };
 
+      // Use text/plain;charset=utf-8 as standard CORS-safelisted content-type.
+      // This completely bypasses CORS preflight (OPTIONS request) which is crucial for Google Apps Script.
       await fetch(googleSheetsUrl, {
         method: 'POST',
-        mode: 'no-cors', // standard Apps Script POST redirection
+        mode: 'no-cors',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'text/plain;charset=utf-8',
         },
         body: JSON.stringify(testPayload)
       });
@@ -682,11 +684,13 @@ export default function AdminSurveys() {
                 
                 <div className="pt-2 border-t border-slate-100">
                   <h5 className="font-extrabold text-brand-navy text-xs mb-1">Kurzanleitung:</h5>
-                  <ol className="text-[10px] text-slate-500 list-decimal pl-4 space-y-1">
+                  <ol className="text-[10px] text-slate-500 list-decimal pl-4 space-y-1.5 leading-relaxed">
                     <li>Erstellen Sie eine Google-Tabelle in Ihrem Drive-Ordner.</li>
-                    <li>Gehen Sie auf <strong>Erweiterungen &gt; Apps Script</strong>.</li>
-                    <li>Fügen Sie das untenstehende Script ein und klicken Sie auf "Als Web-App bereitstellen".</li>
-                    <li>Tragen Sie die bereitgestellte Web-App-URL in Ihre App ein.</li>
+                    <li>Gehen Sie im Tabellen-Menü auf <strong>Erweiterungen &gt; Apps Script</strong>.</li>
+                    <li>Ersetzen Sie den dortigen Code durch das untenstehende Script und speichern Sie es.</li>
+                    <li>Klicken Sie oben rechts auf <strong>Bereitstellen &gt; Neue Bereitstellung</strong>.</li>
+                    <li>Wählen Sie den Typ <strong>Web-App</strong>. Ausführen als: <strong>Sie selbst</strong>. Wer hat Zugriff: <strong>Jeder</strong> (Sehr wichtig!).</li>
+                    <li>Kopieren Sie die erzeugte <strong>Web-App-URL</strong> (endet auf <code>/exec</code>, NICHT die Editor-URL!) und tragen Sie diese unten ein.</li>
                   </ol>
                 </div>
 
@@ -776,12 +780,31 @@ export default function AdminSurveys() {
                   </div>
 
                   {settingsMessage && (
-                    <div className={`p-2.5 rounded-xl text-[10px] font-medium border leading-relaxed animate-fade-in ${
+                    <div className={`p-3.5 rounded-2xl text-[11px] font-medium border leading-relaxed animate-fade-in ${
                       settingsMessage.type === 'success' 
                         ? 'bg-emerald-50 text-emerald-700 border-emerald-100' 
                         : 'bg-rose-50 text-rose-700 border-rose-100'
                     }`}>
-                      {settingsMessage.text}
+                      <div className="font-bold mb-1.5">{settingsMessage.text}</div>
+                      {settingsMessage.type === 'error' && (
+                        <div className="mt-3 pt-3 border-t border-rose-100 space-y-2 text-[10px] text-rose-600 font-medium">
+                          <p className="font-bold uppercase tracking-wider text-[9px] text-rose-700">🔍 Häufige Fehlerquellen beheben:</p>
+                          <ul className="list-disc pl-3.5 space-y-1">
+                            <li>
+                              <strong>Falsche Berechtigungen (Sehr häufig):</strong> Klicken Sie in Google Apps Script auf <strong>Bereitstellen &gt; Neue Bereitstellung</strong>. Wählen Sie das Zahnrad-Symbol &gt; <strong>Web-App</strong>. Stellen Sie sicher, dass bei <strong>"Wer hat Zugriff" (Who has access)</strong> unbedingt <strong>"Jeder" (Anyone)</strong> und NICHT "Nur ich" oder "Jeder mit Google-Konto" ausgewählt ist!
+                            </li>
+                            <li>
+                              <strong>Editor-URL statt Web-App-URL:</strong> Verwenden Sie die kopierte Web-App-URL, die auf <code>/exec</code> endet. Die Editor-URL (endet auf <code>/edit</code>) kann nicht für Datenübertragungen aufgerufen werden.
+                            </li>
+                            <li>
+                              <strong>Neue Bereitstellung vergessen:</strong> Wenn Sie Änderungen am Skriptcode vorgenommen haben, müssen Sie in Google Apps Script eine <strong>"Neue Bereitstellung"</strong> erstellen, damit die Änderungen live geschaltet werden. Nur auf "Speichern" zu drücken reicht nicht aus.
+                            </li>
+                            <li>
+                              <strong>Adblocker:</strong> Einige aggressive Adblocker oder Privatsphäre-Erweiterungen blockieren direkte POST-Anfragen an script.google.com. Schalten Sie diese für diese Domain kurzzeitig aus.
+                            </li>
+                          </ul>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
