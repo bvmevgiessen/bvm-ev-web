@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { db, handleFirestoreError, OperationType } from '../lib/firebase';
 import { collection, addDoc, serverTimestamp, doc, getDoc } from 'firebase/firestore';
+import { postToAppsScript } from '../lib/appsScriptProxy';
 
 type Language = 'de' | 'tr';
 
@@ -191,18 +192,11 @@ export default function FeedbackSurvey() {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 6000);
 
-        await fetch(googleSheetsUrl, {
-          method: 'POST',
-          mode: 'no-cors', // Standard Apps Script POST redirection
-          headers: {
-            'Content-Type': 'text/plain;charset=utf-8',
-          },
-          body: JSON.stringify({
-            ...survey,
-            timestamp: new Date().toISOString()
-          }),
-          signal: controller.signal
-        });
+        await postToAppsScript(googleSheetsUrl, {
+          ...survey,
+          timestamp: new Date().toISOString()
+        }, controller.signal);
+        
         clearTimeout(timeoutId);
       } catch (postErr) {
         console.error("Error posting to Google Sheet:", postErr);

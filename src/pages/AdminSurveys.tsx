@@ -28,6 +28,7 @@ import Navbar from '../components/Navbar';
 import PuzzleBackground from '../components/PuzzleBackground';
 import { db, handleFirestoreError, OperationType } from '../lib/firebase';
 import { collection, getDocs, query, orderBy, Timestamp, doc, getDoc, setDoc, addDoc, serverTimestamp } from 'firebase/firestore';
+import { postToAppsScript } from '../lib/appsScriptProxy';
 
 interface ResponseDoc {
   id: string;
@@ -153,16 +154,8 @@ export default function AdminSurveys() {
         timestamp: new Date().toISOString()
       };
 
-      // Use text/plain;charset=utf-8 as standard CORS-safelisted content-type.
-      // This completely bypasses CORS preflight (OPTIONS request) which is crucial for Google Apps Script.
-      await fetch(googleSheetsUrl, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8',
-        },
-        body: JSON.stringify(testPayload)
-      });
+      // Use text/plain;charset=utf-8 as standard CORS-safelisted content-type via the helper.
+      await postToAppsScript(googleSheetsUrl, testPayload);
 
       setSettingsMessage({
         type: 'success',

@@ -23,6 +23,7 @@ import {
 import { jsPDF } from 'jspdf';
 import Navbar from '../components/Navbar';
 import PuzzleBackground from '../components/PuzzleBackground';
+import { postToAppsScript } from '../lib/appsScriptProxy';
 
 interface FinanceItem {
   id: string;
@@ -507,16 +508,9 @@ export default function TaetigkeitsberichtPage() {
     }
 
     try {
-      const response = await fetch(targetUrl, {
-        method: 'POST',
-        mode: 'no-cors', // standard workaround for Google Apps Script Web App redirects
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload)
-      });
+      await postToAppsScript(targetUrl, payload);
 
-      // Since 'no-cors' mode won't let us read the status, we assume success if it didn't throw
+      // Since the helper handles proxying and redirect fallbacks, we assume success if it didn't throw
       setSubmitting(false);
       setStep(4);
     } catch (err: any) {
