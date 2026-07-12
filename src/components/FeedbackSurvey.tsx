@@ -12,7 +12,7 @@ import {
   Globe,
   Database
 } from 'lucide-react';
-import { db } from '../lib/firebase';
+import { db, handleFirestoreError, OperationType } from '../lib/firebase';
 import { collection, addDoc, serverTimestamp, doc, getDoc } from 'firebase/firestore';
 
 type Language = 'de' | 'tr';
@@ -165,6 +165,11 @@ export default function FeedbackSurvey() {
       firestoreSaved = true;
     } catch (err: any) {
       console.warn("Firestore save failed, using local offline queue:", err);
+      try {
+        handleFirestoreError(err, OperationType.CREATE, 'survey_responses');
+      } catch (logErr) {
+        console.error("Logged Firestore error detail:", logErr);
+      }
       // Store in offline queue for future sync
       try {
         const queue = JSON.parse(localStorage.getItem('bvm_offline_surveys_queue') || '[]');

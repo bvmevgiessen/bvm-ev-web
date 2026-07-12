@@ -26,7 +26,7 @@ import {
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import PuzzleBackground from '../components/PuzzleBackground';
-import { db } from '../lib/firebase';
+import { db, handleFirestoreError, OperationType } from '../lib/firebase';
 import { collection, getDocs, query, orderBy, Timestamp, doc, getDoc, setDoc, addDoc, serverTimestamp } from 'firebase/firestore';
 
 interface ResponseDoc {
@@ -81,6 +81,11 @@ export default function AdminSurveys() {
         }
       } catch (err) {
         console.warn("Using offline fallback for Google Sheets URL:", err);
+        try {
+          handleFirestoreError(err, OperationType.GET, 'survey_settings/config');
+        } catch (logErr) {
+          console.error("Logged Firestore error detail:", logErr);
+        }
         const cachedUrl = localStorage.getItem('bvm_google_sheets_url');
         if (cachedUrl) {
           setGoogleSheetsUrl(cachedUrl);
@@ -108,6 +113,11 @@ export default function AdminSurveys() {
       });
     } catch (err: any) {
       console.warn("Error saving settings to Firestore:", err);
+      try {
+        handleFirestoreError(err, OperationType.WRITE, 'survey_settings/config');
+      } catch (logErr) {
+        console.error("Logged Firestore error detail:", logErr);
+      }
       setSettingsMessage({
         type: 'success',
         text: 'URL lokal gespeichert! (Firestore-Sync ist offline und wird synchronisiert, sobald Sie wieder online sind)'
@@ -209,6 +219,11 @@ export default function AdminSurveys() {
       localStorage.setItem('bvm_survey_responses_cache', JSON.stringify(docsList));
     } catch (err: any) {
       console.warn("Error retrieving survey responses, checking cache:", err);
+      try {
+        handleFirestoreError(err, OperationType.LIST, 'survey_responses');
+      } catch (logErr) {
+        console.error("Logged Firestore error detail:", logErr);
+      }
       const cached = localStorage.getItem('bvm_survey_responses_cache');
       if (cached) {
         try {
