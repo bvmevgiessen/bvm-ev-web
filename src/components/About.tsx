@@ -39,7 +39,7 @@ export default function About() {
           >
             <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl aspect-square md:aspect-[4/3] bg-slate-100">
               <SafeImage
-                src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=1200"
+                src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&q=80&w=1200"
                 alt="BVM Giessen Team"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
