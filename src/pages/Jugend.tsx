@@ -192,7 +192,7 @@ export default function Jugend() {
               <div className="lg:col-span-6 relative">
                 <div className="absolute -inset-4 bg-teal-50 rounded-[3rem] -rotate-2 -z-10" />
                 <img 
-                  src="https://images.unsplash.com/photo-1526976734720-b66d98d28a50?auto=format&fit=crop&q=80&w=1000" 
+                  src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=1000" 
                   alt="Jugendliche im Feriencamp" 
                   className="rounded-[2.5rem] shadow-xl w-full h-[450px] object-cover"
                   referrerPolicy="no-referrer"
