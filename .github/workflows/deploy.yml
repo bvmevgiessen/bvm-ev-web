@@ -55,11 +55,12 @@ jobs:
             echo "bvm-ev.de" > dist/CNAME
           fi
 
-      - name: Deploy to GitHub Pages (gh-pages branch)
+      - name: Deploy to GitHub Pages (main branch)
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          publish_branch: main
           # Deploy main branch to the root, and feature branches to subdirectories
           destination_dir: ${{ steps.base-path.outputs.dest }}
           # Keep other branches' deployed files so they don't overwrite each other
