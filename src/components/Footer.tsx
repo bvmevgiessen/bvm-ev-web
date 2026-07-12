@@ -167,6 +167,7 @@ export default function Footer() {
             <li><a href={`${import.meta.env.BASE_URL}#events`} className="hover:text-white transition-colors">Veranstaltungen</a></li>
             <li><Link to="/taetigkeitsbericht" className="hover:text-white transition-colors">Tätigkeitsbericht</Link></li>
             <li><a href={`${import.meta.env.BASE_URL}#contact`} className="hover:text-white transition-colors">Kontakt</a></li>
+            <li><Link to="/admin/surveys" className="text-slate-500 hover:text-brand-teal transition-colors font-semibold">🔑 Admin-Dashboard</Link></li>
           </ul>
         </div>
 
