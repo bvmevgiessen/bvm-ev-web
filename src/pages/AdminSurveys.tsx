@@ -388,13 +388,27 @@ export default function AdminSurveys() {
     setIsSyncingDirect(true);
     setDirectSyncMessage(null);
     try {
-      // 1. Fetch latest responses from Firestore
-      const q = query(collection(db, 'survey_responses'), orderBy('submittedAt', 'asc'));
-      const querySnapshot = await getDocs(q);
-      const rows: any[][] = [];
-      
+      // 1. Fetch latest responses from Firestore without sorting in Firestore
+      // (This avoids filtering out documents missing the 'submittedAt' field, which Firestore's orderBy does by default)
+      const querySnapshot = await getDocs(collection(db, 'survey_responses'));
+      const docsList: any[] = [];
       querySnapshot.forEach((doc) => {
-        const data = doc.data();
+        docsList.push({ id: doc.id, ...doc.data() });
+      });
+
+      // Sort ascending in memory so oldest are printed first in rows
+      docsList.sort((a, b) => {
+        const timeA = a.submittedAt instanceof Timestamp 
+          ? a.submittedAt.toDate().getTime()
+          : a.timestamp ? new Date(a.timestamp).getTime() : 0;
+        const timeB = b.submittedAt instanceof Timestamp 
+          ? b.submittedAt.toDate().getTime()
+          : b.timestamp ? new Date(b.timestamp).getTime() : 0;
+        return timeA - timeB;
+      });
+
+      const rows: any[][] = [];
+      docsList.forEach((data) => {
         const submittedDate = data.submittedAt instanceof Timestamp 
           ? data.submittedAt.toDate().toLocaleString('de-DE')
           : data.timestamp ? new Date(data.timestamp).toLocaleString('de-DE') : new Date().toLocaleString('de-DE');
@@ -495,8 +509,8 @@ export default function AdminSurveys() {
         localStorage.setItem('bvm_offline_surveys_queue', JSON.stringify(remainingQueue));
       }
 
-      const q = query(collection(db, 'survey_responses'), orderBy('submittedAt', 'desc'));
-      const querySnapshot = await getDocs(q);
+      // Fetch all survey responses from Firestore (avoiding orderBy field omission filter)
+      const querySnapshot = await getDocs(collection(db, 'survey_responses'));
       const docsList: ResponseDoc[] = [];
       querySnapshot.forEach((doc) => {
         const data = doc.data();
@@ -505,6 +519,18 @@ export default function AdminSurveys() {
           ...data
         } as ResponseDoc);
       });
+
+      // Sort descending in memory (newest first for table)
+      docsList.sort((a, b) => {
+        const timeA = a.submittedAt instanceof Timestamp 
+          ? a.submittedAt.toDate().getTime()
+          : a.timestamp ? new Date(a.timestamp).getTime() : 0;
+        const timeB = b.submittedAt instanceof Timestamp 
+          ? b.submittedAt.toDate().getTime()
+          : b.timestamp ? new Date(b.timestamp).getTime() : 0;
+        return timeB - timeA;
+      });
+
       setResponses(docsList);
       // Save cache to localStorage
       localStorage.setItem('bvm_survey_responses_cache', JSON.stringify(docsList));
@@ -1383,7 +1409,7 @@ export default function AdminSurveys() {
 
 function DatabaseConfigPanel() {
   const [currentDbId, setCurrentDbId] = useState(() => {
-    return localStorage.getItem('bvm_firebase_database_id') || 'ai-studio-07e2d538-c938-490a-b092-7a517f5e2308';
+    return localStorage.getItem('bvm_firebase_database_id') || 'default';
   });
   const [customDbId, setCustomDbId] = useState(currentDbId === 'default' ? '' : currentDbId);
   const [isSaving, setIsSaving] = useState(false);

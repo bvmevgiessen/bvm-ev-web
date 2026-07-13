@@ -23,15 +23,9 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 // Resolve the databaseId:
-// 1. Check if there is an explicit database ID selection saved in localStorage
-// 2. Check if the project is an AI Studio workspace project (using firebaseConfig.projectId or starting with gen-lang-client-).
-// 3. If it is, we MUST use the dedicated database ID from the config file.
-// 4. Otherwise, for custom external projects, use VITE_FIREBASE_DATABASE_ID if provided.
-// 5. If the database ID resolves to the custom project's ID itself, reset it to undefined to use "(default)".
+// To ensure we strictly use the single standard default database, databaseId is undefined by default.
+// This prevents confusion and database mismatch issues.
 const currentProjectId = firebaseConfig.projectId;
-const isAIStudioProject = 
-  currentProjectId === "composite-advice-ljcsn" || 
-  (currentProjectId && currentProjectId.startsWith("gen-lang-client-"));
 
 let databaseId: string | undefined = undefined;
 
@@ -39,19 +33,17 @@ const savedDbId = typeof window !== 'undefined' ? window.localStorage.getItem('b
 
 if (savedDbId !== null) {
   databaseId = (savedDbId === 'default' || savedDbId === '') ? undefined : savedDbId;
-} else if (isAIStudioProject) {
-  databaseId = (firebaseAppletConfig as any).firestoreDatabaseId || "ai-studio-07e2d538-c938-490a-b092-7a517f5e2308";
-} else {
-  databaseId = import.meta.env.VITE_FIREBASE_DATABASE_ID || "ai-studio-07e2d538-c938-490a-b092-7a517f5e2308";
-  if (databaseId === currentProjectId) {
-    databaseId = "ai-studio-07e2d538-c938-490a-b092-7a517f5e2308";
+} else if (import.meta.env.VITE_FIREBASE_DATABASE_ID) {
+  const envDbId = import.meta.env.VITE_FIREBASE_DATABASE_ID;
+  if (envDbId !== 'default' && envDbId !== '(default)' && envDbId !== 'default-db') {
+    databaseId = envDbId;
   }
 }
 
 console.info("[Firebase] Configuration initialized:", {
   projectId: currentProjectId,
   databaseId: databaseId || "(default)",
-  isAIStudioProject,
+  isAIStudioProject: currentProjectId === "composite-advice-ljcsn" || (currentProjectId && currentProjectId.startsWith("gen-lang-client-")),
   hasApiKey: !!firebaseConfig.apiKey,
   apiKeySnippet: firebaseConfig.apiKey ? `${firebaseConfig.apiKey.slice(0, 8)}...` : "none"
 });
