@@ -35,11 +35,11 @@ const isAIStudioProject =
 let databaseId: string | undefined = undefined;
 
 if (isAIStudioProject) {
-  databaseId = firebaseAppletConfig.firestoreDatabaseId;
+  databaseId = firebaseAppletConfig.firestoreDatabaseId || "ai-studio-07e2d538-c938-490a-b092-7a517f5e2308";
 } else {
-  databaseId = import.meta.env.VITE_FIREBASE_DATABASE_ID || undefined;
+  databaseId = import.meta.env.VITE_FIREBASE_DATABASE_ID || "ai-studio-07e2d538-c938-490a-b092-7a517f5e2308";
   if (databaseId === currentProjectId) {
-    databaseId = undefined;
+    databaseId = "ai-studio-07e2d538-c938-490a-b092-7a517f5e2308";
   }
 }
 
