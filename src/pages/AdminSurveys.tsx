@@ -64,7 +64,7 @@ export default function AdminSurveys() {
   const [error, setError] = useState<string | null>(null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeTab, setActiveTab] = useState<'results' | 'gdrive'>('results');
+  const [activeTab, setActiveTab] = useState<'results' | 'gdrive' | 'database'>('results');
   const [googleSheetsUrl, setGoogleSheetsUrl] = useState('');
   const [isSavingSettings, setIsSavingSettings] = useState(false);
   const [isTestingSettings, setIsTestingSettings] = useState(false);
@@ -677,9 +677,19 @@ export default function AdminSurveys() {
           >
             Google Drive / Google Sheets
           </button>
+          <button
+            onClick={() => setActiveTab('database')}
+            className={`pb-4 px-2 font-black text-sm transition-all border-b-2 relative ${
+              activeTab === 'database' 
+                ? 'border-brand-orange text-brand-navy' 
+                : 'border-transparent text-slate-400 hover:text-slate-600'
+            }`}
+          >
+            Datenbank-Verbindung
+          </button>
         </div>
 
-        {activeTab === 'results' ? (
+        {activeTab === 'results' && (
           <div>
             {isLoading ? (
               <div className="py-24 text-center space-y-4">
@@ -934,7 +944,9 @@ export default function AdminSurveys() {
               </div>
             )}
           </div>
-        ) : (
+        )}
+
+        {activeTab === 'gdrive' && (
           <div className="bg-white p-8 md:p-12 rounded-[2.5rem] border border-slate-200/80 shadow-sm animate-fade-in space-y-8">
             
             <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-100 pb-6">
@@ -1300,7 +1312,190 @@ export default function AdminSurveys() {
           </div>
         )}
 
+        {activeTab === 'database' && (
+          <DatabaseConfigPanel />
+        )}
+
       </main>
+    </div>
+  );
+}
+
+function DatabaseConfigPanel() {
+  const [currentDbId, setCurrentDbId] = useState(() => {
+    return localStorage.getItem('bvm_firebase_database_id') || 'ai-studio-07e2d538-c938-490a-b092-7a517f5e2308';
+  });
+  const [customDbId, setCustomDbId] = useState(currentDbId === 'default' ? '' : currentDbId);
+  const [isSaving, setIsSaving] = useState(false);
+  const [connStatus, setConnStatus] = useState<'testing' | 'success' | 'error' | null>(null);
+  const [connError, setConnError] = useState<string | null>(null);
+
+  // Test the current database connection
+  const testConnection = async () => {
+    setConnStatus('testing');
+    setConnError(null);
+    try {
+      const docRef = doc(db, 'survey_settings', 'config');
+      await getDoc(docRef);
+      setConnStatus('success');
+    } catch (err: any) {
+      console.error("Database connection test failed:", err);
+      setConnStatus('error');
+      setConnError(err?.message || String(err));
+    }
+  };
+
+  useEffect(() => {
+    testConnection();
+  }, []);
+
+  const handleSaveDatabaseId = (id: string) => {
+    localStorage.setItem('bvm_firebase_database_id', id);
+    setIsSaving(true);
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  };
+
+  return (
+    <div className="bg-white p-8 md:p-12 rounded-[2.5rem] border border-slate-200/80 shadow-sm animate-fade-in space-y-8">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-100 pb-6">
+        <div className="space-y-1">
+          <h3 className="text-xl font-extrabold text-brand-navy flex items-center gap-2">
+            <Database className="text-brand-orange" size={24} /> Firebase-Datenbank-Verbindung
+          </h3>
+          <p className="text-slate-500 font-medium text-xs">
+            Verwalten Sie die aktive Firestore-Datenbankinstanz für Ihre Anwendung.
+          </p>
+        </div>
+        
+        {connStatus === 'testing' && (
+          <span className="px-3 py-1 bg-amber-50 text-amber-700 border border-amber-100 font-extrabold text-[10px] uppercase rounded-full tracking-wide flex items-center gap-1.5">
+            <RefreshCw size={10} className="animate-spin" /> Verbindung wird getestet...
+          </span>
+        )}
+        {connStatus === 'success' && (
+          <span className="px-3 py-1 bg-emerald-50 text-emerald-700 border border-emerald-100 font-extrabold text-[10px] uppercase rounded-full tracking-wide flex items-center gap-1.5">
+            <Check size={10} /> Erfolgreich verbunden
+          </span>
+        )}
+        {connStatus === 'error' && (
+          <span className="px-3 py-1 bg-rose-50 text-rose-700 border border-rose-100 font-extrabold text-[10px] uppercase rounded-full tracking-wide flex items-center gap-1.5">
+            <AlertTriangle size={10} /> Verbindung fehlerhaft
+          </span>
+        )}
+      </div>
+
+      <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl space-y-4">
+        <h4 className="font-extrabold text-brand-navy text-sm">Zwei Datenbanken Erklärt</h4>
+        <p className="text-slate-500 text-xs leading-relaxed">
+          Ihr Firebase-Projekt besitzt in der Regel zwei Datenbank-Instanzen. Das kann verwirrend sein, falls Einstellungen (z.B. Google Sheets IDs oder Google Apps Script-URLs) in einer Datenbank gespeichert sind, die Anwendung jedoch versucht, sich mit der anderen zu verbinden.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          <div className="bg-white p-4 rounded-xl border border-slate-100 space-y-2 shadow-sm">
+            <div className="flex items-center gap-2 text-brand-teal font-extrabold text-xs">
+              <span className="w-2.5 h-2.5 rounded-full bg-brand-teal" /> Standard-Datenbank (Default)
+            </div>
+            <p className="text-[11px] text-slate-500 leading-relaxed">
+              ID: <code className="bg-slate-100 px-1 py-0.5 rounded text-slate-700 font-bold">(default)</code>. Dies ist die herkömmliche Standard-Datenbank Ihres Google Cloud/Firebase-Projekts.
+            </p>
+          </div>
+          <div className="bg-white p-4 rounded-xl border border-slate-100 space-y-2 shadow-sm">
+            <div className="flex items-center gap-2 text-brand-orange font-extrabold text-xs">
+              <span className="w-2.5 h-2.5 rounded-full bg-brand-orange" /> Workspace-Spezifisch (AI Studio)
+            </div>
+            <p className="text-[11px] text-slate-500 leading-relaxed">
+              ID: <code className="bg-slate-100 px-1 py-0.5 rounded text-slate-700 font-bold">ai-studio-07e2d538-c938-490a-b092-7a517f5e2308</code>. Dies ist die dedizierte Instanz für Ihren AI Studio Workspace.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {isSaving && (
+        <div className="p-4 bg-emerald-50 text-emerald-800 border border-emerald-100 rounded-2xl text-xs font-bold flex items-center gap-2 animate-pulse">
+          <RefreshCw size={14} className="animate-spin" /> Datenbank wird gewechselt... Seite lädt neu...
+        </div>
+      )}
+
+      <div className="space-y-6">
+        <h4 className="font-extrabold text-brand-navy text-sm">Aktive Datenbank auswählen</h4>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <button
+            onClick={() => handleSaveDatabaseId('default')}
+            disabled={isSaving}
+            className={`p-6 rounded-2xl border text-left transition-all relative ${
+              currentDbId === 'default'
+                ? 'border-brand-teal bg-teal-50/20 text-brand-navy shadow-sm'
+                : 'border-slate-200 bg-white hover:border-slate-300'
+            }`}
+          >
+            {currentDbId === 'default' && (
+              <span className="absolute top-4 right-4 bg-brand-teal text-white w-5 h-5 rounded-full flex items-center justify-center">
+                <Check size={12} />
+              </span>
+            )}
+            <div className="font-extrabold text-sm mb-1">Standard-Datenbank</div>
+            <div className="text-[10px] text-slate-400 font-mono mb-3">ID: (default)</div>
+            <p className="text-slate-500 text-xs leading-relaxed">
+              Wählen Sie diese Option, falls sich Ihre Umfragedaten und Konfigurationen in der Standard-Instanz befinden.
+            </p>
+          </button>
+
+          <button
+            onClick={() => handleSaveDatabaseId('ai-studio-07e2d538-c938-490a-b092-7a517f5e2308')}
+            disabled={isSaving}
+            className={`p-6 rounded-2xl border text-left transition-all relative ${
+              currentDbId === 'ai-studio-07e2d538-c938-490a-b092-7a517f5e2308'
+                ? 'border-brand-teal bg-teal-50/20 text-brand-navy shadow-sm'
+                : 'border-slate-200 bg-white hover:border-slate-300'
+            }`}
+          >
+            {currentDbId === 'ai-studio-07e2d538-c938-490a-b092-7a517f5e2308' && (
+              <span className="absolute top-4 right-4 bg-brand-teal text-white w-5 h-5 rounded-full flex items-center justify-center">
+                <Check size={12} />
+              </span>
+            )}
+            <div className="font-extrabold text-sm mb-1">Workspace-Spezifisch</div>
+            <div className="text-[10px] text-slate-400 font-mono mb-3">ID: ai-studio-07e2d538-c938...</div>
+            <p className="text-slate-500 text-xs leading-relaxed">
+              Standard-Einstellung des AI Studio Blueprints. Wählen Sie diese Option, um die standardmäßige Workspace-Datenbank zu verwenden.
+            </p>
+          </button>
+        </div>
+
+        <div className="border-t border-slate-100 pt-6 space-y-4">
+          <h5 className="font-extrabold text-brand-navy text-xs">Eigene benutzerdefinierte Datenbank-ID eingeben</h5>
+          <div className="flex gap-3 max-w-xl">
+            <input
+              type="text"
+              placeholder="z.B. meine-datenbank-id"
+              value={customDbId}
+              onChange={(e) => setCustomDbId(e.target.value)}
+              disabled={isSaving}
+              className="text-xs px-4 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-teal/20 focus:border-brand-teal text-slate-700 bg-white"
+            />
+            <button
+              onClick={() => handleSaveDatabaseId(customDbId.trim() || 'default')}
+              disabled={isSaving || !customDbId.trim()}
+              className="px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition-all shrink-0"
+            >
+              Speichern & Aktivieren
+            </button>
+          </div>
+        </div>
+
+        {connStatus === 'error' && connError && (
+          <div className="p-4 bg-red-50 text-red-800 border border-red-100 rounded-2xl text-xs space-y-2">
+            <div className="font-extrabold flex items-center gap-1.5">
+              <AlertTriangle size={14} className="text-red-600" /> Verbindungsfehler-Details:
+            </div>
+            <pre className="font-mono text-[10px] bg-white p-3 rounded-lg border border-red-200/50 overflow-x-auto text-red-700 whitespace-pre-wrap">
+              {connError}
+            </pre>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

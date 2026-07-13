@@ -24,6 +24,8 @@ import { jsPDF } from 'jspdf';
 import Navbar from '../components/Navbar';
 import PuzzleBackground from '../components/PuzzleBackground';
 import { postToAppsScript } from '../lib/appsScriptProxy';
+import { db } from '../lib/firebase';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 interface FinanceItem {
   id: string;
@@ -79,7 +81,12 @@ export default function TaetigkeitsberichtPage() {
   const bilanz = totalEinnahmen - totalAusgaben;
 
   // Custom Google Apps Script Config
-  const [gasUrl, setGasUrl] = useState('');
+  const [gasUrl, setGasUrl] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('bvm_gas_url') || '';
+    }
+    return '';
+  });
   const [showConfig, setShowConfig] = useState(false);
 
   // Admin Mode state (hidden by default, activated via URL ?admin=true or a tiny subtle link)
@@ -97,6 +104,26 @@ export default function TaetigkeitsberichtPage() {
     }
     return false;
   });
+
+  // Sync Tätigkeitsbericht GAS URL from Firestore
+  React.useEffect(() => {
+    const fetchGasUrl = async () => {
+      try {
+        const docRef = doc(db, 'survey_settings', 'config');
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          if (data.taetigkeitsberichtGasUrl) {
+            setGasUrl(data.taetigkeitsberichtGasUrl);
+            localStorage.setItem('bvm_gas_url', data.taetigkeitsberichtGasUrl);
+          }
+        }
+      } catch (err) {
+        console.warn("Using offline fallback for Tätigkeitsbericht Apps Script URL:", err);
+      }
+    };
+    fetchGasUrl();
+  }, []);
 
   // Helper to add repeatable finance items
   const addEinnahme = () => {
@@ -591,11 +618,26 @@ export default function TaetigkeitsberichtPage() {
                             type="url"
                             placeholder="https://script.google.com/macros/s/.../exec"
                             value={gasUrl}
-                            onChange={(e) => setGasUrl(e.target.value)}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              setGasUrl(val);
+                              localStorage.setItem('bvm_gas_url', val);
+                            }}
                             className="flex-1 bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-brand-teal"
                           />
                           <button 
-                            onClick={() => setShowConfig(false)}
+                            onClick={async () => {
+                              setShowConfig(false);
+                              try {
+                                const docRef = doc(db, 'survey_settings', 'config');
+                                await setDoc(docRef, {
+                                  taetigkeitsberichtGasUrl: gasUrl,
+                                  updatedAt: new Date().toISOString()
+                                }, { merge: true });
+                              } catch (err) {
+                                console.error("Error saving Tätigkeitsbericht GAS URL to Firestore:", err);
+                              }
+                            }}
                             className="bg-brand-teal text-white hover:bg-brand-teal-dark px-5 py-2.5 rounded-xl text-sm font-semibold transition-colors shrink-0"
                           >
                             Speichern & Schließen
