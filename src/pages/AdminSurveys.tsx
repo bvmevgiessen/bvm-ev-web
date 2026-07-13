@@ -21,7 +21,8 @@ import {
   MessageSquare,
   Flame,
   Star,
-  AlertTriangle
+  AlertTriangle,
+  ExternalLink
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
@@ -72,6 +73,7 @@ export default function AdminSurveys() {
 
   const [googleUser, setGoogleUser] = useState<User | null>(null);
   const [googleToken, setGoogleToken] = useState<string | null>(null);
+  const [isGoogleLoggingIn, setIsGoogleLoggingIn] = useState(false);
   const [googleSpreadsheetId, setGoogleSpreadsheetId] = useState('');
   const [isCreatingSheet, setIsCreatingSheet] = useState(false);
   const [isSyncingDirect, setIsSyncingDirect] = useState(false);
@@ -206,6 +208,7 @@ export default function AdminSurveys() {
 
   const handleGoogleLogin = async () => {
     setDirectSyncMessage(null);
+    setIsGoogleLoggingIn(true);
     try {
       const result = await googleSignIn();
       if (result) {
@@ -220,8 +223,10 @@ export default function AdminSurveys() {
       console.error('Google Sign-In failed:', err);
       setDirectSyncMessage({
         type: 'error',
-        text: 'Anmeldung fehlgeschlagen: ' + err.message
+        text: err.message || String(err)
       });
+    } finally {
+      setIsGoogleLoggingIn(false);
     }
   };
 
@@ -988,18 +993,39 @@ export default function AdminSurveys() {
 
                 <div className="pt-4 border-t border-slate-100 space-y-3">
                   {!googleUser ? (
-                    <button
-                      onClick={handleGoogleLogin}
-                      className="w-full text-center py-2.5 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer"
-                    >
-                      <svg className="w-4 h-4" viewBox="0 0 24 24">
-                        <path fill="#EA4335" d="M12 5.04c1.66 0 3.2.57 4.38 1.69l3.27-3.27C17.67 1.47 14.99 1 12 1 7.24 1 3.2 3.74 1.25 7.75l3.96 3.07C6.18 7.37 8.87 5.04 12 5.04z" />
-                        <path fill="#4285F4" d="M23.49 12.27c0-.81-.07-1.59-.2-2.36H12v4.51h6.46c-.29 1.48-1.14 2.73-2.4 3.58l3.76 2.91c2.2-2.03 3.47-5.01 3.47-8.64z" />
-                        <path fill="#FBBC05" d="M5.21 10.82c-.25-.75-.39-1.56-.39-2.39s.14-1.64.39-2.39L1.25 6.97C.45 8.56 0 10.35 0 12.27s.45 3.71 1.25 5.3l3.96-3.07c-.25-.75-.39-1.56-.39-2.39z" />
-                        <path fill="#34A853" d="M12 23c3.24 0 5.97-1.07 7.96-2.91l-3.76-2.91c-1.1.74-2.52 1.18-4.2 1.18-3.13 0-5.82-2.33-6.79-5.78L1.25 15.6C3.2 19.61 7.24 22.27 12 22.27z" />
-                      </svg>
-                      Mit Google anmelden
-                    </button>
+                    <div className="space-y-3">
+                      <button
+                        onClick={handleGoogleLogin}
+                        disabled={isGoogleLoggingIn}
+                        className="w-full text-center py-2.5 bg-white hover:bg-slate-50 disabled:opacity-60 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer"
+                      >
+                        {isGoogleLoggingIn ? (
+                          <RefreshCw size={14} className="animate-spin text-slate-500" />
+                        ) : (
+                          <svg className="w-4 h-4" viewBox="0 0 24 24">
+                            <path fill="#EA4335" d="M12 5.04c1.66 0 3.2.57 4.38 1.69l3.27-3.27C17.67 1.47 14.99 1 12 1 7.24 1 3.2 3.74 1.25 7.75l3.96 3.07C6.18 7.37 8.87 5.04 12 5.04z" />
+                            <path fill="#4285F4" d="M23.49 12.27c0-.81-.07-1.59-.2-2.36H12v4.51h6.46c-.29 1.48-1.14 2.73-2.4 3.58l3.76 2.91c2.2-2.03 3.47-5.01 3.47-8.64z" />
+                            <path fill="#FBBC05" d="M5.21 10.82c-.25-.75-.39-1.56-.39-2.39s.14-1.64.39-2.39L1.25 6.97C.45 8.56 0 10.35 0 12.27s.45 3.71 1.25 5.3l3.96-3.07c-.25-.75-.39-1.56-.39-2.39z" />
+                            <path fill="#34A853" d="M12 23c3.24 0 5.97-1.07 7.96-2.91l-3.76-2.91c-1.1.74-2.52 1.18-4.2 1.18-3.13 0-5.82-2.33-6.79-5.78L1.25 15.6C3.2 19.61 7.24 22.27 12 22.27z" />
+                          </svg>
+                        )}
+                        {isGoogleLoggingIn ? 'Anmeldung läuft...' : 'Mit Google anmelden'}
+                      </button>
+
+                      <div className="text-center pt-2 border-t border-slate-100 mt-2 space-y-1.5">
+                        <p className="text-[10px] text-slate-400 leading-normal">
+                          <strong>Hinweis zur Vorschau:</strong> Da diese App im AI Studio Vorschau-Iframe läuft, blockieren Browser oft Google-Anmeldefenster oder Drittanbieter-Cookies.
+                        </p>
+                        <a
+                          href={window.location.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-[11px] text-brand-orange hover:text-brand-orange/80 font-extrabold transition-all hover:underline"
+                        >
+                          <ExternalLink size={11} /> App in neuem Tab öffnen (Empfohlen für Login)
+                        </a>
+                      </div>
+                    </div>
                   ) : (
                     <div className="space-y-4">
                       {/* Connection status */}

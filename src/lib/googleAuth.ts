@@ -34,6 +34,11 @@ export const initAuth = (
 
 // Must be called from a button click or user interaction
 export const googleSignIn = async (): Promise<{ user: User; accessToken: string } | null> => {
+  if (isSigningIn) {
+    console.warn('[GoogleAuth] Sign-in already in progress. Ignoring duplicate request.');
+    return null;
+  }
+
   try {
     isSigningIn = true;
     const result = await signInWithPopup(auth, provider);
@@ -46,6 +51,19 @@ export const googleSignIn = async (): Promise<{ user: User; accessToken: string 
     return { user: result.user, accessToken: cachedAccessToken };
   } catch (error: any) {
     console.error('Sign in error:', error);
+    
+    // Check if the error is due to iframe security constraints or popup blocking
+    const errMsg = error?.message || String(error);
+    if (errMsg.includes('cancelled-popup-request') || errMsg.includes('popup-closed-by-user')) {
+      throw new Error(
+        'Anmeldung abgebrochen oder blockiert. Da die App in einer sicheren AI Studio Vorschau (iframe) läuft, blockieren Browser oft Google-Anmeldefenster. Bitte klicken Sie unten auf "In neuem Tab öffnen" und versuchen Sie es dort noch einmal.'
+      );
+    } else if (errMsg.includes('auth/internal-error') || errMsg.includes('network-request-failed')) {
+      throw new Error(
+        'Interner Authentifizierungsfehler. Dies wird meist durch Drittanbieter-Cookie-Blockaden im AI Studio iframe verursacht. Bitte öffnen Sie die Anwendung in einem neuen Tab, um die Anmeldung erfolgreich abzuschließen.'
+      );
+    }
+    
     throw error;
   } finally {
     isSigningIn = false;
