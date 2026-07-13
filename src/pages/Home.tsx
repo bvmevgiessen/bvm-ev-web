@@ -10,7 +10,6 @@
   import Partners from '../components/Partners';
   import PuzzleBackground from '../components/PuzzleBackground';
   import Newsletter from '../components/Newsletter';
-  import FeedbackSurvey from '../components/FeedbackSurvey';
 
   export default function Home() {
     return (
@@ -28,7 +27,6 @@
           <Blog />
           <Partners />
         </main>
-        <FeedbackSurvey />
       </div>
     );
   }
