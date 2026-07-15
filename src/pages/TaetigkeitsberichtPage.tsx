@@ -19,7 +19,9 @@ import {
   Info,
   ChevronRight,
   ClipboardList,
-  Copy
+  Copy,
+  Shield,
+  Lock
 } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import Navbar from '../components/Navbar';
@@ -157,6 +159,8 @@ export default function TaetigkeitsberichtPage() {
   const [currentUser, setCurrentUser] = useState<FirebaseUser | null>(null);
   const [adminAuthError, setAdminAuthError] = useState<string | null>(null);
   const [isAuthenticating, setIsAuthenticating] = useState(false);
+  const [showAdminLogin, setShowAdminLogin] = useState(false);
+  const [passcode, setPasscode] = useState('');
 
   // Sync auth state listener
   React.useEffect(() => {
@@ -190,6 +194,7 @@ export default function TaetigkeitsberichtPage() {
       // End admin mode
       setIsAdmin(false);
       localStorage.setItem('bvm_admin_mode', 'false');
+      setShowAdminLogin(false);
       // Remove any explicit query param to prevent sticky reload
       const url = new URL(window.location.href);
       url.searchParams.delete('admin');
@@ -207,27 +212,47 @@ export default function TaetigkeitsberichtPage() {
         setIsAdmin(true);
         localStorage.setItem('bvm_admin_mode', 'true');
       } else {
-        setIsAuthenticating(true);
-        try {
-          const res = await googleSignIn();
-          if (res && res.user) {
-            if (res.user.email === 'bvmevgiessen@gmail.com') {
-              setCurrentUser(res.user);
-              setIsAdmin(true);
-              localStorage.setItem('bvm_admin_mode', 'true');
-              setAdminAuthError(null);
-            } else {
-              setAdminAuthError('Zutritt verweigert: Nur der Haupt-Administrator (bvmevgiessen@gmail.com) darf Einstellungen anpassen.');
-              await googleLogout();
-            }
-          }
-        } catch (err: any) {
-          console.error(err);
-          setAdminAuthError(err.message || 'Fehler bei der Google-Anmeldung.');
-        } finally {
-          setIsAuthenticating(false);
+        setShowAdminLogin(!showAdminLogin);
+      }
+    }
+  };
+
+  const handleGoogleAdminLogin = async () => {
+    setAdminAuthError(null);
+    setIsAuthenticating(true);
+    try {
+      const res = await googleSignIn();
+      if (res && res.user) {
+        if (res.user.email === 'bvmevgiessen@gmail.com') {
+          setCurrentUser(res.user);
+          setIsAdmin(true);
+          localStorage.setItem('bvm_admin_mode', 'true');
+          setShowAdminLogin(false);
+          setAdminAuthError(null);
+        } else {
+          setAdminAuthError('Zutritt verweigert: Nur der Haupt-Administrator (bvmevgiessen@gmail.com) darf Einstellungen anpassen.');
+          await googleLogout();
         }
       }
+    } catch (err: any) {
+      console.error(err);
+      setAdminAuthError(err.message || 'Fehler bei der Google-Anmeldung.');
+    } finally {
+      setIsAuthenticating(false);
+    }
+  };
+
+  const handlePasscodeAdminLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    setAdminAuthError(null);
+    const DEFAULT_PASSCODE = "BVM2026";
+    if (passcode.trim().toUpperCase() === DEFAULT_PASSCODE) {
+      setIsAdmin(true);
+      localStorage.setItem('bvm_admin_mode', 'true');
+      setShowAdminLogin(false);
+      setPasscode('');
+    } else {
+      setAdminAuthError('Falscher Zugangscode. Bitte versuchen Sie es erneut.');
     }
   };
 
@@ -1678,23 +1703,115 @@ export default function TaetigkeitsberichtPage() {
               </div>
             )}
 
-            <button 
-              type="button" 
-              onClick={handleAdminToggle} 
-              disabled={isAuthenticating}
-              className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-600 transition-colors bg-slate-100 hover:bg-slate-200 disabled:opacity-50 px-4 py-2 rounded-full cursor-pointer font-medium"
-            >
-              {isAuthenticating ? (
-                <>
-                  <Loader2 size={12} className="animate-spin" />
-                  Authentifizierung...
-                </>
-              ) : isAdmin ? (
-                '🔑 Admin-Modus beenden'
-              ) : (
-                '⚙️ Technische Schnittstellen-Einstellung (nur für Vereins-Admin)'
-              )}
-            </button>
+            {showAdminLogin && !isAdmin ? (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="max-w-md mx-auto bg-slate-50 border border-slate-200 rounded-2xl p-5 text-left space-y-4 shadow-sm"
+              >
+                <div className="flex items-center gap-2 text-slate-700 font-bold text-sm">
+                  <Shield size={16} className="text-brand-teal" />
+                  <span>Admin-Authentifizierung</span>
+                </div>
+                <p className="text-slate-500 text-[11px] leading-relaxed">
+                  Um die Schnittstellen-Einstellungen anzupassen, melden Sie sich bitte mit dem Google-Konto <strong>bvmevgiessen@gmail.com</strong> an oder geben Sie den BVM-Zugangscode ein.
+                </p>
+
+                {/* Google Sign-In Option */}
+                <button
+                  type="button"
+                  onClick={handleGoogleAdminLogin}
+                  disabled={isAuthenticating}
+                  className="w-full bg-white hover:bg-slate-100 text-slate-700 font-semibold py-2.5 px-4 border border-slate-200 rounded-xl transition-all flex items-center justify-center gap-2 text-xs shadow-sm disabled:opacity-50 cursor-pointer"
+                >
+                  {isAuthenticating ? (
+                    <Loader2 size={14} className="animate-spin text-slate-400" />
+                  ) : (
+                    <svg className="w-4 h-4" viewBox="0 0 24 24">
+                      <path
+                        fill="#4285F4"
+                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                      />
+                      <path
+                        fill="#34A853"
+                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                      />
+                      <path
+                        fill="#FBBC05"
+                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"
+                      />
+                      <path
+                        fill="#EA4335"
+                        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                      />
+                    </svg>
+                  )}
+                  <span>Mit Google-Konto anmelden</span>
+                </button>
+
+                <div className="relative flex py-1 items-center">
+                  <div className="flex-grow border-t border-slate-200"></div>
+                  <span className="flex-shrink mx-2 text-slate-400 text-[10px] uppercase font-semibold">Oder per Code</span>
+                  <div className="flex-grow border-t border-slate-200"></div>
+                </div>
+
+                {/* Passcode Option */}
+                <form onSubmit={handlePasscodeAdminLogin} className="space-y-2">
+                  <div className="flex gap-2">
+                    <div className="relative flex-grow">
+                      <Lock size={12} className="absolute left-3 top-3 text-slate-400" />
+                      <input
+                        type="password"
+                        placeholder="BVM-Zugangscode eingeben"
+                        value={passcode}
+                        onChange={(e) => setPasscode(e.target.value)}
+                        className="w-full bg-white border border-slate-200 rounded-xl pl-8 pr-3 py-2 text-xs focus:outline-none focus:border-brand-teal transition-all text-slate-700"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="bg-brand-teal hover:bg-brand-teal-dark text-white font-bold px-4 py-2 rounded-xl text-xs transition-colors cursor-pointer shrink-0"
+                    >
+                      Einloggen
+                    </button>
+                  </div>
+                  <p className="text-slate-400 text-[9px] leading-tight text-center">
+                    💡 Falls Google-Login im iframe blockiert wird: Nutzen Sie den Zugangscode <strong>BVM2026</strong>.
+                  </p>
+                </form>
+
+                <div className="pt-2 border-t border-slate-100 flex justify-end">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowAdminLogin(false);
+                      setAdminAuthError(null);
+                    }}
+                    className="text-[10px] text-slate-400 hover:text-slate-600 font-medium bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg cursor-pointer"
+                  >
+                    Abbrechen
+                  </button>
+                </div>
+              </motion.div>
+            ) : (
+              <button 
+                type="button" 
+                onClick={handleAdminToggle} 
+                disabled={isAuthenticating}
+                className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-600 transition-colors bg-slate-100 hover:bg-slate-200 disabled:opacity-50 px-4 py-2 rounded-full cursor-pointer font-medium"
+              >
+                {isAuthenticating ? (
+                  <>
+                    <Loader2 size={12} className="animate-spin" />
+                    Authentifizierung...
+                  </>
+                ) : isAdmin ? (
+                  '🔑 Admin-Modus beenden'
+                ) : (
+                  '⚙️ Technische Schnittstellen-Einstellung (nur für Vereins-Admin)'
+                )}
+              </button>
+            )}
           </div>
 
         </div>
