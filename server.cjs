@@ -36,6 +36,20 @@ async function startServer() {
       return res.status(400).json({ error: "Missing Apps Script url" });
     }
     try {
+      const parsedUrl = new URL(url);
+      if (parsedUrl.protocol !== "https:") {
+        return res.status(400).json({ error: "Invalid protocol. Only HTTPS is allowed." });
+      }
+      if (parsedUrl.hostname !== "script.google.com") {
+        return res.status(400).json({ error: "Invalid target host. Only script.google.com is allowed." });
+      }
+      if (!parsedUrl.pathname.startsWith("/macros/s/") || !parsedUrl.pathname.endsWith("/exec")) {
+        return res.status(400).json({ error: "Invalid Apps Script path structure." });
+      }
+    } catch (e) {
+      return res.status(400).json({ error: "Malformed URL provided." });
+    }
+    try {
       console.log(`[Proxy] Forwarding request to Google Apps Script: ${url.slice(0, 50)}...`);
       const response = await fetch(url, {
         method: "POST",
