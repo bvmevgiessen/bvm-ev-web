@@ -1,14 +1,68 @@
 import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
+import fs from "fs";
 
 async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  // Read Firebase project config
+  let projectId = "composite-advice-ljcsn"; // Default fallback
+  try {
+    const configPath = path.join(process.cwd(), "firebase-applet-config.json");
+    if (fs.existsSync(configPath)) {
+      const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+      if (config.projectId) {
+        projectId = config.projectId;
+      }
+    }
+  } catch (e) {
+    console.error("[Server] Error reading firebase config:", e);
+  }
+
   // Use body parsers
   app.use(express.json({ limit: '50mb' })); // support large file payloads for report uploads
   app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
+  // API endpoint to fetch survey settings config via server-side REST call
+  // This bypasses any client-side Firestore/iframe restriction completely.
+  app.get("/api/survey-settings/config", async (req, res) => {
+    try {
+      const url = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/survey_settings/config`;
+      console.log(`[Proxy] Fetching config from Firestore REST API: ${url}`);
+      const response = await fetch(url);
+      
+      if (!response.ok) {
+        if (response.status === 404) {
+          // Document does not exist yet, return a structured empty state instead of crashing
+          return res.status(200).json({
+            taetigkeitsberichtGasUrl: "",
+            googleSpreadsheetUrl: "",
+            adminPasscodeHash: "",
+            updatedAt: ""
+          });
+        }
+        throw new Error(`Firestore REST API returned status ${response.status}`);
+      }
+      
+      const data = await response.json();
+      
+      // Map Firestore REST format to simple flat object
+      const fields = data.fields || {};
+      const config = {
+        taetigkeitsberichtGasUrl: fields.taetigkeitsberichtGasUrl?.stringValue || "",
+        googleSpreadsheetUrl: fields.googleSpreadsheetUrl?.stringValue || "",
+        adminPasscodeHash: fields.adminPasscodeHash?.stringValue || "",
+        updatedAt: fields.updatedAt?.stringValue || ""
+      };
+      
+      res.status(200).json(config);
+    } catch (err: any) {
+      console.error("[Server] Error fetching Firestore config:", err);
+      res.status(500).json({ error: err.message || "Failed to fetch config" });
+    }
+  });
 
   // API proxy route for Google Apps Script to bypass browser Content Security Policy
   app.post("/api/proxy-apps-script", async (req, res) => {

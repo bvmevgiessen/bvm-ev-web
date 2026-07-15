@@ -31,6 +31,7 @@ import { onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
 import { db, auth } from '../lib/firebase';
 import { googleSignIn, logout as googleLogout } from '../lib/googleAuth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { safeStorage } from '../lib/safeStorage';
 
 interface FinanceItem {
   id: string;
@@ -132,10 +133,7 @@ export default function TaetigkeitsberichtPage() {
 
   // Custom Google Apps Script Config
   const [gasUrl, setGasUrl] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return localStorage.getItem('bvm_gas_url') || '';
-    }
-    return '';
+    return safeStorage.getItem('bvm_gas_url') || '';
   });
   const [showConfig, setShowConfig] = useState(false);
 
@@ -144,13 +142,13 @@ export default function TaetigkeitsberichtPage() {
     if (typeof window !== 'undefined') {
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get('admin') === 'true') {
-        localStorage.setItem('bvm_admin_mode', 'true');
+        safeStorage.setItem('bvm_admin_mode', 'true');
         return true;
       } else if (urlParams.get('admin') === 'false') {
-        localStorage.setItem('bvm_admin_mode', 'false');
+        safeStorage.setItem('bvm_admin_mode', 'false');
         return false;
       }
-      return localStorage.getItem('bvm_admin_mode') === 'true';
+      return safeStorage.getItem('bvm_admin_mode') === 'true';
     }
     return false;
   });
@@ -161,6 +159,12 @@ export default function TaetigkeitsberichtPage() {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [showAdminLogin, setShowAdminLogin] = useState(false);
   const [passcode, setPasscode] = useState('');
+
+  // States for changing admin passcode
+  const [newPasscode, setNewPasscode] = useState('');
+  const [newPasscodeConfirm, setNewPasscodeConfirm] = useState('');
+  const [passcodeSaveStatus, setPasscodeSaveStatus] = useState<'idle' | 'saving' | 'success' | 'error'>('idle');
+  const [passcodeError, setPasscodeError] = useState('');
 
   // Helper to hash passcode securely using SHA-256
   const hashPasscode = async (passcodeText: string): Promise<string> => {
@@ -178,11 +182,11 @@ export default function TaetigkeitsberichtPage() {
         if (user.email === 'bvmevgiessen@gmail.com') {
           setCurrentUser(user);
           setIsAdmin(true);
-          localStorage.setItem('bvm_admin_mode', 'true');
+          safeStorage.setItem('bvm_admin_mode', 'true');
         } else {
           setCurrentUser(null);
           setIsAdmin(false);
-          localStorage.setItem('bvm_admin_mode', 'false');
+          safeStorage.setItem('bvm_admin_mode', 'false');
         }
       } else {
         setCurrentUser(null);
@@ -190,7 +194,7 @@ export default function TaetigkeitsberichtPage() {
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('admin') !== 'true') {
           setIsAdmin(false);
-          localStorage.setItem('bvm_admin_mode', 'false');
+          safeStorage.setItem('bvm_admin_mode', 'false');
         }
       }
     });
@@ -202,7 +206,7 @@ export default function TaetigkeitsberichtPage() {
     if (isAdmin) {
       // End admin mode
       setIsAdmin(false);
-      localStorage.setItem('bvm_admin_mode', 'false');
+      safeStorage.setItem('bvm_admin_mode', 'false');
       setShowAdminLogin(false);
       // Remove any explicit query param to prevent sticky reload
       const url = new URL(window.location.href);
@@ -219,7 +223,7 @@ export default function TaetigkeitsberichtPage() {
       // Check if already authenticated as the BVM admin
       if (currentUser && currentUser.email === 'bvmevgiessen@gmail.com') {
         setIsAdmin(true);
-        localStorage.setItem('bvm_admin_mode', 'true');
+        safeStorage.setItem('bvm_admin_mode', 'true');
       } else {
         setShowAdminLogin(!showAdminLogin);
       }
@@ -235,7 +239,7 @@ export default function TaetigkeitsberichtPage() {
         if (res.user.email === 'bvmevgiessen@gmail.com') {
           setCurrentUser(res.user);
           setIsAdmin(true);
-          localStorage.setItem('bvm_admin_mode', 'true');
+          safeStorage.setItem('bvm_admin_mode', 'true');
           setShowAdminLogin(false);
           setAdminAuthError(null);
         } else {
@@ -256,19 +260,32 @@ export default function TaetigkeitsberichtPage() {
     setAdminAuthError(null);
     try {
       const enteredHash = await hashPasscode(passcode);
-      
-      // Fetch stored hash from Firestore survey_settings/config
-      const docRef = doc(db, 'survey_settings', 'config');
-      const docSnap = await getDoc(docRef);
-      
       let targetHash = "7840df5f73d4a36f52e50dfdf599c424076e48cb6daeeeb6b1c60f4da963fa1d"; // Default BVM2026 hash
-      if (docSnap.exists() && docSnap.data().adminPasscodeHash) {
-        targetHash = docSnap.data().adminPasscodeHash;
+      
+      // 1. Try server-side API proxy (always works, even in iframe)
+      try {
+        const response = await fetch('/api/survey-settings/config');
+        if (response.ok) {
+          const data = await response.json();
+          if (data.adminPasscodeHash) {
+            targetHash = data.adminPasscodeHash;
+          }
+        } else {
+          throw new Error('API response not ok');
+        }
+      } catch (apiErr) {
+        console.warn("API config fetch failed, falling back to direct Firestore SDK:", apiErr);
+        // 2. Fallback: Direct Firestore SDK
+        const docRef = doc(db, 'survey_settings', 'config');
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists() && docSnap.data().adminPasscodeHash) {
+          targetHash = docSnap.data().adminPasscodeHash;
+        }
       }
       
       if (enteredHash === targetHash) {
         setIsAdmin(true);
-        localStorage.setItem('bvm_admin_mode', 'true');
+        safeStorage.setItem('bvm_admin_mode', 'true');
         setShowAdminLogin(false);
         setPasscode('');
       } else {
@@ -279,7 +296,7 @@ export default function TaetigkeitsberichtPage() {
       // Offline / fallback comparison
       if (passcode.trim().toUpperCase() === "BVM2026") {
         setIsAdmin(true);
-        localStorage.setItem('bvm_admin_mode', 'true');
+        safeStorage.setItem('bvm_admin_mode', 'true');
         setShowAdminLogin(false);
         setPasscode('');
       } else {
@@ -288,9 +305,61 @@ export default function TaetigkeitsberichtPage() {
     }
   };
 
+  const handleChangePasscode = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPasscodeError('');
+    setPasscodeSaveStatus('idle');
+    
+    if (newPasscode.length < 6) {
+      setPasscodeError('Der neue Zugangscode muss mindestens 6 Zeichen lang sein.');
+      return;
+    }
+    if (newPasscode !== newPasscodeConfirm) {
+      setPasscodeError('Die beiden Zugangscodes stimmen nicht überein.');
+      return;
+    }
+    
+    setPasscodeSaveStatus('saving');
+    try {
+      const hash = await hashPasscode(newPasscode);
+      
+      // Save hash in Firestore survey_settings/config
+      const docRef = doc(db, 'survey_settings', 'config');
+      await setDoc(docRef, {
+        adminPasscodeHash: hash,
+        updatedAt: new Date().toISOString()
+      }, { merge: true });
+      
+      setPasscodeSaveStatus('success');
+      setNewPasscode('');
+      setNewPasscodeConfirm('');
+      setTimeout(() => setPasscodeSaveStatus('idle'), 4000);
+    } catch (err: any) {
+      console.error("Error saving passcode:", err);
+      setPasscodeError(err.message || 'Fehler beim Speichern des Zugangscodes.');
+      setPasscodeSaveStatus('error');
+    }
+  };
+
   // Sync Tätigkeitsbericht GAS URL from Firestore
   React.useEffect(() => {
     const fetchGasUrl = async () => {
+      try {
+        // Try server-side API proxy first (bypasses iframe restrictions)
+        const response = await fetch('/api/survey-settings/config');
+        if (response.ok) {
+          const data = await response.json();
+          if (data.taetigkeitsberichtGasUrl) {
+            setGasUrl(data.taetigkeitsberichtGasUrl);
+            safeStorage.setItem('bvm_gas_url', data.taetigkeitsberichtGasUrl);
+            return;
+          }
+        }
+      } catch (err) {
+        console.warn("Could not fetch via API, trying direct Firestore SDK:", err);
+      }
+
+      // Direct Firestore SDK fallback
       try {
         const docRef = doc(db, 'survey_settings', 'config');
         const docSnap = await getDoc(docRef);
@@ -298,7 +367,7 @@ export default function TaetigkeitsberichtPage() {
           const data = docSnap.data();
           if (data.taetigkeitsberichtGasUrl) {
             setGasUrl(data.taetigkeitsberichtGasUrl);
-            localStorage.setItem('bvm_gas_url', data.taetigkeitsberichtGasUrl);
+            safeStorage.setItem('bvm_gas_url', data.taetigkeitsberichtGasUrl);
           }
         }
       } catch (err) {
@@ -804,7 +873,7 @@ export default function TaetigkeitsberichtPage() {
                             onChange={(e) => {
                               const val = e.target.value;
                               setGasUrl(val);
-                              localStorage.setItem('bvm_gas_url', val);
+                              safeStorage.setItem('bvm_gas_url', val);
                             }}
                             className="flex-1 bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-brand-teal"
                           />
@@ -843,6 +912,71 @@ export default function TaetigkeitsberichtPage() {
                           <li>Wählen Sie den Typ <strong className="text-white">Web-App</strong>. Ausführen als: <strong className="text-white">Sie selbst</strong>. Wer hat Zugriff: <strong className="text-white">Jeder</strong>.</li>
                           <li>Kopieren Sie die erzeugte Web-App-URL und fügen Sie diese oben ein. Fertig!</li>
                         </ol>
+                      </div>
+
+                      {/* Secure Passcode Change Card */}
+                      <div className="border-t border-slate-800 pt-6 space-y-4">
+                        <div className="flex items-center gap-2">
+                          <Lock className="text-brand-teal" size={16} />
+                          <h4 className="text-white text-sm font-bold">🔑 Admin-Zugangscode ändern</h4>
+                        </div>
+
+                        {currentUser && currentUser.email === 'bvmevgiessen@gmail.com' ? (
+                          <form onSubmit={handleChangePasscode} className="space-y-4 max-w-xl">
+                            <p className="text-xs text-slate-400 leading-relaxed">
+                              Als Haupt-Administrator können Sie hier den standardmäßigen Zugangscode (BVM2026) durch einen eigenen, sicheren Zugangscode ersetzen. Dieser wird kryptographisch als SHA-256 Hash gesichert.
+                            </p>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                              <div className="space-y-1.5">
+                                <label className="text-xs font-bold text-slate-450">Neuer Zugangscode</label>
+                                <input 
+                                  type="password"
+                                  placeholder="Mindestens 6 Zeichen"
+                                  value={newPasscode}
+                                  onChange={(e) => setNewPasscode(e.target.value)}
+                                  className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-brand-teal focus:bg-slate-850 transition-all text-white"
+                                />
+                              </div>
+                              <div className="space-y-1.5">
+                                <label className="text-xs font-bold text-slate-450">Code bestätigen</label>
+                                <input 
+                                  type="password"
+                                  placeholder="Code wiederholen"
+                                  value={newPasscodeConfirm}
+                                  onChange={(e) => setNewPasscodeConfirm(e.target.value)}
+                                  className="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs focus:outline-none focus:border-brand-teal focus:bg-slate-850 transition-all text-white"
+                                />
+                              </div>
+                            </div>
+
+                            {passcodeError && (
+                              <p className="text-xs text-red-400 font-medium">⚠️ {passcodeError}</p>
+                            )}
+
+                            {passcodeSaveStatus === 'success' && (
+                              <p className="text-xs text-green-400 font-medium bg-green-950/40 border border-green-800/50 py-2 px-3 rounded-lg">
+                                ✓ Neuer Zugangscode erfolgreich gespeichert und aktiv!
+                              </p>
+                            )}
+
+                            <button
+                              type="submit"
+                              disabled={passcodeSaveStatus === 'saving'}
+                              className="bg-brand-teal hover:bg-brand-teal-dark text-white font-bold py-2 px-4 rounded-xl text-xs transition-colors cursor-pointer"
+                            >
+                              {passcodeSaveStatus === 'saving' ? 'Speichern...' : 'Zugangscode aktualisieren'}
+                            </button>
+                          </form>
+                        ) : (
+                          <div className="bg-slate-800/50 border border-slate-800/50 p-4 rounded-2xl space-y-2">
+                            <p className="text-xs text-slate-400 leading-relaxed">
+                              💡 Um den Zugangscode zu ändern, melden Sie sich bitte mit Ihrem Administrator-Google-Konto <strong>bvmevgiessen@gmail.com</strong> an.
+                            </p>
+                            <p className="text-[10px] text-amber-300 leading-normal bg-amber-950/20 p-2.5 rounded-xl border border-amber-900/40">
+                              <strong>Hinweis für bvm-ev.de:</strong> Falls der Google-Login auf Ihrer Webseite blockiert wird, öffnen Sie bitte diese Anwendung direkt über die Entwicklungs-URL in einem neuen Tab. Dort können Sie sich sicher mit Google einloggen und den Code für bvm-ev.de ändern.
+                            </p>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </motion.div>
