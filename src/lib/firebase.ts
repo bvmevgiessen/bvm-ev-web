@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { initializeFirestore } from 'firebase/firestore';
+import { safeStorage } from './SafeStorage';
 import firebaseAppletConfig from '../../firebase-applet-config.json';
 
 let apiKey = import.meta.env.VITE_FIREBASE_API_KEY || import.meta.env.VITE_API_KEY || firebaseAppletConfig.apiKey;
@@ -29,7 +30,7 @@ const currentProjectId = firebaseConfig.projectId;
 
 let databaseId: string | undefined = undefined;
 
-const savedDbId = typeof window !== 'undefined' ? window.localStorage.getItem('bvm_firebase_database_id') : null;
+const savedDbId = safeStorage.getItem('bvm_firebase_database_id');
 
 if (savedDbId !== null) {
   databaseId = (savedDbId === 'default' || savedDbId === '') ? undefined : savedDbId;
