@@ -31,7 +31,7 @@ import { onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
 import { db, auth } from '../lib/firebase';
 import { googleSignIn, logout as googleLogout } from '../lib/googleAuth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { safeStorage } from '../lib/safeStorage';
+import { safeStorage } from '../lib/SafeStorage';
 
 interface FinanceItem {
   id: string;
