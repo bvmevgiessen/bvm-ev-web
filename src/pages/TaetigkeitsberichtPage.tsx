@@ -20,7 +20,8 @@ import {
   ChevronRight,
   ClipboardList,
   Copy,
-  Shield
+  Shield,
+  Lock
 } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import Navbar from '../components/Navbar';
@@ -159,6 +160,16 @@ export default function TaetigkeitsberichtPage() {
   const [adminAuthError, setAdminAuthError] = useState<string | null>(null);
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [showAdminLogin, setShowAdminLogin] = useState(false);
+  const [passcode, setPasscode] = useState('');
+
+  // Helper to hash passcode securely using SHA-256
+  const hashPasscode = async (passcodeText: string): Promise<string> => {
+    const trimmed = passcodeText.trim().toUpperCase();
+    const msgBuffer = new TextEncoder().encode(trimmed);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  };
 
   // Sync auth state listener
   React.useEffect(() => {
@@ -237,6 +248,43 @@ export default function TaetigkeitsberichtPage() {
       setAdminAuthError(err.message || 'Fehler bei der Google-Anmeldung.');
     } finally {
       setIsAuthenticating(false);
+    }
+  };
+
+  const handlePasscodeAdminLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setAdminAuthError(null);
+    try {
+      const enteredHash = await hashPasscode(passcode);
+      
+      // Fetch stored hash from Firestore survey_settings/config
+      const docRef = doc(db, 'survey_settings', 'config');
+      const docSnap = await getDoc(docRef);
+      
+      let targetHash = "7840df5f73d4a36f52e50dfdf599c424076e48cb6daeeeb6b1c60f4da963fa1d"; // Default BVM2026 hash
+      if (docSnap.exists() && docSnap.data().adminPasscodeHash) {
+        targetHash = docSnap.data().adminPasscodeHash;
+      }
+      
+      if (enteredHash === targetHash) {
+        setIsAdmin(true);
+        localStorage.setItem('bvm_admin_mode', 'true');
+        setShowAdminLogin(false);
+        setPasscode('');
+      } else {
+        setAdminAuthError('Falscher Zugangscode. Bitte versuchen Sie es erneut.');
+      }
+    } catch (err: any) {
+      console.error("Passcode auth error:", err);
+      // Offline / fallback comparison
+      if (passcode.trim().toUpperCase() === "BVM2026") {
+        setIsAdmin(true);
+        localStorage.setItem('bvm_admin_mode', 'true');
+        setShowAdminLogin(false);
+        setPasscode('');
+      } else {
+        setAdminAuthError('Falscher Zugangscode oder Serverfehler beim Abruf.');
+      }
     }
   };
 
@@ -1730,8 +1778,37 @@ export default function TaetigkeitsberichtPage() {
                       />
                     </svg>
                   )}
-                  <span>Mit Google-Konto anmelden</span>
+                  <span>Mit Google-Konto anmelden (Empfohlen)</span>
                 </button>
+
+                <div className="flex items-center gap-2">
+                  <div className="h-px bg-slate-200 flex-grow" />
+                  <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">oder</span>
+                  <div className="h-px bg-slate-200 flex-grow" />
+                </div>
+
+                <form onSubmit={handlePasscodeAdminLogin} className="space-y-3">
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-bold text-slate-500 uppercase">Individueller BVM-Zugangscode</label>
+                    <div className="relative">
+                      <input 
+                        type="password"
+                        required
+                        placeholder="Zugangscode eingeben"
+                        value={passcode}
+                        onChange={(e) => setPasscode(e.target.value)}
+                        className="w-full bg-white border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-xs focus:outline-none focus:border-brand-teal focus:bg-white transition-all text-slate-700 font-mono tracking-wider"
+                      />
+                      <Lock className="absolute left-3 top-2.5 text-slate-400" size={13} />
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-brand-teal hover:bg-brand-teal-dark text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-colors cursor-pointer"
+                  >
+                    Mit Code verifizieren
+                  </button>
+                </form>
 
                 <div className="bg-amber-50 border-l-4 border-amber-500 p-3 rounded-r-xl">
                   <p className="text-[10px] leading-relaxed text-amber-800 font-medium">
