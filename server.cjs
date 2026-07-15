@@ -78,6 +78,7 @@ async function startServer() {
     if (!url) {
       return res.status(400).json({ error: "Missing Apps Script url" });
     }
+    let safeUrl;
     try {
       const parsedUrl = new URL(url);
       if (parsedUrl.protocol !== "https:") {
@@ -86,15 +87,18 @@ async function startServer() {
       if (parsedUrl.hostname !== "script.google.com") {
         return res.status(400).json({ error: "Invalid target host. Only script.google.com is allowed." });
       }
-      if (!parsedUrl.pathname.startsWith("/macros/s/") || !parsedUrl.pathname.endsWith("/exec")) {
+      if (!/^\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(parsedUrl.pathname)) {
         return res.status(400).json({ error: "Invalid Apps Script path structure." });
       }
+      const canonicalUrl = new URL(`https://script.google.com${parsedUrl.pathname}`);
+      canonicalUrl.search = parsedUrl.search;
+      safeUrl = canonicalUrl.toString();
     } catch (e) {
       return res.status(400).json({ error: "Malformed URL provided." });
     }
     try {
-      console.log(`[Proxy] Forwarding request to Google Apps Script: ${url.slice(0, 50)}...`);
-      const response = await fetch(url, {
+      console.log(`[Proxy] Forwarding request to Google Apps Script: ${safeUrl.slice(0, 50)}...`);
+      const response = await fetch(safeUrl, {
         method: "POST",
         headers: {
           "Content-Type": "text/plain;charset=utf-8"
