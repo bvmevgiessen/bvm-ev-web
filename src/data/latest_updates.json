@@ -78,6 +78,25 @@
     "sourceId": "fidev"
   },
   {
+    "id": "house-of-one-ddbe08ed27",
+    "title": "Fördern Sie die größte Friedensbotschaft der Stadt",
+    "link": "https://house-of-one.org/news/foerdern-sie-die-groesste-friedensbotschaft-der-stadt",
+    "date": "2026-06-29T00:00:00+00:00",
+    "source_name": "House of One",
+    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "category": "Integration",
+    "author": "House of One",
+    "partnerName": "House of One",
+    "partnerUrl": "https://house-of-one.org/",
+    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "excerpt": "Viele Kinder. Viele Geschichten. Eine Botschaft. Unter dem Motto \"Verschieden glauben, gemeinsam malen\" entsteht am Berliner Petriplatz, dort wo einst... Weiterlesen",
+    "tags": [
+      "Integration"
+    ],
+    "external": true,
+    "sourceId": "house-of-one"
+  },
+  {
     "id": "fidev-7fc49cab2c",
     "title": "Democracy SafeSpace – Frankfurter Jugend im Dialog",
     "link": "https://www.fidev.org/post/democracy-safespace",
@@ -265,25 +284,6 @@
     "excerpt": "Herzlichen Dank an alle unsere Spenderinnen und Spender, ob engagierte Privatpersonen, Firmen oder Organisationen! In drei Monaten, von 30. Januar bis... Weiterlesen",
     "tags": [
       "Dialog"
-    ],
-    "external": true,
-    "sourceId": "house-of-one"
-  },
-  {
-    "id": "house-of-one-8cf15a22c0",
-    "title": "Podcastfolge #114: Heilige Väter? Über Vatervorstellungen in Tora, Bibel und Koran sowie echte Erfahrungen",
-    "link": "https://house-of-one.org/news/podcastfolge-114-heilige-vaeter-ueber-vatervorstellungen-tora-bibel-und-koran-sowie-echte",
-    "date": "2026-05-11T00:00:00+00:00",
-    "source_name": "House of One",
-    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "category": "Community",
-    "author": "House of One",
-    "partnerName": "House of One",
-    "partnerUrl": "https://house-of-one.org/",
-    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "excerpt": "In dieser Folge tauchen wir tief in die Rolle der Väter ein – zwischen gesellschaftlichen Erwartungen, kulturellen Mythen und persönlichen Erfahrungen... Weiterlesen",
-    "tags": [
-      "Community"
     ],
     "external": true,
     "sourceId": "house-of-one"
