@@ -25,11 +25,54 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var import_express = __toESM(require("express"), 1);
 var import_path = __toESM(require("path"), 1);
 var import_vite = require("vite");
+var import_fs = __toESM(require("fs"), 1);
 async function startServer() {
   const app = (0, import_express.default)();
   const PORT = 3e3;
+  let projectId = "composite-advice-ljcsn";
+  try {
+    const configPath = import_path.default.join(process.cwd(), "firebase-applet-config.json");
+    if (import_fs.default.existsSync(configPath)) {
+      const config = JSON.parse(import_fs.default.readFileSync(configPath, "utf-8"));
+      if (config.projectId) {
+        projectId = config.projectId;
+      }
+    }
+  } catch (e) {
+    console.error("[Server] Error reading firebase config:", e);
+  }
   app.use(import_express.default.json({ limit: "50mb" }));
   app.use(import_express.default.urlencoded({ limit: "50mb", extended: true }));
+  app.get("/api/survey-settings/config", async (req, res) => {
+    try {
+      const url = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/survey_settings/config`;
+      console.log(`[Proxy] Fetching config from Firestore REST API: ${url}`);
+      const response = await fetch(url);
+      if (!response.ok) {
+        if (response.status === 404) {
+          return res.status(200).json({
+            taetigkeitsberichtGasUrl: "",
+            googleSpreadsheetUrl: "",
+            adminPasscodeHash: "",
+            updatedAt: ""
+          });
+        }
+        throw new Error(`Firestore REST API returned status ${response.status}`);
+      }
+      const data = await response.json();
+      const fields = data.fields || {};
+      const config = {
+        taetigkeitsberichtGasUrl: fields.taetigkeitsberichtGasUrl?.stringValue || "",
+        googleSpreadsheetUrl: fields.googleSpreadsheetUrl?.stringValue || "",
+        adminPasscodeHash: fields.adminPasscodeHash?.stringValue || "",
+        updatedAt: fields.updatedAt?.stringValue || ""
+      };
+      res.status(200).json(config);
+    } catch (err) {
+      console.error("[Server] Error fetching Firestore config:", err);
+      res.status(500).json({ error: err.message || "Failed to fetch config" });
+    }
+  });
   app.post("/api/proxy-apps-script", async (req, res) => {
     const { url, payload } = req.body;
     if (!url) {
