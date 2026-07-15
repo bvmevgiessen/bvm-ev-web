@@ -38,7 +38,10 @@
     "survey_settings": {
         "documentId": "settingId",
         "fields": {
-            "googleSheetsUrl": { "type": "string" }
+            "googleSheetsUrl": { "type": "string" },
+            "googleSpreadsheetUrl": { "type": "string" },
+            "taetigkeitsberichtGasUrl": { "type": "string" },
+            "updatedAt": { "type": "string" }
         }
     }
   }

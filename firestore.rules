@@ -1,14 +1,68 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // Global Safety Net (Deny all by default)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedEmail(email) {
+      return isSignedIn() 
+        && request.auth.token.email_verified == true 
+        && request.auth.token.email == email;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Collection: users
     match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read, write: if isSignedIn() && request.auth.uid == userId && isValidId(userId);
     }
+
+    // Collection: survey_responses
     match /survey_responses/{responseId} {
-      allow create, read, update, delete: if true;
+      allow create: if isValidId(responseId);
     }
+
+    // Collection: survey_settings
     match /survey_settings/{settingId} {
-      allow read, write: if true;
+      // Helper to validate setting fields
+      function isValidSetting(data) {
+        return (data.get('googleSheetsUrl', '') is string && data.get('googleSheetsUrl', '').size() <= 1000)
+          && (data.get('googleSpreadsheetUrl', '') is string && data.get('googleSpreadsheetUrl', '').size() <= 1000)
+          && (data.get('taetigkeitsberichtGasUrl', '') is string && data.get('taetigkeitsberichtGasUrl', '').size() <= 1000)
+          && (data.get('updatedAt', '') is string && data.get('updatedAt', '').size() <= 100);
+      }
+
+      // Public read access ONLY for the specific "config" document ID to fetch configuration
+      allow get: if settingId == 'config';
+
+      // Restrict all list operations for security
+      allow list: if false;
+
+      // Write access is strictly restricted to verified admin bvmevgiessen@gmail.com
+      allow create, update: if settingId == 'config'
+        && isVerifiedEmail('bvmevgiessen@gmail.com')
+        && isValidSetting(incoming());
+
+      // Admins and others cannot delete the config document
+      allow delete: if false;
     }
   }
 }
