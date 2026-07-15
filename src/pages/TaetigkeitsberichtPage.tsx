@@ -20,8 +20,7 @@ import {
   ChevronRight,
   ClipboardList,
   Copy,
-  Shield,
-  Lock
+  Shield
 } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import Navbar from '../components/Navbar';
@@ -160,7 +159,6 @@ export default function TaetigkeitsberichtPage() {
   const [adminAuthError, setAdminAuthError] = useState<string | null>(null);
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [showAdminLogin, setShowAdminLogin] = useState(false);
-  const [passcode, setPasscode] = useState('');
 
   // Sync auth state listener
   React.useEffect(() => {
@@ -239,20 +237,6 @@ export default function TaetigkeitsberichtPage() {
       setAdminAuthError(err.message || 'Fehler bei der Google-Anmeldung.');
     } finally {
       setIsAuthenticating(false);
-    }
-  };
-
-  const handlePasscodeAdminLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    setAdminAuthError(null);
-    const DEFAULT_PASSCODE = "BVM2026";
-    if (passcode.trim().toUpperCase() === DEFAULT_PASSCODE) {
-      setIsAdmin(true);
-      localStorage.setItem('bvm_admin_mode', 'true');
-      setShowAdminLogin(false);
-      setPasscode('');
-    } else {
-      setAdminAuthError('Falscher Zugangscode. Bitte versuchen Sie es erneut.');
     }
   };
 
@@ -1714,7 +1698,7 @@ export default function TaetigkeitsberichtPage() {
                   <span>Admin-Authentifizierung</span>
                 </div>
                 <p className="text-slate-500 text-[11px] leading-relaxed">
-                  Um die Schnittstellen-Einstellungen anzupassen, melden Sie sich bitte mit dem Google-Konto <strong>bvmevgiessen@gmail.com</strong> an oder geben Sie den BVM-Zugangscode ein.
+                  Um die Schnittstellen-Einstellungen anzupassen, melden Sie sich bitte mit dem Google-Konto <strong>bvmevgiessen@gmail.com</strong> an.
                 </p>
 
                 {/* Google Sign-In Option */}
@@ -1749,36 +1733,11 @@ export default function TaetigkeitsberichtPage() {
                   <span>Mit Google-Konto anmelden</span>
                 </button>
 
-                <div className="relative flex py-1 items-center">
-                  <div className="flex-grow border-t border-slate-200"></div>
-                  <span className="flex-shrink mx-2 text-slate-400 text-[10px] uppercase font-semibold">Oder per Code</span>
-                  <div className="flex-grow border-t border-slate-200"></div>
-                </div>
-
-                {/* Passcode Option */}
-                <form onSubmit={handlePasscodeAdminLogin} className="space-y-2">
-                  <div className="flex gap-2">
-                    <div className="relative flex-grow">
-                      <Lock size={12} className="absolute left-3 top-3 text-slate-400" />
-                      <input
-                        type="password"
-                        placeholder="BVM-Zugangscode eingeben"
-                        value={passcode}
-                        onChange={(e) => setPasscode(e.target.value)}
-                        className="w-full bg-white border border-slate-200 rounded-xl pl-8 pr-3 py-2 text-xs focus:outline-none focus:border-brand-teal transition-all text-slate-700"
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      className="bg-brand-teal hover:bg-brand-teal-dark text-white font-bold px-4 py-2 rounded-xl text-xs transition-colors cursor-pointer shrink-0"
-                    >
-                      Einloggen
-                    </button>
-                  </div>
-                  <p className="text-slate-400 text-[9px] leading-tight text-center">
-                    💡 Falls Google-Login im iframe blockiert wird: Nutzen Sie den Zugangscode <strong>BVM2026</strong>.
+                <div className="bg-amber-50 border-l-4 border-amber-500 p-3 rounded-r-xl">
+                  <p className="text-[10px] leading-relaxed text-amber-800 font-medium">
+                    ⚠️ <strong>Wichtiger Hinweis:</strong> Falls die Google-Anmeldung hier blockiert wird (aufgrund von Drittanbieter-Cookie-Beschränkungen im AI Studio iframe), öffnen Sie bitte diese Anwendung in einem <strong>neuen Tab</strong> (über den Link oben rechts oder den Tab-Button). Dort funktioniert die Google-Authentifizierung einwandfrei und absolut sicher!
                   </p>
-                </form>
+                </div>
 
                 <div className="pt-2 border-t border-slate-100 flex justify-end">
                   <button
