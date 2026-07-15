@@ -21,7 +21,9 @@ import {
   ClipboardList,
   Copy,
   Shield,
-  Lock
+  Lock,
+  ExternalLink,
+  AlertTriangle
 } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import Navbar from '../components/Navbar';
@@ -156,6 +158,7 @@ export default function TaetigkeitsberichtPage() {
   // Google Authentication State
   const [currentUser, setCurrentUser] = useState<FirebaseUser | null>(null);
   const [adminAuthError, setAdminAuthError] = useState<string | null>(null);
+  const isIframe = typeof window !== 'undefined' && window.self !== window.top;
   const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [showAdminLogin, setShowAdminLogin] = useState(false);
   const [passcode, setPasscode] = useState('');
@@ -1864,8 +1867,24 @@ export default function TaetigkeitsberichtPage() {
           {/* Subtle toggle button for BVM e.V. Admin setup panel */}
           <div className="mt-12 text-center text-xs text-slate-400 border-t border-slate-200/50 pt-6 space-y-3">
             {adminAuthError && (
-              <div className="max-w-md mx-auto text-xs text-red-500 font-medium bg-red-50 py-2.5 px-3 rounded-xl leading-relaxed">
-                ⚠️ {adminAuthError}
+              <div className="max-w-md mx-auto bg-red-50 border border-red-100 rounded-xl p-4 text-left space-y-3 shadow-sm mb-4">
+                <div className="flex items-start gap-2 text-red-700 font-semibold text-xs leading-none">
+                  <AlertTriangle size={14} className="shrink-0 mt-0.5" />
+                  <span>Fehler bei der Admin-Authentifizierung</span>
+                </div>
+                <p className="text-xs text-red-600 leading-relaxed font-medium">
+                  {adminAuthError}
+                </p>
+                {(adminAuthError.includes('Authentifizierung') || adminAuthError.includes('Cookie') || adminAuthError.includes('Vorschau') || adminAuthError.includes('Tab') || isIframe) && (
+                  <button
+                    type="button"
+                    onClick={() => window.open(window.location.href, '_blank')}
+                    className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-3 rounded-xl text-xs transition-colors cursor-pointer text-center flex items-center justify-center gap-1.5 shadow-sm"
+                  >
+                    <ExternalLink size={12} />
+                    <span>Jetzt im neuen Tab öffnen</span>
+                  </button>
+                )}
               </div>
             )}
 
@@ -1882,6 +1901,22 @@ export default function TaetigkeitsberichtPage() {
                 <p className="text-slate-500 text-[11px] leading-relaxed">
                   Um die Schnittstellen-Einstellungen anzupassen, melden Sie sich bitte mit dem Google-Konto <strong>bvmevgiessen@gmail.com</strong> an.
                 </p>
+
+                {isIframe && (
+                  <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-left space-y-2">
+                    <p className="text-[10px] text-amber-800 leading-relaxed font-medium">
+                      ⚠️ <strong>Drittanbieter-Cookies blockiert:</strong> Da diese Anwendung in einer Vorschau (iframe) läuft, blockiert Ihr Browser eventuell die Google-Anmeldung.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => window.open(window.location.href, '_blank')}
+                      className="w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-1.5 px-3 rounded-lg text-[10px] transition-colors cursor-pointer text-center flex items-center justify-center gap-1 shadow-sm"
+                    >
+                      <ExternalLink size={11} />
+                      <span>In neuem Tab öffnen & anmelden</span>
+                    </button>
+                  </div>
+                )}
 
                 {/* Google Sign-In Option */}
                 <button
