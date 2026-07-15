@@ -18,13 +18,16 @@ import {
   Loader2, 
   Info,
   ChevronRight,
-  ClipboardList
+  ClipboardList,
+  Copy
 } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import Navbar from '../components/Navbar';
 import PuzzleBackground from '../components/PuzzleBackground';
 import { postToAppsScript } from '../lib/appsScriptProxy';
-import { db } from '../lib/firebase';
+import { onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
+import { db, auth } from '../lib/firebase';
+import { googleSignIn, logout as googleLogout } from '../lib/googleAuth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 interface FinanceItem {
@@ -80,6 +83,51 @@ export default function TaetigkeitsberichtPage() {
   const totalAusgaben = ausgaben.reduce((sum, item) => sum + (Number(item.betrag) || 0), 0);
   const bilanz = totalEinnahmen - totalAusgaben;
 
+  // Excel copy helper
+  const [copiedData, setCopiedData] = useState(false);
+  const copyToExcelClipboard = () => {
+    try {
+      const timestamp = new Date().toLocaleString('de-DE');
+      
+      const fileSummaryList: string[] = [];
+      if (fotos.length > 0) fileSummaryList.push(`${fotos.length} Foto(s)`);
+      if (belege.length > 0) fileSummaryList.push(`${belege.length} Beleg(e)`);
+      
+      const fileSafeTitle = (titel || 'Tätigkeitsbericht').replace(/[^a-zA-Z0-9]/g, '_');
+      const pdfFileName = `BVM_Taetigkeitsbericht_${fileSafeTitle}.pdf`;
+      fileSummaryList.push(pdfFileName);
+      
+      const rowData = [
+        timestamp,
+        verein || "Bildung und Verständigung Mittelhessen e.V. (BVM)",
+        titel,
+        datum,
+        ort,
+        verantwortlichePerson,
+        ziel || "",
+        kurzprotokoll || "",
+        beschreibung || "",
+        `${totalEinnahmen.toFixed(2).replace('.', ',')} €`,
+        `${totalAusgaben.toFixed(2).replace('.', ',')} €`,
+        `${bilanz.toFixed(2).replace('.', ',')} €`,
+        erstellerName,
+        funktion,
+        erstellungsDatum,
+        unterschrift,
+        ablageort || "Google Drive Ordner",
+        fileSummaryList.join(", ")
+      ];
+
+      // Excel/Google Sheets tab-separated values format for direct paste
+      const tsv = rowData.join("\t");
+      navigator.clipboard.writeText(tsv);
+      setCopiedData(true);
+      setTimeout(() => setCopiedData(false), 3000);
+    } catch (err) {
+      console.error("Fehler beim Kopieren der Tabellendaten:", err);
+    }
+  };
+
   // Custom Google Apps Script Config
   const [gasUrl, setGasUrl] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -104,6 +152,84 @@ export default function TaetigkeitsberichtPage() {
     }
     return false;
   });
+
+  // Google Authentication State
+  const [currentUser, setCurrentUser] = useState<FirebaseUser | null>(null);
+  const [adminAuthError, setAdminAuthError] = useState<string | null>(null);
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
+
+  // Sync auth state listener
+  React.useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user: FirebaseUser | null) => {
+      if (user) {
+        if (user.email === 'bvmevgiessen@gmail.com') {
+          setCurrentUser(user);
+          setIsAdmin(true);
+          localStorage.setItem('bvm_admin_mode', 'true');
+        } else {
+          setCurrentUser(null);
+          setIsAdmin(false);
+          localStorage.setItem('bvm_admin_mode', 'false');
+        }
+      } else {
+        setCurrentUser(null);
+        // If we log out, only disable admin mode if it was not force-loaded via URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('admin') !== 'true') {
+          setIsAdmin(false);
+          localStorage.setItem('bvm_admin_mode', 'false');
+        }
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleAdminToggle = async () => {
+    setAdminAuthError(null);
+    if (isAdmin) {
+      // End admin mode
+      setIsAdmin(false);
+      localStorage.setItem('bvm_admin_mode', 'false');
+      // Remove any explicit query param to prevent sticky reload
+      const url = new URL(window.location.href);
+      url.searchParams.delete('admin');
+      window.history.replaceState({}, '', url);
+      
+      // Perform google logout
+      try {
+        await googleLogout();
+      } catch (err) {
+        console.error("Error during admin logout:", err);
+      }
+    } else {
+      // Check if already authenticated as the BVM admin
+      if (currentUser && currentUser.email === 'bvmevgiessen@gmail.com') {
+        setIsAdmin(true);
+        localStorage.setItem('bvm_admin_mode', 'true');
+      } else {
+        setIsAuthenticating(true);
+        try {
+          const res = await googleSignIn();
+          if (res && res.user) {
+            if (res.user.email === 'bvmevgiessen@gmail.com') {
+              setCurrentUser(res.user);
+              setIsAdmin(true);
+              localStorage.setItem('bvm_admin_mode', 'true');
+              setAdminAuthError(null);
+            } else {
+              setAdminAuthError('Zutritt verweigert: Nur der Haupt-Administrator (bvmevgiessen@gmail.com) darf Einstellungen anpassen.');
+              await googleLogout();
+            }
+          }
+        } catch (err: any) {
+          console.error(err);
+          setAdminAuthError(err.message || 'Fehler bei der Google-Anmeldung.');
+        } finally {
+          setIsAuthenticating(false);
+        }
+      }
+    }
+  };
 
   // Sync Tätigkeitsbericht GAS URL from Firestore
   React.useEffect(() => {
@@ -1221,9 +1347,18 @@ export default function TaetigkeitsberichtPage() {
                     </div>
 
                     {submitError && (
-                      <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-2xl flex items-start gap-3">
-                        <AlertCircle className="text-red-500 shrink-0 mt-0.5" size={18} />
-                        <p className="text-xs font-medium text-red-800 leading-relaxed">{submitError}</p>
+                      <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div className="flex items-start gap-3">
+                          <AlertCircle className="text-red-500 shrink-0 mt-0.5" size={18} />
+                          <p className="text-xs font-medium text-red-800 leading-relaxed">{submitError}</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={copyToExcelClipboard}
+                          className="bg-white hover:bg-slate-100 text-brand-teal border border-brand-teal/20 font-bold px-4 py-2 rounded-xl text-xs transition-colors shrink-0 flex items-center justify-center gap-1.5 self-start sm:self-auto cursor-pointer"
+                        >
+                          <Copy size={13} /> {copiedData ? 'Kopiert!' : 'Eintrag als Excel-Zeile kopieren'}
+                        </button>
                       </div>
                     )}
 
@@ -1301,6 +1436,13 @@ export default function TaetigkeitsberichtPage() {
                         className="bg-brand-teal hover:bg-brand-teal-dark text-white font-bold py-3 px-6 rounded-xl text-sm transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-brand-teal/10"
                       >
                         <FileText size={18} /> PDF Beleg herunterladen
+                      </button>
+                      <button
+                        type="button"
+                        onClick={copyToExcelClipboard}
+                        className="bg-slate-50 border border-slate-200 hover:bg-slate-100 text-slate-700 font-bold py-3 px-6 rounded-xl text-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+                      >
+                        <Copy size={16} className="text-brand-teal" /> {copiedData ? 'In Zwischenablage kopiert!' : 'In Excel-Tabelle kopieren'}
                       </button>
                       <button
                         type="button"
@@ -1529,13 +1671,29 @@ export default function TaetigkeitsberichtPage() {
           )}
 
           {/* Subtle toggle button for BVM e.V. Admin setup panel */}
-          <div className="mt-12 text-center text-xs text-slate-400 border-t border-slate-200/50 pt-6">
+          <div className="mt-12 text-center text-xs text-slate-400 border-t border-slate-200/50 pt-6 space-y-3">
+            {adminAuthError && (
+              <div className="max-w-md mx-auto text-xs text-red-500 font-medium bg-red-50 py-2.5 px-3 rounded-xl leading-relaxed">
+                ⚠️ {adminAuthError}
+              </div>
+            )}
+
             <button 
               type="button" 
-              onClick={() => setIsAdmin(!isAdmin)} 
-              className="text-slate-400 hover:text-slate-600 transition-colors bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-full cursor-pointer font-medium"
+              onClick={handleAdminToggle} 
+              disabled={isAuthenticating}
+              className="inline-flex items-center gap-2 text-slate-400 hover:text-slate-600 transition-colors bg-slate-100 hover:bg-slate-200 disabled:opacity-50 px-4 py-2 rounded-full cursor-pointer font-medium"
             >
-              {isAdmin ? '🔑 Admin-Modus beenden' : '⚙️ Technische Schnittstellen-Einstellung (nur für Vereins-Admin)'}
+              {isAuthenticating ? (
+                <>
+                  <Loader2 size={12} className="animate-spin" />
+                  Authentifizierung...
+                </>
+              ) : isAdmin ? (
+                '🔑 Admin-Modus beenden'
+              ) : (
+                '⚙️ Technische Schnittstellen-Einstellung (nur für Vereins-Admin)'
+              )}
             </button>
           </div>
 
