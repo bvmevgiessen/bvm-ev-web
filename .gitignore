@@ -87,3 +87,8 @@ credentials.json
 *.pem
 *.key
 .credentials
+
+# Firebase api key files
+firebase-applet-config.json
+firebase_applet_config.xml
+
