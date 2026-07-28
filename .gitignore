@@ -92,3 +92,6 @@ credentials.json
 firebase-applet-config.json
 firebase_applet_config.xml
 
+# Oracle Apex spe
+oracle_apex_spec.md
+
