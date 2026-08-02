@@ -25,6 +25,8 @@ async function startServer() {
   app.use(express.json({ limit: '50mb' })); // support large file payloads for report uploads
   app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
+  const DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbVB7mpSdQpm-QvzoJCTLn74BqLNdUD99ILxAoD9I7_kU3WPxNYLxF4luvr7kyDSTiE/exec";
+
   // API endpoint to fetch survey settings config via server-side REST call
   // This bypasses any client-side Firestore/iframe restriction completely.
   app.get("/api/survey-settings/config", async (req, res) => {
@@ -35,9 +37,9 @@ async function startServer() {
       
       if (!response.ok) {
         if (response.status === 404) {
-          // Document does not exist yet, return a structured empty state instead of crashing
+          // Document does not exist yet, return default URL instead of crashing
           return res.status(200).json({
-            taetigkeitsberichtGasUrl: "",
+            taetigkeitsberichtGasUrl: DEFAULT_GAS_URL,
             googleSpreadsheetUrl: "",
             adminPasscodeHash: "",
             updatedAt: ""
@@ -51,7 +53,7 @@ async function startServer() {
       // Map Firestore REST format to simple flat object
       const fields = data.fields || {};
       const config = {
-        taetigkeitsberichtGasUrl: fields.taetigkeitsberichtGasUrl?.stringValue || "",
+        taetigkeitsberichtGasUrl: fields.taetigkeitsberichtGasUrl?.stringValue || DEFAULT_GAS_URL,
         googleSpreadsheetUrl: fields.googleSpreadsheetUrl?.stringValue || "",
         adminPasscodeHash: fields.adminPasscodeHash?.stringValue || "",
         updatedAt: fields.updatedAt?.stringValue || ""
@@ -71,8 +73,6 @@ async function startServer() {
       return res.status(400).json({ error: "Missing Apps Script url" });
     }
 
-    let safeUrl: string;
-
     // SSRF Prevention: Restrict forwarded requests strictly to verified Google Apps Script endpoints
     try {
       const parsedUrl = new URL(url);
@@ -82,21 +82,16 @@ async function startServer() {
       if (parsedUrl.hostname !== "script.google.com") {
         return res.status(400).json({ error: "Invalid target host. Only script.google.com is allowed." });
       }
-      if (!/^\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(parsedUrl.pathname)) {
+      if (!parsedUrl.pathname.startsWith("/macros/s/") || !parsedUrl.pathname.endsWith("/exec")) {
         return res.status(400).json({ error: "Invalid Apps Script path structure." });
       }
-
-      // Build a canonical trusted URL from validated components (do not use raw user input at sink).
-      const canonicalUrl = new URL(`https://script.google.com${parsedUrl.pathname}`);
-      canonicalUrl.search = parsedUrl.search;
-      safeUrl = canonicalUrl.toString();
     } catch (e) {
       return res.status(400).json({ error: "Malformed URL provided." });
     }
 
     try {
-      console.log(`[Proxy] Forwarding request to Google Apps Script: ${safeUrl.slice(0, 50)}...`);
-      const response = await fetch(safeUrl, {
+      console.log(`[Proxy] Forwarding request to Google Apps Script: ${url.slice(0, 50)}...`);
+      const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "text/plain;charset=utf-8"

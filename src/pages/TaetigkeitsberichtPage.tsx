@@ -35,6 +35,8 @@ import { googleSignIn, logout as googleLogout } from '../lib/googleAuth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { safeStorage } from '../lib/SafeStorage';
 
+export const DEFAULT_TAETIGKEITSBERICHT_GAS_URL = 'https://script.google.com/macros/s/AKfycbVB7mpSdQpm-QvzoJCTLn74BqLNdUD99ILxAoD9I7_kU3WPxNYLxF4luvr7kyDSTiE/exec';
+
 interface FinanceItem {
   id: string;
   datum: string;
@@ -135,7 +137,7 @@ export default function TaetigkeitsberichtPage() {
 
   // Custom Google Apps Script Config
   const [gasUrl, setGasUrl] = useState(() => {
-    return safeStorage.getItem('bvm_gas_url') || '';
+    return safeStorage.getItem('bvm_gas_url') || DEFAULT_TAETIGKEITSBERICHT_GAS_URL;
   });
   const [showConfig, setShowConfig] = useState(false);
   const [wasSubmittedToGas, setWasSubmittedToGas] = useState<boolean | null>(null);
@@ -375,6 +377,9 @@ export default function TaetigkeitsberichtPage() {
       if (localUrl) {
         setGasUrl(localUrl);
         setQuickGasUrl(localUrl);
+      } else {
+        setGasUrl(DEFAULT_TAETIGKEITSBERICHT_GAS_URL);
+        setQuickGasUrl(DEFAULT_TAETIGKEITSBERICHT_GAS_URL);
       }
 
       // 2. Direct Firestore SDK (works on static GitHub Pages & fullstack)
@@ -396,7 +401,7 @@ export default function TaetigkeitsberichtPage() {
 
       // 3. Optional Express API call if not running on static hosting like GitHub Pages
       const isStaticSite = typeof window !== 'undefined' && 
-        (window.location.hostname === 'bvm-ev.de' || window.location.hostname === 'github.io' || window.location.hostname.endsWith('.github.io'));
+        (window.location.hostname === 'bvm-ev.de' || window.location.hostname.endsWith('github.io'));
 
       if (!isStaticSite) {
         try {
@@ -814,8 +819,8 @@ export default function TaetigkeitsberichtPage() {
       belege: belege.map(f => ({ name: f.name, type: f.type, data: f.base64.split(',')[1] }))
     };
 
-    // Use user-configured Apps Script URL or a default state info
-    const targetUrl = gasUrl.trim() || import.meta.env.VITE_TATEIGKEITSBERICHT_GAS_URL;
+    // Use user-configured Apps Script URL or default URL
+    const targetUrl = gasUrl.trim() || import.meta.env.VITE_TATEIGKEITSBERICHT_GAS_URL || DEFAULT_TAETIGKEITSBERICHT_GAS_URL;
 
     if (!targetUrl) {
       // Local processing simulation because no Web-App URL is bound yet
