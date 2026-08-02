@@ -62,8 +62,12 @@ async function startServer() {
       }
       const data = await response.json();
       const fields = data.fields || {};
+      let fetchedGasUrl = fields.taetigkeitsberichtGasUrl?.stringValue || DEFAULT_GAS_URL;
+      if (fetchedGasUrl.includes("AKfycb_j2093")) {
+        fetchedGasUrl = DEFAULT_GAS_URL;
+      }
       const config = {
-        taetigkeitsberichtGasUrl: fields.taetigkeitsberichtGasUrl?.stringValue || DEFAULT_GAS_URL,
+        taetigkeitsberichtGasUrl: fetchedGasUrl,
         googleSpreadsheetUrl: fields.googleSpreadsheetUrl?.stringValue || "",
         adminPasscodeHash: fields.adminPasscodeHash?.stringValue || "",
         updatedAt: fields.updatedAt?.stringValue || ""
@@ -72,6 +76,42 @@ async function startServer() {
     } catch (err) {
       console.error("[Server] Error fetching Firestore config:", err);
       res.status(500).json({ error: err.message || "Failed to fetch config" });
+    }
+  });
+  app.post("/api/survey-settings/config", async (req, res) => {
+    try {
+      const { taetigkeitsberichtGasUrl, googleSpreadsheetUrl, adminPasscodeHash } = req.body;
+      const url = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/survey_settings/config`;
+      const fields = {
+        updatedAt: { stringValue: (/* @__PURE__ */ new Date()).toISOString() }
+      };
+      let maskParams = ["updateMask.fieldPaths=updatedAt"];
+      if (taetigkeitsberichtGasUrl !== void 0) {
+        fields.taetigkeitsberichtGasUrl = { stringValue: taetigkeitsberichtGasUrl };
+        maskParams.push("updateMask.fieldPaths=taetigkeitsberichtGasUrl");
+      }
+      if (googleSpreadsheetUrl !== void 0) {
+        fields.googleSpreadsheetUrl = { stringValue: googleSpreadsheetUrl };
+        maskParams.push("updateMask.fieldPaths=googleSpreadsheetUrl");
+      }
+      if (adminPasscodeHash !== void 0) {
+        fields.adminPasscodeHash = { stringValue: adminPasscodeHash };
+        maskParams.push("updateMask.fieldPaths=adminPasscodeHash");
+      }
+      const patchUrl = `${url}?${maskParams.join("&")}`;
+      console.log(`[Proxy] Updating config in Firestore REST API: ${patchUrl}`);
+      const response = await fetch(patchUrl, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fields })
+      });
+      if (!response.ok) {
+        console.warn(`[Server] Firestore REST API PATCH returned status ${response.status}`);
+      }
+      res.status(200).json({ status: "success", taetigkeitsberichtGasUrl: taetigkeitsberichtGasUrl || DEFAULT_GAS_URL });
+    } catch (err) {
+      console.error("[Server] Error updating Firestore config via REST:", err);
+      res.status(500).json({ error: err.message || "Failed to save config" });
     }
   });
   app.post("/api/proxy-apps-script", async (req, res) => {
