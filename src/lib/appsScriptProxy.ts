@@ -56,7 +56,7 @@ export async function postToAppsScript(url: string, payload: any, signal?: Abort
   }
 
   const isStaticSite = typeof window !== 'undefined' && 
-    (window.location.hostname === 'bvm-ev.de' || window.location.hostname.endsWith('github.io'));
+    (window.location.hostname === 'bvm-ev.de' || window.location.hostname === 'github.io' || window.location.hostname.endsWith('.github.io'));
 
   // 1. Try server-side proxy if not on a pure static site host
   if (!isStaticSite) {
