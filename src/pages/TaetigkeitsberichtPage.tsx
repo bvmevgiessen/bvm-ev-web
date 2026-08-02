@@ -137,7 +137,11 @@ export default function TaetigkeitsberichtPage() {
 
   // Custom Google Apps Script Config
   const [gasUrl, setGasUrl] = useState(() => {
-    return safeStorage.getItem('bvm_gas_url') || DEFAULT_TAETIGKEITSBERICHT_GAS_URL;
+    const stored = safeStorage.getItem('bvm_gas_url');
+    if (stored && !stored.includes('AKfycb_j2093')) {
+      return stored;
+    }
+    return DEFAULT_TAETIGKEITSBERICHT_GAS_URL;
   });
   const [showConfig, setShowConfig] = useState(false);
   const [wasSubmittedToGas, setWasSubmittedToGas] = useState<boolean | null>(null);
@@ -151,6 +155,19 @@ export default function TaetigkeitsberichtPage() {
     setGasUrl(trimmed);
     setQuickGasUrl(trimmed);
     safeStorage.setItem('bvm_gas_url', trimmed);
+
+    // 1. Post to Express Server API
+    try {
+      await fetch('/api/survey-settings/config', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ taetigkeitsberichtGasUrl: trimmed })
+      });
+    } catch (e) {
+      console.warn("Could not save config via Express API:", e);
+    }
+
+    // 2. Save directly via Firestore SDK
     try {
       const docRef = doc(db, 'survey_settings', 'config');
       await setDoc(docRef, {
@@ -374,12 +391,13 @@ export default function TaetigkeitsberichtPage() {
     const fetchGasUrl = async () => {
       // 1. Check local storage first for instant initialization
       const localUrl = safeStorage.getItem('bvm_gas_url');
-      if (localUrl) {
+      if (localUrl && !localUrl.includes('AKfycb_j2093')) {
         setGasUrl(localUrl);
         setQuickGasUrl(localUrl);
       } else {
         setGasUrl(DEFAULT_TAETIGKEITSBERICHT_GAS_URL);
         setQuickGasUrl(DEFAULT_TAETIGKEITSBERICHT_GAS_URL);
+        safeStorage.setItem('bvm_gas_url', DEFAULT_TAETIGKEITSBERICHT_GAS_URL);
       }
 
       // 2. Direct Firestore SDK (works on static GitHub Pages & fullstack)
@@ -388,7 +406,7 @@ export default function TaetigkeitsberichtPage() {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
           const data = docSnap.data();
-          if (data.taetigkeitsberichtGasUrl) {
+          if (data.taetigkeitsberichtGasUrl && !data.taetigkeitsberichtGasUrl.includes('AKfycb_j2093')) {
             setGasUrl(data.taetigkeitsberichtGasUrl);
             setQuickGasUrl(data.taetigkeitsberichtGasUrl);
             safeStorage.setItem('bvm_gas_url', data.taetigkeitsberichtGasUrl);
@@ -412,7 +430,7 @@ export default function TaetigkeitsberichtPage() {
           const response = await fetch('/api/survey-settings/config');
           if (response.ok) {
             const data = await response.json();
-            if (data.taetigkeitsberichtGasUrl) {
+            if (data.taetigkeitsberichtGasUrl && !data.taetigkeitsberichtGasUrl.includes('AKfycb_j2093')) {
               setGasUrl(data.taetigkeitsberichtGasUrl);
               setQuickGasUrl(data.taetigkeitsberichtGasUrl);
               safeStorage.setItem('bvm_gas_url', data.taetigkeitsberichtGasUrl);
@@ -790,14 +808,46 @@ export default function TaetigkeitsberichtPage() {
       const pdfDoc = buildPDFDoc();
       const pdfBase64Str = pdfDoc.output('datauristring').split(',')[1];
       const fileSafeTitle = (titel || 'Tätigkeitsbericht').replace(/[^a-zA-Z0-9]/g, '_');
+      const filename = `BVM_Taetigkeitsbericht_${fileSafeTitle}.pdf`;
       pdfData = {
-        name: `BVM_Taetigkeitsbericht_${fileSafeTitle}.pdf`,
+        name: filename,
+        filename: filename,
+        title: filename,
         type: 'application/pdf',
-        data: pdfBase64Str
+        mimeType: 'application/pdf',
+        data: pdfBase64Str,
+        base64: pdfBase64Str,
+        content: pdfBase64Str
       };
     } catch (err) {
       console.error('Fehler bei der PDF-Generierung für Google Drive:', err);
     }
+
+    const processedFotos = fotos.map(f => {
+      const b64 = f.base64 ? (f.base64.includes(',') ? f.base64.split(',')[1] : f.base64) : '';
+      return {
+        name: f.name,
+        filename: f.name,
+        type: f.type,
+        mimeType: f.type,
+        data: b64,
+        base64: b64,
+        content: b64
+      };
+    });
+
+    const processedBelege = belege.map(f => {
+      const b64 = f.base64 ? (f.base64.includes(',') ? f.base64.split(',')[1] : f.base64) : '';
+      return {
+        name: f.name,
+        filename: f.name,
+        type: f.type,
+        mimeType: f.type,
+        data: b64,
+        base64: b64,
+        content: b64
+      };
+    });
 
     const payload = {
       verein,
@@ -805,6 +855,7 @@ export default function TaetigkeitsberichtPage() {
       datum,
       ort,
       verantwortlichePerson,
+      verantwortlich: verantwortlichePerson,
       ziel,
       kurzprotokoll,
       beschreibung,
@@ -815,19 +866,64 @@ export default function TaetigkeitsberichtPage() {
       totalAusgaben,
       bilanz,
       erstellerName,
+      ersteller: erstellerName,
       funktion,
       erstellungsDatum,
       unterschrift,
+      
       pdf: pdfData,
-      fotos: fotos.map(f => ({ name: f.name, type: f.type, data: f.base64.split(',')[1] })),
-      belege: belege.map(f => ({ name: f.name, type: f.type, data: f.base64.split(',')[1] }))
+      pdfFile: pdfData,
+      file: pdfData,
+      
+      fotos: processedFotos,
+      photos: processedFotos,
+      images: processedFotos,
+      
+      belege: processedBelege,
+      receipts: processedBelege,
+      attachments: [...processedFotos, ...processedBelege]
     };
 
-    // Use user-configured Apps Script URL or default URL
-    const targetUrl = gasUrl.trim() || import.meta.env.VITE_TATEIGKEITSBERICHT_GAS_URL || DEFAULT_TAETIGKEITSBERICHT_GAS_URL;
+    // 1. Save report entry directly to Firebase Firestore database ("taetigkeitsberichte" collection)
+    try {
+      const reportId = `tb_${Date.now()}_${(titel || 'bericht').replace(/[^a-zA-Z0-9]/g, '_').slice(0, 30)}`;
+      const docRef = doc(db, 'taetigkeitsberichte', reportId);
+      await setDoc(docRef, {
+        verein: verein || 'Bildung und Verständigung Mittelhessen e.V. (BVM)',
+        titel: titel || '',
+        datum: datum || '',
+        ort: ort || '',
+        verantwortlichePerson: verantwortlichePerson || '',
+        ziel: ziel || '',
+        kurzprotokoll: kurzprotokoll || '',
+        beschreibung: beschreibung || '',
+        ablageort: ablageort || 'Google Drive Ordner',
+        einnahmen: einnahmen || [],
+        ausgaben: ausgaben || [],
+        totalEinnahmen,
+        totalAusgaben,
+        bilanz,
+        erstellerName: erstellerName || '',
+        funktion: funktion || '',
+        erstellungsDatum: erstellungsDatum || '',
+        unterschrift: unterschrift || '',
+        fotoAnzahl: fotos.length,
+        belegAnzahl: belege.length,
+        hatPdf: !!pdfData,
+        erstelltAmTimestamp: new Date().toISOString()
+      });
+      console.log('[Firestore] Tätigkeitsbericht in Firestore-Datenbank (Sammlung "taetigkeitsberichte") gespeichert with ID:', reportId);
+    } catch (fsErr) {
+      console.warn('[Firestore] Hinweis: Konnte Tätigkeitsbericht nicht in Firestore-Datenbank speichern:', fsErr);
+    }
+
+    // 2. Resolve Apps Script URL
+    let targetUrl = gasUrl.trim() || import.meta.env.VITE_TATEIGKEITSBERICHT_GAS_URL || DEFAULT_TAETIGKEITSBERICHT_GAS_URL;
+    if (targetUrl.includes('AKfycb_j2093')) {
+      targetUrl = DEFAULT_TAETIGKEITSBERICHT_GAS_URL;
+    }
 
     if (!targetUrl) {
-      // Local processing simulation because no Web-App URL is bound yet
       setWasSubmittedToGas(false);
       setTimeout(() => {
         setSubmitting(false);

@@ -5,9 +5,12 @@ service cloud.firestore {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
     match /survey_responses/{responseId} {
-      allow create: if true;
+      allow read, create: if true;
     }
     match /survey_settings/{settingId} {
+      allow read, write: if true;
+    }
+    match /taetigkeitsberichte/{reportId} {
       allow read, write: if true;
     }
   }
