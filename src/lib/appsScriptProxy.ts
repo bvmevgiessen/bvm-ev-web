@@ -6,6 +6,18 @@
  *    falls back to submitting via a hidden HTML form targeting a hidden iframe (form-action directive).
  */
 
+function sanitizeAppsScriptUrl(rawUrl: string): string | null {
+  try {
+    const parsed = new URL(rawUrl.trim());
+    const allowedHosts = new Set(['script.google.com', 'script.googleusercontent.com']);
+    if (parsed.protocol !== 'https:') return null;
+    if (!allowedHosts.has(parsed.hostname)) return null;
+    return parsed.toString();
+  } catch {
+    return null;
+  }
+}
+
 function submitViaHiddenForm(url: string, payload: any): Promise<{ status: string }> {
   return new Promise((resolve) => {
     const iframeName = 'gas_hidden_iframe_' + Date.now();
@@ -38,6 +50,11 @@ function submitViaHiddenForm(url: string, payload: any): Promise<{ status: strin
 }
 
 export async function postToAppsScript(url: string, payload: any, signal?: AbortSignal) {
+  const sanitizedUrl = sanitizeAppsScriptUrl(url);
+  if (!sanitizedUrl) {
+    throw new Error('Invalid Google Apps Script URL.');
+  }
+
   const isStaticSite = typeof window !== 'undefined' && 
     (window.location.hostname === 'bvm-ev.de' || window.location.hostname.endsWith('github.io'));
 
@@ -63,7 +80,7 @@ export async function postToAppsScript(url: string, payload: any, signal?: Abort
 
   // 2. Direct client-side fetch (with CSP error catch)
   try {
-    const res = await fetch(url, {
+    const res = await fetch(sanitizedUrl, {
       method: 'POST',
       mode: 'no-cors', // standard workaround for Google Apps Script Web App redirects
       headers: {
@@ -76,7 +93,7 @@ export async function postToAppsScript(url: string, payload: any, signal?: Abort
   } catch (err) {
     console.warn("Direct fetch to Google Apps Script failed (likely CSP connect-src restriction). Falling back to hidden HTML form submission.", err);
     // 3. Fallback: Submit via hidden HTML form to bypass connect-src CSP directive
-    return await submitViaHiddenForm(url, payload);
+    return await submitViaHiddenForm(sanitizedUrl, payload);
   }
 }
 
