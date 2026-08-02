@@ -400,8 +400,12 @@ export default function TaetigkeitsberichtPage() {
       }
 
       // 3. Optional Express API call if not running on static hosting like GitHub Pages
-      const isStaticSite = typeof window !== 'undefined' && 
-        (window.location.hostname === 'bvm-ev.de' || window.location.hostname.endsWith('github.io'));
+      const isStaticSite = typeof window !== 'undefined' && (() => {
+        const hostname = window.location.hostname;
+        const isBvmHost = hostname === 'bvm-ev.de';
+        const isGithubPagesHost = /^[a-z0-9-]+\.github\.io$/i.test(hostname);
+        return isBvmHost || isGithubPagesHost;
+      })();
 
       if (!isStaticSite) {
         try {
