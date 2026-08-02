@@ -138,6 +138,29 @@ export default function TaetigkeitsberichtPage() {
     return safeStorage.getItem('bvm_gas_url') || '';
   });
   const [showConfig, setShowConfig] = useState(false);
+  const [wasSubmittedToGas, setWasSubmittedToGas] = useState<boolean | null>(null);
+  const [quickGasUrl, setQuickGasUrl] = useState('');
+  const [quickSaveStatus, setQuickSaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle');
+
+  const saveGasUrlConfig = async (newUrl: string) => {
+    const trimmed = newUrl.trim();
+    if (!trimmed) return;
+    setQuickSaveStatus('saving');
+    setGasUrl(trimmed);
+    setQuickGasUrl(trimmed);
+    safeStorage.setItem('bvm_gas_url', trimmed);
+    try {
+      const docRef = doc(db, 'survey_settings', 'config');
+      await setDoc(docRef, {
+        taetigkeitsberichtGasUrl: trimmed,
+        updatedAt: new Date().toISOString()
+      }, { merge: true });
+    } catch (err) {
+      console.warn("Could not save to Firestore, saved to local storage:", err);
+    }
+    setQuickSaveStatus('saved');
+    setTimeout(() => setQuickSaveStatus('idle'), 3000);
+  };
 
   // Admin Mode state (hidden by default, activated via URL ?admin=true or a tiny subtle link)
   const [isAdmin, setIsAdmin] = useState(() => {
@@ -344,25 +367,17 @@ export default function TaetigkeitsberichtPage() {
     }
   };
 
-  // Sync Tätigkeitsbericht GAS URL from Firestore
+  // Sync Tätigkeitsbericht GAS URL from Firestore or LocalStorage
   React.useEffect(() => {
     const fetchGasUrl = async () => {
-      try {
-        // Try server-side API proxy first (bypasses iframe restrictions)
-        const response = await fetch('/api/survey-settings/config');
-        if (response.ok) {
-          const data = await response.json();
-          if (data.taetigkeitsberichtGasUrl) {
-            setGasUrl(data.taetigkeitsberichtGasUrl);
-            safeStorage.setItem('bvm_gas_url', data.taetigkeitsberichtGasUrl);
-            return;
-          }
-        }
-      } catch (err) {
-        console.warn("Could not fetch via API, trying direct Firestore SDK:", err);
+      // 1. Check local storage first for instant initialization
+      const localUrl = safeStorage.getItem('bvm_gas_url');
+      if (localUrl) {
+        setGasUrl(localUrl);
+        setQuickGasUrl(localUrl);
       }
 
-      // Direct Firestore SDK fallback
+      // 2. Direct Firestore SDK (works on static GitHub Pages & fullstack)
       try {
         const docRef = doc(db, 'survey_settings', 'config');
         const docSnap = await getDoc(docRef);
@@ -370,11 +385,33 @@ export default function TaetigkeitsberichtPage() {
           const data = docSnap.data();
           if (data.taetigkeitsberichtGasUrl) {
             setGasUrl(data.taetigkeitsberichtGasUrl);
+            setQuickGasUrl(data.taetigkeitsberichtGasUrl);
             safeStorage.setItem('bvm_gas_url', data.taetigkeitsberichtGasUrl);
+            return;
           }
         }
       } catch (err) {
-        console.warn("Using offline fallback for Tätigkeitsbericht Apps Script URL:", err);
+        // Direct Firestore fallback handles offline or permission limits cleanly
+      }
+
+      // 3. Optional Express API call if not running on static hosting like GitHub Pages
+      const isStaticSite = typeof window !== 'undefined' && 
+        (window.location.hostname === 'bvm-ev.de' || window.location.hostname.endsWith('github.io'));
+
+      if (!isStaticSite) {
+        try {
+          const response = await fetch('/api/survey-settings/config');
+          if (response.ok) {
+            const data = await response.json();
+            if (data.taetigkeitsberichtGasUrl) {
+              setGasUrl(data.taetigkeitsberichtGasUrl);
+              setQuickGasUrl(data.taetigkeitsberichtGasUrl);
+              safeStorage.setItem('bvm_gas_url', data.taetigkeitsberichtGasUrl);
+            }
+          }
+        } catch (err) {
+          // Ignored
+        }
       }
     };
     fetchGasUrl();
@@ -778,26 +815,27 @@ export default function TaetigkeitsberichtPage() {
     };
 
     // Use user-configured Apps Script URL or a default state info
-    const targetUrl = gasUrl || import.meta.env.VITE_TATEIGKEITSBERICHT_GAS_URL;
+    const targetUrl = gasUrl.trim() || import.meta.env.VITE_TATEIGKEITSBERICHT_GAS_URL;
 
     if (!targetUrl) {
-      // Simulated successful storage since they haven't bound their specific GAS URL yet
+      // Local processing simulation because no Web-App URL is bound yet
+      setWasSubmittedToGas(false);
       setTimeout(() => {
         setSubmitting(false);
         setStep(4);
-      }, 1500);
+      }, 1000);
       return;
     }
 
     try {
       await postToAppsScript(targetUrl, payload);
 
-      // Since the helper handles proxying and redirect fallbacks, we assume success if it didn't throw
+      setWasSubmittedToGas(true);
       setSubmitting(false);
       setStep(4);
     } catch (err: any) {
       console.error(err);
-      setSubmitError('Verbindung zum Server fehlgeschlagen. Bitte überprüfen Sie Ihre Google Apps Script-URL oder Internetverbindung.');
+      setSubmitError('Verbindung zum Google Apps Script Server fehlgeschlagen. Bitte überprüfen Sie Ihre Google Apps Script-URL oder Ihre Internetverbindung.');
       setSubmitting(false);
     }
   };
@@ -1556,6 +1594,43 @@ export default function TaetigkeitsberichtPage() {
                       </div>
                     )}
 
+                    {/* Apps Script URL status / warning in Step 3 */}
+                    {!gasUrl ? (
+                      <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-xs text-amber-900 space-y-2">
+                        <div className="flex items-center gap-2 font-bold text-amber-900">
+                          <AlertCircle size={16} className="shrink-0 text-amber-600" />
+                          <span>Google Apps Script Schnittstelle nicht konfiguriert</span>
+                        </div>
+                        <p className="text-amber-800 leading-relaxed">
+                          Keine Web-App URL hinterlegt. Beim Absenden wird der Bericht lokal verarbeitet, jedoch <strong>nicht</strong> an Google Drive oder Google Sheets übertragen.
+                        </p>
+                        <div className="pt-1 flex flex-col sm:flex-row gap-2">
+                          <input 
+                            type="url"
+                            placeholder="https://script.google.com/macros/s/.../exec"
+                            value={quickGasUrl}
+                            onChange={(e) => setQuickGasUrl(e.target.value)}
+                            className="flex-1 bg-white border border-amber-300 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-brand-teal"
+                          />
+                          <button 
+                            type="button"
+                            onClick={() => saveGasUrlConfig(quickGasUrl)}
+                            className="bg-brand-teal hover:bg-brand-teal-dark text-white px-4 py-2 rounded-xl font-bold transition-all shrink-0 text-xs flex items-center justify-center gap-1"
+                          >
+                            {quickSaveStatus === 'saving' ? 'Speichern...' : quickSaveStatus === 'saved' ? 'Gespeichert! ✓' : 'Web-App URL Speichern'}
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-3.5 text-xs text-emerald-900 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div className="flex items-center gap-2 font-medium">
+                          <CheckCircle size={15} className="text-emerald-600 shrink-0" />
+                          <span>Google Apps Script Anbindung aktiv</span>
+                        </div>
+                        <span className="font-mono text-[11px] text-emerald-700 truncate max-w-xs">{gasUrl}</span>
+                      </div>
+                    )}
+
                     <div className="flex flex-col sm:flex-row justify-between gap-4 pt-4 border-t border-slate-100">
                       <button
                         type="button"
@@ -1612,6 +1687,47 @@ export default function TaetigkeitsberichtPage() {
                         Vielen Dank! Der Tätigkeitsbericht für <strong className="text-slate-800">„{titel}“</strong> wurde erfolgreich erfasst und im Vereinsarchiv protokolliert.
                       </p>
                     </div>
+
+                    {/* Drive & Sheets Status Banner */}
+                    {wasSubmittedToGas === true && (
+                      <div className="bg-emerald-50 border border-emerald-200 rounded-3xl p-5 max-w-lg mx-auto text-left text-xs text-emerald-900 space-y-1.5 shadow-sm">
+                        <div className="flex items-center gap-2 font-bold text-emerald-900 text-sm">
+                          <CheckCircle size={18} className="text-emerald-600 shrink-0" />
+                          <span>Übertragung an Google Cloud erfolgreich!</span>
+                        </div>
+                        <p className="leading-relaxed text-emerald-800">
+                          Der Bericht und die PDF-Datei wurden an Ihr Google Sheet <strong>BVM_Taetigkeitsberichte</strong> und den Google Drive Ordner <strong>BVM_Taetigkeitsberichte_Uploads</strong> übermittelt.
+                        </p>
+                      </div>
+                    )}
+
+                    {wasSubmittedToGas === false && (
+                      <div className="bg-amber-50 border border-amber-200 rounded-3xl p-5 max-w-lg mx-auto text-left text-xs text-amber-900 space-y-3 shadow-sm">
+                        <div className="flex items-center gap-2 font-bold text-amber-900 text-sm">
+                          <AlertCircle size={18} className="text-amber-600 shrink-0" />
+                          <span>Hinweis: Nur lokal verarbeitet (Keine Web-App URL hinterlegt)</span>
+                        </div>
+                        <p className="leading-relaxed text-amber-800">
+                          Der Bericht wurde lokal verarbeitet, konnte aber <strong>nicht an Google Drive / Sheets gesendet werden</strong>, da zum Zeitpunkt des Absendens keine Google Apps Script Web-App URL eingetragen war.
+                        </p>
+                        <div className="pt-1 flex flex-col sm:flex-row gap-2">
+                          <input 
+                            type="url"
+                            placeholder="https://script.google.com/macros/s/.../exec"
+                            value={quickGasUrl}
+                            onChange={(e) => setQuickGasUrl(e.target.value)}
+                            className="flex-1 bg-white border border-amber-300 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-brand-teal"
+                          />
+                          <button 
+                            type="button"
+                            onClick={() => saveGasUrlConfig(quickGasUrl)}
+                            className="bg-brand-teal hover:bg-brand-teal-dark text-white px-4 py-2 rounded-xl font-bold transition-all shrink-0 text-xs"
+                          >
+                            {quickSaveStatus === 'saving' ? 'Speichern...' : quickSaveStatus === 'saved' ? 'Gespeichert! ✓' : 'URL jetzt speichern'}
+                          </button>
+                        </div>
+                      </div>
+                    )}
 
                     <div className="bg-slate-50 p-6 rounded-3xl max-w-lg mx-auto border border-slate-100 text-left space-y-3 text-xs">
                       <h4 className="font-bold text-slate-700 border-b border-slate-200 pb-2 mb-2">Gesendete Zusammenfassung:</h4>
@@ -1722,8 +1838,22 @@ export default function TaetigkeitsberichtPage() {
     try {
       var data = JSON.parse(e.postData.contents);
       
-      // 1. Google Sheet öffnen oder erstellen
-      var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+      // 1. Google Sheet öffnen oder erstellen (funktioniert für skriptgebundene & freistehende Skripte)
+      var ss;
+      try {
+        ss = SpreadsheetApp.getActiveSpreadsheet();
+      } catch (err) {
+        ss = null;
+      }
+      if (!ss) {
+        var files = DriveApp.getFilesByName("BVM_Taetigkeitsberichte");
+        if (files.hasNext()) {
+          ss = SpreadsheetApp.open(files.next());
+        } else {
+          ss = SpreadsheetApp.create("BVM_Taetigkeitsberichte");
+        }
+      }
+      var sheet = ss.getActiveSheet();
       
       // Header schreiben, falls das Sheet leer ist
       if (sheet.getLastRow() === 0) {
