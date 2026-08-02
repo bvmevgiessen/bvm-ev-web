@@ -43,6 +43,7 @@ async function startServer() {
   }
   app.use(import_express.default.json({ limit: "50mb" }));
   app.use(import_express.default.urlencoded({ limit: "50mb", extended: true }));
+  const DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbVB7mpSdQpm-QvzoJCTLn74BqLNdUD99ILxAoD9I7_kU3WPxNYLxF4luvr7kyDSTiE/exec";
   app.get("/api/survey-settings/config", async (req, res) => {
     try {
       const url = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/survey_settings/config`;
@@ -51,7 +52,7 @@ async function startServer() {
       if (!response.ok) {
         if (response.status === 404) {
           return res.status(200).json({
-            taetigkeitsberichtGasUrl: "",
+            taetigkeitsberichtGasUrl: DEFAULT_GAS_URL,
             googleSpreadsheetUrl: "",
             adminPasscodeHash: "",
             updatedAt: ""
@@ -62,7 +63,7 @@ async function startServer() {
       const data = await response.json();
       const fields = data.fields || {};
       const config = {
-        taetigkeitsberichtGasUrl: fields.taetigkeitsberichtGasUrl?.stringValue || "",
+        taetigkeitsberichtGasUrl: fields.taetigkeitsberichtGasUrl?.stringValue || DEFAULT_GAS_URL,
         googleSpreadsheetUrl: fields.googleSpreadsheetUrl?.stringValue || "",
         adminPasscodeHash: fields.adminPasscodeHash?.stringValue || "",
         updatedAt: fields.updatedAt?.stringValue || ""
@@ -78,7 +79,6 @@ async function startServer() {
     if (!url) {
       return res.status(400).json({ error: "Missing Apps Script url" });
     }
-    let safeUrl;
     try {
       const parsedUrl = new URL(url);
       if (parsedUrl.protocol !== "https:") {
@@ -87,18 +87,15 @@ async function startServer() {
       if (parsedUrl.hostname !== "script.google.com") {
         return res.status(400).json({ error: "Invalid target host. Only script.google.com is allowed." });
       }
-      if (!/^\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(parsedUrl.pathname)) {
+      if (!parsedUrl.pathname.startsWith("/macros/s/") || !parsedUrl.pathname.endsWith("/exec")) {
         return res.status(400).json({ error: "Invalid Apps Script path structure." });
       }
-      const canonicalUrl = new URL(`https://script.google.com${parsedUrl.pathname}`);
-      canonicalUrl.search = parsedUrl.search;
-      safeUrl = canonicalUrl.toString();
     } catch (e) {
       return res.status(400).json({ error: "Malformed URL provided." });
     }
     try {
-      console.log(`[Proxy] Forwarding request to Google Apps Script: ${safeUrl.slice(0, 50)}...`);
-      const response = await fetch(safeUrl, {
+      console.log(`[Proxy] Forwarding request to Google Apps Script: ${url.slice(0, 50)}...`);
+      const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "text/plain;charset=utf-8"
