@@ -6,18 +6,6 @@
  *    falls back to submitting via a hidden HTML form targeting a hidden iframe (form-action directive).
  */
 
-function sanitizeAppsScriptUrl(rawUrl: string): string | null {
-  try {
-    const parsed = new URL(rawUrl.trim());
-    const allowedHosts = new Set(['script.google.com', 'script.googleusercontent.com']);
-    if (parsed.protocol !== 'https:') return null;
-    if (!allowedHosts.has(parsed.hostname)) return null;
-    return parsed.toString();
-  } catch {
-    return null;
-  }
-}
-
 function submitViaHiddenForm(url: string, payload: any): Promise<{ status: string }> {
   return new Promise((resolve) => {
     const iframeName = 'gas_hidden_iframe_' + Date.now();
@@ -32,55 +20,83 @@ function submitViaHiddenForm(url: string, payload: any): Promise<{ status: strin
     form.target = iframeName;
     form.style.display = 'none';
 
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = 'postData';
-    input.value = typeof payload === 'string' ? payload : JSON.stringify(payload);
-    form.appendChild(input);
+    const jsonStr = typeof payload === 'string' ? payload : JSON.stringify(payload);
+
+    // Provide the JSON string under multiple common parameter names expected by various Apps Script implementations:
+    // e.parameter.postData, e.parameter.payload, e.parameter.data, e.parameter.content
+    ['postData', 'payload', 'data', 'content'].forEach((paramName) => {
+      const textarea = document.createElement('textarea');
+      textarea.name = paramName;
+      textarea.value = jsonStr;
+      form.appendChild(textarea);
+    });
 
     document.body.appendChild(form);
-    form.submit();
 
-    setTimeout(() => {
-      try { document.body.removeChild(form); } catch (e) {}
-      try { document.body.removeChild(iframe); } catch (e) {}
+    let cleanedUp = false;
+    const cleanup = () => {
+      if (cleanedUp) return;
+      cleanedUp = true;
+      setTimeout(() => {
+        try { document.body.removeChild(form); } catch (e) {}
+        try { document.body.removeChild(iframe); } catch (e) {}
+      }, 1000);
       resolve({ status: 'success' });
-    }, 1500);
+    };
+
+    // Listen for iframe load event when Google Apps Script responds
+    iframe.onload = () => {
+      console.log('[AppsScriptProxy] Hidden iframe completed submission to Google Apps Script.');
+      cleanup();
+    };
+
+    iframe.onerror = () => {
+      console.warn('[AppsScriptProxy] Hidden iframe error event.');
+      cleanup();
+    };
+
+    // Safety timeout (45s) to allow large attachments (PDFs/Images) to complete uploading
+    setTimeout(() => {
+      console.log('[AppsScriptProxy] Hidden iframe fallback timeout reached (45s).');
+      cleanup();
+    }, 45000);
+
+    form.submit();
   });
 }
 
 export async function postToAppsScript(url: string, payload: any, signal?: AbortSignal) {
-  const sanitizedUrl = sanitizeAppsScriptUrl(url);
-  if (!sanitizedUrl) {
-    throw new Error('Invalid Google Apps Script URL.');
-  }
+  const cleanUrl = url.trim();
 
-  const isStaticSite = typeof window !== 'undefined' && 
-    (window.location.hostname === 'bvm-ev.de' || window.location.hostname === 'github.io' || window.location.hostname.endsWith('.github.io'));
-
-  // 1. Try server-side proxy if not on a pure static site host
-  if (!isStaticSite) {
-    try {
-      const proxyResponse = await fetch('/api/proxy-apps-script', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ url, payload }),
-        signal
-      });
-      
-      if (proxyResponse.ok) {
-        return await proxyResponse.json();
+  // 1. Try server-side proxy endpoint if Express server is available
+  try {
+    const proxyResponse = await fetch('/api/proxy-apps-script', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ url: cleanUrl, payload }),
+      signal
+    });
+    
+    if (proxyResponse.ok) {
+      return await proxyResponse.json();
+    } else {
+      const errData = await proxyResponse.json().catch(() => ({}));
+      if (errData.error) {
+        throw new Error(errData.error);
       }
-    } catch (err) {
-      console.warn("Express server proxy not available. Falling back to direct connection.", err);
     }
+  } catch (err: any) {
+    if (err.message && err.message.includes('Google Apps Script')) {
+      throw err;
+    }
+    console.warn("[AppsScriptProxy] Express server proxy error, attempting direct connection fallback.", err);
   }
 
   // 2. Direct client-side fetch (with CSP error catch)
   try {
-    const res = await fetch(sanitizedUrl, {
+    const res = await fetch(cleanUrl, {
       method: 'POST',
       mode: 'no-cors', // standard workaround for Google Apps Script Web App redirects
       headers: {
@@ -91,9 +107,9 @@ export async function postToAppsScript(url: string, payload: any, signal?: Abort
     });
     return res;
   } catch (err) {
-    console.warn("Direct fetch to Google Apps Script failed (likely CSP connect-src restriction). Falling back to hidden HTML form submission.", err);
+    console.warn("[AppsScriptProxy] Direct fetch to Google Apps Script failed (likely CSP connect-src restriction). Falling back to hidden HTML form submission.", err);
     // 3. Fallback: Submit via hidden HTML form to bypass connect-src CSP directive
-    return await submitViaHiddenForm(sanitizedUrl, payload);
+    return await submitViaHiddenForm(cleanUrl, payload);
   }
 }
 
