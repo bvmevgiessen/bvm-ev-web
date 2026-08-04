@@ -22,14 +22,11 @@ function submitViaHiddenForm(url: string, payload: any): Promise<{ status: strin
 
     const jsonStr = typeof payload === 'string' ? payload : JSON.stringify(payload);
 
-    // Provide the JSON string under multiple common parameter names expected by various Apps Script implementations:
-    // e.parameter.postData, e.parameter.payload, e.parameter.data, e.parameter.content
-    ['postData', 'payload', 'data', 'content'].forEach((paramName) => {
-      const textarea = document.createElement('textarea');
-      textarea.name = paramName;
-      textarea.value = jsonStr;
-      form.appendChild(textarea);
-    });
+    // Provide single postData textarea to avoid duplicating large payloads
+    const textarea = document.createElement('textarea');
+    textarea.name = 'postData';
+    textarea.value = jsonStr;
+    form.appendChild(textarea);
 
     document.body.appendChild(form);
 
@@ -81,9 +78,11 @@ export async function postToAppsScript(url: string, payload: any, signal?: Abort
     
     if (proxyResponse.ok) {
       return await proxyResponse.json();
+    } else if (proxyResponse.status === 404) {
+      console.warn("[AppsScriptProxy] Static hosting environment detected (/api/proxy-apps-script unavailable). Falling back to direct client request.");
     } else {
       const errData = await proxyResponse.json().catch(() => ({}));
-      if (errData.error) {
+      if (errData.error && errData.error.includes('Google Apps Script')) {
         throw new Error(errData.error);
       }
     }
