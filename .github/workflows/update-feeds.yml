@@ -26,6 +26,8 @@ jobs:
     permissions:
       # Required to check out code and push refreshed RSS data to latest_updates.json.
       contents: write
+      # Required to create or update pull requests
+      pull-requests: write
       # Required to deploy GitHub Pages and authenticate with OIDC.
       pages: write
       id-token: write
@@ -36,6 +38,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
