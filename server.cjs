@@ -142,7 +142,14 @@ async function startServer() {
         },
         body: JSON.stringify(payload)
       });
-      res.status(200).json({ status: "success" });
+      const responseText = await response.text();
+      if (!response.ok || responseText.includes("Page not found") || responseText.includes("does not exist")) {
+        console.warn(`[Proxy] Google Apps Script returned status ${response.status} or HTML error page.`);
+        return res.status(404).json({
+          error: "Die konfigurierte Google Apps Script Web-App URL ist ung\xFCltig oder existiert nicht mehr (HTML 404 / Page Not Found). Bitte erstellen Sie eine neue Web-App Bereitstellung in Google Apps Script und hinterlegen Sie die URL in den Einstellungen."
+        });
+      }
+      res.status(200).json({ status: "success", response: responseText.slice(0, 200) });
     } catch (err) {
       console.error("[Proxy] Error forwarding request:", err);
       res.status(500).json({ error: err.message });
