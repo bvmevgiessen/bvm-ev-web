@@ -872,16 +872,8 @@ export default function TaetigkeitsberichtPage() {
       unterschrift,
       
       pdf: pdfData,
-      pdfFile: pdfData,
-      file: pdfData,
-      
       fotos: processedFotos,
-      photos: processedFotos,
-      images: processedFotos,
-      
-      belege: processedBelege,
-      receipts: processedBelege,
-      attachments: [...processedFotos, ...processedBelege]
+      belege: processedBelege
     };
 
     // 1. Save report entry directly to Firebase Firestore database ("taetigkeitsberichte" collection)
