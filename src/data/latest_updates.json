@@ -1,5 +1,102 @@
 [
   {
+    "id": "fidev-78eadb80d1",
+    "title": "Erasmus+ Jugendprojekte: FIDeV als erfahrener Kooperationspartner",
+    "link": "https://www.fidev.org/post/erasmus-plus-jugendprojekte-kooperation-fidev",
+    "date": "2026-08-04T12:58:00+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/2d6f92_e02fc9671ccc46dd874ceb1e440a5ffd~mv2.png/v1/fit/w_1000,h_704,al_c,q_80/file.png",
+    "category": "Jugend",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/2d6f92_e02fc9671ccc46dd874ceb1e440a5ffd~mv2.png/v1/fit/w_1000,h_704,al_c,q_80/file.png",
+    "excerpt": "FIDeV bringt praktische Erfahrung mit KA153-YOU und KA155-YOU ein und ist offen für verlässliche Partnerschaften in europäischen Jugendprojekten.",
+    "tags": [
+      "Jugend"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
+    "id": "fidev-13314fad42",
+    "title": "Zivilgesellschaftliches Engagement von Jugendlichen: Wege zu mehr Bürgerbeteiligung",
+    "link": "https://www.fidev.org/post/zivilgesellschaftliches-engagement-jugendlicher",
+    "date": "2026-08-04T07:15:05+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/2d6f92_2e28834f2355469c9b70d4ae26374f04~mv2.png/v1/fit/w_1000,h_704,al_c,q_80/file.png",
+    "category": "Jugend",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/2d6f92_2e28834f2355469c9b70d4ae26374f04~mv2.png/v1/fit/w_1000,h_704,al_c,q_80/file.png",
+    "excerpt": "Junge Menschen wollen Gesellschaft mitgestalten. Dieser Leitfaden zeigt, wie Jugendprojekte, Ehrenamt und echte Beteiligung den Einstieg erleichtern.",
+    "tags": [
+      "Jugend"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
+    "id": "fidev-936fc961b4",
+    "title": "N.O.A.H.S. – Das Leben einer Kichererbse",
+    "link": "https://www.fidev.org/post/noahs",
+    "date": "2026-08-03T10:29:27+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/2d6f92_74ff984f663d4a63ba15da709f8eec56~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
+    "category": "Community",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/2d6f92_74ff984f663d4a63ba15da709f8eec56~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
+    "excerpt": "„N.O.A.H.S. (Nachhaltige Orientierung durch Anerkennung, Haltung und Solidarität) – Das Leben einer Kichererbse“ ist ein Workshopformat für Schulklassen der Unter- und Mittelstufe, das spielerisch demokratische Werte un…",
+    "tags": [
+      "Community"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
+    "id": "fidev-cf3ef08640",
+    "title": "Was ist interkultureller Dialog? Warum er für den gesellschaftlichen Frieden entscheidend ist",
+    "link": "https://www.fidev.org/post/was-ist-interkultureller-dialog",
+    "date": "2026-08-03T09:49:46+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/2d6f92_95934f04beb44a9ea582264caba7aab6~mv2.png/v1/fit/w_1000,h_860,al_c,q_80/file.png",
+    "category": "Dialog",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/2d6f92_95934f04beb44a9ea582264caba7aab6~mv2.png/v1/fit/w_1000,h_860,al_c,q_80/file.png",
+    "excerpt": "Interkultureller Dialog schafft Verständnis über kulturelle Grenzen hinweg. Erfahren Sie, wie Begegnung Vorurteile abbaut und gesellschaftlichen Zusammenhalt stärkt.",
+    "tags": [
+      "Dialog"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
+    "id": "sdub-a2e85c74b0",
+    "title": "Stellungnahme Anschlag in Berlin",
+    "link": "https://sdub.de/stellungnahme-anschlag-csd-berlin/",
+    "date": "2026-07-26T16:26:03+00:00",
+    "source_name": "Stiftung Dialog und Bildung",
+    "image_url": "https://sdub.de/wp-content/uploads/2026/07/stellungnahme-sdub_wide1-480x264.jpg",
+    "category": "Dialog",
+    "author": "Stiftung Dialog und Bildung",
+    "partnerName": "Stiftung Dialog und Bildung",
+    "partnerUrl": "https://sdub.de/",
+    "image": "https://sdub.de/wp-content/uploads/2026/07/stellungnahme-sdub_wide1-480x264.jpg",
+    "excerpt": "Nach dem Anschlag in Berlin: Stellungnahme der Stiftung Dialog und Bildung Berlin, 26. Juli 2026 Die Stiftung Dialog und Bildung ist erschüttert über den Anschlag auf den Christopher Street Day in Berlin. Wir trauern um…",
+    "tags": [
+      "Dialog",
+      "Pressemitteilungen",
+      "Stellungnahmen"
+    ],
+    "external": true,
+    "sourceId": "sdub"
+  },
+  {
     "id": "fidev-8b45628938",
     "title": "Projektwoche für Schulklassen",
     "link": "https://www.fidev.org/post/projektwoche-f%C3%BCr-schulklassen",
@@ -17,6 +114,25 @@
     ],
     "external": true,
     "sourceId": "fidev"
+  },
+  {
+    "id": "house-of-one-e20f2574e4",
+    "title": "#118: Was gibt uns Hoffnung?",
+    "link": "https://house-of-one.org/news/118-was-gibt-uns-hoffnung",
+    "date": "2026-07-06T00:00:00+00:00",
+    "source_name": "House of One",
+    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "category": "Community",
+    "author": "House of One",
+    "partnerName": "House of One",
+    "partnerUrl": "https://house-of-one.org/",
+    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "excerpt": "Es gibt Tage, an denen nichts leichtfällt. Momente, in denen das Licht am Ende des Tunnels kaum zu sehen ist. Wir sprechen in dieser Folge darüber, wa... Weiterlesen",
+    "tags": [
+      "Community"
+    ],
+    "external": true,
+    "sourceId": "house-of-one"
   },
   {
     "id": "sdub-c1bd1343d7",
@@ -59,25 +175,6 @@
     "sourceId": "fidev"
   },
   {
-    "id": "fidev-ac55700fc0",
-    "title": "Tage des Exils",
-    "link": "https://www.fidev.org/post/tage-des-exils",
-    "date": "2026-06-30T11:18:17+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/2d6f92_423246972f384c12a7f43b981afece03~mv2.jpg/v1/fit/w_900,h_676,al_c,q_80/file.png",
-    "category": "Community",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/2d6f92_423246972f384c12a7f43b981afece03~mv2.jpg/v1/fit/w_900,h_676,al_c,q_80/file.png",
-    "excerpt": "Film und Diskussionsabend: Being a Refugee „Heimat ist, woher man kommt, aber auch das, was man verloren hat.“ Mit diesen Worten eröffnete der Schirmherr Christopher Hope die Tage des Exils 2024 in Bonn. Seit 8 Jahren b…",
-    "tags": [
-      "Community"
-    ],
-    "external": true,
-    "sourceId": "fidev"
-  },
-  {
     "id": "house-of-one-ddbe08ed27",
     "title": "Fördern Sie die größte Friedensbotschaft der Stadt",
     "link": "https://house-of-one.org/news/foerdern-sie-die-groesste-friedensbotschaft-der-stadt",
@@ -97,44 +194,6 @@
     "sourceId": "house-of-one"
   },
   {
-    "id": "fidev-7fc49cab2c",
-    "title": "Democracy SafeSpace – Frankfurter Jugend im Dialog",
-    "link": "https://www.fidev.org/post/democracy-safespace",
-    "date": "2026-06-28T14:30:00+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/2d6f92_fe9e9624961845ca94a2001cbef8abcf~mv2.png/v1/fit/w_1000,h_600,al_c,q_80/file.png",
-    "category": "Jugend",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/2d6f92_fe9e9624961845ca94a2001cbef8abcf~mv2.png/v1/fit/w_1000,h_600,al_c,q_80/file.png",
-    "excerpt": "Ein Raum für junge Menschen in Frankfurt – zum Reden, Zuhören und Mitgestalten. Weil Demokratie nur lebt, wenn wir sie gemeinsam erleben Democrac SafeSpace - Frankfurt - Jugendarbeit Was ist Democracy SafeSpace? Wer ent…",
-    "tags": [
-      "Jugend"
-    ],
-    "external": true,
-    "sourceId": "fidev"
-  },
-  {
-    "id": "fidev-ecc07f2561",
-    "title": "FRIEDEPlus",
-    "link": "https://www.fidev.org/post/friedeplus",
-    "date": "2026-06-23T11:36:22+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/a7ec0d_c83c199014b6448483915fa1718f0bdc~mv2.png/v1/fit/w_1000,h_859,al_c,q_80/file.png",
-    "category": "Dialog",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/a7ec0d_c83c199014b6448483915fa1718f0bdc~mv2.png/v1/fit/w_1000,h_859,al_c,q_80/file.png",
-    "excerpt": "Interkultureller und Interreligiöser Dialog Vertiefung interreligiöser Dialogkompetenz September 2026 - Februar 2027 - Frankfurt am Main FRIEDEPlus – Multiplikator:innen für Verständigung, Frieden und Vielfalt Ein Progr…",
-    "tags": [
-      "Dialog"
-    ],
-    "external": true,
-    "sourceId": "fidev"
-  },
-  {
     "id": "house-of-one-31108d01ce",
     "title": "#117: Haare – Was verraten sie über unseren Glauben?",
     "link": "https://house-of-one.org/news/117-haare-was-verraten-sie-ueber-unseren-glauben",
@@ -152,25 +211,6 @@
     ],
     "external": true,
     "sourceId": "house-of-one"
-  },
-  {
-    "id": "fidev-aba35d52bc",
-    "title": "FIDeV und die UN-Nachhaltigkeitsziele (SDGs): Unser Beitrag zur Agenda 2030",
-    "link": "https://www.fidev.org/post/fidev-und-die-un-nachhaltigkeitsziele-sdgs-unser-beitrag-zur-agenda-2030",
-    "date": "2026-06-15T12:25:41+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/a7ec0d_57d9e4dca8ad43b889ef787eca8903d1~mv2.png/v1/fit/w_915,h_514,al_c,q_80/file.png",
-    "category": "Dialog",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/a7ec0d_57d9e4dca8ad43b889ef787eca8903d1~mv2.png/v1/fit/w_915,h_514,al_c,q_80/file.png",
-    "excerpt": "Das Forum für Interkulturellen Dialog (FIDeV) richtet seine Arbeit an den globalen Nachhaltigkeitszielen der Vereinten Nationen aus. Erfahre, welche SDGs unsere Arbeit prägen und wie wir konkret zur Agenda 2030 beitrage…",
-    "tags": [
-      "Dialog"
-    ],
-    "external": true,
-    "sourceId": "fidev"
   },
   {
     "id": "sdub-d2591f068d",
@@ -270,25 +310,6 @@
     "sourceId": "house-of-one"
   },
   {
-    "id": "house-of-one-b335730ecd",
-    "title": "Über 200.000 Euro Spenden für House of One",
-    "link": "https://house-of-one.org/news/ueber-200000-euro-spenden-fuer-house-one",
-    "date": "2026-05-19T00:00:00+00:00",
-    "source_name": "House of One",
-    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "category": "Dialog",
-    "author": "House of One",
-    "partnerName": "House of One",
-    "partnerUrl": "https://house-of-one.org/",
-    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "excerpt": "Herzlichen Dank an alle unsere Spenderinnen und Spender, ob engagierte Privatpersonen, Firmen oder Organisationen! In drei Monaten, von 30. Januar bis... Weiterlesen",
-    "tags": [
-      "Dialog"
-    ],
-    "external": true,
-    "sourceId": "house-of-one"
-  },
-  {
     "id": "sdub-7799d125e0",
     "title": "Podiumsdiskussion des Deutschen Dialogpreises: „Dialog: konkret“",
     "link": "https://sdub.de/bddi-dialogkonkret/",
@@ -347,27 +368,6 @@
       "Community",
       "DuB Zeitschrift",
       "Islam"
-    ],
-    "external": true,
-    "sourceId": "sdub"
-  },
-  {
-    "id": "sdub-1b2a03879c",
-    "title": "Wettbewerb Zukunft 2026",
-    "link": "https://sdub.de/zukunft2026/",
-    "date": "2026-03-25T14:46:26+00:00",
-    "source_name": "Stiftung Dialog und Bildung",
-    "image_url": "https://sdub.de/wp-content/uploads/2026/03/header-768x192.jpg",
-    "category": "Community",
-    "author": "Stiftung Dialog und Bildung",
-    "partnerName": "Stiftung Dialog und Bildung",
-    "partnerUrl": "https://sdub.de/",
-    "image": "https://sdub.de/wp-content/uploads/2026/03/header-768x192.jpg",
-    "excerpt": "Die Herausforderung der unsicheren Zukunft meistern – wie wollen wir unser Morgen gestalten? Hier geht es zur Teilnahme Deine Ideen. Unsere Zukunft.Wie wollen wir unser Morgen gestalten? Die Stiftung lädt junge Menschen…",
-    "tags": [
-      "Community",
-      "Teilhabe",
-      "Veranstaltungen"
     ],
     "external": true,
     "sourceId": "sdub"
