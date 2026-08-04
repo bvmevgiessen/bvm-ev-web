@@ -1941,7 +1941,13 @@ export default function TaetigkeitsberichtPage() {
 
   function doPost(e) {
     try {
-      var data = JSON.parse(e.postData.contents);
+      var raw = "";
+      if (e && e.postData && e.postData.contents) {
+        raw = e.postData.contents;
+      } else if (e && e.parameter && (e.parameter.postData || e.parameter.payload || e.parameter.data)) {
+        raw = e.parameter.postData || e.parameter.payload || e.parameter.data;
+      }
+      var data = typeof raw === "string" ? JSON.parse(raw) : (raw || {});
       
       // 1. Google Sheet öffnen oder erstellen (funktioniert für skriptgebundene & freistehende Skripte)
       var ss;

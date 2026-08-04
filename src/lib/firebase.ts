@@ -39,6 +39,11 @@ if (savedDbId !== null) {
   if (envDbId !== 'default' && envDbId !== '(default)' && envDbId !== 'default-db') {
     databaseId = envDbId;
   }
+} else if ((firebaseAppletConfig as any).firestoreDatabaseId) {
+  const cfgDbId = (firebaseAppletConfig as any).firestoreDatabaseId;
+  if (cfgDbId !== 'default' && cfgDbId !== '(default)' && cfgDbId !== 'default-db') {
+    databaseId = cfgDbId;
+  }
 }
 
 console.info("[Firebase] Configuration initialized:", {
