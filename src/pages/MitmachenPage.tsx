@@ -92,7 +92,7 @@ function JotformEmbed({ kind }: { kind: Kind }) {
   );
 }
 
-function JotformInstance({ formId }: { formId: string }) {
+function JotformInstance({ formId }: { formId: string; key?: string }) {
   useEffect(() => {
     // Jotform embed script needs to be injected into the DOM properly
     // to render the iframe and handle resizing
