@@ -6,6 +6,29 @@
  *    falls back to submitting via a hidden HTML form targeting a hidden iframe (form-action directive).
  */
 
+function validateAppsScriptUrl(rawUrl: string): string {
+  const trimmed = rawUrl.trim();
+  let parsed: URL;
+
+  try {
+    parsed = new URL(trimmed);
+  } catch {
+    throw new Error('Ungültige Google Apps Script URL.');
+  }
+
+  const isHttps = parsed.protocol === 'https:';
+  const isAllowedHost = parsed.hostname === 'script.google.com' || parsed.hostname === 'script.googleusercontent.com';
+  const isAllowedPath =
+    (parsed.hostname === 'script.google.com' && /^\/macros\/s\/[^/]+\/exec\/?$/.test(parsed.pathname)) ||
+    (parsed.hostname === 'script.googleusercontent.com');
+
+  if (!isHttps || !isAllowedHost || !isAllowedPath) {
+    throw new Error('Nur gültige HTTPS Google Apps Script Web-App URLs sind erlaubt.');
+  }
+
+  return parsed.toString();
+}
+
 function submitViaHiddenForm(url: string, payload: any): Promise<{ status: string }> {
   return new Promise((resolve) => {
     const iframeName = 'gas_hidden_iframe_' + Date.now();
@@ -63,7 +86,7 @@ function submitViaHiddenForm(url: string, payload: any): Promise<{ status: strin
 }
 
 export async function postToAppsScript(url: string, payload: any, signal?: AbortSignal) {
-  const cleanUrl = url.trim();
+  const cleanUrl = validateAppsScriptUrl(url);
 
   // 1. Try server-side proxy endpoint if Express server is available
   try {
