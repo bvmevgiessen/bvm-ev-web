@@ -24,13 +24,42 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 // server.ts
 var import_express = __toESM(require("express"), 1);
 var import_helmet = __toESM(require("helmet"), 1);
+var import_express_rate_limit = __toESM(require("express-rate-limit"), 1);
 var import_path = __toESM(require("path"), 1);
 var import_vite = require("vite");
 var import_fs = __toESM(require("fs"), 1);
 async function startServer() {
   const app = (0, import_express.default)();
   const PORT = 3e3;
-  app.use((0, import_helmet.default)());
+  const limiter = (0, import_express_rate_limit.default)({
+    windowMs: 15 * 60 * 1e3,
+    // 15 minutes
+    max: 300,
+    // Limit each IP to 300 requests per windowMs
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { error: "Too many requests, please try again later." }
+  });
+  app.use(limiter);
+  app.use(
+    (0, import_helmet.default)({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          baseUri: ["'self'"],
+          objectSrc: ["'none'"],
+          frameAncestors: ["'self'"],
+          frameSrc: ["'self'", "https://*.jotform.com"],
+          formAction: ["'self'", "https://*.jotform.com", "https://formspree.io"],
+          scriptSrc: ["'self'", "'unsafe-inline'", "https://*.jotform.com"],
+          styleSrc: ["'self'", "'unsafe-inline'"],
+          imgSrc: ["'self'", "data:", "https:"],
+          connectSrc: ["'self'", "https://formspree.io", "https://*.jotform.com"]
+        }
+      },
+      crossOriginResourcePolicy: { policy: "cross-origin" }
+    })
+  );
   let projectId = "composite-advice-ljcsn";
   try {
     const configPath = import_path.default.join(process.cwd(), "firebase-applet-config.json");
