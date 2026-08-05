@@ -1,4 +1,5 @@
 import express from "express";
+import helmet from "helmet";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import fs from "fs";
@@ -6,6 +7,8 @@ import fs from "fs";
 async function startServer() {
   const app = express();
   const PORT = 3000;
+
+  app.use(helmet());
 
   // Read Firebase project config
   let projectId = "composite-advice-ljcsn"; // Default fallback
