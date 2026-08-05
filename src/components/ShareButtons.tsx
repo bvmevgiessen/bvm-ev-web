@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Twitter, MessageCircle, Instagram, Link as LinkIcon, Check } from 'lucide-react';
+import { MessageCircle, Link as LinkIcon, Check } from 'lucide-react';
+import { Twitter, Instagram } from './SocialIcons';
 
 interface ShareButtonsProps {
   title: string;
