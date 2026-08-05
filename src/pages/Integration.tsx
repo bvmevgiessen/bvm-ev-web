@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Users, Anchor, Info, ArrowLeft, Heart, Shield, BookOpen } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import PuzzleBackground from '../components/PuzzleBackground';
 import ShareButtons from '../components/ShareButtons';
 

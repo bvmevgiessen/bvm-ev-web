@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, MapPin, Clock, ArrowLeft, CheckCircle2, Users, Info } from 'lucide-react';
 import { useForm, ValidationError } from '@formspree/react';

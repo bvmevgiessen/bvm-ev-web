@@ -21,7 +21,7 @@ import {
   Smile,
   HeartHandshake
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Navbar from '../components/Navbar';
 import PuzzleBackground from '../components/PuzzleBackground';
 import ShareButtons from '../components/ShareButtons';

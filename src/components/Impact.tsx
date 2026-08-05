@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, useSpring, useTransform, animate } from 'motion/react';
 import { Globe, Users, Rocket, ArrowRight, Heart, MapPin, LayoutGrid, Calendar } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import PuzzleBackground from './PuzzleBackground';
 
 function Counter({ value, suffix = "" }: { value: number; suffix?: string }) {
