@@ -1,5 +1,6 @@
 import express from "express";
 import helmet from "helmet";
+import rateLimit from "express-rate-limit";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import fs from "fs";
@@ -8,7 +9,24 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  app.use(helmet());
+  // Rate limiting middleware to prevent DoS attacks on file system and API endpoints
+  const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 300, // Limit each IP to 300 requests per windowMs
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { error: "Too many requests, please try again later." }
+  });
+
+  app.use(limiter);
+
+  // Security headers using Helmet
+  app.use(
+    helmet({
+      contentSecurityPolicy: false, // Keeps compatibility with iframe embeds (Jotform/Formspree) and Vite dev server
+      crossOriginResourcePolicy: { policy: "cross-origin" }
+    })
+  );
 
   // Read Firebase project config
   let projectId = "composite-advice-ljcsn"; // Default fallback
