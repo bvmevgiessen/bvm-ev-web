@@ -41,7 +41,8 @@
     "vite": "^6.2.0"
   },
   "overrides": {
-    "protobufjs": "^7.4.0"
+    "protobufjs": "^7.4.0",
+    "ws@<=8.20.1": "8.20.1"
   },
   "resolutions": {
     "protobufjs": "7.6.3"
