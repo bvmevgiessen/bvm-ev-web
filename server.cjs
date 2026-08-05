@@ -23,12 +23,14 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 
 // server.ts
 var import_express = __toESM(require("express"), 1);
+var import_helmet = __toESM(require("helmet"), 1);
 var import_path = __toESM(require("path"), 1);
 var import_vite = require("vite");
 var import_fs = __toESM(require("fs"), 1);
 async function startServer() {
   const app = (0, import_express.default)();
   const PORT = 3e3;
+  app.use((0, import_helmet.default)());
   let projectId = "composite-advice-ljcsn";
   try {
     const configPath = import_path.default.join(process.cwd(), "firebase-applet-config.json");
