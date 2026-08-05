@@ -23,7 +23,20 @@ async function startServer() {
   // Security headers using Helmet
   app.use(
     helmet({
-      contentSecurityPolicy: false, // Keeps compatibility with iframe embeds (Jotform/Formspree) and Vite dev server
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          baseUri: ["'self'"],
+          objectSrc: ["'none'"],
+          frameAncestors: ["'self'"],
+          frameSrc: ["'self'", "https://*.jotform.com"],
+          formAction: ["'self'", "https://*.jotform.com", "https://formspree.io"],
+          scriptSrc: ["'self'", "'unsafe-inline'", "https://*.jotform.com"],
+          styleSrc: ["'self'", "'unsafe-inline'"],
+          imgSrc: ["'self'", "data:", "https:"],
+          connectSrc: ["'self'", "https://formspree.io", "https://*.jotform.com"]
+        }
+      },
       crossOriginResourcePolicy: { policy: "cross-origin" }
     })
   );
