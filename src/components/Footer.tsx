@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Github, Mail, Phone, MapPin, Facebook, Instagram, Twitter, Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Github, Mail, Phone, MapPin, Facebook, Instagram, Twitter, Send, CheckCircle2, AlertCircle, Fingerprint } from 'lucide-react';
 import { useForm, ValidationError } from '@formspree/react';
 import { Link } from 'react-router-dom';
 import LegalModal from './LegalModal';
 import Logo from './Logo';
+import CookieFingerprintButton from './CookieFingerprintButton';
+import CookieSettingsModal from './CookieSettingsModal';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const [activeModal, setActiveModal] = useState<'none' | 'impressum' | 'privacy' | 'satzung' | 'donation'>('none');
+  const [activeModal, setActiveModal] = useState<'none' | 'impressum' | 'privacy' | 'satzung' | 'donation' | 'cookies'>('none');
   const [state, handleSubmit] = useForm('mwvwzkrr');
 
   const satzungContent = (
@@ -104,19 +106,112 @@ export default function Footer() {
   );
 
   const privacyContent = (
-    <div className="space-y-6">
+    <div className="space-y-6 text-sm text-slate-700 leading-relaxed">
       <section>
-        <h3 className="text-lg font-bold text-brand-navy mb-2">1. Datenschutz auf einen Blick</h3>
-        <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie unsere Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">1. Verantwortliche Stelle & Allgemeine Hinweise</h3>
+        <p>
+          Verantwortlicher für die Datenverarbeitung auf dieser Website im Sinne der Datenschutz-Grundverordnung (DSGVO) und anderer nationaler Datenschutzgesetze ist:
+        </p>
+        <div className="mt-3 bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs text-slate-700 space-y-1">
+          <p className="font-bold text-brand-navy">Bildung und Verständigung Mittelhessen e.V. (BVM e.V.)</p>
+          <p>Siemensstraße 18, 35394 Gießen</p>
+          <p>Telefon: +49 (0) 641 1234567</p>
+          <p>E-Mail: <a href="mailto:bvmevgiessen@gmail.com" className="text-brand-teal hover:underline font-semibold">bvmevgiessen@gmail.com</a></p>
+          <p>Vertreten durch den Vorstand</p>
+        </div>
+        <p className="mt-3">
+          Der BVM e.V. nimmt den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
+        </p>
       </section>
+
       <section>
-        <h3 className="text-lg font-bold text-brand-navy mb-2">2. Datenerfassung auf unserer Website</h3>
-        <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.</p>
-        <p className="mt-2">Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie in ein Kontaktformular eingeben. eim Absenden des Mitgliedsantrags werden die Daten über Formspree Inc. (USA) verarbeitet.</p>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">2. Haftungsausschluss für externe Links (Haftung für Links)</h3>
+        <p>
+          Unser Internetangebot enthält Links zu externen Websites Dritter, auf deren Inhalte und Datenschutzstandards wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte und deren Datenverarbeitungen keine Gewähr oder Haftung übernehmen.
+        </p>
+        <p className="mt-2">
+          Für die Inhalte und die Einhaltung der Datenschutzbestimmungen der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
+        </p>
       </section>
+
       <section>
-        <h3 className="text-lg font-bold text-brand-navy mb-2">3. Kontaktformular</h3>
-        <p>Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">3. Formularanbieter & Dienstleister im Einsatz</h3>
+        
+        <div className="space-y-4 mt-3">
+          <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
+            <h4 className="font-bold text-brand-navy">a) Jotform (Mitgliedschaftsformular)</h4>
+            <p className="text-xs text-slate-600">
+              Für unsere Online-Mitgliedstanträge (Ordentliche Mitgliedschaft & Fördermitgliedschaft) nutzen wir den Formulardienst <strong>Jotform Inc.</strong> (111 Pine St. Suite 1815, San Francisco, CA 94111, USA).
+            </p>
+            <p className="text-xs text-slate-600">
+              <strong>Zweck & Rechtsgrundlage:</strong> Die Verarbeitung Ihrer Daten im Rahmen des Mitgliedsantrags erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung bzw. Erfüllung des Vereinsverhältnisses) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer strukturierten Mitgliederverwaltung).
+            </p>
+            <p className="text-xs text-slate-600">
+              Die in das Formular eingegebenen Daten werden verschlüsselt an Jotform übermittelt und auf sicheren Servern verarbeitet. Jotform garantiert angemessene Datenschutzstandards über Auftragsverarbeitungsverträge (AVV) sowie Standardvertragsklauseln der Europäischen Kommission.
+            </p>
+          </div>
+
+          <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
+            <h4 className="font-bold text-brand-navy">b) Formspree (Spenden & Webformulare / Kontakt)</h4>
+            <p className="text-xs text-slate-600">
+              Für allgemeine Kontaktanfragen sowie für Spendenhinweise auf unserer Website nutzen wir den Dienst <strong>Formspree Inc.</strong> (2175 S 5th East, Salt Lake City, UT 84106, USA).
+            </p>
+            <p className="text-xs text-slate-600">
+              <strong>Zweck & Rechtsgrundlage:</strong> Entgegennahme und Bearbeitung Ihrer Anfragen gem. Art. 6 Abs. 1 lit. b DSGVO (Vertrags- und Anfragebearbeitung) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer schnellen und zuverlässigen Kontaktaufnahme).
+            </p>
+            <p className="text-xs text-slate-600">
+              Die von Ihnen übermittelten Formulardaten (wie Name, E-Mail-Adresse, Anfragetyp, Betreff, Nachricht) werden verschlüsselt über Server von Formspree geleitet und an unsere Vereins-E-Mail weitergeleitet.
+            </p>
+          </div>
+
+          <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
+            <h4 className="font-bold text-brand-navy">c) Firebase & Google Cloud Platform (Hosting & Infrastruktur)</h4>
+            <p className="text-xs text-slate-600">
+              Unsere Website und IT-Infrastruktur werden auf Servern von <strong>Google Cloud Platform & Firebase</strong> (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) gehostet.
+            </p>
+            <p className="text-xs text-slate-600">
+              <strong>Zweck & Rechtsgrundlage:</strong> Technisches Hosting, Bereitstellung der Cloud Run Anwendung und Firestore-Datenbankdienste zur geschützten Datenhaltung gem. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem stabilen, performanten und ausfallsicheren Webauftritt).
+            </p>
+            <p className="text-xs text-slate-600">
+              Beim Aufruf unserer Seiten erfasst die Infrastruktur automatisch technische Server-Log-Files (z. B. IP-Adresse, Datum und Uhrzeit des Zugriffs, Browsertyp, Betriebssystem, Referrer URL).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">4. Rechte der betroffenen Personen (Betroffenenrechte nach DSGVO)</h3>
+        <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit folgende Rechte bezüglich Ihrer personenbezogenen Daten:</p>
+        <ul className="list-disc pl-5 mt-2 space-y-1.5 text-xs text-slate-600">
+          <li><strong>Recht auf Auskunft (Art. 15 DSGVO):</strong> Sie haben das Recht auf Auskunft über Ihre von uns verarbeiteten personenbezogenen Daten.</li>
+          <li><strong>Recht auf Berichtigung (Art. 16 DSGVO):</strong> Sie können unverzüglich die Berichtigung unrichtiger Daten verlangen.</li>
+          <li><strong>Recht auf Löschung (Art. 17 DSGVO):</strong> Sie können die Löschung Ihrer bei uns gespeicherten Daten verlangen, soweit nicht gesetzliche Aufbewahrungspflichten entgegenstehen.</li>
+          <li><strong>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO):</strong> Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer Daten zu verlangen.</li>
+          <li><strong>Recht auf Datenübertragbarkeit (Art. 20 DSGVO):</strong> Sie können Ihre Daten in einem gängigen, maschinenlesbaren Format anfordern.</li>
+          <li><strong>Recht auf Widerruf der Einwilligung (Art. 7 Abs. 3 DSGVO):</strong> Sie können erteilte Einwilligungen jederzeit mit Wirkung für die Zukunft widerrufen.</li>
+          <li><strong>Widerspruchsrecht (Art. 21 DSGVO):</strong> Sofern die Verarbeitung auf Art. 6 Abs. 1 lit. f DSGVO beruht, können Sie der Verarbeitung aus persönlichen Gründen widersprechen.</li>
+        </ul>
+        <div className="mt-4 p-4 bg-teal-50/60 rounded-2xl border border-teal-100 text-xs">
+          <p className="font-bold text-brand-teal mb-1">Beschwerderecht bei der Aufsichtsbehörde (Art. 77 DSGVO):</p>
+          <p className="text-slate-600">
+            Im Falle datenschutzrechtlicher Verstöße steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu:
+          </p>
+          <p className="font-semibold text-slate-800 mt-1">
+            Der Hessische Beauftragte für Datenschutz und Informationsfreiheit<br />
+            Gustav-Stresemann-Ring 1, 65189 Wiesbaden<br />
+            Website: <a href="https://datenschutz.hessen.de" target="_blank" rel="noopener noreferrer" className="text-brand-teal hover:underline font-bold">datenschutz.hessen.de</a>
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">5. Cookies & Cookie-Einstellungen</h3>
+        <p>
+          Unsere Website nutzt notwendige Cookies sowie lokale Speichertechnologien (`localStorage`), um den Betrieb der Seite und die Speicherung Ihrer Datenschutz-Präferenzen zu gewährleisten.
+        </p>
+        <p className="mt-2 text-xs text-slate-500">
+          Sie können Ihre Cookie-Präferenzen jederzeit einsehen und anpassen. Nutzen Sie dafür die Schaltfläche <strong>"Cookie-Einstellungen"</strong> mit dem <strong>Fingerprint-Symbol</strong> in der linken unteren Ecke unserer Website.
+        </p>
       </section>
     </div>
   );
@@ -167,6 +262,7 @@ export default function Footer() {
             <li><a href={`${import.meta.env.BASE_URL}#events`} className="hover:text-white transition-colors">Veranstaltungen</a></li>
             <li><Link to="/taetigkeitsbericht" className="hover:text-white transition-colors">Tätigkeitsbericht</Link></li>
             <li><a href={`${import.meta.env.BASE_URL}#contact`} className="hover:text-white transition-colors">Kontakt</a></li>
+            <li><Link to="/admin/surveys" className="text-slate-500 hover:text-brand-teal transition-colors font-semibold">🔑 Admin-Dashboard</Link></li>
           </ul>
         </div>
 
@@ -251,10 +347,11 @@ export default function Footer() {
         <div>
           <h4 className="text-lg font-bold mb-8 text-brand-teal">Rechtliches</h4>
           <ul className="space-y-4 text-slate-400 text-sm">
-            <li><button onClick={() => setActiveModal('impressum')} className="hover:text-white transition-colors text-left">Impressum</button></li>
-            <li><button onClick={() => setActiveModal('privacy')} className="hover:text-white transition-colors text-left">Datenschutzerklärung</button></li>
-            <li><button onClick={() => setActiveModal('satzung')} className="hover:text-white transition-colors text-left">Satzung</button></li>
-            <li><button onClick={() => setActiveModal('donation')} className="hover:text-white transition-colors text-left">Spendenbescheinigung</button></li>
+            <li><button onClick={() => setActiveModal('impressum')} className="hover:text-white transition-colors text-left cursor-pointer">Impressum</button></li>
+            <li><button onClick={() => setActiveModal('privacy')} className="hover:text-white transition-colors text-left cursor-pointer">Datenschutzerklärung</button></li>
+            <li><button onClick={() => setActiveModal('cookies')} className="hover:text-white transition-colors text-left flex items-center gap-1.5 cursor-pointer text-slate-300 font-medium"><Fingerprint size={14} className="text-brand-teal" /> Cookie-Einstellungen</button></li>
+            <li><button onClick={() => setActiveModal('satzung')} className="hover:text-white transition-colors text-left cursor-pointer">Satzung</button></li>
+            <li><button onClick={() => setActiveModal('donation')} className="hover:text-white transition-colors text-left cursor-pointer">Spendenbescheinigung</button></li>
           </ul>
         </div>
       </div>
@@ -288,6 +385,15 @@ export default function Footer() {
         title="Spendenbescheinigung" 
         content={donationContent} 
       />
+
+      <CookieSettingsModal
+        isOpen={activeModal === 'cookies'}
+        onClose={() => setActiveModal('none')}
+        onOpenPrivacyPolicy={() => setActiveModal('privacy')}
+      />
+
+      {/* Floating Fingerprint Button on Bottom Left */}
+      <CookieFingerprintButton onOpenPrivacyPolicy={() => setActiveModal('privacy')} />
     </footer>
   );
 }
