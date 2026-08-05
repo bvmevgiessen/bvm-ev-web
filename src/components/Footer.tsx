@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Github, Mail, Phone, MapPin, Facebook, Instagram, Twitter, Send, CheckCircle2, AlertCircle, Fingerprint } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Fingerprint } from 'lucide-react';
+import { Github, Facebook, Instagram, Twitter } from './SocialIcons';
 import { useForm, ValidationError } from '@formspree/react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import LegalModal from './LegalModal';
 import Logo from './Logo';
 import CookieFingerprintButton from './CookieFingerprintButton';
