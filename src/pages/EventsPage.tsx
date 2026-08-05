@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Calendar, MapPin, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Navbar from '../components/Navbar';
 import eventsData from '../data/events.json';
 import { parseDateSafe } from '../utils/date';

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, MapPin, Clock, ArrowRight, Timer } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import eventsData from '../data/events.json';
 import { parseDateSafe } from '../utils/date';
 

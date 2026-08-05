@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import eventsData from '../data/events.json';
 import blogsData from '../data/blogs.json';
 import { Calendar, FileText } from 'lucide-react';

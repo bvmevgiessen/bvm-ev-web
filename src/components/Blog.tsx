@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { Calendar, User, ArrowRight, Tag, ExternalLink } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import updatesData from '../data/latest_updates.json';
 
 type UpdateItem = (typeof updatesData)[number];
