@@ -39,7 +39,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
         with:
-          persist-credentials: true
+          # Do NOT persist credentials into git config (avoids duplicate Authorization headers)
+          persist-credentials: false
           fetch-depth: 0
 
       - name: Set up Python
@@ -59,6 +60,10 @@ jobs:
       - name: Create Pull Request or push refreshed feed data
         uses: peter-evans/create-pull-request@v6
         with:
+          # Use either the built-in token or your PAT secret:
+          # token: ${{ secrets.GITHUB_TOKEN }}
+          # or token: ${{ secrets.GIT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore(feeds): refresh latest_updates.json"
           title: "chore(feeds): refresh latest_updates.json"
           body: "Automated daily refresh of partner feeds."
