@@ -43,6 +43,16 @@
             "taetigkeitsberichtGasUrl": { "type": "string" },
             "updatedAt": { "type": "string" }
         }
+    },
+    "cookie_consents": {
+        "documentId": "consentId",
+        "fields": {
+            "version": { "type": "string" },
+            "essential": { "type": "boolean" },
+            "functional": { "type": "boolean" },
+            "timestamp": { "type": "string" },
+            "userAgent": { "type": "string" }
+        }
     }
   }
 }
