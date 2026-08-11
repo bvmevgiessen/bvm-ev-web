@@ -1,5 +1,43 @@
 [
   {
+    "id": "fidev-1c13b188d4",
+    "title": "Demokratiebewusstsein stärken: Partizipative Ansätze auf lokaler Ebene",
+    "link": "https://www.fidev.org/post/demokratiebewusstsein-lokale-partizipation",
+    "date": "2026-08-10T11:57:42+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/a7ec0d_a02ef0f2634d4cbb9d07e8b32cf2905a~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
+    "category": "Dialog",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/a7ec0d_a02ef0f2634d4cbb9d07e8b32cf2905a~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
+    "excerpt": "Demokratie wird vor Ort erfahrbar. Der Beitrag zeigt, wie Bürgerbeteiligung, Dialogräume und zivilgesellschaftliches Engagement lokale Demokratiekultur stärken.",
+    "tags": [
+      "Dialog"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
+    "id": "fidev-1257dd6ac2",
+    "title": "Diversity und Inklusion: Erfolgsfaktoren für Organisationen und Gesellschaft",
+    "link": "https://www.fidev.org/post/diversity-inklusion-erfolgsfaktoren-organisationen",
+    "date": "2026-08-07T18:22:07+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/a7ec0d_7c6cd7767f184f7f99bf840a569207a2~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
+    "category": "Integration",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/a7ec0d_7c6cd7767f184f7f99bf840a569207a2~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
+    "excerpt": "Vielfalt allein schafft noch keine Teilhabe. Erfahren Sie, wie Organisationen Diversity Management, Inklusion und interkulturelle Kompetenz wirksam verbinden.",
+    "tags": [
+      "Integration"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
     "id": "fidev-78eadb80d1",
     "title": "Erasmus+ Jugendprojekte: FIDeV als erfahrener Kooperationspartner",
     "link": "https://www.fidev.org/post/erasmus-plus-jugendprojekte-kooperation-fidev",
@@ -97,25 +135,6 @@
     "sourceId": "sdub"
   },
   {
-    "id": "fidev-8b45628938",
-    "title": "Projektwoche für Schulklassen",
-    "link": "https://www.fidev.org/post/projektwoche-f%C3%BCr-schulklassen",
-    "date": "2026-07-06T10:21:03+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/2d6f92_f23d066ad9f04626954b5cb8d5efa2bc~mv2.png/v1/fit/w_412,h_232,al_c,q_80/file.png",
-    "category": "Jugend",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/2d6f92_f23d066ad9f04626954b5cb8d5efa2bc~mv2.png/v1/fit/w_412,h_232,al_c,q_80/file.png",
-    "excerpt": "Besuch der Goethe Universität mit der Ricarda- Huch- Schule Dreieich Angesichts einer sich schnell wandelnden Arbeitswelt, vielfältiger Bildungswege und gesellschaftlicher Unsicherheiten stehen viele junge Menschen heut…",
-    "tags": [
-      "Jugend"
-    ],
-    "external": true,
-    "sourceId": "fidev"
-  },
-  {
     "id": "house-of-one-e20f2574e4",
     "title": "#118: Was gibt uns Hoffnung?",
     "link": "https://house-of-one.org/news/118-was-gibt-uns-hoffnung",
@@ -154,25 +173,6 @@
     ],
     "external": true,
     "sourceId": "sdub"
-  },
-  {
-    "id": "fidev-5b6f841c9b",
-    "title": "Hessisches Basketballturnier für Frauen und Mädchen",
-    "link": "https://www.fidev.org/post/hessisches-basketballturnier-f%C3%BCr-frauen-und-m%C3%A4dchen",
-    "date": "2026-06-30T11:30:27+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/2d6f92_ae7472eb4d7147c8aa948bdbdc5ca085~mv2.png/v1/fit/w_1000,h_176,al_c,q_80/file.png",
-    "category": "Jugend",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/2d6f92_ae7472eb4d7147c8aa948bdbdc5ca085~mv2.png/v1/fit/w_1000,h_176,al_c,q_80/file.png",
-    "excerpt": "Beim von FID e.V. organisierten Hessischen Basketballturnier geht es vor allem darum Basketball auszuprobieren, gemeinsam aktiv zu sein und einen sportlichen Tag mit anderen jungen Frauen zu verbringen. Im Mittelpunkt s…",
-    "tags": [
-      "Jugend"
-    ],
-    "external": true,
-    "sourceId": "fidev"
   },
   {
     "id": "house-of-one-ddbe08ed27",
