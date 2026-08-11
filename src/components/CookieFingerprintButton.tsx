@@ -4,9 +4,10 @@ import CookieSettingsModal from './CookieSettingsModal';
 
 interface CookieFingerprintButtonProps {
   onOpenPrivacyPolicy?: () => void;
+  onOpenImpressum?: () => void;
 }
 
-export default function CookieFingerprintButton({ onOpenPrivacyPolicy }: CookieFingerprintButtonProps) {
+export default function CookieFingerprintButton({ onOpenPrivacyPolicy, onOpenImpressum }: CookieFingerprintButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -16,7 +17,7 @@ export default function CookieFingerprintButton({ onOpenPrivacyPolicy }: CookieF
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="relative flex items-center gap-2.5 bg-brand-navy/90 hover:bg-brand-navy text-white p-3 sm:px-4 sm:py-3 rounded-full shadow-xl hover:shadow-2xl border border-white/10 backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+          className="relative flex items-center gap-2.5 bg-brand-navy/90 hover:bg-brand-navy text-white p-3 sm:px-4 sm:py-3 rounded-full shadow-xl hover:shadow-2xl border border-white/10 backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-brand-teal focus:ring-offset-2 focus:ring-offset-slate-900 cursor-pointer"
           aria-label="Cookie-Einstellungen verwalten"
           title="Cookie-Einstellungen (BVM e.V.)"
         >
@@ -42,6 +43,7 @@ export default function CookieFingerprintButton({ onOpenPrivacyPolicy }: CookieF
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         onOpenPrivacyPolicy={onOpenPrivacyPolicy}
+        onOpenImpressum={onOpenImpressum}
       />
     </>
   );

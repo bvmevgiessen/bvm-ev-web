@@ -77,127 +77,257 @@ export default function Footer() {
   );
 
   const impressumContent = (
-    <div className="space-y-6">
+    <div className="space-y-6 text-sm text-slate-700 leading-relaxed">
       <section>
-        <h3 className="text-lg font-bold text-brand-navy mb-2">Angaben gemäß § 5 TMG</h3>
-        <p>Bildung und Verständigung Mittelhessen e.V.<br />Siemensstr. 18<br />35394 Gießen</p>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">Angaben gemäß § 5 TMG</h3>
+        <p className="font-bold text-brand-navy">Bildung und Verständigung Mittelhessen e.V.</p>
+        <p>Siemensstraße 18<br />35394 Gießen<br />Deutschland</p>
       </section>
+
       <section>
-        <h3 className="text-lg font-bold text-brand-navy mb-2">Vertreten durch</h3>
-        <p>Der Vorstand (Vorsitzende: [Name des Vorsitzenden])</p>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">Vertretungsberechtigter Vorstand (§ 26 BGB)</h3>
+        <p>[Name des Vorsitzenden], Vorsitzende(r)</p>
+        <p>[Vorname Nachname], Stellvertretende(r) Vorsitzende(r)</p>
+        <p>[Vorname Nachname], Kassenwart(in)</p>
       </section>
+
       <section>
-        <h3 className="text-lg font-bold text-brand-navy mb-2">Kontakt</h3>
-        <p>Telefon: +49 (0) 641 1234567<br />E-Mail: bvmevgiessen@gmail.com</p>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">Kontakt</h3>
+        <p>E-Mail: <a href="mailto:bvmevgiessen@gmail.com" className="text-brand-teal font-semibold hover:underline">bvmevgiessen@gmail.com</a></p>
       </section>
+
       <section>
-        <h3 className="text-lg font-bold text-brand-navy mb-2">Registereintrag</h3>
-        <p>Eintragung im Vereinsregister.<br />Registergericht: Amtsgericht Gießen<br />Registernummer: VR [Nummer]</p>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">Registereintrag</h3>
+        <p>Eingetragen im Vereinsregister.<br />Registergericht: Amtsgericht Gießen<br />Registernummer: VR-4953</p>
       </section>
+
       <section>
-        <h3 className="text-lg font-bold text-brand-navy mb-2">Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
-        <p>[Name des Verantwortlichen]<br />Siemensstr. 18<br />35394 Gießen</p>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">Gemeinnützigkeit</h3>
+        <p>Als gemeinnütziger, eingetragener Verein sind wir nach § 5 Abs. 1 Nr. 9 KStG von der Körperschaftsteuer befreit.</p>
       </section>
+
       <section>
-        <h3 className="text-lg font-bold text-brand-navy mb-2">Streitschlichtung</h3>
-        <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-brand-teal hover:underline">https://ec.europa.eu/consumers/odr</a>. Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
+        <p>[Name des Verantwortlichen]<br />Siemensstraße 18, 35394 Gießen</p>
+      </section>
+
+      <section>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">Streitschlichtung</h3>
+        <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-brand-teal font-semibold hover:underline">https://ec.europa.eu/consumers/odr</a>. Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
         <p className="mt-2">Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+      </section>
+
+      <section>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">Haftung für Inhalte</h3>
+        <p>Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt.</p>
+      </section>
+
+      <section>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">Haftung für Links</h3>
+        <p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
+      </section>
+
+      <section>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">Urheberrecht</h3>
+        <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet.</p>
       </section>
     </div>
   );
 
   const privacyContent = (
     <div className="space-y-6 text-sm text-slate-700 leading-relaxed">
+      <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Stand: 11. August 2026</p>
+
       <section>
-        <h3 className="text-lg font-extrabold text-brand-navy mb-2">1. Verantwortliche Stelle & Allgemeine Hinweise</h3>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">1. Verantwortliche Stelle</h3>
         <p>
           Verantwortlicher für die Datenverarbeitung auf dieser Website im Sinne der Datenschutz-Grundverordnung (DSGVO) und anderer nationaler Datenschutzgesetze ist:
         </p>
         <div className="mt-3 bg-slate-50 p-4 rounded-2xl border border-slate-100 text-xs text-slate-700 space-y-1">
           <p className="font-bold text-brand-navy">Bildung und Verständigung Mittelhessen e.V. (BVM e.V.)</p>
-          <p>Siemensstraße 18, 35394 Gießen</p>
-          <p>Telefon: +49 (0) 641 1234567</p>
+          <p>Siemensstraße 18, 35394 Gießen, Deutschland</p>
           <p>E-Mail: <a href="mailto:bvmevgiessen@gmail.com" className="text-brand-teal hover:underline font-semibold">bvmevgiessen@gmail.com</a></p>
           <p>Vertreten durch den Vorstand</p>
         </div>
-        <p className="mt-3">
-          Der BVM e.V. nimmt den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend den gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
-        </p>
       </section>
 
       <section>
-        <h3 className="text-lg font-extrabold text-brand-navy mb-2">2. Haftungsausschluss für externe Links (Haftung für Links)</h3>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">2. Hosting</h3>
         <p>
-          Unser Internetangebot enthält Links zu externen Websites Dritter, auf deren Inhalte und Datenschutzstandards wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte und deren Datenverarbeitungen keine Gewähr oder Haftung übernehmen.
+          Diese Website wird von <strong>GitHub, Inc.</strong> (88 Colin P Kelly Jr Street, San Francisco, CA 94107, USA) über den Dienst „GitHub Pages“ gehostet. Beim Aufruf werden technische Verbindungsdaten (u. a. IP-Adresse, User-Agent, Zeitstempel, Referrer) an GitHub übertragen.
         </p>
         <p className="mt-2">
-          Für die Inhalte und die Einhaltung der Datenschutzbestimmungen der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
+          <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem sicheren und performanten Webauftritt). Die Datenübermittlung in die USA erfolgt auf Grundlage von Standardvertragsklauseln (Art. 46 Abs. 2 lit. c DSGVO) sowie – soweit anwendbar – im Rahmen des EU-US Data Privacy Framework.
+        </p>
+        <p className="mt-2 text-xs">
+          Weitere Informationen finden Sie in der Datenschutzerklärung von GitHub: <a href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer" className="text-brand-teal hover:underline">github.com/site-policy/privacy-policies/github-privacy-statement</a>
         </p>
       </section>
 
       <section>
-        <h3 className="text-lg font-extrabold text-brand-navy mb-2">3. Formularanbieter & Dienstleister im Einsatz</h3>
-        
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">3. Content Delivery Network (CDN) & Domain-Sicherheit (Cloudflare)</h3>
+        <p>
+          Wir nutzen zur Absicherung unserer Domain und zur Abwehr schädlicher Zugriffe (z. B. DDoS-Attacken) den Dienst von <strong>Cloudflare, Inc.</strong> (101 Townsend St., San Francisco, CA 94107, USA).
+        </p>
+        <p className="mt-2">
+          Cloudflare agiert als Reverse-Proxy und Sicherheits-Gateway. Beim Aufruf unserer Website wird der Datenverkehr über die globale Serverinfrastruktur von Cloudflare geleitet, um Sicherheitsrisiken zu analysieren und Angriffe zu blockieren. Hierbei werden technische Verbindungsdaten (u. a. IP-Adresse, Sicherheits-Header) verarbeitet.
+        </p>
+        <p className="mt-2">
+          <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der IT-Sicherheit, Verfügbarkeit und Abwehr von Cyberangriffen). Die Datenübermittlung in die USA erfolgt auf Grundlage von Standardvertragsklauseln (Art. 46 Abs. 2 lit. c DSGVO) sowie der Zertifizierung von Cloudflare unter dem EU-US Data Privacy Framework (DPF). Weitere Informationen: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" className="text-brand-teal hover:underline font-semibold">Datenschutzerklärung Cloudflare</a>
+        </p>
+      </section>
+
+      <section>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">4. SSL-/TLS-Verschlüsselung</h3>
+        <p>
+          Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL-/TLS-Verschlüsselung. Sie erkennen eine verschlüsselte Verbindung an der Adresszeile des Browsers („https://“) und dem Schloss-Symbol.
+        </p>
+      </section>
+
+      <section>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">5. Server-Log-Dateien</h3>
+        <p>
+          Der Hosting-Provider erhebt und speichert automatisch Informationen in sogenannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt: Browsertyp und -version, verwendetes Betriebssystem, Referrer URL, Hostname des zugreifenden Rechners, Uhrzeit der Serveranfrage und IP-Adresse (gekürzt/anonymisiert soweit möglich).
+        </p>
+        <p className="mt-2">
+          <strong>Speicherdauer:</strong> Maximal 14 Tage, danach erfolgt eine automatische Löschung.<br />
+          <strong>Zweck & Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (technischer Betrieb, IT-Sicherheit, Fehleranalyse). Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.
+        </p>
+      </section>
+
+      <section>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">6. Kontaktaufnahme (E-Mail & Kontaktformular)</h3>
+        <p>
+          Bei Kontaktaufnahme per E-Mail oder über unser Kontaktformular werden Ihre Angaben (Name, E-Mail-Adresse, Anfragetyp, Betreff, Nachricht) zur Bearbeitung der Anfrage verarbeitet.
+        </p>
+        <p className="mt-2">
+          <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche/vertragliche Maßnahmen) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an effizienter Bearbeitung). Speicherung bis zur abschließenden Bearbeitung bzw. für die Dauer gesetzlicher Aufbewahrungspflichten.
+        </p>
+      </section>
+
+      <section>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">7. Eingesetzte Dienstleister</h3>
+
         <div className="space-y-4 mt-3">
           <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
-            <h4 className="font-bold text-brand-navy">a) Jotform (Mitgliedschaftsformular)</h4>
+            <h4 className="font-bold text-brand-navy">7a. Jotform Inc. (Mitgliedschaftsformular)</h4>
             <p className="text-xs text-slate-600">
-              Für unsere Online-Mitgliedstanträge (Ordentliche Mitgliedschaft & Fördermitgliedschaft) nutzen wir den Formulardienst <strong>Jotform Inc.</strong> (111 Pine St. Suite 1815, San Francisco, CA 94111, USA).
-            </p>
-            <p className="text-xs text-slate-600">
-              <strong>Zweck & Rechtsgrundlage:</strong> Die Verarbeitung Ihrer Daten im Rahmen des Mitgliedsantrags erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung bzw. Erfüllung des Vereinsverhältnisses) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer strukturierten Mitgliederverwaltung).
-            </p>
-            <p className="text-xs text-slate-600">
-              Die in das Formular eingegebenen Daten werden verschlüsselt an Jotform übermittelt und auf sicheren Servern verarbeitet. Jotform garantiert angemessene Datenschutzstandards über Auftragsverarbeitungsverträge (AVV) sowie Standardvertragsklauseln der Europäischen Kommission.
+              Anbieter: Jotform Inc., 111 Pine Street, Suite 1815, San Francisco, CA 94111, USA.<br />
+              Zweck: Bearbeitung von Mitgliedsanträgen (Ordentliche und Fördermitgliedschaft).<br />
+              Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO.<br />
+              Datenübermittlung in die USA: Standardvertragsklauseln nach Art. 46 Abs. 2 lit. c DSGVO. Auftragsverarbeitungsvertrag (AVV) abgeschlossen. <a href="https://www.jotform.com/privacy/" target="_blank" rel="noopener noreferrer" className="text-brand-teal hover:underline font-semibold">Datenschutzerklärung Jotform</a>
             </p>
           </div>
 
           <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
-            <h4 className="font-bold text-brand-navy">b) Formspree (Spenden & Webformulare / Kontakt)</h4>
+            <h4 className="font-bold text-brand-navy">7b. Formspree, Inc. (Kontakt- und Spendenformulare)</h4>
             <p className="text-xs text-slate-600">
-              Für allgemeine Kontaktanfragen sowie für Spendenhinweise auf unserer Website nutzen wir den Dienst <strong>Formspree Inc.</strong> (2175 S 5th East, Salt Lake City, UT 84106, USA).
-            </p>
-            <p className="text-xs text-slate-600">
-              <strong>Zweck & Rechtsgrundlage:</strong> Entgegennahme und Bearbeitung Ihrer Anfragen gem. Art. 6 Abs. 1 lit. b DSGVO (Vertrags- und Anfragebearbeitung) sowie Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer schnellen und zuverlässigen Kontaktaufnahme).
-            </p>
-            <p className="text-xs text-slate-600">
-              Die von Ihnen übermittelten Formulardaten (wie Name, E-Mail-Adresse, Anfragetyp, Betreff, Nachricht) werden verschlüsselt über Server von Formspree geleitet und an unsere Vereins-E-Mail weitergeleitet.
+              Anbieter: Formspree, Inc., 2261 Market Street #4272, San Francisco, CA 94114, USA.<br />
+              Zweck: Weiterleitung von Formulardaten an die Vereins-E-Mail.<br />
+              Rechtsgrundlage: Art. 6 Abs. 1 lit. b / lit. f DSGVO.<br />
+              Datenübermittlung in die USA: Standardvertragsklauseln (SCC) und EU-US Data Privacy Framework (DPF). <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener noreferrer" className="text-brand-teal hover:underline font-semibold">Datenschutzerklärung Formspree</a>
             </p>
           </div>
 
           <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
-            <h4 className="font-bold text-brand-navy">c) Firebase & Google Cloud Platform (Hosting & Infrastruktur)</h4>
+            <h4 className="font-bold text-brand-navy">7c. Google Firebase / Firestore (Google Ireland Ltd.)</h4>
             <p className="text-xs text-slate-600">
-              Unsere Website und IT-Infrastruktur werden auf Servern von <strong>Google Cloud Platform & Firebase</strong> (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) gehostet.
+              Anbieter: Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Irland.<br />
+              Zweck: Speicherung von Formularsubmittals, Umfragen und Datenschutz-Einwilligungen.<br />
+              Server-Standort: EU (mit Sub-Processing durch Google LLC in den USA via Standardvertragsklauseln).<br />
+              Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer" className="text-brand-teal hover:underline font-semibold">Datenschutzerklärung Firebase</a>
             </p>
+          </div>
+
+          <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
+            <h4 className="font-bold text-brand-navy">7d. Google Apps Script / Google Sheets / Google Drive</h4>
             <p className="text-xs text-slate-600">
-              <strong>Zweck & Rechtsgrundlage:</strong> Technisches Hosting, Bereitstellung der Cloud Run Anwendung und Firestore-Datenbankdienste zur geschützten Datenhaltung gem. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem stabilen, performanten und ausfallsicheren Webauftritt).
+              Formulareinreichungen werden ggf. per Google Apps Script an Google Sheets / Drive zur sicheren Archivierung weitergeleitet.<br />
+              Anbieter: Google Ireland Ltd. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO. Google Workspace Data Processing Addendum (DPA).
             </p>
+          </div>
+
+          <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
+            <h4 className="font-bold text-brand-navy">7e. Newsletter</h4>
             <p className="text-xs text-slate-600">
-              Beim Aufruf unserer Seiten erfasst die Infrastruktur automatisch technische Server-Log-Files (z. B. IP-Adresse, Datum und Uhrzeit des Zugriffs, Browsertyp, Betriebssystem, Referrer URL).
+              Für den Versand unseres Newsletters verarbeiten wir Ihre E-Mail-Adresse auf Grundlage Ihrer ausdrücklichen Einwilligung (Double-Opt-In-Verfahren, Art. 6 Abs. 1 lit. a DSGVO). Sie können die Einwilligung jederzeit über den Abmeldelink im Newsletter oder per E-Mail widerrufen.
             </p>
           </div>
         </div>
       </section>
 
       <section>
-        <h3 className="text-lg font-extrabold text-brand-navy mb-2">4. Rechte der betroffenen Personen (Betroffenenrechte nach DSGVO)</h3>
-        <p>Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit folgende Rechte bezüglich Ihrer personenbezogenen Daten:</p>
-        <ul className="list-disc pl-5 mt-2 space-y-1.5 text-xs text-slate-600">
-          <li><strong>Recht auf Auskunft (Art. 15 DSGVO):</strong> Sie haben das Recht auf Auskunft über Ihre von uns verarbeiteten personenbezogenen Daten.</li>
-          <li><strong>Recht auf Berichtigung (Art. 16 DSGVO):</strong> Sie können unverzüglich die Berichtigung unrichtiger Daten verlangen.</li>
-          <li><strong>Recht auf Löschung (Art. 17 DSGVO):</strong> Sie können die Löschung Ihrer bei uns gespeicherten Daten verlangen, soweit nicht gesetzliche Aufbewahrungspflichten entgegenstehen.</li>
-          <li><strong>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO):</strong> Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer Daten zu verlangen.</li>
-          <li><strong>Recht auf Datenübertragbarkeit (Art. 20 DSGVO):</strong> Sie können Ihre Daten in einem gängigen, maschinenlesbaren Format anfordern.</li>
-          <li><strong>Recht auf Widerruf der Einwilligung (Art. 7 Abs. 3 DSGVO):</strong> Sie können erteilte Einwilligungen jederzeit mit Wirkung für die Zukunft widerrufen.</li>
-          <li><strong>Widerspruchsrecht (Art. 21 DSGVO):</strong> Sofern die Verarbeitung auf Art. 6 Abs. 1 lit. f DSGVO beruht, können Sie der Verarbeitung aus persönlichen Gründen widersprechen.</li>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">8. Cookies & lokale Speicher (localStorage)</h3>
+        <p>
+          Wir nutzen ausschließlich technisch notwendige bzw. funktionale Cookies und `localStorage`-Einträge:
+        </p>
+        
+        <div className="mt-3 overflow-x-auto">
+          <table className="w-full text-xs text-left border-collapse border border-slate-200">
+            <thead>
+              <tr className="bg-slate-100 text-brand-navy font-bold">
+                <th className="border border-slate-200 p-2">Name</th>
+                <th className="border border-slate-200 p-2">Zweck</th>
+                <th className="border border-slate-200 p-2">Speicherdauer</th>
+                <th className="border border-slate-200 p-2">Kategorie</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="border border-slate-200 p-2 font-mono">bvm_cookie_consent_v1</td>
+                <td className="border border-slate-200 p-2">Speicherung Ihrer Cookie-Einwilligung und -Präferenzen</td>
+                <td className="border border-slate-200 p-2">12 Monate</td>
+                <td className="border border-slate-200 p-2 font-semibold text-brand-teal">Notwendig</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-200 p-2 font-mono">bvm_consent_time</td>
+                <td className="border border-slate-200 p-2">Zeitstempel der Cookie-Einwilligung</td>
+                <td className="border border-slate-200 p-2">12 Monate</td>
+                <td className="border border-slate-200 p-2 font-semibold text-brand-teal">Notwendig</td>
+              </tr>
+              <tr>
+                <td className="border border-slate-200 p-2 font-mono">__cf_bm / cf_clearance</td>
+                <td className="border border-slate-200 p-2">Cloudflare-Sicherheits-Cookies zur Bot-Erkennung und Abwehr von Cyberangriffen</td>
+                <td className="border border-slate-200 p-2">Session / 30 Tage</td>
+                <td className="border border-slate-200 p-2 font-semibold text-brand-teal">Notwendig</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p className="mt-3 text-xs text-slate-600">
+          <strong>Rechtsgrundlage:</strong> Für technisch notwendige Cookies § 25 Abs. 2 Nr. 2 TDDDG (vormals TTDSG). Für funktionale Dienste § 25 Abs. 1 TDDDG i.V.m. Art. 6 Abs. 1 lit. a DSGVO (Ihre Einwilligung, jederzeit widerruflich über die Schaltfläche „Cookie-Einstellungen“ unten links).
+        </p>
+      </section>
+
+      <section>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">9. Blog / Latest Updates (RSS-Aggregation)</h3>
+        <p>
+          Unser Blog aggregiert öffentlich zugängliche RSS-Feeds unserer Partnerorganisationen (u. a. Stiftung Dialog und Bildung, FID, BDDI, Time to Help, AFSV, JWF, House of One). Beim reinen Ansehen der Blog-Seite werden von uns keine personenbezogenen Daten der Partner verarbeitet. Beim Klick auf einen Beitrag werden Sie zur externen Quelle weitergeleitet.
+        </p>
+      </section>
+
+      <section>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">10. Social-Media-Verlinkungen</h3>
+        <p>
+          Wir verlinken auf unsere Profile bei Facebook (Meta Platforms Ireland Ltd.), Instagram (Meta) und X (Twitter International Unlimited Company). Es handelt sich um einfache HTML-Links – erst mit dem Klick werden Daten an den jeweiligen Anbieter übertragen.
+        </p>
+      </section>
+
+      <section>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">11. Rechte der betroffenen Personen</h3>
+        <ul className="list-disc pl-5 space-y-1 text-xs text-slate-600">
+          <li><strong>Auskunft (Art. 15 DSGVO):</strong> Recht auf Auskunft über gespeicherte Daten.</li>
+          <li><strong>Berichtigung (Art. 16 DSGVO):</strong> Recht auf Korrektur unrichtiger Daten.</li>
+          <li><strong>Löschung (Art. 17 DSGVO):</strong> Recht auf Löschung („Recht auf Vergessenwerden“).</li>
+          <li><strong>Einschränkung (Art. 18 DSGVO):</strong> Recht auf Einschränkung der Verarbeitung.</li>
+          <li><strong>Datenübertragbarkeit (Art. 20 DSGVO):</strong> Recht auf Übertragung Ihrer Daten.</li>
+          <li><strong>Widerruf (Art. 7 Abs. 3 DSGVO):</strong> Recht auf jederzeitigen Widerruf erteilter Einwilligungen.</li>
+          <li><strong>Widerspruch (Art. 21 DSGVO):</strong> Recht auf Widerspruch gegen verarbeitete Daten.</li>
         </ul>
         <div className="mt-4 p-4 bg-teal-50/60 rounded-2xl border border-teal-100 text-xs">
-          <p className="font-bold text-brand-teal mb-1">Beschwerderecht bei der Aufsichtsbehörde (Art. 77 DSGVO):</p>
+          <p className="font-bold text-brand-teal mb-1">Aufsichtsbehörde (Art. 77 DSGVO):</p>
           <p className="text-slate-600">
-            Im Falle datenschutzrechtlicher Verstöße steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu:
-          </p>
-          <p className="font-semibold text-slate-800 mt-1">
             Der Hessische Beauftragte für Datenschutz und Informationsfreiheit<br />
             Gustav-Stresemann-Ring 1, 65189 Wiesbaden<br />
             Website: <a href="https://datenschutz.hessen.de" target="_blank" rel="noopener noreferrer" className="text-brand-teal hover:underline font-bold">datenschutz.hessen.de</a>
@@ -206,12 +336,9 @@ export default function Footer() {
       </section>
 
       <section>
-        <h3 className="text-lg font-extrabold text-brand-navy mb-2">5. Cookies & Cookie-Einstellungen</h3>
+        <h3 className="text-lg font-extrabold text-brand-navy mb-2">11. Änderungen dieser Datenschutzerklärung</h3>
         <p>
-          Unsere Website nutzt notwendige Cookies sowie lokale Speichertechnologien (`localStorage`), um den Betrieb der Seite und die Speicherung Ihrer Datenschutz-Präferenzen zu gewährleisten.
-        </p>
-        <p className="mt-2 text-xs text-slate-500">
-          Sie können Ihre Cookie-Präferenzen jederzeit einsehen und anpassen. Nutzen Sie dafür die Schaltfläche <strong>"Cookie-Einstellungen"</strong> mit dem <strong>Fingerprint-Symbol</strong> in der linken unteren Ecke unserer Website.
+          Wir passen diese Datenschutzerklärung an, sobald Änderungen unserer Datenverarbeitung dies erforderlich machen. Die jeweils aktuelle Version ist stets auf dieser Website abrufbar.
         </p>
       </section>
     </div>
@@ -391,12 +518,14 @@ export default function Footer() {
         isOpen={activeModal === 'cookies'}
         onClose={() => setActiveModal('none')}
         onOpenPrivacyPolicy={() => setActiveModal('privacy')}
+        onOpenImpressum={() => setActiveModal('impressum')}
       />
 
       {/* Floating Fingerprint Button on Bottom Left */}
-      <CookieFingerprintButton onOpenPrivacyPolicy={() => setActiveModal('privacy')} />
+      <CookieFingerprintButton
+        onOpenPrivacyPolicy={() => setActiveModal('privacy')}
+        onOpenImpressum={() => setActiveModal('impressum')}
+      />
     </footer>
   );
 }
-
-

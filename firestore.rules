@@ -13,5 +13,8 @@ service cloud.firestore {
     match /taetigkeitsberichte/{reportId} {
       allow read, write: if true;
     }
+    match /cookie_consents/{consentId} {
+      allow create, read: if true;
+    }
   }
 }
