@@ -71,7 +71,7 @@ jobs:
           delete-branch: true
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         env:
           ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
         with:
