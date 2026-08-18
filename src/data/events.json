@@ -395,5 +395,74 @@
     "Bewirtung mit Snacks und Getränken"
   ],
   "fuerWen": "Frauen ab 7 Jahren – eine Veranstaltung voller Glanz, Freude und Gemeinschaft."
-}
+},
+{
+  "id": "sprachcafe-august-2026",
+  "title": "Sprachcafé",
+  "category": "SOZIALES",
+  "stream": "Community Days",
+  "date": "2026-08-26T14:30:00",
+  "location": "Siemensstraße 18, Gebäude 2, 35394 Gießen",
+  "image": "https://images.unsplash.com/photo-1705573384249-3eff0565c04d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "description": "Ein offenes Sprachcafé für alle – ein Ort der Begegnung, des Austauschs und des gemeinsamen Lernens. In entspannter Atmosphäre können Teilnehmerinnen und Teilnehmer miteinander sprechen, neue Sprachen üben und Freundschaften knüpfen.",
+  "wasErwartetSie": [
+    "Gemeinsames Gespräch in Deutsch",
+    "Kultureller Austausch und gegenseitiges Kennenlernen",
+    "Offene und herzliche Atmosphäre"
+  ],
+  "fuerWen": "Frauen und Männer aller Altersgruppen und Herkunft, die sich austauschen und ihre Sprachkenntnisse erweitern möchten."
+},
+{
+  "id": "noahs-fest-2026",
+  "title": "Noahs Fest – Aşure Tag",
+  "category": "DIALOG",
+  "stream": "Interreligiöser Austausch",
+  "date": "2026-09-12T14:30:00",
+  "location": "Kirchenplatz, 35390 Gießen",
+  "image": "https://images.unsplash.com/photo-1607082349566-187342175e3b?auto=format&fit=crop&q=80&w=1200",
+  "description": "Ein interreligiöses Fest für Frieden und Zusammenhalt im Herzen von Gießen. Das Noahs Fest wird in Kooperation mit der Evangelischen Philippusgemeinde Gießen organisiert und möchte zu einer friedlichen Atmosphäre in der Stadt beitragen. Es gibt kurze Ansprachen über die Bedeutung des Noahs Festes und darüber, wie Menschen aus verschiedenen kulturellen und religiösen Hintergründen gemeinsam in Frieden leben können. Gemeinsam sprechen wir ein Friedensgebet. Anschließend verteilen wir Noahs Pudding (Aşure) an Passantinnen und Passanten, Gäste und Freundinnen und Freunde. Bei leichter Hintergrundmusik entsteht Raum für Begegnung, Gespräche und gemeinsames Genießen. Eine Anmeldung ist nicht erforderlich.",
+  "wasErwartetSie": [
+    "Interreligiöse Kurzvorträge über das Noahs Fest",
+    "Gemeinsames Friedensgebet",
+    "Verteilung von Noahs Pudding an Gäste und Passanten",
+    "Begegnung, Austausch und leichte Hintergrundmusik"
+  ],
+  "fuerWen": "Alle Menschen in Gießen, die ein Zeichen für Frieden, Dialog und Gemeinschaft setzen möchten."
+},
+{
+  "id": "aschura-wetzlar-2026",
+  "title": "Ashura – Noahs Pudding Fest",
+  "category": "DIALOG",
+  "stream": "Interreligiöser Austausch",
+  "date": "2026-09-19T16:00:00",
+  "location": "Bahnhofstraße 22, 35576 Wetzlar",
+  "image": "https://images.unsplash.com/photo-1607082349566-187342175e3b?auto=format&fit=crop&q=80&w=1200",
+  "description": "Ein Ashura-Fest in Wetzlar, organisiert von Bildung und Verständigung Mittelhessen e.V. ohne weitere Kooperationspartner. Das Programm beginnt mit einer kurzen Präsentation über die Bedeutung der Arche Noah und des Ashura-Festes. Anschließend genießen Gäste und Freundinnen und Freunde Noahs Pudding (Aşure) bei leichter Hintergrundmusik und haben die Möglichkeit, miteinander ins Gespräch zu kommen. Die Veranstaltung soll zu einem friedlichen und respektvollen Miteinander beitragen. Eine Anmeldung ist erforderlich.",
+  "wasErwartetSie": [
+    "Kurze Präsentation über Noahs Arche und Ashura",
+    "Verteilung von Noahs Pudding (Aşure)",
+    "Gespräche und Begegnungen",
+    "Leichte Hintergrundmusik"
+  ],
+  "fuerWen": "Alle Interessierten, die die Bedeutung des Ashura-Festes kennenlernen und gemeinsam einen friedlichen Nachmittag verbringen möchten."
+},
+{
+  "id": "pilzwanderung-marburg-2026",
+  "title": "Pilzwanderung in Marburg",
+  "category": "SOZIALES",
+  "stream": "Community Days",
+  "date": "2026-10-18T11:00:00",
+  "location": "Marburg Botanischer Garten – Lahnberge Parkplatz (Uni Marburg)",
+  "image": "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&q=80&w=1200",
+  "description": "Eine geführte Pilzwanderung im Waldgebiet rund um den Botanischen Garten in Marburg. Während der Tour erhalten die Teilnehmenden spannende Erklärungen zu verschiedenen Pilzarten – ob essbar oder giftig – und haben die Möglichkeit, selbst Pilze zu sammeln. Das Programm findet auf Englisch statt, bei Bedarf wird ins Deutsche übersetzt. Bitte achten Sie auf das Wetter und bringen Sie geeignete Kleidung mit, insbesondere bei Regen. Eine Anmeldung ist erforderlich.",
+  "wasErwartetSie": [
+    "Geführte Wanderung durch den Wald",
+    "Erklärungen zu Pilzarten (essbar und giftig)",
+    "Gemeinsames Sammeln von Pilzen",
+    "Programm auf Englisch mit deutscher Übersetzung"
+  ],
+  "fuerWen": "Alle Interessierten, die die Natur erkunden und mehr über Pilze lernen möchten."
+},
+
+
 ]
