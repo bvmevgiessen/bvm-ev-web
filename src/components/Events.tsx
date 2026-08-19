@@ -114,8 +114,15 @@ export default function Events() {
               {/* Content Layer */}
               <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-between">
                 <div className="flex justify-between items-start">
-                  <div className="bg-white/10 backdrop-blur-xl border border-white/20 px-5 py-2 rounded-full text-[10px] font-black text-white uppercase tracking-[0.3em]">
-                    {event.category}
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <div className="bg-white/10 backdrop-blur-xl border border-white/20 px-5 py-2 rounded-full text-[10px] font-black text-white uppercase tracking-[0.3em]">
+                      {event.category}
+                    </div>
+                    {((event as any).badge || (event as any).notice) && (
+                      <div className="bg-amber-500 text-white px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg animate-pulse">
+                        {(event as any).badge || 'Verschoben'}
+                      </div>
+                    )}
                   </div>
                   {index === 0 && (
                     <div className="flex flex-col items-end gap-2">
@@ -158,7 +165,7 @@ export default function Events() {
                     to={`/events/${event.id}`}
                     className="inline-flex items-center gap-3 px-8 py-4 bg-white text-brand-navy font-black rounded-2xl hover:bg-brand-teal hover:text-white transition-all shadow-xl shadow-black/10"
                   >
-                    Details & Anmeldung <ArrowRight size={18} />
+                    {(event as any).requiresRegistration === false || (event as any).badge?.toLowerCase().includes('ohne anmeldung') ? 'Details & Info' : 'Details & Anmeldung'} <ArrowRight size={18} />
                   </Link>
                 </div>
               </div>

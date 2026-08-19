@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
-import { Calendar, MapPin, Clock, ArrowLeft, CheckCircle2, Users, Info } from 'lucide-react';
+import { Calendar, MapPin, Clock, ArrowLeft, CheckCircle2, Users, Info, Sparkles } from 'lucide-react';
 import { useForm, ValidationError } from '@formspree/react';
 import Navbar from '../components/Navbar';
 import ShareButtons from '../components/ShareButtons';
@@ -26,6 +26,7 @@ export default function EventDetailPage() {
   }
 
   const isPastEvent = parseDateSafe(event.date).getTime() < new Date().getTime();
+  const isNoRegistration = (event as any).requiresRegistration === false || (event as any).badge?.toLowerCase().includes('ohne anmeldung') || (event as any).badge?.toLowerCase().includes('keine anmeldung');
 
   return (
     <div className="min-h-screen bg-white">
@@ -54,9 +55,16 @@ export default function EventDetailPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
               >
-                <span className="bg-brand-teal px-4 py-1.5 rounded-full text-[10px] font-black text-white uppercase tracking-[0.2em] mb-4 inline-block">
-                  {event.category}
-                </span>
+                <div className="flex items-center gap-3 mb-4 flex-wrap">
+                  <span className="bg-brand-teal px-4 py-1.5 rounded-full text-[10px] font-black text-white uppercase tracking-[0.2em] inline-block">
+                    {event.category}
+                  </span>
+                  {((event as any).badge || (event as any).notice) && (
+                    <span className="bg-amber-500 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-sm animate-pulse inline-block">
+                      {(event as any).badge || 'Verschoben'}
+                    </span>
+                  )}
+                </div>
                 <h1 className="text-4xl md:text-6xl font-extrabold text-white leading-tight max-w-4xl">
                   {event.title}
                 </h1>
@@ -134,17 +142,21 @@ export default function EventDetailPage() {
                 </div>
               </div>
 
-              {/* Registration Form */}
+              {/* Registration / Info Box */}
               <div className="lg:col-span-1">
                 <div className="sticky top-32 bg-white p-8 rounded-[2rem] border border-slate-200 shadow-xl shadow-slate-200/50">
                   <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-2xl font-bold text-brand-navy">Anmeldung</h2>
+                    <h2 className="text-2xl font-bold text-brand-navy">
+                      {isNoRegistration ? 'Teilnahme' : 'Anmeldung'}
+                    </h2>
                     <span className={`text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider ${
                       isPastEvent 
                         ? 'text-slate-500 bg-slate-100' 
-                        : 'text-brand-orange bg-brand-orange/10'
+                        : isNoRegistration
+                          ? 'text-emerald-700 bg-emerald-100'
+                          : 'text-brand-orange bg-brand-orange/10'
                     }`}>
-                      {isPastEvent ? 'Geschlossen' : 'Anfrage'}
+                      {isPastEvent ? 'Geschlossen' : isNoRegistration ? 'Offen für alle' : 'Anfrage'}
                     </span>
                   </div>
                   
@@ -153,10 +165,27 @@ export default function EventDetailPage() {
                       <div className="w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Clock className="text-slate-500" size={32} />
                       </div>
-                      <h3 className="text-lg font-bold text-brand-navy mb-2">Anmeldung geschlossen</h3>
+                      <h3 className="text-lg font-bold text-brand-navy mb-2">Veranstaltung beendet</h3>
                       <p className="text-slate-500 text-sm px-4">
-                        Dieses Event hat bereits stattgefunden. Eine Anmeldung ist daher nicht mehr möglich.
+                        Dieses Event hat bereits stattgefunden.
                       </p>
+                    </div>
+                  ) : isNoRegistration ? (
+                    <div className="text-center py-8 bg-emerald-50/50 rounded-2xl border border-emerald-100 p-6 space-y-4">
+                      <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto">
+                        <Sparkles size={30} />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-brand-navy mb-1.5">Keine Anmeldung nötig</h3>
+                        <p className="text-slate-600 text-sm leading-relaxed">
+                          Kommen Sie einfach vorbei! Dieses Fest ist offen für alle Bürgerinnen, Bürger, Nachbarn und Gäste. Eine vorherige Anmeldung ist nicht erforderlich.
+                        </p>
+                      </div>
+                      <div className="pt-2">
+                        <span className="inline-flex items-center gap-2 text-xs font-bold text-emerald-800 bg-white px-4 py-2 rounded-xl border border-emerald-200/60 shadow-sm">
+                          <CheckCircle2 size={15} className="text-emerald-600" /> Eintritt frei & herzlich willkommen
+                        </span>
+                      </div>
                     </div>
                   ) : state.succeeded ? (
                     <motion.div 
