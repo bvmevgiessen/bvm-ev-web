@@ -248,7 +248,7 @@
   "title": "Aschura-Tag Event",
   "category": "DIALOG",
   "stream": "Interreligiöser Austausch",
-  "date": "2026-08-28T19:00:00",
+  "date": "2026-09-19T19:00:00",
   "location": "Bahnhofstraße 22, 35576 Wetzlar",
   "image": "https://www.unileverfoodsolutions.com.tr/dam/global-ufs/mcos/turkey/turk_mutfagi/G%C3%96RSEL%201%20%20(2).jpg",
   "description": "Der Tag der Besinnung und des Gedenkens. Das Aschura-Tag Event lädt dazu ein, gemeinsam in Gemeinschaft zu feiern und die Werte von Mitgefühl, Dankbarkeit und Zusammenhalt zu erleben.",
@@ -261,7 +261,7 @@
   "notice": {
     "type": "delay",
     "title": "Wichtige Information: Veranstaltung verschoben",
-    "message": "Aufgrund von extremen Wetterbedingungen durch das El-Niño-Phänomen musste diese Veranstaltung leider verschoben werden. Das Event findet nun am Freitag, den 28. August 2026 statt. Wir bitten um Ihr Verständnis!"
+    "message": "Aufgrund von extremen Wetterbedingungen durch das El-Niño-Phänomen musste diese Veranstaltung leider verschoben werden. Das Event findet nun am Freitag, den 19. September 2026 statt. Wir bitten um Ihr Verständnis!"
   }
   },
   {
@@ -430,23 +430,6 @@
     "Begegnung, Austausch und leichte Hintergrundmusik"
   ],
   "fuerWen": "Alle Menschen in Gießen, die ein Zeichen für Frieden, Dialog und Gemeinschaft setzen möchten."
-},
-{
-  "id": "aschura-wetzlar-2026",
-  "title": "Ashura – Noahs Pudding Fest",
-  "category": "DIALOG",
-  "stream": "Interreligiöser Austausch",
-  "date": "2026-09-19T16:00:00",
-  "location": "Bahnhofstraße 22, 35576 Wetzlar",
-  "image": "https://www.ilaeurope.de/media/get/%2Fopt%2Fwww%2Filaeurope.de%2Fbackend%2Fservice-mediaapi%2Fwwwroot%2Ffiles%2FWebsite%2FMedias%2FAshura-1%283%29.jpg",
-  "description": "Ein Ashura-Fest in Wetzlar, organisiert von Bildung und Verständigung Mittelhessen e.V. ohne weitere Kooperationspartner. Das Programm beginnt mit einer kurzen Präsentation über die Bedeutung der Arche Noah und des Ashura-Festes. Anschließend genießen Gäste und Freundinnen und Freunde Noahs Pudding (Aşure) bei leichter Hintergrundmusik und haben die Möglichkeit, miteinander ins Gespräch zu kommen. Die Veranstaltung soll zu einem friedlichen und respektvollen Miteinander beitragen. Eine Anmeldung ist erforderlich.",
-  "wasErwartetSie": [
-    "Kurze Präsentation über Noahs Arche und Ashura",
-    "Verteilung von Noahs Pudding (Aşure)",
-    "Gespräche und Begegnungen",
-    "Leichte Hintergrundmusik"
-  ],
-  "fuerWen": "Alle Interessierten, die die Bedeutung des Ashura-Festes kennenlernen und gemeinsam einen friedlichen Nachmittag verbringen möchten."
 },
 {
   "id": "pilzwanderung-marburg-2026",
