@@ -64,9 +64,9 @@ export default function EventsPage() {
                         <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black text-brand-teal uppercase tracking-[0.2em]">
                           {event.category}
                         </div>
-                        {(event as any).notice && (
+                        {((event as any).badge || (event as any).notice) && (
                           <div className="absolute top-4 right-4 bg-amber-500 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-sm animate-pulse">
-                            Verschoben
+                            {(event as any).badge || 'Verschoben'}
                           </div>
                         )}
                       </div>
@@ -91,7 +91,11 @@ export default function EventsPage() {
                           to={`/events/${event.id}`}
                           className="inline-flex items-center gap-2 font-bold text-brand-teal hover:gap-3 transition-all"
                         >
-                          {parseDateSafe(event.date).getTime() < new Date().getTime() ? 'Details ansehen' : 'Details & Anmeldung'} <ArrowRight size={18} />
+                          {parseDateSafe(event.date).getTime() < new Date().getTime()
+                            ? 'Details ansehen'
+                            : (event as any).requiresRegistration === false || (event as any).badge?.toLowerCase().includes('ohne anmeldung')
+                              ? 'Details & Info'
+                              : 'Details & Anmeldung'} <ArrowRight size={18} />
                         </Link>
                       </div>
                     </motion.div>
