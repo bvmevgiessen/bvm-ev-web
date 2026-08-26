@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
-import { Calendar, MapPin, Clock, ArrowLeft, CheckCircle2, Users, Info, Sparkles } from 'lucide-react';
+import { Calendar, MapPin, Clock, ArrowLeft, CheckCircle2, Users, Info, Sparkles, XCircle } from 'lucide-react';
 import { useForm, ValidationError } from '@formspree/react';
 import Navbar from '../components/Navbar';
 import ShareButtons from '../components/ShareButtons';
@@ -26,6 +26,7 @@ export default function EventDetailPage() {
   }
 
   const isPastEvent = parseDateSafe(event.date).getTime() < new Date().getTime();
+  const isCancelled = (event as any).badge?.toLowerCase().includes('abgesagt') || (event as any).notice?.type === 'cancel';
   const isNoRegistration = (event as any).requiresRegistration === false || (event as any).badge?.toLowerCase().includes('ohne anmeldung') || (event as any).badge?.toLowerCase().includes('keine anmeldung');
 
   return (
@@ -60,7 +61,11 @@ export default function EventDetailPage() {
                     {event.category}
                   </span>
                   {((event as any).badge || (event as any).notice) && (
-                    <span className="bg-amber-500 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-sm animate-pulse inline-block">
+                    <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-sm inline-block ${
+                      isCancelled 
+                        ? 'bg-rose-600 text-white' 
+                        : 'bg-amber-500 text-white animate-pulse'
+                    }`}>
                       {(event as any).badge || 'Verschoben'}
                     </span>
                   )}
@@ -147,20 +152,34 @@ export default function EventDetailPage() {
                 <div className="sticky top-32 bg-white p-8 rounded-[2rem] border border-slate-200 shadow-xl shadow-slate-200/50">
                   <div className="flex items-center justify-between mb-6">
                     <h2 className="text-2xl font-bold text-brand-navy">
-                      {isNoRegistration ? 'Teilnahme' : 'Anmeldung'}
+                      {isCancelled ? 'Status' : isNoRegistration ? 'Teilnahme' : 'Anmeldung'}
                     </h2>
                     <span className={`text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider ${
-                      isPastEvent 
-                        ? 'text-slate-500 bg-slate-100' 
-                        : isNoRegistration
-                          ? 'text-emerald-700 bg-emerald-100'
-                          : 'text-brand-orange bg-brand-orange/10'
+                      isCancelled
+                        ? 'text-rose-700 bg-rose-100'
+                        : isPastEvent 
+                          ? 'text-slate-500 bg-slate-100' 
+                          : isNoRegistration
+                            ? 'text-emerald-700 bg-emerald-100'
+                            : 'text-brand-orange bg-brand-orange/10'
                     }`}>
-                      {isPastEvent ? 'Geschlossen' : isNoRegistration ? 'Offen für alle' : 'Anfrage'}
+                      {isCancelled ? 'Abgesagt' : isPastEvent ? 'Geschlossen' : isNoRegistration ? 'Offen für alle' : 'Anfrage'}
                     </span>
                   </div>
                   
-                  {isPastEvent ? (
+                  {isCancelled ? (
+                    <div className="text-center py-8 bg-rose-50/60 rounded-2xl border border-rose-100 p-6 space-y-4">
+                      <div className="w-16 h-16 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto">
+                        <XCircle size={32} />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-brand-navy mb-1.5">Veranstaltung abgesagt</h3>
+                        <p className="text-slate-600 text-sm leading-relaxed">
+                          Dieses Event muss leider entfallen. Wir bitten um Ihr Verständnis und freuen uns darauf, Sie bei einem unserer nächsten Termine begrüßen zu dürfen!
+                        </p>
+                      </div>
+                    </div>
+                  ) : isPastEvent ? (
                     <div className="text-center py-10 bg-slate-50 rounded-2xl border border-slate-100">
                       <div className="w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Clock className="text-slate-500" size={32} />
