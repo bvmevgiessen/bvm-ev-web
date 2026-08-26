@@ -58,7 +58,7 @@ jobs:
         run: python scripts/fetch_feeds.py
 
       - name: Create Pull Request or push refreshed feed data
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v8
         with:
           # Use either the built-in token or your PAT secret:
           # token: ${{ secrets.GITHUB_TOKEN }}
