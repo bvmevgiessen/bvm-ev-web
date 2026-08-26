@@ -119,7 +119,11 @@ export default function Events() {
                       {event.category}
                     </div>
                     {((event as any).badge || (event as any).notice) && (
-                      <div className="bg-amber-500 text-white px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg animate-pulse">
+                      <div className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg ${
+                        ((event as any).badge?.toLowerCase().includes('abgesagt') || (event as any).notice?.type === 'cancel')
+                          ? 'bg-rose-600 text-white'
+                          : 'bg-amber-500 text-white animate-pulse'
+                      }`}>
                         {(event as any).badge || 'Verschoben'}
                       </div>
                     )}
@@ -165,7 +169,7 @@ export default function Events() {
                     to={`/events/${event.id}`}
                     className="inline-flex items-center gap-3 px-8 py-4 bg-white text-brand-navy font-black rounded-2xl hover:bg-brand-teal hover:text-white transition-all shadow-xl shadow-black/10"
                   >
-                    {(event as any).requiresRegistration === false || (event as any).badge?.toLowerCase().includes('ohne anmeldung') ? 'Details & Info' : 'Details & Anmeldung'} <ArrowRight size={18} />
+                    {(event as any).badge?.toLowerCase().includes('abgesagt') ? 'Details ansehen' : (event as any).requiresRegistration === false || (event as any).badge?.toLowerCase().includes('ohne anmeldung') ? 'Details & Info' : 'Details & Anmeldung'} <ArrowRight size={18} />
                   </Link>
                 </div>
               </div>

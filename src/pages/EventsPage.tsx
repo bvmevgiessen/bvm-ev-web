@@ -65,7 +65,11 @@ export default function EventsPage() {
                           {event.category}
                         </div>
                         {((event as any).badge || (event as any).notice) && (
-                          <div className="absolute top-4 right-4 bg-amber-500 text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-sm animate-pulse">
+                          <div className={`absolute top-4 right-4 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-sm ${
+                            ((event as any).badge?.toLowerCase().includes('abgesagt') || (event as any).notice?.type === 'cancel')
+                              ? 'bg-rose-600 text-white'
+                              : 'bg-amber-500 text-white animate-pulse'
+                          }`}>
                             {(event as any).badge || 'Verschoben'}
                           </div>
                         )}
@@ -91,7 +95,7 @@ export default function EventsPage() {
                           to={`/events/${event.id}`}
                           className="inline-flex items-center gap-2 font-bold text-brand-teal hover:gap-3 transition-all"
                         >
-                          {parseDateSafe(event.date).getTime() < new Date().getTime()
+                          {parseDateSafe(event.date).getTime() < new Date().getTime() || (event as any).badge?.toLowerCase().includes('abgesagt')
                             ? 'Details ansehen'
                             : (event as any).requiresRegistration === false || (event as any).badge?.toLowerCase().includes('ohne anmeldung')
                               ? 'Details & Info'
