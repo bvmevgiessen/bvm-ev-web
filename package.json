@@ -16,14 +16,14 @@
     "@formspree/react": "^3.0.0",
     "@google/genai": "^1.29.0",
     "@tailwindcss/vite": "^4.3.3",
-    "@vitejs/plugin-react": "^5.0.4",
+    "@vitejs/plugin-react": "^6.1.0",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "firebase": "^12.17.0",
+    "firebase": "^12.18.0",
     "helmet": "8.3.0",
     "jspdf": "^4.2.1",
     "lucide-react": "^1.28.0",
-    "motion": "^12.43.0",
+    "motion": "^13.1.1",
     "pdf-lib": "^1.17.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -38,8 +38,8 @@
     "esbuild": "^0.28.1",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.21.0",
-    "typescript": "~5.8.2",
-    "vite": "^8.2.2"
+    "typescript": "~7.0.2",
+    "vite": "^8.2.0"
   },
   "overrides": {
     "protobufjs": "^7.4.0",
