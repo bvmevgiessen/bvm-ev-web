@@ -1,93 +1,17 @@
 [
   {
-    "id": "fidev-1c13b188d4",
-    "title": "Demokratiebewusstsein stärken: Partizipative Ansätze auf lokaler Ebene",
-    "link": "https://www.fidev.org/post/demokratiebewusstsein-lokale-partizipation",
-    "date": "2026-08-10T11:57:42+00:00",
+    "id": "fidev-3fe2ba2bdc",
+    "title": "Medienkompetenz im digitalen Zeitalter: Umgang mit Desinformation und Vorurteilen",
+    "link": "https://www.fidev.org/post/medienkompetenz-desinformation-vorurteile",
+    "date": "2026-08-23T10:32:35+00:00",
     "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/a7ec0d_a02ef0f2634d4cbb9d07e8b32cf2905a~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
-    "category": "Dialog",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/a7ec0d_a02ef0f2634d4cbb9d07e8b32cf2905a~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
-    "excerpt": "Demokratie wird vor Ort erfahrbar. Der Beitrag zeigt, wie Bürgerbeteiligung, Dialogräume und zivilgesellschaftliches Engagement lokale Demokratiekultur stärken.",
-    "tags": [
-      "Dialog"
-    ],
-    "external": true,
-    "sourceId": "fidev"
-  },
-  {
-    "id": "fidev-1257dd6ac2",
-    "title": "Diversity und Inklusion: Erfolgsfaktoren für Organisationen und Gesellschaft",
-    "link": "https://www.fidev.org/post/diversity-inklusion-erfolgsfaktoren-organisationen",
-    "date": "2026-08-07T18:22:07+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/a7ec0d_7c6cd7767f184f7f99bf840a569207a2~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
-    "category": "Integration",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/a7ec0d_7c6cd7767f184f7f99bf840a569207a2~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
-    "excerpt": "Vielfalt allein schafft noch keine Teilhabe. Erfahren Sie, wie Organisationen Diversity Management, Inklusion und interkulturelle Kompetenz wirksam verbinden.",
-    "tags": [
-      "Integration"
-    ],
-    "external": true,
-    "sourceId": "fidev"
-  },
-  {
-    "id": "fidev-78eadb80d1",
-    "title": "Erasmus+ Jugendprojekte: FIDeV als erfahrener Kooperationspartner",
-    "link": "https://www.fidev.org/post/erasmus-plus-jugendprojekte-kooperation-fidev",
-    "date": "2026-08-04T12:58:00+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/2d6f92_e02fc9671ccc46dd874ceb1e440a5ffd~mv2.png/v1/fit/w_1000,h_704,al_c,q_80/file.png",
-    "category": "Jugend",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/2d6f92_e02fc9671ccc46dd874ceb1e440a5ffd~mv2.png/v1/fit/w_1000,h_704,al_c,q_80/file.png",
-    "excerpt": "FIDeV bringt praktische Erfahrung mit KA153-YOU und KA155-YOU ein und ist offen für verlässliche Partnerschaften in europäischen Jugendprojekten.",
-    "tags": [
-      "Jugend"
-    ],
-    "external": true,
-    "sourceId": "fidev"
-  },
-  {
-    "id": "fidev-13314fad42",
-    "title": "Zivilgesellschaftliches Engagement von Jugendlichen: Wege zu mehr Bürgerbeteiligung",
-    "link": "https://www.fidev.org/post/zivilgesellschaftliches-engagement-jugendlicher",
-    "date": "2026-08-04T07:15:05+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/2d6f92_2e28834f2355469c9b70d4ae26374f04~mv2.png/v1/fit/w_1000,h_704,al_c,q_80/file.png",
-    "category": "Jugend",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/2d6f92_2e28834f2355469c9b70d4ae26374f04~mv2.png/v1/fit/w_1000,h_704,al_c,q_80/file.png",
-    "excerpt": "Junge Menschen wollen Gesellschaft mitgestalten. Dieser Leitfaden zeigt, wie Jugendprojekte, Ehrenamt und echte Beteiligung den Einstieg erleichtern.",
-    "tags": [
-      "Jugend"
-    ],
-    "external": true,
-    "sourceId": "fidev"
-  },
-  {
-    "id": "fidev-936fc961b4",
-    "title": "N.O.A.H.S. – Das Leben einer Kichererbse",
-    "link": "https://www.fidev.org/post/noahs",
-    "date": "2026-08-03T10:29:27+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/2d6f92_74ff984f663d4a63ba15da709f8eec56~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
+    "image_url": "https://static.wixstatic.com/media/a7ec0d_c83c7773fb204542ae1e4be8d313d63c~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
     "category": "Community",
     "author": "Forum für Interkulturellen Dialog",
     "partnerName": "Forum für Interkulturellen Dialog",
     "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/2d6f92_74ff984f663d4a63ba15da709f8eec56~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
-    "excerpt": "„N.O.A.H.S. (Nachhaltige Orientierung durch Anerkennung, Haltung und Solidarität) – Das Leben einer Kichererbse“ ist ein Workshopformat für Schulklassen der Unter- und Mittelstufe, das spielerisch demokratische Werte un…",
+    "image": "https://static.wixstatic.com/media/a7ec0d_c83c7773fb204542ae1e4be8d313d63c~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
+    "excerpt": "Medienkompetenz hilft, Desinformation zu erkennen, Quellen zu prüfen und Vorurteilen im Netz mit Ruhe und digitaler Zivilcourage zu begegnen.",
     "tags": [
       "Community"
     ],
@@ -95,18 +19,94 @@
     "sourceId": "fidev"
   },
   {
-    "id": "fidev-cf3ef08640",
-    "title": "Was ist interkultureller Dialog? Warum er für den gesellschaftlichen Frieden entscheidend ist",
-    "link": "https://www.fidev.org/post/was-ist-interkultureller-dialog",
-    "date": "2026-08-03T09:49:46+00:00",
+    "id": "fidev-1649e20145",
+    "title": "Demokratiepreise und Erfolgsgeschichten aus der Zivilgesellschaft",
+    "link": "https://www.fidev.org/post/demokratiepreise-erfolgsgeschichten-zivilgesellschaft",
+    "date": "2026-08-20T22:00:00+00:00",
     "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/2d6f92_95934f04beb44a9ea582264caba7aab6~mv2.png/v1/fit/w_1000,h_860,al_c,q_80/file.png",
+    "image_url": "https://static.wixstatic.com/media/a7ec0d_e62f70ca76254d7c932d501086155544~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
+    "category": "Community",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/a7ec0d_e62f70ca76254d7c932d501086155544~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
+    "excerpt": "Demokratiepreise machen zivilgesellschaftliches Engagement sichtbar. Erfahren Sie, was glaubwürdige Auszeichnungen auszeichnet und warum Vorbilder wichtig sind.",
+    "tags": [
+      "Community"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
+    "id": "fidev-c95dd54c76",
+    "title": "Kunst und Kultur als Brücke: Best Practices für den interkulturellen Austausch",
+    "link": "https://www.fidev.org/post/kunst-kultur-interkultureller-austausch",
+    "date": "2026-08-20T09:34:45+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/a7ec0d_46cf7aebcc7d424d82c340d1847ddb92~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
     "category": "Dialog",
     "author": "Forum für Interkulturellen Dialog",
     "partnerName": "Forum für Interkulturellen Dialog",
     "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/2d6f92_95934f04beb44a9ea582264caba7aab6~mv2.png/v1/fit/w_1000,h_860,al_c,q_80/file.png",
-    "excerpt": "Interkultureller Dialog schafft Verständnis über kulturelle Grenzen hinweg. Erfahren Sie, wie Begegnung Vorurteile abbaut und gesellschaftlichen Zusammenhalt stärkt.",
+    "image": "https://static.wixstatic.com/media/a7ec0d_46cf7aebcc7d424d82c340d1847ddb92~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
+    "excerpt": "Kunst und Kultur schaffen Zugänge, wo Worte allein nicht reichen. Erfahren Sie, wie interkulturelle Formate Begegnung und Dialog nachhaltig fördern.",
+    "tags": [
+      "Dialog"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
+    "id": "fidev-628c520c93",
+    "title": "Die Rolle von Sozialprojekten im Kampf gegen Diskriminierung und Hassrede",
+    "link": "https://www.fidev.org/post/sozialprojekte-gegen-diskriminierung-hassrede",
+    "date": "2026-08-16T10:06:40+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/a7ec0d_49b85bada41c41889cf1ae83f673b655~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
+    "category": "Community",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/a7ec0d_49b85bada41c41889cf1ae83f673b655~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
+    "excerpt": "Sozialprojekte schaffen Schutz, Wissen und Handlungsmöglichkeiten. Erfahren Sie, wie sie Diskriminierung und Hassrede vorbeugen und Betroffene stärken können.",
+    "tags": [
+      "Community"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
+    "id": "fidev-1a010756e1",
+    "title": "Warum interkulturelle Trainings in einer globalisierten Welt unverzichtbar sind",
+    "link": "https://www.fidev.org/post/interkulturelle-trainings-kommunikation-konfliktpraevention",
+    "date": "2026-08-13T10:00:39+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/a7ec0d_6e905a5aea9f4daab3bd9d00840cdff3~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
+    "category": "Dialog",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/a7ec0d_6e905a5aea9f4daab3bd9d00840cdff3~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
+    "excerpt": "Interkulturelle Trainings fördern Reflexion, Kommunikation und konstruktive Konfliktbearbeitung. Erfahren Sie, woran Organisationen wirksame Formate erkennen.",
+    "tags": [
+      "Dialog"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
+    "id": "fidev-3b50a56d60",
+    "title": "Wer ist die beste Basketballstadt Hessens?",
+    "link": "https://www.fidev.org/post/wer-ist-die-beste-basketballstadt-hessens",
+    "date": "2026-08-11T10:50:18+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/2d6f92_27f3a849520d4cfe88c97d014ca9de77~mv2.png/v1/fit/w_1000,h_799,al_c,q_80/file.png",
+    "category": "Dialog",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/2d6f92_27f3a849520d4cfe88c97d014ca9de77~mv2.png/v1/fit/w_1000,h_799,al_c,q_80/file.png",
+    "excerpt": "Am 3. August 2026 fand in Frankfurt am Main am Ginnheimer Sportcampus ein besonderes hessisches Basketball-Begegnungsformat bzw. -turnier für Mädchen und junge Frauen im Alter von 17 bis 25 Jahren statt. Die Veranstaltu…",
     "tags": [
       "Dialog"
     ],
@@ -133,6 +133,25 @@
     ],
     "external": true,
     "sourceId": "sdub"
+  },
+  {
+    "id": "house-of-one-d74f51f85d",
+    "title": "#119: Abschied – Was ist mit Rebecca?",
+    "link": "https://house-of-one.org/news/119-abschied-was-ist-mit-rebecca",
+    "date": "2026-07-20T00:00:00+00:00",
+    "source_name": "House of One",
+    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "category": "Community",
+    "author": "House of One",
+    "partnerName": "House of One",
+    "partnerUrl": "https://house-of-one.org/",
+    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "excerpt": "In dieser Folge nehmen wir Abschied von Rebecca. Nach fünf Jahren voller Herzblut, Lachen und tiefgründigen Gesprächen dreht sie ihre letzte Runde mit... Weiterlesen",
+    "tags": [
+      "Community"
+    ],
+    "external": true,
+    "sourceId": "house-of-one"
   },
   {
     "id": "house-of-one-e20f2574e4",
@@ -284,25 +303,6 @@
     "partnerUrl": "https://house-of-one.org/",
     "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
     "excerpt": "Mit einem Frühlingsfest am Berliner Petriplatz hat das House of One gleich doppelt gefeiert: Vor fünf Jahren hat die Stiftung den Grundstein für das w... Weiterlesen",
-    "tags": [
-      "Community"
-    ],
-    "external": true,
-    "sourceId": "house-of-one"
-  },
-  {
-    "id": "house-of-one-61f8c3cbb2",
-    "title": "#115: Zahlen und Codes – mehr als nur Mathematik?",
-    "link": "https://house-of-one.org/news/115-zahlen-und-codes-mehr-als-nur-mathematik",
-    "date": "2026-05-25T00:00:00+00:00",
-    "source_name": "House of One",
-    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "category": "Community",
-    "author": "House of One",
-    "partnerName": "House of One",
-    "partnerUrl": "https://house-of-one.org/",
-    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "excerpt": "In dieser Folge tauchen wir - Rebecca, Maike und Kübra - ein in die faszinierende Welt der Zahlen und fragen uns: Sind Zahlen mehr als nur Mathematik?... Weiterlesen",
     "tags": [
       "Community"
     ],
