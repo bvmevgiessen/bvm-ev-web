@@ -8,12 +8,14 @@ on:
       - 'design/**'
   workflow_dispatch: # Allow manual trigger from GitHub UI
 
-permissions:
-  contents: write
+permissions: {}
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      # Required to check out code and push refreshed RSS data to latest_updates.json.
+      contents: write
 
     steps:
       - name: Checkout repository
