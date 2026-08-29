@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { HeartHandshake, Sparkles, Users } from 'lucide-react';
+import { HeartHandshake, Sparkles, Users, ShieldCheck } from 'lucide-react';
 import Navbar from '../components/Navbar';
 
 type Kind = 'ordentlich' | 'foerder';
@@ -75,6 +75,12 @@ export default function MitmachenPage() {
                <JotformEmbed kind={kind} />
             </div>
 
+            {/* Spam Protection & Security Note */}
+            <div className="mt-4 flex items-center justify-center gap-2 text-xs text-slate-500">
+              <ShieldCheck size={16} className="text-brand-teal shrink-0" />
+              <span>Dieses Formular ist durch Cloudflare Turnstile und Jotform-Spam-Schutz gesichert.</span>
+            </div>
+
           </div>
         </div>
       </section>
@@ -126,4 +132,3 @@ function JotformInstance({ formId }: { formId: string; key?: string }) {
     </motion.div>
   );
 }
-

@@ -1,8 +1,58 @@
-import React from 'react';
-import { Mail, FileDown } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, FileDown, CheckCircle2, Loader2 } from 'lucide-react';
 import { motion } from 'motion/react';
+import FormShield from './FormShield';
+import { validateEmail, sanitizeInput } from '../lib/formValidation';
 
 export default function Newsletter() {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, turnstileToken: string) => {
+    e.preventDefault();
+    setErrorMessage('');
+
+    const cleanEmail = sanitizeInput(email);
+    if (!validateEmail(cleanEmail)) {
+      setErrorMessage('Bitte geben Sie eine gültige E-Mail-Adresse ein.');
+      return false;
+    }
+
+    setStatus('submitting');
+    try {
+      const formData = new FormData();
+      formData.append('email', cleanEmail);
+      if (turnstileToken) {
+        formData.append('cf-turnstile-response', turnstileToken);
+      }
+
+      const res = await fetch('https://formspree.io/f/xqejpyol', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json'
+        }
+      });
+
+      if (res.ok) {
+        setStatus('success');
+        setEmail('');
+        return true;
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setErrorMessage(data?.error || 'Die Anmeldung konnte nicht verarbeitet werden. Bitte versuchen Sie es später erneut.');
+        setStatus('error');
+        return false;
+      }
+    } catch (err) {
+      console.error('[Newsletter] Submit error:', err);
+      setErrorMessage('Verbindungsfehler beim Übermitteln. Bitte prüfen Sie Ihre Verbindung.');
+      setStatus('error');
+      return false;
+    }
+  };
+
   return (
     <section className="py-24 bg-slate-50 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-64 h-64 bg-brand-teal/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
@@ -37,22 +87,54 @@ export default function Newsletter() {
               Erhalten Sie jeden Monat die neuesten Nachrichten direkt in Ihr Postfach. Bleiben Sie am Puls der Zeit.
             </p>
             
-            <form action="https://formspree.io/f/YOUR_ENDPOINT" method="POST" className="flex flex-col sm:flex-row gap-3">
-              <input 
-                type="email" 
-                name="email"
-                placeholder="Ihre E-Mail-Adresse" 
-                required
-                autoComplete="email"
-                className="flex-grow bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 placeholder:text-slate-400 focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none"
-              />
-              <button 
-                type="submit"
-                className="bg-brand-orange hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl transition-colors whitespace-nowrap"
-              >
-                Abonnieren
-              </button>
-            </form>
+            {status === 'success' ? (
+              <div className="p-5 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-start gap-3.5 text-emerald-900">
+                <CheckCircle2 size={22} className="text-emerald-600 shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-bold text-sm">Vielen Dank für Ihre Anmeldung!</p>
+                  <p className="text-xs text-emerald-700 mt-1">
+                    Sie erhalten in Kürze eine Bestätigung in Ihr E-Mail-Postfach.
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <FormShield formKey="newsletter" onSubmit={handleSubmit}>
+                <form
+                  action="https://formspree.io/f/xqejpyol"
+                  method="POST"
+                  className="flex flex-col sm:flex-row gap-3"
+                >
+                  <input 
+                    type="email" 
+                    name="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Ihre E-Mail-Adresse" 
+                    required
+                    autoComplete="email"
+                    disabled={status === 'submitting'}
+                    className="flex-grow bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 placeholder:text-slate-400 focus:ring-2 focus:ring-brand-teal focus:border-transparent transition-all outline-none"
+                  />
+                  <button 
+                    type="submit"
+                    disabled={status === 'submitting'}
+                    className="bg-brand-orange hover:bg-orange-600 disabled:opacity-50 text-white font-bold py-3 px-6 rounded-xl transition-colors whitespace-nowrap flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    {status === 'submitting' ? (
+                      <>
+                        <Loader2 size={18} className="animate-spin" />
+                        <span>Wird gesendet...</span>
+                      </>
+                    ) : (
+                      'Abonnieren'
+                    )}
+                  </button>
+                </form>
+                {errorMessage && (
+                  <p className="text-rose-600 text-xs mt-2">{errorMessage}</p>
+                )}
+              </FormShield>
+            )}
           </motion.div>
 
           {/* PDF Download Card */}

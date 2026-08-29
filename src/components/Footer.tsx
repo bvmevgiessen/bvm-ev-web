@@ -7,6 +7,7 @@ import LegalModal from './LegalModal';
 import Logo from './Logo';
 import CookieFingerprintButton from './CookieFingerprintButton';
 import CookieSettingsModal from './CookieSettingsModal';
+import FormShield from './FormShield';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -136,7 +137,7 @@ export default function Footer() {
 
   const privacyContent = (
     <div className="space-y-6 text-sm text-slate-700 leading-relaxed">
-      <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Stand: 11. August 2026</p>
+      <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Stand: 29. August 2026</p>
 
       <section>
         <h3 className="text-lg font-extrabold text-brand-navy mb-2">1. Verantwortliche Stelle</h3>
@@ -251,6 +252,14 @@ export default function Footer() {
             <h4 className="font-bold text-brand-navy">7e. Newsletter</h4>
             <p className="text-xs text-slate-600">
               Für den Versand unseres Newsletters verarbeiten wir Ihre E-Mail-Adresse auf Grundlage Ihrer ausdrücklichen Einwilligung (Double-Opt-In-Verfahren, Art. 6 Abs. 1 lit. a DSGVO). Sie können die Einwilligung jederzeit über den Abmeldelink im Newsletter oder per E-Mail widerrufen.
+            </p>
+          </div>
+
+          <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 space-y-2">
+            <h4 className="font-bold text-brand-navy">7f. Cloudflare Turnstile (Spam- & Bot-Abwehr)</h4>
+            <p className="text-xs text-slate-600">
+              Wir setzen zur Absicherung unserer Formulare gegen Missbrauch (Spam, Bots) den Dienst <strong>Cloudflare Turnstile</strong> der <strong>Cloudflare, Inc.</strong> (101 Townsend Street, San Francisco, CA 94107, USA) ein. Turnstile erhebt technische Merkmale Ihres Browsers (u. a. IP-Adresse, User-Agent, Interaktions-Signale) und übermittelt diese an Cloudflare. Es werden keine Cookies gesetzt und kein Tracking über Webseiten hinweg durchgeführt.<br />
+              <strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Spam- und Missbrauchsabwehr sowie IT-Sicherheit). Weitere Informationen finden Sie in der <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" className="text-brand-teal hover:underline font-semibold">Datenschutzerklärung von Cloudflare</a>.
             </p>
           </div>
         </div>
@@ -396,80 +405,82 @@ export default function Footer() {
 
         <div className="lg:col-span-1">
           <h4 className="text-lg font-bold mb-8 text-brand-teal">Kontaktformular</h4>
-          <form onSubmit={handleSubmit} className="space-y-3">
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              required
-              autoComplete="name"
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand-teal transition-colors"
-            />
-            <ValidationError prefix="Name" field="name" errors={state.errors} className="text-xs text-red-400" />
-            
-            <input
-              type="email"
-              name="email"
-              placeholder="E-Mail"
-              required
-              autoComplete="email"
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand-teal transition-colors"
-            />
-            <ValidationError prefix="Email" field="email" errors={state.errors} className="text-xs text-red-400" />
+          <FormShield formKey="footer_contact">
+            <form onSubmit={handleSubmit} className="space-y-3">
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                required
+                autoComplete="name"
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand-teal transition-colors"
+              />
+              <ValidationError prefix="Name" field="name" errors={state.errors} className="text-xs text-red-400" />
+              
+              <input
+                type="email"
+                name="email"
+                placeholder="E-Mail"
+                required
+                autoComplete="email"
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand-teal transition-colors"
+              />
+              <ValidationError prefix="Email" field="email" errors={state.errors} className="text-xs text-red-400" />
 
-            <select
-              name="inquiryType"
-              required
-              defaultValue=""
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand-teal transition-colors text-slate-400 appearance-none cursor-pointer"
-            >
-              <option value="" disabled>Anfragetyp auswählen</option>
-              <option value="general">Allgemeine Frage</option>
-              <option value="membership">Mitgliedschaft</option>
-              <option value="support">Unterstützung</option>
-              <option value="event">Veranstaltungsanfrage</option>
-            </select>
-            <ValidationError prefix="Inquiry Type" field="inquiryType" errors={state.errors} className="text-xs text-red-400" />
+              <select
+                name="inquiryType"
+                required
+                defaultValue=""
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand-teal transition-colors text-slate-400 appearance-none cursor-pointer"
+              >
+                <option value="" disabled>Anfragetyp auswählen</option>
+                <option value="general">Allgemeine Frage</option>
+                <option value="membership">Mitgliedschaft</option>
+                <option value="support">Unterstützung</option>
+                <option value="event">Veranstaltungsanfrage</option>
+              </select>
+              <ValidationError prefix="Inquiry Type" field="inquiryType" errors={state.errors} className="text-xs text-red-400" />
 
-            <input
-              type="text"
-              name="subject"
-              placeholder="Betreff"
-              required
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand-teal transition-colors"
-            />
-            <ValidationError prefix="Subject" field="subject" errors={state.errors} className="text-xs text-red-400" />
+              <input
+                type="text"
+                name="subject"
+                placeholder="Betreff"
+                required
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand-teal transition-colors"
+              />
+              <ValidationError prefix="Subject" field="subject" errors={state.errors} className="text-xs text-red-400" />
 
-            <textarea
-              name="message"
-              placeholder="Ihre Nachricht"
-              required
-              rows={3}
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand-teal transition-colors resize-none"
-            />
-            <ValidationError prefix="Message" field="message" errors={state.errors} className="text-xs text-red-400" />
+              <textarea
+                name="message"
+                placeholder="Ihre Nachricht"
+                required
+                rows={3}
+                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-brand-teal transition-colors resize-none"
+              />
+              <ValidationError prefix="Message" field="message" errors={state.errors} className="text-xs text-red-400" />
 
-            <button
-              type="submit"
-              disabled={state.submitting}
-              className="w-full btn-primary py-2 text-sm flex items-center justify-center gap-2 disabled:opacity-50"
-            >
-              {state.submitting ? 'Wird gesendet...' : (
-                <>Nachricht senden <Send size={16} /></>
+              <button
+                type="submit"
+                disabled={state.submitting}
+                className="w-full btn-primary py-2 text-sm flex items-center justify-center gap-2 disabled:opacity-50"
+              >
+                {state.submitting ? 'Wird gesendet...' : (
+                  <>Nachricht senden <Send size={16} /></>
+                )}
+              </button>
+              
+              {state.succeeded && (
+                <p className="text-xs text-green-400 flex items-center gap-1 mt-2">
+                  <CheckCircle2 size={14} /> Nachricht erfolgreich gesendet!
+                </p>
               )}
-            </button>
-            
-            {state.succeeded && (
-              <p className="text-xs text-green-400 flex items-center gap-1 mt-2">
-                <CheckCircle2 size={14} /> Nachricht erfolgreich gesendet!
-              </p>
-            )}
-            {state.errors && !state.succeeded && (
-              <p className="text-xs text-red-400 flex items-center gap-1 mt-2">
-                <AlertCircle size={14} /> Fehler beim Senden. Bitte versuchen Sie es erneut.
-              </p>
-            )}
-          </form>
+              {state.errors && !state.succeeded && (
+                <p className="text-xs text-red-400 flex items-center gap-1 mt-2">
+                  <AlertCircle size={14} /> Fehler beim Senden. Bitte versuchen Sie es erneut.
+                </p>
+              )}
+            </form>
+          </FormShield>
         </div>
 
         <div>
