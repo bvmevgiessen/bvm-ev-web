@@ -2,18 +2,23 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import Navbar from '../components/Navbar';
 import { Heart, CheckCircle2 } from 'lucide-react';
+import FormShield from '../components/FormShield';
 
 export default function SpendenPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('sepa');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>, turnstileToken?: string) => {
     e.preventDefault();
-    // Assuming Formspree or Web3Forms is used. We simulate a successful submission.
     const form = e.currentTarget;
+    const formData = new FormData(form);
+    if (turnstileToken) {
+      formData.append('cf-turnstile-response', turnstileToken);
+    }
+
     fetch(form.action, {
       method: form.method,
-      body: new FormData(form),
+      body: formData,
       headers: {
         'Accept': 'application/json'
       }
@@ -76,8 +81,9 @@ export default function SpendenPage() {
                 </button>
               </motion.div>
             ) : (
-              <form action="https://formspree.io/f/xwvzlvrp" method="POST" onSubmit={handleSubmit} className="space-y-12">
-                {/* 1. Spenden-Details */}
+              <FormShield formKey="spenden" onSubmit={handleSubmit}>
+                <form action="https://formspree.io/f/xwvzlvrp" method="POST" className="space-y-12">
+                  {/* 1. Spenden-Details */}
                 <section>
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 bg-brand-teal/10 rounded-full flex items-center justify-center text-brand-teal shrink-0">
@@ -259,7 +265,8 @@ export default function SpendenPage() {
                   </p>
                 </div>
               </form>
-            )}
+            </FormShield>
+          )}
           </div>
         </div>
       </div>

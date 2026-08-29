@@ -1,20 +1,40 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    // User profile data (authenticated users only)
     match /users/{userId} {
       allow read, write: if request.auth != null && request.auth.uid == userId;
     }
+
+    // Survey responses and settings
     match /survey_responses/{responseId} {
       allow read, create: if true;
     }
     match /survey_settings/{settingId} {
       allow read, write: if true;
     }
+
+    // Activity reports
     match /taetigkeitsberichte/{reportId} {
       allow read, write: if true;
     }
+
+    // Cookie consent audit logging: create-only from client, capped size, no update/delete
     match /cookie_consents/{consentId} {
-      allow create, read: if true;
+      allow create: if request.resource.data.userAgent is string
+                    && request.resource.data.userAgent.size() <= 512
+                    && request.resource.data.timestamp is string;
+      allow read, update, delete: if false;
+    }
+
+    // Form abuse logs (honeypot, time-trap, suspicious payload triggers): create-only, capped size
+    match /form_abuse_log/{logId} {
+      allow create: if request.resource.data.formKey is string
+                    && request.resource.data.formKey.size() <= 64
+                    && request.resource.data.reason is string
+                    && request.resource.data.reason.size() <= 128
+                    && request.resource.data.timestamp is string;
+      allow read, update, delete: if false;
     }
   }
 }

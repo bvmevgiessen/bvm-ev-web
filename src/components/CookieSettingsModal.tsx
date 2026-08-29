@@ -206,7 +206,7 @@ export default function CookieSettingsModal({
                     </label>
                   </div>
                   <p className="text-xs text-slate-500 leading-relaxed">
-                    Ermöglicht die Nutzung von eingebetteten Formularen für <strong>Mitgliedsanträge (Jotform)</strong> sowie <strong>Spenden- und Kontaktanfragen (Formspree)</strong>. Wenn deaktiviert, stehen Ihnen diese Formulare unter Umständen nicht direkt zur Verfügung.
+                    Ermöglicht die Nutzung von eingebetteten Formularen für <strong>Mitgliedsanträge (Jotform)</strong> sowie <strong>Spenden- und Kontaktanfragen (Formspree)</strong>. Wenn deaktiviert, stehen Ihnen diese Formulare unter Umständen nicht direkt zur Verfügung. Zusätzlich wird der Bot-Schutz Cloudflare Turnstile aktiviert. Dieser setzt keine Cookies.
                   </p>
                 </div>
 
