@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Turnstile } from '@marsidev/react-turnstile';
+import TurnstileWidget from './TurnstileWidget';
 import { ShieldCheck, AlertCircle } from 'lucide-react';
 import { getTurnstileSiteKey } from '../lib/turnstile';
 import {
@@ -227,14 +227,12 @@ export default function FormShield({
       {/* Cloudflare Turnstile Invisible Widget */}
       {siteKey && !turnstileError && (
         <div className="turnstile-wrapper my-2 flex justify-center">
-          <Turnstile
+          <TurnstileWidget
             id={`turnstile-widget-${formKey}`}
             siteKey={siteKey}
-            options={{
-              size: 'invisible',
-              theme: 'auto',
-              action: formKey
-            }}
+            size="invisible"
+            theme="auto"
+            action={formKey}
             onSuccess={(token) => {
               setTurnstileToken(token);
             }}
