@@ -50,6 +50,7 @@
   "resolutions": {
     "protobufjs": "7.6.5",
     "nanoid": "5.1.16",
-    "raw-body": "4.0.0"
+    "raw-body": "4.0.0",
+    "yargs": "18.1.0"
   }
 }
