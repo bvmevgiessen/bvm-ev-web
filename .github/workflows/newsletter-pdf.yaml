@@ -1,0 +1,88 @@
+name: Newsletter PDF aktualisieren
+
+# Regenerates the three-month newsletter PDF and commits it into the repo, so
+# GitHub Pages always serves a fresh /newsletter-latest.pdf even if the backend
+# is asleep. Optionally mails the new issue to all confirmed subscribers.
+#
+# SETUP
+#   1. Settings -> Secrets and variables -> Actions -> New repository secret
+#        NEWSLETTER_API   = https://newsletter.bvm-ev.de   (your deployed backend origin)
+#      Optional, only if you want the automatic mail-out:
+#        NEWSLETTER_SEND  = true
+#   2. Settings -> Actions -> General -> Workflow permissions -> "Read and write permissions"
+#
+# The schedule below runs on the 1st of every month at 06:00 UTC.
+
+on:
+  schedule:
+    - cron: "0 6 1 * *"
+  workflow_dispatch:
+    inputs:
+      months:
+        description: "Berichtszeitraum in Monaten"
+        required: false
+        default: "3"
+      send_mails:
+        description: "Ausgabe an alle bestätigten Abonnenten senden (true/false)"
+        required: false
+        default: "false"
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Ausgabe neu erzeugen (Daten + Editorial + PDF)
+        env:
+          API: ${{ secrets.NEWSLETTER_API }}
+          MONTHS: ${{ github.event.inputs.months || '3' }}
+        run: |
+          set -euo pipefail
+          if [ -z "${API:-}" ]; then
+            echo "::error::Secret NEWSLETTER_API ist nicht gesetzt."
+            exit 1
+          fi
+          echo "Baue Newsletter für ${MONTHS} Monate …"
+          curl -sS --fail-with-body -X POST "${API}/api/newsletter/build" \
+            -H 'Content-Type: application/json' \
+            -d "{\"months\": ${MONTHS}, \"use_ai_editorial\": true}" \
+            -o build.json
+          python -c "import json;d=json.load(open('build.json'));print('Ausgabe:',d['issue_title'],'|',d['issue_period'],'|',len(d['events']),'Events,',len(d['blogs']),'Blogs,',d['pdf_pages'],'Seiten')"
+
+      - name: PDF herunterladen
+        env:
+          API: ${{ secrets.NEWSLETTER_API }}
+        run: |
+          set -euo pipefail
+          mkdir -p public
+          curl -sS --fail-with-body "${API}/api/newsletter/download" -o public/newsletter-latest.pdf
+          file public/newsletter-latest.pdf
+          test -s public/newsletter-latest.pdf
+
+      - name: PDF committen
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/newsletter-latest.pdf
+          if git diff --staged --quiet; then
+            echo "Keine Änderung am PDF."
+          else
+            git commit -m "chore(newsletter): PDF automatisch aktualisiert"
+            git push
+          fi
+
+      - name: An Abonnenten senden (optional)
+        if: ${{ github.event.inputs.send_mails == 'true' || vars.NEWSLETTER_SEND == 'true' }}
+        env:
+          API: ${{ secrets.NEWSLETTER_API }}
+        run: |
+          set -euo pipefail
+          curl -sS --fail-with-body -X POST "${API}/api/newsletter/send-issue" \
+            -H 'Content-Type: application/json' -d '{"attach_pdf": true}' -o send.json
+          python -c "import json;d=json.load(open('send.json'));print('Versendet:',d['sent'],'| Fehler:',d['failed'])"
