@@ -2,11 +2,17 @@ import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { initializeFirestore } from 'firebase/firestore';
 import { safeStorage } from './SafeStorage';
-import firebaseAppletConfig from '../../firebase-applet-config.json';
 
-const configObj = (firebaseAppletConfig || {}) as Record<string, string | undefined>;
+const DEFAULT_FIREBASE_CONFIG = {
+  projectId: "ai-studio-07e2d538-c938-490a-b092-7a517f5e2308",
+  appId: "1:753309057428:web:bvm-ev-app",
+  storageBucket: "ai-studio-07e2d538-c938-490a-b092-7a517f5e2308.appspot.com",
+  authDomain: "ai-studio-07e2d538-c938-490a-b092-7a517f5e2308.firebaseapp.com",
+  messagingSenderId: "753309057428",
+  firestoreDatabaseId: "ai-studio-07e2d538-c938-490a-b092-7a517f5e2308"
+};
 
-let apiKey = import.meta.env.VITE_FIREBASE_API_KEY || import.meta.env.VITE_API_KEY || configObj.apiKey;
+let apiKey = import.meta.env.VITE_FIREBASE_API_KEY || import.meta.env.VITE_API_KEY || "";
 
 if (!apiKey) {
   console.warn("VITE_FIREBASE_API_KEY is not set. Using a placeholder API key to prevent frontend runtime crashes.");
@@ -15,11 +21,11 @@ if (!apiKey) {
 
 const firebaseConfig = {
   apiKey: apiKey,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || configObj.authDomain,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || configObj.projectId,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || configObj.storageBucket,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || configObj.messagingSenderId,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || configObj.appId
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || DEFAULT_FIREBASE_CONFIG.authDomain,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || DEFAULT_FIREBASE_CONFIG.projectId,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || DEFAULT_FIREBASE_CONFIG.storageBucket,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || DEFAULT_FIREBASE_CONFIG.messagingSenderId,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || DEFAULT_FIREBASE_CONFIG.appId
 };
 
 const app = initializeApp(firebaseConfig);
@@ -41,8 +47,8 @@ if (savedDbId !== null) {
   if (envDbId !== 'default' && envDbId !== '(default)' && envDbId !== 'default-db') {
     databaseId = envDbId;
   }
-} else if ((firebaseAppletConfig as any).firestoreDatabaseId) {
-  const cfgDbId = (firebaseAppletConfig as any).firestoreDatabaseId;
+} else if (DEFAULT_FIREBASE_CONFIG.firestoreDatabaseId) {
+  const cfgDbId = DEFAULT_FIREBASE_CONFIG.firestoreDatabaseId;
   if (cfgDbId !== 'default' && cfgDbId !== '(default)' && cfgDbId !== 'default-db') {
     databaseId = cfgDbId;
   }
