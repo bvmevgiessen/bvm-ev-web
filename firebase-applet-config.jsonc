@@ -1,4 +1,14 @@
 {
+  "projectId": "ai-studio-07e2d538-c938-490a-b092-7a517f5e2308",
+  "appId": "1:753309057428:web:bvm-ev-app",
+  "storageBucket": "ai-studio-07e2d538-c938-490a-b092-7a517f5e2308.appspot.com",
+  "apiKey": "",
+  "authDomain": "ai-studio-07e2d538-c938-490a-b092-7a517f5e2308.firebaseapp.com",
+  "messagingSenderId": "753309057428",
+  "firestoreDatabaseId": "ai-studio-07e2d538-c938-490a-b092-7a517f5e2308"
+}
+/*
+{
   "projectId": "composite-advice-ljcsn",
   "appId": "1:1031794927345:web:53a40ba403d0003af1ab50",
   "apiKey": "AIzaSyC1EHZrL8l49J_sn7Xsvxhx59sqE54iupI",
@@ -9,3 +19,4 @@
   "oAuthClientId": "1031794927345-3gelh009g598edh846ooo7407upoicbc.apps.googleusercontent.com",
   "firestoreDatabaseId": "ai-studio-07e2d538-c938-490a-b092-7a517f5e2308"
 }
+*/

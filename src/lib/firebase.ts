@@ -4,7 +4,9 @@ import { initializeFirestore } from 'firebase/firestore';
 import { safeStorage } from './SafeStorage';
 import firebaseAppletConfig from '../../firebase-applet-config.json';
 
-let apiKey = import.meta.env.VITE_FIREBASE_API_KEY || import.meta.env.VITE_API_KEY || firebaseAppletConfig.apiKey;
+const configObj = (firebaseAppletConfig || {}) as Record<string, string | undefined>;
+
+let apiKey = import.meta.env.VITE_FIREBASE_API_KEY || import.meta.env.VITE_API_KEY || configObj.apiKey;
 
 if (!apiKey) {
   console.warn("VITE_FIREBASE_API_KEY is not set. Using a placeholder API key to prevent frontend runtime crashes.");
@@ -13,11 +15,11 @@ if (!apiKey) {
 
 const firebaseConfig = {
   apiKey: apiKey,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || firebaseAppletConfig.authDomain,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || firebaseAppletConfig.projectId,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || firebaseAppletConfig.storageBucket,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || firebaseAppletConfig.messagingSenderId,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || firebaseAppletConfig.appId
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || configObj.authDomain,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || configObj.projectId,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || configObj.storageBucket,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || configObj.messagingSenderId,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || configObj.appId
 };
 
 const app = initializeApp(firebaseConfig);
@@ -104,4 +106,3 @@ export function handleFirestoreError(error: unknown, operationType: OperationTyp
   console.error('Firestore Error: ', JSON.stringify(errInfo));
   throw new Error(JSON.stringify(errInfo));
 }
-

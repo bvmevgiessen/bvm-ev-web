@@ -6,7 +6,7 @@ name: Newsletter PDF aktualisieren
 #
 # SETUP
 #   1. Settings -> Secrets and variables -> Actions -> New repository secret
-#        NEWSLETTER_API   = https://newsletter.bvm-ev.de   (your deployed backend origin)
+#        NEWSLETTER_API   = https://bvm-newsletter-api.onrender.com   (your deployed backend origin)
 #      Optional, only if you want the automatic mail-out:
 #        NEWSLETTER_SEND  = true
 #   2. Settings -> Actions -> General -> Workflow permissions -> "Read and write permissions"
@@ -59,8 +59,9 @@ jobs:
           API: ${{ secrets.NEWSLETTER_API }}
         run: |
           set -euo pipefail
-          mkdir -p public
+          mkdir -p public/assets/pdf public
           curl -sS --fail-with-body "${API}/api/newsletter/download" -o public/newsletter-latest.pdf
+          cp public/newsletter-latest.pdf public/assets/pdf/newsletter-latest.pdf
           file public/newsletter-latest.pdf
           test -s public/newsletter-latest.pdf
 
@@ -69,7 +70,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/newsletter-latest.pdf
+          git add public/newsletter-latest.pdf public/assets/pdf/newsletter-latest.pdf
           if git diff --staged --quiet; then
             echo "Keine Änderung am PDF."
           else
