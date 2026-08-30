@@ -4,23 +4,13 @@ import { motion } from 'motion/react';
 import { validateEmail, sanitizeInput } from '../lib/formValidation';
 
 /**
- * Drop-in replacement for src/components/Newsletter.tsx in bvmevgiessen/bvm-ev-web.
- *
- * What changed vs. the Formspree version:
- *  - "Abonnieren" now posts to the newsletter backend, which sends a DSGVO-konform
- *    Double-Opt-In confirmation mail. After the visitor clicks the link in that mail,
- *    the current issue is delivered automatically with the colourful PDF attached.
- *  - "Quartalsbericht herunterladen" points at the live generator, so the PDF is always
- *    the freshest three-month issue (with the AI "Editorial der Redaktion").
- *
- * SETUP — one line to change:
- *   Set VITE_NEWSLETTER_API in your repo (.env / GitHub Pages build env) to the deployed
- *   backend origin, e.g. VITE_NEWSLETTER_API=https://newsletter.bvm-ev.de
- *   Until then it falls back to the preview deployment below.
+ * Newsletter Component for BVM e.V.
+ * Connects to the BVM Newsletter API backend (Render / Custom Domain)
+ * Supports DSGVO-compliant Double-Opt-In confirmation and live PDF quarterly report download.
  */
 const API_BASE =
   (import.meta.env.VITE_NEWSLETTER_API as string | undefined)?.replace(/\/$/, '') ||
-  'https://events-blog-brief.preview.emergentagent.com';
+  'https://bvm-newsletter-api.onrender.com';
 
 const SUBSCRIBE_URL = `${API_BASE}/api/newsletter/subscribe`;
 const DOWNLOAD_URL = `${API_BASE}/api/newsletter/download`;
@@ -50,7 +40,10 @@ export default function Newsletter() {
     try {
       const res = await fetch(SUBSCRIBE_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
         body: JSON.stringify({ email: cleanEmail, source: 'bvm-ev.de' }),
       });
 
@@ -67,6 +60,7 @@ export default function Newsletter() {
       } else {
         setErrorMessage(
           data?.detail ||
+            data?.message ||
             'Die Anmeldung konnte nicht verarbeitet werden. Bitte versuchen Sie es später erneut.',
         );
         setStatus('error');
@@ -153,12 +147,12 @@ export default function Newsletter() {
                   </button>
                 </div>
 
-                <label className="mt-4 flex items-start gap-2.5 text-xs text-slate-600 leading-relaxed cursor-pointer">
+                <label className="mt-4 flex items-start gap-2.5 text-xs text-slate-600 leading-relaxed cursor-pointer select-none">
                   <input
                     type="checkbox"
                     checked={consent}
                     onChange={(e) => setConsent(e.target.checked)}
-                    className="mt-0.5 shrink-0 w-4 h-4 accent-brand-orange"
+                    className="mt-0.5 shrink-0 w-4 h-4 accent-brand-orange cursor-pointer"
                   />
                   <span>
                     Ja, ich möchte den Newsletter von BVM e.V. erhalten. Die Einwilligung kann ich
@@ -202,6 +196,8 @@ export default function Newsletter() {
             <div>
               <a
                 href={DOWNLOAD_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-600 text-white font-bold py-3 px-6 rounded-xl transition-colors"
               >
                 <FileDown size={18} />
