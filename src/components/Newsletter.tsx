@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Mail, FileDown, CheckCircle2, Loader2, ShieldCheck, AlertTriangle } from 'lucide-react';
+import { Mail, FileDown, CheckCircle2, Loader2, ShieldCheck, AlertTriangle, Download } from 'lucide-react';
 import { motion } from 'motion/react';
 import { validateEmail, sanitizeInput } from '../lib/formValidation';
 
 /**
  * Newsletter Component for BVM e.V.
  * Connects to the BVM Newsletter API backend (Render / Custom Domain)
- * Supports DSGVO-compliant Double-Opt-In confirmation and live PDF quarterly report download.
+ * Supports DSGVO-compliant Double-Opt-In confirmation and reliable PDF download.
  */
 const API_BASE =
   (import.meta.env.VITE_NEWSLETTER_API as string | undefined)?.replace(/\/$/, '') ||
@@ -14,6 +14,7 @@ const API_BASE =
 
 const SUBSCRIBE_URL = `${API_BASE}/api/newsletter/subscribe`;
 const DOWNLOAD_URL = `${API_BASE}/api/newsletter/download`;
+const FALLBACK_STATIC_PDF = '/assets/pdf/newsletter-latest.pdf';
 
 export default function Newsletter() {
   const [email, setEmail] = useState('');
@@ -21,6 +22,10 @@ export default function Newsletter() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+  // PDF download state
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadNote, setDownloadNote] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -52,7 +57,7 @@ export default function Newsletter() {
       if (res.ok) {
         setSuccessMessage(
           data?.message ||
-            'Fast fertig! Bitte bestätigen Sie die Anmeldung über den Link in unserer E-Mail.',
+            'Fast fertig! Wir haben Ihnen einen Bestätigungslink per E-Mail geschickt. Klicken Sie bitte darauf, um Ihre Anmeldung abzuschließen.',
         );
         setStatus('success');
         setEmail('');
@@ -69,6 +74,76 @@ export default function Newsletter() {
       console.error('[Newsletter] Submit error:', err);
       setErrorMessage('Verbindungsfehler beim Übermitteln. Bitte prüfen Sie Ihre Verbindung.');
       setStatus('error');
+    }
+  };
+
+  const handleDownloadPdf = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (isDownloading) return;
+
+    setIsDownloading(true);
+    setDownloadNote('PDF wird abgerufen (bei Server-Ruhezustand kurz Geduld)...');
+
+    try {
+      // Create an AbortController with 20s timeout for the live backend
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 20000);
+
+      let response: Response | null = null;
+      let usedFallback = false;
+
+      try {
+        response = await fetch(DOWNLOAD_URL, {
+          method: 'GET',
+          signal: controller.signal,
+        });
+      } catch (fetchErr) {
+        console.warn('[Newsletter] Live PDF fetch failed or timed out, trying fallback static PDF...', fetchErr);
+      } finally {
+        clearTimeout(timeoutId);
+      }
+
+      if (!response || !response.ok) {
+        // Fallback to static prebuilt PDF in public folder
+        response = await fetch(FALLBACK_STATIC_PDF);
+        usedFallback = true;
+      }
+
+      if (response && response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = 'bvm-newsletter-aktuell.pdf';
+        document.body.appendChild(a);
+        a.click();
+        
+        setTimeout(() => {
+          window.URL.revokeObjectURL(url);
+          document.body.removeChild(a);
+        }, 200);
+
+        setDownloadNote(
+          usedFallback
+            ? 'Ausgabe erfolgreich heruntergeladen.'
+            : 'Aktuellste Quartalsausgabe erfolgreich heruntergeladen.'
+        );
+      } else {
+        // As a final resort, open the download URL in new tab directly
+        window.open(DOWNLOAD_URL, '_blank', 'noopener,noreferrer');
+        setDownloadNote('Download wurde im neuen Tab gestartet.');
+      }
+    } catch (err) {
+      console.error('[Newsletter] Download error:', err);
+      // Direct link fallback
+      window.open(FALLBACK_STATIC_PDF, '_blank');
+      setDownloadNote('PDF wird geöffnet.');
+    } finally {
+      setIsDownloading(false);
+      setTimeout(() => {
+        setDownloadNote(null);
+      }, 5000);
     }
   };
 
@@ -114,7 +189,10 @@ export default function Newsletter() {
                 <CheckCircle2 size={22} className="text-emerald-600 shrink-0 mt-0.5" />
                 <div>
                   <p className="font-bold text-sm">Bitte bestätigen Sie Ihre Anmeldung</p>
-                  <p className="text-xs text-emerald-700 mt-1">{successMessage}</p>
+                  <p className="text-xs text-emerald-700 mt-1 leading-relaxed">{successMessage}</p>
+                  <p className="text-[11px] text-emerald-600/90 mt-2 font-medium">
+                    Tipp: Schauen Sie ggf. auch kurz in Ihren Spam- oder Werbeordner.
+                  </p>
                 </div>
               </div>
             ) : (
@@ -189,22 +267,36 @@ export default function Newsletter() {
             <h3 className="text-2xl font-bold text-white mb-4">Quartalsbericht herunterladen</h3>
             <p className="text-slate-300 mb-8 flex-grow">
               Alle Events und Blogbeiträge der letzten drei Monate — farbenfroh gestaltet, mit
-              Editorial der Redaktion und Vorschau auf die nächsten Termine. Wird bei jedem Abruf
-              frisch erzeugt.
+              Editorial der Redaktion und Vorschau auf die nächsten Termine.
             </p>
 
             <div>
-              <a
-                href={DOWNLOAD_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-600 text-white font-bold py-3 px-6 rounded-xl transition-colors"
+              <button
+                onClick={handleDownloadPdf}
+                disabled={isDownloading}
+                className="inline-flex items-center gap-2 bg-brand-teal hover:bg-teal-600 disabled:opacity-75 disabled:cursor-wait text-white font-bold py-3 px-6 rounded-xl transition-all cursor-pointer shadow-lg shadow-brand-teal/20"
               >
-                <FileDown size={18} />
-                Aktuelle Ausgabe als PDF
-              </a>
+                {isDownloading ? (
+                  <>
+                    <Loader2 size={18} className="animate-spin" />
+                    <span>Wird geladen...</span>
+                  </>
+                ) : (
+                  <>
+                    <Download size={18} />
+                    <span>Aktuelle Ausgabe als PDF</span>
+                  </>
+                )}
+              </button>
+
+              {downloadNote && (
+                <p className="text-brand-teal/90 text-xs mt-3 animate-fade-in font-medium">
+                  {downloadNote}
+                </p>
+              )}
+
               <p className="text-slate-400 text-xs mt-4">
-                A4 in Vollfarbe · automatisch aus events.json und blogs.json erzeugt
+                A4 in Vollfarbe · automatisch aus Events und Blogs erzeugt
               </p>
             </div>
           </motion.div>
