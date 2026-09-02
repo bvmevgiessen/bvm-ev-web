@@ -10,6 +10,14 @@ name: Newsletter PDF aktualisieren
 #      Optional, only if you want the automatic mail-out:
 #        NEWSLETTER_SEND  = true
 #   2. Settings -> Actions -> General -> Workflow permissions -> "Read and write permissions"
+#      AND enable "Allow GitHub Actions to create and approve pull requests"
+#      (needed as fallback when main is a protected branch).
+#   3. If main has branch protection ("Changes must be made through a pull request"):
+#      the workflow automatically opens a pull request instead of pushing directly.
+#      For fully automatic merging either
+#        a) add "github-actions" as bypass actor in the branch protection rule, or
+#        b) enable "Allow auto-merge" in Settings -> General (merge happens once
+#           required checks pass; required reviews still need a human).
 #
 # The schedule below runs on the 1st of every month at 06:00 UTC.
 
@@ -27,20 +35,13 @@ on:
         required: false
         default: "false"
 
-# Restrict workflow-level permissions to none by default for maximum security.
-permissions: {}
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   regenerate:
     runs-on: ubuntu-latest
-    permissions:
-      # Required to check out code and push refreshed RSS data to latest_updates.json.
-      contents: write
-      # Required to create or update pull requests
-      pull-requests: write
-      # Required to deploy GitHub Pages and authenticate with OIDC.
-      pages: write
-      id-token: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -75,7 +76,9 @@ jobs:
           file public/newsletter-latest.pdf
           test -s public/newsletter-latest.pdf
 
-      - name: PDF committen
+      - name: PDF committen (direkt oder per Pull Request)
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
@@ -86,22 +89,54 @@ jobs:
             exit 0
           fi
           git commit -m "chore(newsletter): PDF automatisch aktualisiert"
-          # Push mit Rebase-Retry: falls das Repo zwischenzeitlich neue Commits
-          # bekommen hat (non-fast-forward), holen wir sie erst per Rebase.
-          # Bei einem Konflikt am PDF gewinnt immer unsere frisch erzeugte Datei
-          # (-X theirs = beim Rebase die eigenen, neu aufgespielten Commits).
+
           BRANCH="${GITHUB_REF_NAME:-main}"
+          PROTECTED=false
+
+          # 1) Direkter Push – funktioniert, wenn main nicht geschützt ist
+          #    (oder der Bot die Schutzregel umgehen darf).
           for attempt in 1 2 3; do
-            if git push origin "HEAD:${BRANCH}"; then
-              echo "Push erfolgreich (Versuch ${attempt})."
+            if git push origin "HEAD:${BRANCH}" >push.log 2>&1; then
+              cat push.log
+              echo "Direkter Push erfolgreich (Versuch ${attempt})."
               exit 0
             fi
-            echo "Push abgelehnt – hole Remote-Änderungen (Versuch ${attempt}) …"
+            cat push.log
+            if grep -qi "GH006\|protected branch" push.log; then
+              echo "Branch '${BRANCH}' ist geschützt – wechsle auf Pull-Request-Verfahren."
+              PROTECTED=true
+              break
+            fi
+            echo "Push abgelehnt (non-fast-forward) – hole Remote-Änderungen (Versuch ${attempt}) …"
             git pull --rebase -X theirs origin "${BRANCH}"
             sleep 5
           done
-          echo "::error::Push nach 3 Versuchen fehlgeschlagen."
-          exit 1
+
+          if [ "${PROTECTED}" != "true" ]; then
+            echo "::error::Push nach 3 Versuchen fehlgeschlagen."
+            exit 1
+          fi
+
+          # 2) Pull-Request-Verfahren für geschützte Branches
+          PR_BRANCH="newsletter/pdf-update-${GITHUB_RUN_ID}"
+          git branch -m "${PR_BRANCH}"
+          git push origin "HEAD:${PR_BRANCH}"
+          PR_URL=$(gh pr create \
+            --base "${BRANCH}" \
+            --head "${PR_BRANCH}" \
+            --title "chore(newsletter): PDF automatisch aktualisiert" \
+            --body "Automatisch erzeugte Newsletter-Ausgabe (public/newsletter-latest.pdf), erstellt vom Workflow newsletter-pdf.yml.")
+          echo "Pull Request erstellt: ${PR_URL}"
+
+          # Versuche sofort zu mergen; falls Checks/Reviews nötig sind,
+          # aktiviere Auto-Merge (Repo-Einstellung "Allow auto-merge" nötig).
+          if gh pr merge "${PR_URL}" --squash --delete-branch >/dev/null 2>&1; then
+            echo "PR automatisch gemergt."
+          elif gh pr merge "${PR_URL}" --squash --auto --delete-branch >/dev/null 2>&1; then
+            echo "Auto-Merge aktiviert – PR wird gemergt, sobald alle Bedingungen erfüllt sind."
+          else
+            echo "::warning::PR konnte nicht automatisch gemergt werden – bitte manuell mergen: ${PR_URL}"
+          fi
 
       - name: An Abonnenten senden (optional)
         if: ${{ github.event.inputs.send_mails == 'true' || vars.NEWSLETTER_SEND == 'true' }}
