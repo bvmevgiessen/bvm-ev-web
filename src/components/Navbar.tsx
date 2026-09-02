@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link, useLocation } from 'react-router';
 import Logo from './Logo';
@@ -30,6 +30,8 @@ export default function Navbar() {
     { name: 'Dialog', href: '/dialog' },
     { name: 'Integration', href: '/integration' },
   ];
+
+  const newsletterHref = isHome ? '#newsletter' : '/#newsletter';
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled || !isHome ? 'bg-white/90 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'}`}>
@@ -91,6 +93,25 @@ export default function Navbar() {
               </Link>
             )
           ))}
+          {newsletterHref.startsWith('#') ? (
+            <a
+              href={newsletterHref}
+              aria-label="Newsletter abonnieren – zur aktuellen Ausgabe"
+              className="newsletter-cta"
+            >
+              <Mail size={16} aria-hidden="true" />
+              Newsletter
+            </a>
+          ) : (
+            <Link
+              to={newsletterHref}
+              aria-label="Newsletter abonnieren – zur aktuellen Ausgabe"
+              className="newsletter-cta"
+            >
+              <Mail size={16} aria-hidden="true" />
+              Newsletter
+            </Link>
+          )}
           <Link
             to="/mitmachen"
             data-testid="mitmachen-cta-desktop"
@@ -104,6 +125,7 @@ export default function Navbar() {
         <button 
           className="md:hidden text-slate-900"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Menü öffnen oder schließen"
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -154,6 +176,27 @@ export default function Navbar() {
                   </Link>
                 )
               ))}
+              {newsletterHref.startsWith('#') ? (
+                <a
+                  href={newsletterHref}
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Newsletter abonnieren – zur aktuellen Ausgabe"
+                  className="newsletter-cta w-full justify-center"
+                >
+                  <Mail size={18} aria-hidden="true" />
+                  Newsletter abonnieren
+                </a>
+              ) : (
+                <Link
+                  to={newsletterHref}
+                  onClick={() => setIsOpen(false)}
+                  aria-label="Newsletter abonnieren – zur aktuellen Ausgabe"
+                  className="newsletter-cta w-full justify-center"
+                >
+                  <Mail size={18} aria-hidden="true" />
+                  Newsletter abonnieren
+                </Link>
+              )}
               <Link
                 to="/mitmachen"
                 onClick={() => setIsOpen(false)}
