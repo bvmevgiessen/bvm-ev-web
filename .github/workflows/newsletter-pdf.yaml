@@ -6,7 +6,7 @@ name: Newsletter PDF aktualisieren
 #
 # SETUP
 #   1. Settings -> Secrets and variables -> Actions -> New repository secret
-#        NEWSLETTER_API   = https://bvm-newsletter-api.onrender.com   (your deployed backend origin)
+#        NEWSLETTER_API   = https://newsletter.bvm-ev.de   (your deployed backend origin)
 #      Optional, only if you want the automatic mail-out:
 #        NEWSLETTER_SEND  = true
 #   2. Settings -> Actions -> General -> Workflow permissions -> "Read and write permissions"
@@ -44,6 +44,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Volle Historie, damit git pull --rebase zuverlässig funktioniert
+          fetch-depth: 0
 
       - name: Ausgabe neu erzeugen (Daten + Editorial + PDF)
         env:
@@ -67,9 +70,8 @@ jobs:
           API: ${{ secrets.NEWSLETTER_API }}
         run: |
           set -euo pipefail
-          mkdir -p public/assets/pdf public
+          mkdir -p public
           curl -sS --fail-with-body "${API}/api/newsletter/download" -o public/newsletter-latest.pdf
-          cp public/newsletter-latest.pdf public/assets/pdf/newsletter-latest.pdf
           file public/newsletter-latest.pdf
           test -s public/newsletter-latest.pdf
 
@@ -78,13 +80,28 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/newsletter-latest.pdf public/assets/pdf/newsletter-latest.pdf
+          git add public/newsletter-latest.pdf
           if git diff --staged --quiet; then
             echo "Keine Änderung am PDF."
-          else
-            git commit -m "chore(newsletter): PDF automatisch aktualisiert"
-            git push
+            exit 0
           fi
+          git commit -m "chore(newsletter): PDF automatisch aktualisiert"
+          # Push mit Rebase-Retry: falls das Repo zwischenzeitlich neue Commits
+          # bekommen hat (non-fast-forward), holen wir sie erst per Rebase.
+          # Bei einem Konflikt am PDF gewinnt immer unsere frisch erzeugte Datei
+          # (-X theirs = beim Rebase die eigenen, neu aufgespielten Commits).
+          BRANCH="${GITHUB_REF_NAME:-main}"
+          for attempt in 1 2 3; do
+            if git push origin "HEAD:${BRANCH}"; then
+              echo "Push erfolgreich (Versuch ${attempt})."
+              exit 0
+            fi
+            echo "Push abgelehnt – hole Remote-Änderungen (Versuch ${attempt}) …"
+            git pull --rebase -X theirs origin "${BRANCH}"
+            sleep 5
+          done
+          echo "::error::Push nach 3 Versuchen fehlgeschlagen."
+          exit 1
 
       - name: An Abonnenten senden (optional)
         if: ${{ github.event.inputs.send_mails == 'true' || vars.NEWSLETTER_SEND == 'true' }}
