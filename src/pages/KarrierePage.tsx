@@ -6,11 +6,7 @@ import {
   MapPin,
   CalendarDays,
   FileText,
-  Euro,
   ClipboardList,
-  Handshake,
-  Users,
-  Palette,
   CheckCircle2,
   Globe,
   Lightbulb,
@@ -20,68 +16,71 @@ import {
   User,
   CalendarCheck,
   Download,
+  BookOpen,
+  Sparkles,
+  Award,
 } from 'lucide-react';
 
 const quickFacts = [
-  { icon: Clock, label: 'Wochenarbeitszeit', value: '30 Stunden' },
+  { icon: Clock, label: 'Wochenarbeitszeit', value: '35 Stunden' },
   { icon: MapPin, label: 'Arbeitsort', value: 'Siemensstr. 18, 35394 Gießen' },
-  { icon: FileText, label: 'Anstellungsart', value: 'Teilzeit (30 Std./Woche)' },
-  { icon: CalendarDays, label: 'Befristung', value: 'Befristet bis 06. Juni 2027' },
+  { icon: FileText, label: 'Anstellungsart', value: 'Festanstellung (35 Std./Woche)' },
+  { icon: CalendarDays, label: 'Befristung', value: 'Befristet bis 29. September 2028' },
 ];
 
-const taskGroups = [
-  {
-    icon: ClipboardList,
-    title: 'Büroorganisation & Verwaltung',
-    items: [
-      'Mitgliederverwaltung',
-      'Korrespondenz (Post, E-Mail, Telefon)',
-      'Finanzvorbereitung (Vorkontierung, Belegverwaltung)',
-      'Dokumentation & Archivierung',
-    ],
-  },
-  {
-    icon: Handshake,
-    title: 'Koordination & Schnittstellenarbeit',
-    items: [
-      'Terminmanagement',
-      'Projektkoordination',
-      'Ansprechpartner für Mitglieder, Ehrenamtliche, Partner, Behörden',
-      'Veranstaltungsorganisation (Logistik, Räume, Catering)',
-    ],
-  },
-  {
-    icon: Users,
-    title: 'Personalverwaltung & Weiteres',
-    items: [
-      'Unterstützung beim Onboarding',
-      'Mitwirkung bei Fördermittelbeantragung',
-      'Optionale Unterstützung bei Website/Newsletter',
-    ],
-  },
+const tasks = [
+  'Sozialpädagogische Betreuung und Begleitung von Kindern, Jugendlichen und Erwachsenen',
+  'Planung, Organisation und Durchführung von Bildungs-, Kultur- und Freizeitangeboten',
+  'Durchführung von Türkischunterricht für Kinder, Jugendliche und Erwachsene',
+  'Planung und Durchführung von Projekten, Workshops und Ferienprogrammen',
+  'Dokumentation der pädagogischen Arbeit sowie Erstellung von Berichten',
+  'Mitwirkung bei der Weiterentwicklung unserer Bildungs- und Integrationsangebote',
 ];
 
 const profileItems = [
-  { icon: Globe, text: 'Muttersprache Türkisch, Deutsch auf Verhandlungssicherungsniveau (mindestens B1)' },
-  { icon: GraduationCap, text: 'Kaufmännische Ausbildung oder vergleichbare Qualifikation' },
-  { icon: Heart, text: 'Erfahrung im Vereins- oder Non-Profit-Bereich wünschenswert' },
-  { icon: CheckCircle2, text: 'Strukturierte, selbstständige Arbeitsweise' },
-  { icon: CheckCircle2, text: 'Sehr gute Kommunikationsfähigkeiten' },
-  { icon: CheckCircle2, text: 'Sicherer Umgang mit MS Office und ggf. Vereinssoftware' },
-  { icon: CheckCircle2, text: 'Identifikation mit den Werten des Vereins' },
+  {
+    icon: GraduationCap,
+    text: 'Abgeschlossenes Studium oder eine abgeschlossene Ausbildung im pädagogischen, sozialen oder sprachlichen Bereich oder eine vergleichbare Qualifikation',
+  },
+  {
+    icon: Globe,
+    text: 'Sehr gute Türkischkenntnisse in Wort und Schrift',
+  },
+  {
+    icon: BookOpen,
+    text: 'Erfahrung im Unterricht sowie in der sozial- oder kulturpädagogischen Arbeit ist von Vorteil',
+  },
+  {
+    icon: Heart,
+    text: 'Interkulturelle Kompetenz und Freude an der Arbeit mit Menschen verschiedener Herkunft',
+  },
+  {
+    icon: CheckCircle2,
+    text: 'Selbstständige, strukturierte und verantwortungsbewusste Arbeitsweise',
+  },
+  {
+    icon: Sparkles,
+    text: 'Teamfähigkeit, Kommunikationsstärke und Engagement',
+  },
+  {
+    icon: Award,
+    text: 'Sicherer Umgang mit den gängigen MS-Office-Anwendungen',
+  },
 ];
 
 const benefits = [
-  { icon: Clock, title: 'Flexible Arbeitszeiten' },
-  { icon: Lightbulb, title: 'Sinnstiftende Tätigkeit', text: 'Mit Raum für eigene Ideen' },
-  { icon: Heart, title: 'Wertschätzendes, familiäres Team' },
-  { icon: GraduationCap, title: 'Optionale Zusatzleistungen', text: 'Fortbildung, Fahrtkostenzuschuss, Home-Office' },
+  { icon: Briefcase, title: 'Abwechslungsreiche Tätigkeit', text: 'Verantwortungsvolle Aufgaben mit echtem Mehrwert' },
+  { icon: Clock, title: '35 Wochenstunden', text: 'Geregelte Anstellung mit 35 Stunden pro Woche' },
+  { icon: Heart, title: 'Motiviertes & wertschätzendes Team', text: 'Familiäre Atmosphäre und offener Austausch' },
+  { icon: GraduationCap, title: 'Weiterbildung', text: 'Möglichkeiten zur fachlichen und persönlichen Qualifizierung' },
+  { icon: Lightbulb, title: 'Eigene Ideen & Projekte', text: 'Viel Gestaltungsspielraum und Raum für Innovation' },
+  { icon: Globe, title: 'Sinnstiftendes Umfeld', text: 'Engagement in einem lebendigen interkulturellen Arbeitsumfeld' },
 ];
 
 export default function KarrierePage() {
   const mailtoLink =
     'mailto:bvmevgiessen@gmail.com?subject=' +
-    encodeURIComponent('Bewerbung: Vereinskoordination & Büromanagement');
+    encodeURIComponent('Bewerbung: Sozial- und kulturpädagogische Betreuung sowie Kultur- und Sprachunterricht (m/w/d)');
 
   return (
     <div className="min-h-screen bg-white">
@@ -96,14 +95,13 @@ export default function KarrierePage() {
           {/* Hero */}
           <div className="text-center mb-12">
             <span className="inline-block py-2 px-4 bg-brand-orange/10 text-brand-orange font-bold rounded-full mb-6 tracking-wide uppercase text-sm">
-              Karriere
+              Stellenausschreibung
             </span>
-            <h1 className="text-4xl md:text-5xl font-bold text-brand-navy mb-6">
-              Arbeiten bei <span className="text-brand-teal">BVM Mittelhessen</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-brand-navy mb-6 leading-tight">
+              Arbeiten bei <span className="text-brand-teal">BVM e.V.</span>
             </h1>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Werden Sie Teil unseres engagierten Teams und gestalten Sie die Vereinsarbeit
-              aktiv mit — für Bildung, Verständigung und ein starkes Miteinander in Mittelhessen.
+              Gestalten Sie Bildung, Sprache und interkulturellen Austausch aktiv mit — für eine gerechtere und integrativere Gesellschaft in Mittelhessen.
             </p>
           </div>
 
@@ -119,13 +117,14 @@ export default function KarrierePage() {
                 <Briefcase size={32} />
               </div>
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-brand-navy mb-3">
-                  Mitarbeiter (m/w/d) Vereinskoordination &amp; Büromanagement
+                <span className="inline-block px-3 py-1 bg-brand-teal/10 text-brand-teal text-xs font-bold rounded-full uppercase tracking-wider mb-2">
+                  35 Stunden pro Woche
+                </span>
+                <h2 className="text-2xl md:text-3xl font-bold text-brand-navy mb-3 leading-snug">
+                  Sozial- und kulturpädagogische Betreuung sowie Kultur- und Sprachunterricht (m/w/d)
                 </h2>
-                <p className="text-slate-600 leading-relaxed">
-                  Der Bildung und Verständigung Mittelhessen e.V. sucht zum nächstmöglichen
-                  Zeitpunkt eine engagierte Persönlichkeit für die Vereinskoordination und das
-                  Büromanagement.
+                <p className="text-sm font-semibold text-brand-teal mb-4">
+                  BVM e.V. – Bildung und Verständigung Mittelhessen e.V.
                 </p>
               </div>
             </div>
@@ -150,52 +149,18 @@ export default function KarrierePage() {
               ))}
             </div>
 
-            {/* Mindestlohn */}
-            <section className="mb-10">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-10 h-10 bg-brand-orange/10 rounded-full flex items-center justify-center text-brand-orange shrink-0">
-                  <Euro size={20} />
-                </div>
-                <h3 className="text-xl font-bold text-brand-navy">
-                  Mindestlohn &amp; Vergütung (MiLoG-konform)
-                </h3>
-              </div>
-              <div className="bg-brand-teal/5 border border-brand-teal/20 rounded-2xl p-6 md:p-8">
-                <p className="text-slate-600 leading-relaxed mb-6">
-                  Gemäß dem gesetzlichen Mindestlohngesetz (MiLoG) gilt ab 2026 ein{' '}
-                  <span className="font-bold text-brand-navy">Mindestlohn von 13,90 € brutto pro Stunde</span>.
-                  Für eine Teilzeitstelle mit 30 Wochenstunden ergibt sich folgende Mindestvergütung:
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="bg-white rounded-xl p-5 text-center border border-slate-100">
-                    <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
-                      Monatliche Arbeitsstunden
-                    </p>
-                    <p className="font-bold text-brand-navy leading-snug">
-                      30 Std./Woche × 4,333
-                    </p>
-                    <p className="text-2xl font-bold text-brand-teal mt-1">≈ 130 Std.</p>
-                  </div>
-                  <div className="bg-white rounded-xl p-5 text-center border border-slate-100">
-                    <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
-                      Stundensatz
-                    </p>
-                    <p className="font-bold text-brand-navy leading-snug">MiLoG 2026</p>
-                    <p className="text-2xl font-bold text-brand-teal mt-1">13,90 €</p>
-                  </div>
-                  <div className="bg-brand-navy rounded-xl p-5 text-center">
-                    <p className="text-xs font-bold uppercase tracking-wider text-white/60 mb-2">
-                      Gesetzliche Mindestvergütung
-                    </p>
-                    <p className="font-semibold text-white/90 leading-snug">130 Std. × 13,90 €</p>
-                    <p className="text-2xl font-bold text-brand-teal mt-1">≈ 1.807 € brutto/Monat</p>
-                  </div>
-                </div>
-                <p className="text-sm text-slate-500 mt-5 leading-relaxed">
-                  Diese Angabe stellt die gesetzliche Mindestvergütung dar. Eine höhere Vergütung
-                  ist möglich und abhängig von Qualifikation und Erfahrung.
-                </p>
-              </div>
+            {/* Über uns */}
+            <section className="mb-10 bg-brand-teal/5 border border-brand-teal/15 rounded-2xl p-6 md:p-8">
+              <h3 className="text-xl font-bold text-brand-navy mb-3 flex items-center gap-2">
+                <Heart size={20} className="text-brand-teal" />
+                Über uns
+              </h3>
+              <p className="text-slate-600 leading-relaxed mb-4">
+                Seit unserer Gründung setzen wir uns als <strong>BVM e.V.</strong> für eine gerechtere und integrativere Gesellschaft ein. Wir verstehen kulturelle Vielfalt als Bereicherung und schaffen Begegnungsräume, in denen Menschen unabhängig von Herkunft, Religion oder sozialem Hintergrund voneinander lernen, sich austauschen und gemeinsam wachsen können.
+              </p>
+              <p className="text-slate-700 font-medium leading-relaxed">
+                Zur Verstärkung unseres Teams suchen wir zum nächstmöglichen Zeitpunkt eine engagierte Persönlichkeit für die sozial- und kulturpädagogische Betreuung sowie den Kultur- und Sprachunterricht im Umfang von <strong>35 Stunden pro Woche</strong>.
+              </p>
             </section>
 
             {/* Aufgaben */}
@@ -206,58 +171,15 @@ export default function KarrierePage() {
                 </div>
                 <h3 className="text-xl font-bold text-brand-navy">Ihre Aufgaben</h3>
               </div>
-              <div className="space-y-4">
-                {taskGroups.map((group, index) => (
-                  <div
-                    key={group.title}
-                    className="bg-slate-50 border border-slate-100 rounded-2xl p-6"
-                  >
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="w-8 h-8 bg-brand-teal text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0">
-                        {index + 1}
-                      </span>
-                      <h4 className="font-bold text-brand-navy flex items-center gap-2">
-                        <group.icon size={18} className="text-brand-teal" />
-                        {group.title}
-                      </h4>
-                    </div>
-                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2">
-                      {group.items.map((item) => (
-                        <li key={item} className="flex items-start gap-2.5 text-slate-600 text-sm leading-relaxed">
-                          <CheckCircle2 size={16} className="text-brand-teal shrink-0 mt-0.5" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-                {/* NEU: Wochenend-Kulturkurse */}
-                <div className="bg-brand-orange/5 border border-brand-orange/25 rounded-2xl p-6">
-                  <div className="flex items-center gap-3 mb-4 flex-wrap">
-                    <span className="w-8 h-8 bg-brand-orange text-white rounded-full flex items-center justify-center text-sm font-bold shrink-0">
-                      4
-                    </span>
-                    <h4 className="font-bold text-brand-navy flex items-center gap-2">
-                      <Palette size={18} className="text-brand-orange" />
-                      Wochenend-Kulturkurse
-                    </h4>
-                    <span className="text-[10px] font-bold uppercase tracking-widest bg-brand-orange text-white rounded-full px-2.5 py-1">
-                      Neu
-                    </span>
-                  </div>
-                  <ul className="space-y-2">
-                    {[
-                      'Organisation und Koordination der kulturellen Wochenendkurse im Verein',
-                      'Abstimmung mit Kursleitern, Teilnehmern und Räumlichkeiten',
-                      'Sicherstellung eines reibungslosen Ablaufs und Dokumentation',
-                    ].map((item) => (
-                      <li key={item} className="flex items-start gap-2.5 text-slate-600 text-sm leading-relaxed">
-                        <CheckCircle2 size={16} className="text-brand-orange shrink-0 mt-0.5" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6">
+                <ul className="space-y-3.5">
+                  {tasks.map((task) => (
+                    <li key={task} className="flex items-start gap-3 text-slate-700 leading-relaxed">
+                      <CheckCircle2 size={18} className="text-brand-teal shrink-0 mt-0.5" />
+                      <span>{task}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </section>
 
@@ -269,13 +191,13 @@ export default function KarrierePage() {
                 </div>
                 <h3 className="text-xl font-bold text-brand-navy">Ihr Profil</h3>
               </div>
-              <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
+              <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 space-y-4">
                 {profileItems.map((item) => (
-                  <div key={item.text} className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-brand-teal/10 rounded-lg flex items-center justify-center text-brand-teal shrink-0">
+                  <div key={item.text} className="flex items-start gap-3.5">
+                    <div className="w-8 h-8 bg-brand-teal/10 rounded-lg flex items-center justify-center text-brand-teal shrink-0 mt-0.5">
                       <item.icon size={16} />
                     </div>
-                    <p className="text-slate-600 text-sm leading-relaxed pt-1">{item.text}</p>
+                    <p className="text-slate-700 leading-relaxed pt-0.5">{item.text}</p>
                   </div>
                 ))}
               </div>
@@ -287,7 +209,7 @@ export default function KarrierePage() {
                 <div className="w-10 h-10 bg-brand-orange/10 rounded-full flex items-center justify-center text-brand-orange shrink-0">
                   <Heart size={20} />
                 </div>
-                <h3 className="text-xl font-bold text-brand-navy">Was wir bieten</h3>
+                <h3 className="text-xl font-bold text-brand-navy">Wir bieten</h3>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {benefits.map((benefit) => (
@@ -347,14 +269,14 @@ export default function KarrierePage() {
                   <User size={18} className="text-brand-teal shrink-0 mt-0.5" />
                   <div>
                     <p className="text-xs font-bold uppercase tracking-wider text-white/50">Ansprechpartner</p>
-                    <p className="font-semibold text-white">Serdar Gülec</p>
+                    <p className="font-semibold text-white">Hakan Dönmez</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <CalendarCheck size={18} className="text-brand-teal shrink-0 mt-0.5" />
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-wider text-white/50">Bewerbungsfrist</p>
-                    <p className="font-semibold text-white">29.06.2026</p>
+                    <p className="text-xs font-bold uppercase tracking-wider text-white/50">Befristung</p>
+                    <p className="font-semibold text-white">29. September 2028</p>
                   </div>
                 </div>
               </div>
