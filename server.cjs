@@ -40,22 +40,63 @@ async function startServer() {
     legacyHeaders: false,
     message: { error: "Too many requests, please try again later." }
   });
-  app.use(limiter);
-  const isDev = process.env.NODE_ENV !== "production";
+  app.use("/api/", limiter);
   app.use(
     (0, import_helmet.default)({
+      frameguard: { action: "sameorigin" },
       contentSecurityPolicy: {
         directives: {
           defaultSrc: ["'self'"],
           baseUri: ["'self'"],
           objectSrc: ["'none'"],
-          frameAncestors: isDev ? ["*"] : ["'self'"],
-          frameSrc: ["'self'", "https://*.jotform.com"],
-          formAction: ["'self'", "https://*.jotform.com", "https://formspree.io"],
-          scriptSrc: ["'self'", "'unsafe-inline'", "https://*.jotform.com"],
-          styleSrc: ["'self'", "'unsafe-inline'"],
-          imgSrc: ["'self'", "data:", "https:"],
-          connectSrc: ["'self'", "https://formspree.io", "https://*.jotform.com"]
+          frameAncestors: ["'self'", "https:", "http://localhost:*"],
+          frameSrc: [
+            "'self'",
+            "https://challenges.cloudflare.com",
+            "https://*.cloudflare.com",
+            "https://*.firebaseapp.com",
+            "https://*.jotform.com",
+            "https://script.google.com",
+            "https://script.googleusercontent.com"
+          ],
+          formAction: [
+            "'self'",
+            "https://*.jotform.com",
+            "https://formspree.io",
+            "https://bvm-newsletter-api.onrender.com",
+            "https://*.onrender.com",
+            "https://newsletter.bvm-ev.de",
+            "https://script.google.com",
+            "https://script.googleusercontent.com"
+          ],
+          scriptSrc: [
+            "'self'",
+            "'unsafe-inline'",
+            "https://*.jotform.com",
+            "https://challenges.cloudflare.com",
+            "https://*.cloudflare.com"
+          ],
+          styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+          fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
+          imgSrc: ["'self'", "data:", "blob:", "https:"],
+          connectSrc: [
+            "'self'",
+            "https://formspree.io",
+            "https://bvm-newsletter-api.onrender.com",
+            "https://*.onrender.com",
+            "https://newsletter.bvm-ev.de",
+            "https://events-blog-brief.preview.emergentagent.com",
+            "https://challenges.cloudflare.com",
+            "https://*.cloudflare.com",
+            "https://*.googleapis.com",
+            "https://*.firebaseio.com",
+            "https://*.firebaseapp.com",
+            "https://script.google.com",
+            "https://script.googleusercontent.com",
+            "https://*.jotform.com"
+          ],
+          workerSrc: ["'self'", "blob:", "https://challenges.cloudflare.com", "https://*.cloudflare.com"],
+          childSrc: ["'self'", "blob:", "https://challenges.cloudflare.com", "https://*.cloudflare.com"]
         }
       },
       crossOriginResourcePolicy: { policy: "cross-origin" }
@@ -82,7 +123,7 @@ async function startServer() {
       console.log(`[Proxy] Fetching config from Firestore REST API: ${url}`);
       const response = await fetch(url);
       if (!response.ok) {
-        if (response.status === 404) {
+        if (response.status === 404 || response.status === 403) {
           return res.status(200).json({
             taetigkeitsberichtGasUrl: DEFAULT_GAS_URL,
             googleSpreadsheetUrl: "",
@@ -196,7 +237,7 @@ async function startServer() {
   } else {
     const distPath = import_path.default.join(process.cwd(), "dist");
     app.use(import_express.default.static(distPath));
-    app.get("*", (req, res) => {
+    app.use((req, res) => {
       res.sendFile(import_path.default.join(distPath, "index.html"));
     });
   }
