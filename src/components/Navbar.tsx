@@ -31,6 +31,8 @@ export default function Navbar() {
     { name: 'Integration', href: '/integration' },
   ];
 
+  const newsletterHref = isHome ? '#newsletter' : '/#newsletter';
+
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled || !isHome ? 'bg-white/90 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
@@ -125,6 +127,7 @@ export default function Navbar() {
         <button 
           className="md:hidden text-slate-900"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Menü öffnen oder schließen"
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>

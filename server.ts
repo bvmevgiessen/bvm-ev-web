@@ -20,7 +20,13 @@ async function startServer() {
 
   app.use(limiter);
 
-  // Security headers using Helmet
+  // Security headers using Helmet.
+  // In dev mode the Base44 preview embeds this app from a different origin.
+  // frameguard stays enabled (X-Frame-Options: SAMEORIGIN) — CSP
+  // frame-ancestors takes precedence over X-Frame-Options in modern browsers,
+  // so the permissive dev frame-ancestors below still allow the preview embed.
+  // Production keeps 'self' for both.
+  const isDev = process.env.NODE_ENV !== "production";
   app.use(
     helmet({
       contentSecurityPolicy: {
@@ -28,7 +34,7 @@ async function startServer() {
           defaultSrc: ["'self'"],
           baseUri: ["'self'"],
           objectSrc: ["'none'"],
-          frameAncestors: ["'self'"],
+          frameAncestors: isDev ? ["*"] : ["'self'"],
           frameSrc: ["'self'", "https://*.jotform.com"],
           formAction: ["'self'", "https://*.jotform.com", "https://formspree.io"],
           scriptSrc: ["'self'", "'unsafe-inline'", "https://*.jotform.com"],
