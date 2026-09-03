@@ -41,7 +41,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
           <div className="relative group">
             <button 
               className="flex items-center gap-1 text-sm font-semibold text-slate-600 hover:text-brand-teal transition-colors"
@@ -93,25 +93,27 @@ export default function Navbar() {
               </Link>
             )
           ))}
-          {newsletterHref.startsWith('#') ? (
+
+          {/* Newsletter Button (Orange with Icon as in Screenshot) */}
+          {isHome ? (
             <a
-              href={newsletterHref}
-              aria-label="Newsletter abonnieren – zur aktuellen Ausgabe"
-              className="newsletter-cta"
+              href="#newsletter"
+              className="btn-secondary py-2 px-5 text-sm flex items-center gap-2 shadow-sm hover:shadow-md"
             >
-              <Mail size={16} aria-hidden="true" />
-              Newsletter
+              <Mail size={16} />
+              <span>Newsletter</span>
             </a>
           ) : (
             <Link
-              to={newsletterHref}
-              aria-label="Newsletter abonnieren – zur aktuellen Ausgabe"
-              className="newsletter-cta"
+              to="/#newsletter"
+              className="btn-secondary py-2 px-5 text-sm flex items-center gap-2 shadow-sm hover:shadow-md"
             >
-              <Mail size={16} aria-hidden="true" />
-              Newsletter
+              <Mail size={16} />
+              <span>Newsletter</span>
             </Link>
           )}
+
+          {/* Mitmachen Button (Teal) */}
           <Link
             to="/mitmachen"
             data-testid="mitmachen-cta-desktop"
@@ -176,35 +178,36 @@ export default function Navbar() {
                   </Link>
                 )
               ))}
-              {newsletterHref.startsWith('#') ? (
-                <a
-                  href={newsletterHref}
-                  onClick={() => setIsOpen(false)}
-                  aria-label="Newsletter abonnieren – zur aktuellen Ausgabe"
-                  className="newsletter-cta w-full justify-center"
-                >
-                  <Mail size={18} aria-hidden="true" />
-                  Newsletter abonnieren
-                </a>
-              ) : (
+
+              <div className="flex flex-col gap-3 pt-2">
+                {isHome ? (
+                  <a
+                    href="#newsletter"
+                    onClick={() => setIsOpen(false)}
+                    className="btn-secondary w-full text-center flex items-center justify-center gap-2"
+                  >
+                    <Mail size={18} />
+                    <span>Newsletter</span>
+                  </a>
+                ) : (
+                  <Link
+                    to="/#newsletter"
+                    onClick={() => setIsOpen(false)}
+                    className="btn-secondary w-full text-center flex items-center justify-center gap-2"
+                  >
+                    <Mail size={18} />
+                    <span>Newsletter</span>
+                  </Link>
+                )}
                 <Link
-                  to={newsletterHref}
+                  to="/mitmachen"
                   onClick={() => setIsOpen(false)}
-                  aria-label="Newsletter abonnieren – zur aktuellen Ausgabe"
-                  className="newsletter-cta w-full justify-center"
+                  data-testid="mitmachen-cta-mobile"
+                  className="btn-primary w-full text-center"
                 >
-                  <Mail size={18} aria-hidden="true" />
-                  Newsletter abonnieren
+                  Mitmachen
                 </Link>
-              )}
-              <Link
-                to="/mitmachen"
-                onClick={() => setIsOpen(false)}
-                data-testid="mitmachen-cta-mobile"
-                className="btn-primary w-full text-center"
-              >
-                Mitmachen
-              </Link>
+              </div>
             </div>
           </motion.div>
         )}
