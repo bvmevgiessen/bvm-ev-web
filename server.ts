@@ -21,12 +21,14 @@ async function startServer() {
   app.use(limiter);
 
   // Security headers using Helmet.
-  // In dev mode the Base44 preview embeds this app from a different origin, so
-  // frame-ancestors/X-Frame-Options must be permissive. Production keeps 'self'.
+  // In dev mode the Base44 preview embeds this app from a different origin.
+  // frameguard stays enabled (X-Frame-Options: SAMEORIGIN) — CSP
+  // frame-ancestors takes precedence over X-Frame-Options in modern browsers,
+  // so the permissive dev frame-ancestors below still allow the preview embed.
+  // Production keeps 'self' for both.
   const isDev = process.env.NODE_ENV !== "production";
   app.use(
     helmet({
-      frameguard: isDev ? false : undefined,
       contentSecurityPolicy: {
         directives: {
           defaultSrc: ["'self'"],
