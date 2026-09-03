@@ -41,6 +41,7 @@ async function startServer() {
     message: { error: "Too many requests, please try again later." }
   });
   app.use(limiter);
+  const isDev = process.env.NODE_ENV !== "production";
   app.use(
     (0, import_helmet.default)({
       contentSecurityPolicy: {
@@ -48,7 +49,7 @@ async function startServer() {
           defaultSrc: ["'self'"],
           baseUri: ["'self'"],
           objectSrc: ["'none'"],
-          frameAncestors: ["'self'"],
+          frameAncestors: isDev ? ["*"] : ["'self'"],
           frameSrc: ["'self'", "https://*.jotform.com"],
           formAction: ["'self'", "https://*.jotform.com", "https://formspree.io"],
           scriptSrc: ["'self'", "'unsafe-inline'", "https://*.jotform.com"],
