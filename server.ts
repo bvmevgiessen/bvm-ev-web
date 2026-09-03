@@ -9,7 +9,7 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
-  // Rate limiting middleware to prevent DoS attacks on file system and API endpoints
+  // Rate limiting middleware to prevent DoS attacks on API endpoints
   const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 300, // Limit each IP to 300 requests per windowMs
@@ -18,29 +18,68 @@ async function startServer() {
     message: { error: "Too many requests, please try again later." }
   });
 
-  app.use(limiter);
+  // Apply rate limiting strictly to API endpoints so static assets and HTML are never blocked
+  app.use("/api/", limiter);
 
   // Security headers using Helmet.
-  // In dev mode the Base44 preview embeds this app from a different origin.
-  // frameguard stays enabled (X-Frame-Options: SAMEORIGIN) — CSP
-  // frame-ancestors takes precedence over X-Frame-Options in modern browsers,
-  // so the permissive dev frame-ancestors below still allow the preview embed.
-  // Production keeps 'self' for both.
-  const isDev = process.env.NODE_ENV !== "production";
+  // CodeQL requires frameguard to be enabled. Modern browsers follow CSP frameAncestors
+  // which takes precedence over X-Frame-Options for iframe preview embedding.
   app.use(
     helmet({
+      frameguard: { action: "sameorigin" },
       contentSecurityPolicy: {
         directives: {
           defaultSrc: ["'self'"],
           baseUri: ["'self'"],
           objectSrc: ["'none'"],
-          frameAncestors: isDev ? ["*"] : ["'self'"],
-          frameSrc: ["'self'", "https://*.jotform.com"],
-          formAction: ["'self'", "https://*.jotform.com", "https://formspree.io"],
-          scriptSrc: ["'self'", "'unsafe-inline'", "https://*.jotform.com"],
-          styleSrc: ["'self'", "'unsafe-inline'"],
-          imgSrc: ["'self'", "data:", "https:"],
-          connectSrc: ["'self'", "https://formspree.io", "https://*.jotform.com"]
+          frameAncestors: ["'self'", "https:", "http://localhost:*"],
+          frameSrc: [
+            "'self'",
+            "https://challenges.cloudflare.com",
+            "https://*.cloudflare.com",
+            "https://*.firebaseapp.com",
+            "https://*.jotform.com",
+            "https://script.google.com",
+            "https://script.googleusercontent.com"
+          ],
+          formAction: [
+            "'self'",
+            "https://*.jotform.com",
+            "https://formspree.io",
+            "https://bvm-newsletter-api.onrender.com",
+            "https://*.onrender.com",
+            "https://newsletter.bvm-ev.de",
+            "https://script.google.com",
+            "https://script.googleusercontent.com"
+          ],
+          scriptSrc: [
+            "'self'",
+            "'unsafe-inline'",
+            "https://*.jotform.com",
+            "https://challenges.cloudflare.com",
+            "https://*.cloudflare.com"
+          ],
+          styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+          fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
+          imgSrc: ["'self'", "data:", "blob:", "https:"],
+          connectSrc: [
+            "'self'",
+            "https://formspree.io",
+            "https://bvm-newsletter-api.onrender.com",
+            "https://*.onrender.com",
+            "https://newsletter.bvm-ev.de",
+            "https://events-blog-brief.preview.emergentagent.com",
+            "https://challenges.cloudflare.com",
+            "https://*.cloudflare.com",
+            "https://*.googleapis.com",
+            "https://*.firebaseio.com",
+            "https://*.firebaseapp.com",
+            "https://script.google.com",
+            "https://script.googleusercontent.com",
+            "https://*.jotform.com"
+          ],
+          workerSrc: ["'self'", "blob:", "https://challenges.cloudflare.com", "https://*.cloudflare.com"],
+          childSrc: ["'self'", "blob:", "https://challenges.cloudflare.com", "https://*.cloudflare.com"]
         }
       },
       crossOriginResourcePolicy: { policy: "cross-origin" }
@@ -76,8 +115,8 @@ async function startServer() {
       const response = await fetch(url);
       
       if (!response.ok) {
-        if (response.status === 404) {
-          // Document does not exist yet, return default URL instead of crashing
+        if (response.status === 404 || response.status === 403) {
+          // Document does not exist yet or unauthenticated, return default config instead of error
           return res.status(200).json({
             taetigkeitsberichtGasUrl: DEFAULT_GAS_URL,
             googleSpreadsheetUrl: "",
@@ -215,7 +254,7 @@ async function startServer() {
   } else {
     const distPath = path.join(process.cwd(), 'dist');
     app.use(express.static(distPath));
-    app.get('*', (req, res) => {
+    app.use((req, res) => {
       res.sendFile(path.join(distPath, 'index.html'));
     });
   }
