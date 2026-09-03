@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Fingerprint } from 'lucide-react';
 import { Github, Facebook, Instagram, Twitter } from './SocialIcons';
 import { useForm, ValidationError } from '@formspree/react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import LegalModal from './LegalModal';
 import Logo from './Logo';
 import CookieFingerprintButton from './CookieFingerprintButton';
@@ -541,5 +541,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-
