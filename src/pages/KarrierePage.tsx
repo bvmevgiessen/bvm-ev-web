@@ -22,9 +22,9 @@ import {
 } from 'lucide-react';
 
 const quickFacts = [
-  { icon: Clock, label: 'Wochenarbeitszeit', value: '35 Stunden' },
+  { icon: Clock, label: 'Wochenarbeitszeit', value: '30 Stunden' },
   { icon: MapPin, label: 'Arbeitsort', value: 'Siemensstr. 18, 35394 Gießen' },
-  { icon: FileText, label: 'Anstellungsart', value: 'Festanstellung (35 Std./Woche)' },
+  { icon: FileText, label: 'Anstellungsart', value: 'Festanstellung (30 Std./Woche)' },
   { icon: CalendarDays, label: 'Befristung', value: 'Befristet bis 29. September 2028' },
 ];
 
@@ -70,7 +70,7 @@ const profileItems = [
 
 const benefits = [
   { icon: Briefcase, title: 'Abwechslungsreiche Tätigkeit', text: 'Verantwortungsvolle Aufgaben mit echtem Mehrwert' },
-  { icon: Clock, title: '35 Wochenstunden', text: 'Geregelte Anstellung mit 35 Stunden pro Woche' },
+  { icon: Clock, title: '35 Wochenstunden', text: 'Geregelte Anstellung mit  pro Woche' },
   { icon: Heart, title: 'Motiviertes & wertschätzendes Team', text: 'Familiäre Atmosphäre und offener Austausch' },
   { icon: GraduationCap, title: 'Weiterbildung', text: 'Möglichkeiten zur fachlichen und persönlichen Qualifizierung' },
   { icon: Lightbulb, title: 'Eigene Ideen & Projekte', text: 'Viel Gestaltungsspielraum und Raum für Innovation' },
@@ -118,7 +118,7 @@ export default function KarrierePage() {
               </div>
               <div>
                 <span className="inline-block px-3 py-1 bg-brand-teal/10 text-brand-teal text-xs font-bold rounded-full uppercase tracking-wider mb-2">
-                  35 Stunden pro Woche
+                  30 Stunden pro Woche
                 </span>
                 <h2 className="text-2xl md:text-3xl font-bold text-brand-navy mb-3 leading-snug">
                   Sozial- und kulturpädagogische Betreuung sowie Kultur- und Sprachunterricht (m/w/d)
@@ -159,7 +159,7 @@ export default function KarrierePage() {
                 Seit unserer Gründung setzen wir uns als <strong>BVM e.V.</strong> für eine gerechtere und integrativere Gesellschaft ein. Wir verstehen kulturelle Vielfalt als Bereicherung und schaffen Begegnungsräume, in denen Menschen unabhängig von Herkunft, Religion oder sozialem Hintergrund voneinander lernen, sich austauschen und gemeinsam wachsen können.
               </p>
               <p className="text-slate-700 font-medium leading-relaxed">
-                Zur Verstärkung unseres Teams suchen wir zum nächstmöglichen Zeitpunkt eine engagierte Persönlichkeit für die sozial- und kulturpädagogische Betreuung sowie den Kultur- und Sprachunterricht im Umfang von <strong>35 Stunden pro Woche</strong>.
+                Zur Verstärkung unseres Teams suchen wir zum nächstmöglichen Zeitpunkt eine engagierte Persönlichkeit für die sozial- und kulturpädagogische Betreuung sowie den Kultur- und Sprachunterricht im Umfang von <strong>30 Stunden pro Woche</strong>.
               </p>
             </section>
 
