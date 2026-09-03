@@ -77,7 +77,7 @@ export default function FormShield({
     return () => clearInterval(interval);
   }, [rateLimitExceeded, remainingSeconds]);
 
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (e: React.FormEvent<any>) => {
     setErrorMessage(null);
 
     // 1. Honeypot check: If the hidden input is filled, it's a bot!

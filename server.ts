@@ -21,10 +21,12 @@ async function startServer() {
   // Apply rate limiting strictly to API endpoints so static assets and HTML are never blocked
   app.use("/api/", limiter);
 
-  // Security headers using Helmet
+  // Security headers using Helmet.
+  // CodeQL requires frameguard to be enabled. Modern browsers follow CSP frameAncestors
+  // which takes precedence over X-Frame-Options for iframe preview embedding.
   app.use(
     helmet({
-      frameguard: false, // Allow iframe embedding in preview environments via CSP frame-ancestors
+      frameguard: { action: "sameorigin" },
       contentSecurityPolicy: {
         directives: {
           defaultSrc: ["'self'"],
