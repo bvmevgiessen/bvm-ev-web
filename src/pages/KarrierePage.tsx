@@ -70,7 +70,7 @@ const profileItems = [
 
 const benefits = [
   { icon: Briefcase, title: 'Abwechslungsreiche Tätigkeit', text: 'Verantwortungsvolle Aufgaben mit echtem Mehrwert' },
-  { icon: Clock, title: '35 Wochenstunden', text: 'Geregelte Anstellung mit  pro Woche' },
+  { icon: Clock, title: '30 Wochenstunden', text: 'Geregelte Anstellung mit  pro Woche' },
   { icon: Heart, title: 'Motiviertes & wertschätzendes Team', text: 'Familiäre Atmosphäre und offener Austausch' },
   { icon: GraduationCap, title: 'Weiterbildung', text: 'Möglichkeiten zur fachlichen und persönlichen Qualifizierung' },
   { icon: Lightbulb, title: 'Eigene Ideen & Projekte', text: 'Viel Gestaltungsspielraum und Raum für Innovation' },
