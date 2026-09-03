@@ -9,7 +9,6 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
-      - DISABLE_HMR=true
       - CHOKIDAR_USEPOLLING=true
       - BASE44_PUBLIC_HOST_SUFFIX=${BASE44_PUBLIC_HOST_SUFFIX:-preview.example}
     env_file:
