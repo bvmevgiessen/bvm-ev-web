@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-  Users,
   Anchor,
   ArrowLeft,
   Home,
@@ -42,17 +41,16 @@ const services = [
     items: [
       'Hilfe bei Terminen mit Behörden',
       'Unterstützung beim Ausfüllen von Dokumenten',
-      'Begleitung zur Ausländerbehörde, Sozialamt, Jobcenter',
+      'Begleitung zum Ausländerbeirat, Sozialamt, Jobcenter',
     ],
   },
   {
     icon: BadgeCheck,
     title: 'Integrationslots*innen',
-    isNew: true,
     items: [
-      'Mitglieder mit offizieller Integrationslots*innen-Karte',
-      'Professionelle Begleitung von Geflüchteten und Migranten',
-      'Unterstützung nach offiziellen Standards und Richtlinien',
+      'Vereinsmitglieder mit offizieller Integrationslots*innen-Karte (ausgestellt vom Freiwilligenzentrum)',
+      'Begleitung von Geflüchteten und Migranten auf Augenhöhe',
+      'Unterstützung nach anerkannten Standards und Richtlinien',
     ],
   },
   {
@@ -67,9 +65,7 @@ const services = [
   {
     icon: Baby,
     title: 'Integration für Kinder',
-    isNew: true,
     items: [
-      'Integrationsunterricht für Kinder unserer Mitglieder, die neu in Deutschland sind',
       'Unterstützung bei Schulaufgaben',
       'Orientierung im deutschen Schulsystem',
       'Förderung sozialer Teilhabe (Freizeit, Vereine, Freundschaften)',
@@ -104,12 +100,12 @@ const services = [
   },
 ];
 
-const partnerInstitutions = [
+const vernetzungInstitutions = [
   'Freiwilligenzentrum Gießen',
   'Angekommen Gießen',
   'ZIBB e.V.',
-  'Ausländerbehörde Gießen',
-  'Ausländerbehörde Wetzlar',
+  'Ausländerbeirat Gießen',
+  'Ausländerbeirat Wetzlar',
   'Jobcenter Gießen',
   'Agentur für Arbeit Gießen',
   'VHS Gießen (Sprachkurse)',
@@ -119,8 +115,8 @@ const usefulLinks = [
   { name: 'Freiwilligenzentrum Gießen', url: 'https://freiwilligenzentrum-giessen.de' },
   { name: 'Angekommen Gießen', url: 'https://angekommen-giessen.de' },
   { name: 'ZIBB e.V.', url: 'https://zibb-giessen.de' },
-  { name: 'Ausländerbehörde Gießen', url: 'https://www.giessen.de' },
-  { name: 'Ausländerbehörde Wetzlar', url: 'https://www.wetzlar.de' },
+  { name: 'Ausländerbeirat Gießen', url: 'https://www.giessen.de' },
+  { name: 'Ausländerbeirat Wetzlar', url: 'https://www.wetzlar.de' },
   { name: 'Jobcenter Gießen', url: 'https://www.arbeitsagentur.de/vor-ort/jobcenter/jobcenter-giessen-giessen.html' },
   { name: 'VHS Gießen', url: 'https://www.vhs-giessen.de' },
   { name: 'Agentur für Arbeit Gießen', url: 'https://www.arbeitsagentur.de/vor-ort/giessen' },
@@ -129,7 +125,7 @@ const usefulLinks = [
 const faqs = [
   {
     q: 'Sind die Integrationsangebote kostenlos?',
-    a: 'Ja. Alle Angebote unseres Vereins — von der Behördenbegleitung bis zur Sprachförderung — sind für Ratsuchende kostenlos und werden ehrenamtlich sowie über Fördermittel getragen.',
+    a: 'Ja. Alle Angebote unseres Vereins — wie die Behördenbegleitung oder die Unterstützung bei der Sprachförderung — sind für Ratsuchende kostenlos und werden rein ehrenamtlich erbracht. Bitte beachten Sie: Wir leisten keine offizielle Fach- oder Rechtsberatung und vermitteln keine Fördermittel für Ratsuchende, sondern helfen Ihnen als Wegweiser dabei, die zuständigen offiziellen Beratungsstellen und Ansprechpartner zu finden.',
   },
   {
     q: 'Brauche ich einen Termin für die Beratung?',
@@ -145,7 +141,7 @@ const faqs = [
   },
   {
     q: 'Wie werden die Integrationslots*innen ausgebildet?',
-    a: 'Unsere Integrationslots*innen verfügen über die offizielle Integrationslots*innen-Karte und sind nach anerkannten Standards und Richtlinien geschult. Sie begleiten professionell, diskret und auf Augenhöhe.',
+    a: 'Die offizielle Ausbildung zur Integrationslotsin bzw. zum Integrationslotsen sowie die Vergabe der Integrationslots*innen-Karte erfolgt über das Freiwilligenzentrum Gießen — unser Verein selbst bietet diese Ausbildung nicht an. Eine begrenzte Anzahl unserer engagierten Mitglieder hat diese Qualifikation beim Freiwilligenzentrum erworben, verfügt über die offizielle Karte und begleitet Ratsuchende ehrenamtlich, diskret und auf Augenhöhe.',
   },
 ];
 
@@ -240,9 +236,6 @@ export default function Integration() {
               <a href="#links" className="btn-secondary flex items-center gap-2">
                 <ExternalLink size={18} /> Nützliche Links
               </a>
-              <a href={mailtoLink} className="btn-secondary flex items-center gap-2">
-                <Users size={18} /> Kontakt aufnehmen
-              </a>
             </div>
           </motion.div>
         </div>
@@ -279,11 +272,6 @@ export default function Integration() {
                   <div className="w-14 h-14 bg-brand-teal/10 rounded-2xl flex items-center justify-center text-brand-teal">
                     <service.icon size={28} />
                   </div>
-                  {service.isNew && (
-                    <span className="text-[10px] font-bold uppercase tracking-widest bg-brand-orange text-white rounded-full px-2.5 py-1">
-                      Neu
-                    </span>
-                  )}
                 </div>
                 <h3 className="text-lg font-bold text-brand-navy mb-4">{service.title}</h3>
                 <ul className="space-y-2.5">
@@ -303,15 +291,15 @@ export default function Integration() {
         </div>
       </section>
 
-      {/* Partner & Vernetzung */}
-      <section id="partner" className="py-24 bg-white scroll-mt-24">
+      {/* Vernetzung */}
+      <section id="vernetzung" className="py-24 bg-white scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-teal/10 text-brand-teal font-bold text-sm mb-6">
               <Handshake size={16} /> Vernetzung
             </div>
             <h2 className="text-3xl md:text-5xl font-extrabold text-brand-navy mb-6">
-              Unsere Partner &amp; Vernetzung
+              Vernetzung
             </h2>
           </div>
 
@@ -319,15 +307,15 @@ export default function Integration() {
             <div className="flex items-start gap-4 p-7 rounded-[2rem] bg-brand-teal/5 border border-brand-teal/15">
               <Landmark className="text-brand-teal shrink-0 mt-1" size={28} />
               <p className="text-slate-600 leading-relaxed text-left">
-                Wir arbeiten eng mit der <strong className="text-brand-navy">Ausländerbehörde Gießen</strong>{' '}
-                zusammen — Mitglieder der Ausländerbehörde sind Teil unseres Netzwerks. So
-                gewährleisten wir einen direkten, offiziellen Draht zu den relevanten Stellen.
+                Wir arbeiten eng mit dem <strong className="text-brand-navy">Ausländerbeirat Gießen</strong>{' '}
+                zusammen — Mitglieder des Ausländerbeirats sind Teil unseres Netzwerks. So
+                gewährleisten wir einen direkten Draht zu den relevanten Stellen in der Region.
               </p>
             </div>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-            {partnerInstitutions.map((name, index) => (
+            {vernetzungInstitutions.map((name, index) => (
               <motion.div
                 key={name}
                 initial={{ opacity: 0, scale: 0.9 }}
