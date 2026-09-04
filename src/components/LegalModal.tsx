@@ -25,13 +25,18 @@ export default function LegalModal({ isOpen, onClose, title, content }: LegalMod
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="legal-modal-title"
             className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh]"
           >
             <div className="px-8 py-6 border-b border-slate-100 flex justify-between items-center bg-white sticky top-0 z-10">
-              <h2 className="text-2xl font-extrabold text-brand-navy">{title}</h2>
+              <h2 id="legal-modal-title" className="text-2xl font-extrabold text-brand-navy">{title}</h2>
               <button
+                type="button"
                 onClick={onClose}
-                className="p-2 hover:bg-slate-100 rounded-full transition-colors text-slate-500"
+                aria-label="Modal schließen"
+                className="p-2 hover:bg-slate-100 rounded-full transition-colors text-slate-500 cursor-pointer"
               >
                 <X size={24} />
               </button>
@@ -41,8 +46,10 @@ export default function LegalModal({ isOpen, onClose, title, content }: LegalMod
             </div>
             <div className="px-8 py-4 border-t border-slate-100 bg-slate-50 flex justify-end">
               <button
+                type="button"
                 onClick={onClose}
-                className="btn-primary py-2 px-6 text-sm"
+                aria-label="Modal schließen"
+                className="btn-primary py-2 px-6 text-sm cursor-pointer"
               >
                 Schließen
               </button>

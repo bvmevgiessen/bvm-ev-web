@@ -17,6 +17,7 @@ import SpendenPage from './pages/SpendenPage';
 import KarrierePage from './pages/KarrierePage';
 import TaetigkeitsberichtPage from './pages/TaetigkeitsberichtPage';
 import AboBestaetigtPage from './pages/AboBestaetigtPage';
+import LegalPage from './pages/LegalPage';
 import Footer from './components/Footer';
 import ScrollToHash from './components/ScrollToHash';
 
@@ -44,6 +45,11 @@ export default function App() {
           <Route path="/api/newsletter/confirm" element={<AboBestaetigtPage />} />
           <Route path="/api/newsletter/unsubscribe" element={<AboBestaetigtPage />} />
           <Route path="/unsubscribe" element={<AboBestaetigtPage />} />
+          <Route path="/impressum" element={<LegalPage defaultType="impressum" />} />
+          <Route path="/datenschutz" element={<LegalPage defaultType="privacy" />} />
+          <Route path="/privacy" element={<LegalPage defaultType="privacy" />} />
+          <Route path="/satzung" element={<LegalPage defaultType="satzung" />} />
+          <Route path="/spendenbescheinigung" element={<LegalPage defaultType="donation" />} />
         </Routes>
         <Footer />
       </div>

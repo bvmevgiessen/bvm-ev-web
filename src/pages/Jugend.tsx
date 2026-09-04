@@ -111,7 +111,7 @@ export default function Jugend() {
           <div className="absolute inset-0 z-0">
             <img 
               src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=1920" 
-              alt="Jugendgruppe lachend" 
+              alt="Jugendliche Teilnehmer bei einer gemeinsamen Freizeit- und Bildungsaktivität von BVM e.V." 
               className="w-full h-full object-cover opacity-15"
               referrerPolicy="no-referrer"
             />
@@ -193,7 +193,7 @@ export default function Jugend() {
                 <div className="absolute -inset-4 bg-teal-50 rounded-[3rem] -rotate-2 -z-10" />
                 <img 
                   src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=1000" 
-                  alt="Jugendliche im Feriencamp" 
+                  alt="Jugendliche im BVM-Feriencamp bei kooperativen Teamaktivitäten und Workshops" 
                   className="rounded-[2.5rem] shadow-xl w-full h-[450px] object-cover"
                   referrerPolicy="no-referrer"
                 />
@@ -346,7 +346,7 @@ export default function Jugend() {
                 <div className="absolute -inset-4 bg-orange-50 rounded-[3rem] rotate-2 -z-10" />
                 <img 
                   src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&q=80&w=1000" 
-                  alt="Mentor mit Jugendlichen" 
+                  alt="Mentor von BVM e.V. im motivierenden Beratungsgespräch mit Jugendlichen" 
                   className="rounded-[2.5rem] shadow-xl w-full h-[450px] object-cover"
                   referrerPolicy="no-referrer"
                 />

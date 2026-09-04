@@ -163,7 +163,7 @@ export default function Dialog() {
           <div className="absolute inset-0 z-0">
             <img 
               src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=1920" 
-              alt="Gemeinschaftlicher Dialog" 
+              alt="Teilnehmer unterschiedlicher Kulturen im inspirierenden Dialoggespräch" 
               className="w-full h-full object-cover opacity-15"
               referrerPolicy="no-referrer"
             />
@@ -245,7 +245,7 @@ export default function Dialog() {
                 <div className="absolute -inset-4 bg-orange-50 rounded-[3rem] -rotate-2 -z-10" />
                 <img 
                   src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=1000" 
-                  alt="Dialogrunde BVM" 
+                  alt="Teilnehmer einer Dialogrunde von BVM e.V. beim offenen Gedankenaustausch" 
                   className="rounded-[2.5rem] shadow-xl w-full h-[450px] object-cover"
                   referrerPolicy="no-referrer"
                 />
@@ -347,7 +347,7 @@ export default function Dialog() {
                 <div className="absolute -inset-4 bg-teal-50 rounded-[3rem] rotate-2 -z-10" />
                 <img 
                   src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=1000" 
-                  alt="Gemeinsamer Austausch Geschichte" 
+                  alt="Gruppe junger Erwachsener bei einem interkulturellen Austausch und Treffen" 
                   className="rounded-[2.5rem] shadow-xl w-full h-[450px] object-cover"
                   referrerPolicy="no-referrer"
                 />

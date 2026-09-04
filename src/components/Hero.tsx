@@ -85,7 +85,7 @@ export default function Hero() {
             >
               <SafeImage 
                 src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&q=80&w=600" 
-                alt="Community" 
+                alt="Engagierte Vereinsmitglieder und Bürger im Dialog bei einer BVM-Veranstaltung" 
                 className="w-full h-full object-cover" 
                 referrerPolicy="no-referrer"
                 fallbackType="community"
@@ -115,7 +115,7 @@ export default function Hero() {
             >
               <SafeImage 
                 src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=600" 
-                alt="Youth" 
+                alt="Jugendliche Teilnehmer bei einem Bildungsworkshop von BVM e.V." 
                 className="w-full h-full object-cover" 
                 referrerPolicy="no-referrer"
                 fallbackType="youth"
@@ -127,4 +127,3 @@ export default function Hero() {
     </section>
   );
 }
-
