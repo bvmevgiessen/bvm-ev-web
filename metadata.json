@@ -1,5 +1,6 @@
 {
   "name": "Bildung und Verständigung Mittelhessen e.V.",
   "description": "Offizielle Website des BVM e.V. - Bildung und Verständigung Mittelhessen e.V. Brücken bauen, Integration fördern, Jugend stärken.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

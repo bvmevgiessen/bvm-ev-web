@@ -31,24 +31,26 @@ export default function Navbar() {
     { name: 'Integration', href: '/integration' },
   ];
 
-  const newsletterHref = isHome ? '#newsletter' : '/#newsletter';
-
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled || !isHome ? 'bg-white/90 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'}`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="flex items-center" aria-label="Zur Startseite von BVM e.V.">
           <Logo className="scale-90 origin-left" />
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-6 lg:gap-8">
+        <div className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8">
           <div className="relative group">
             <button 
-              className="flex items-center gap-1 text-sm font-semibold text-slate-600 hover:text-brand-teal transition-colors"
+              type="button"
+              aria-expanded={showPlatforms}
+              aria-haspopup="true"
+              className="flex items-center gap-1 text-sm font-semibold text-slate-600 hover:text-brand-teal transition-colors py-2 cursor-pointer focus:outline-none focus:text-brand-teal"
               onMouseEnter={() => setShowPlatforms(true)}
               onMouseLeave={() => setShowPlatforms(false)}
+              onClick={() => setShowPlatforms(!showPlatforms)}
             >
-              Plattformen <ChevronDown size={16} />
+              Plattformen <ChevronDown size={16} aria-hidden="true" />
             </button>
             <AnimatePresence>
               {showPlatforms && (
@@ -58,13 +60,13 @@ export default function Navbar() {
                   exit={{ opacity: 0, y: 10 }}
                   onMouseEnter={() => setShowPlatforms(true)}
                   onMouseLeave={() => setShowPlatforms(false)}
-                  className="absolute top-full left-0 w-48 bg-white shadow-xl rounded-2xl border border-slate-100 py-4 mt-2"
+                  className="absolute top-full left-0 w-48 bg-white shadow-xl rounded-2xl border border-slate-100 py-3 mt-1 z-50"
                 >
                   {platforms.map((p) => (
                     <Link
                       key={p.name}
                       to={p.href}
-                      className="block px-6 py-2 text-sm text-slate-600 hover:text-brand-teal hover:bg-slate-50 transition-colors"
+                      className="block px-6 py-2.5 text-sm text-slate-600 hover:text-brand-teal hover:bg-slate-50 transition-colors font-medium"
                     >
                       {p.name}
                     </Link>
@@ -79,7 +81,7 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-sm font-semibold text-slate-600 hover:text-brand-teal transition-colors"
+                className="text-sm font-semibold text-slate-600 hover:text-brand-teal transition-colors py-2 whitespace-nowrap"
               >
                 {link.name}
               </a>
@@ -87,7 +89,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 to={link.href}
-                className="text-sm font-semibold text-slate-600 hover:text-brand-teal transition-colors"
+                className="text-sm font-semibold text-slate-600 hover:text-brand-teal transition-colors py-2 whitespace-nowrap"
               >
                 {link.name}
               </Link>
@@ -98,17 +100,17 @@ export default function Navbar() {
           {isHome ? (
             <a
               href="#newsletter"
-              className="btn-secondary py-2 px-5 text-sm flex items-center gap-2 shadow-sm hover:shadow-md"
+              className="btn-secondary py-2 px-4 lg:px-5 text-sm flex items-center gap-2 shadow-sm hover:shadow-md whitespace-nowrap"
             >
-              <Mail size={16} />
+              <Mail size={16} aria-hidden="true" />
               <span>Newsletter</span>
             </a>
           ) : (
             <Link
               to="/#newsletter"
-              className="btn-secondary py-2 px-5 text-sm flex items-center gap-2 shadow-sm hover:shadow-md"
+              className="btn-secondary py-2 px-4 lg:px-5 text-sm flex items-center gap-2 shadow-sm hover:shadow-md whitespace-nowrap"
             >
-              <Mail size={16} />
+              <Mail size={16} aria-hidden="true" />
               <span>Newsletter</span>
             </Link>
           )}
@@ -117,7 +119,7 @@ export default function Navbar() {
           <Link
             to="/mitmachen"
             data-testid="mitmachen-cta-desktop"
-            className="btn-primary py-2 px-5 text-sm"
+            className="btn-primary py-2 px-4 lg:px-5 text-sm whitespace-nowrap"
           >
             Mitmachen
           </Link>
@@ -125,11 +127,13 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button 
-          className="md:hidden text-slate-900"
+          type="button"
+          aria-expanded={isOpen}
+          aria-label={isOpen ? "Menü schließen" : "Menü öffnen"}
+          className="md:hidden text-slate-900 p-2 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
-          aria-label="Menü öffnen oder schließen"
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {isOpen ? <X size={28} aria-hidden="true" /> : <Menu size={28} aria-hidden="true" />}
         </button>
       </div>
 

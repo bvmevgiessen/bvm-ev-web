@@ -1550,7 +1550,7 @@ export default function TaetigkeitsberichtPage() {
                                 <div className="flex items-center gap-2 truncate">
                                   <img 
                                     src={file.base64} 
-                                    alt="Preview" 
+                                    alt={`Vorschau des Nachweises: ${file.name}`} 
                                     className="w-10 h-10 object-cover rounded-lg border border-slate-200 shrink-0" 
                                   />
                                   <div className="truncate">
@@ -1561,7 +1561,8 @@ export default function TaetigkeitsberichtPage() {
                                 <button
                                   type="button"
                                   onClick={() => setFotos(fotos.filter((_, idx) => idx !== i))}
-                                  className="text-slate-400 hover:text-red-500"
+                                  aria-label={`Nachweis ${file.name} entfernen`}
+                                  className="text-slate-400 hover:text-red-500 cursor-pointer"
                                 >
                                   <Trash2 size={14} />
                                 </button>

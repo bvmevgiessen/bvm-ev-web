@@ -200,7 +200,7 @@ export default function Integration() {
         <div className="absolute inset-0 z-0">
           <img
             src="https://picsum.photos/seed/integration-mentor/1920/1080"
-            alt="Integration"
+            alt="Integrationslotsinnen und Teilnehmer im offenen Beratungs- und Orientierungsgespräch"
             className="w-full h-full object-cover opacity-20"
             referrerPolicy="no-referrer"
           />
@@ -420,7 +420,7 @@ export default function Integration() {
               <p className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">
                 Ansprechpartner
               </p>
-              <p className="font-semibold text-white">BVM e.V.</p>
+              <p className="font-semibold text-white">Serdar Gülec</p>
             </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">
