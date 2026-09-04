@@ -420,7 +420,7 @@ export default function Integration() {
               <p className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">
                 Ansprechpartner
               </p>
-              <p className="font-semibold text-white">Serdar Gülec</p>
+              <p className="font-semibold text-white">BVM e.V.</p>
             </div>
             <div>
               <p className="text-xs font-bold uppercase tracking-wider text-white/50 mb-1">
