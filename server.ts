@@ -244,6 +244,26 @@ async function startServer() {
     }
   });
 
+  // API endpoint to serve JusticeSquare feeds
+  app.get("/api/justice-feeds", (req, res) => {
+    try {
+      const feedPath = path.join(process.cwd(), "src", "data", "justice_feeds.json");
+      if (fs.existsSync(feedPath)) {
+        const feedData = JSON.parse(fs.readFileSync(feedPath, "utf-8"));
+        return res.json(feedData);
+      }
+      const publicFeedPath = path.join(process.cwd(), "public", "data", "justice_feeds.json");
+      if (fs.existsSync(publicFeedPath)) {
+        const feedData = JSON.parse(fs.readFileSync(publicFeedPath, "utf-8"));
+        return res.json(feedData);
+      }
+      return res.status(404).json({ error: "Feeds not found" });
+    } catch (err: any) {
+      console.error("[Server] Error reading justice feeds:", err);
+      res.status(500).json({ error: "Failed to read feed data" });
+    }
+  });
+
   // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
