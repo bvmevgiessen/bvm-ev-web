@@ -82,6 +82,7 @@ export default function Footer() {
             <li><Link to="/#events" className="hover:text-white transition-colors">Veranstaltungen</Link></li>
             <li><Link to="/karriere" className="hover:text-white transition-colors">Karriere</Link></li>
             <li><Link to="/taetigkeitsbericht" className="hover:text-white transition-colors">Tätigkeitsbericht</Link></li>
+            <li><Link to="/justicesquare" className="text-brand-teal hover:text-white transition-colors font-bold flex items-center gap-1.5">⚖️ JusticeSquare</Link></li>
             <li><Link to="/#contact" className="hover:text-white transition-colors">Kontakt</Link></li>
             <li><Link to="/admin/surveys" className="text-slate-500 hover:text-brand-teal transition-colors font-semibold">🔑 Admin-Dashboard</Link></li>
           </ul>

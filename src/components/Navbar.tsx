@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, Mail } from 'lucide-react';
+import { Menu, X, ChevronDown, Mail, Scale } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link, useLocation } from 'react-router';
 import Logo from './Logo';
@@ -29,6 +29,7 @@ export default function Navbar() {
     { name: 'Jugend', href: '/jugend' },
     { name: 'Dialog', href: '/dialog' },
     { name: 'Integration', href: '/integration' },
+    { name: 'JusticeSquare', href: '/justicesquare', isNew: true },
   ];
 
   return (
@@ -60,15 +61,27 @@ export default function Navbar() {
                   exit={{ opacity: 0, y: 10 }}
                   onMouseEnter={() => setShowPlatforms(true)}
                   onMouseLeave={() => setShowPlatforms(false)}
-                  className="absolute top-full left-0 w-48 bg-white shadow-xl rounded-2xl border border-slate-100 py-3 mt-1 z-50"
+                  className="absolute top-full left-0 w-56 bg-white shadow-xl rounded-2xl border border-slate-100 py-3 mt-1 z-50"
                 >
                   {platforms.map((p) => (
                     <Link
                       key={p.name}
                       to={p.href}
-                      className="block px-6 py-2.5 text-sm text-slate-600 hover:text-brand-teal hover:bg-slate-50 transition-colors font-medium"
+                      className={`flex items-center justify-between px-5 py-2.5 text-sm hover:bg-slate-50 transition-colors font-medium ${
+                        p.isNew 
+                          ? 'text-brand-navy font-bold hover:text-brand-teal' 
+                          : 'text-slate-600 hover:text-brand-teal'
+                      }`}
                     >
-                      {p.name}
+                      <span className="flex items-center gap-2">
+                        {p.isNew && <Scale size={14} className="text-brand-teal shrink-0" />}
+                        <span>{p.name}</span>
+                      </span>
+                      {p.isNew && (
+                        <span className="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-brand-teal/10 text-brand-teal">
+                          Fokus
+                        </span>
+                      )}
                     </Link>
                   ))}
                 </motion.div>
@@ -154,9 +167,17 @@ export default function Navbar() {
                     key={p.name}
                     to={p.href}
                     onClick={() => setIsOpen(false)}
-                    className="block text-lg font-semibold text-slate-900 hover:text-brand-teal"
+                    className="flex items-center justify-between text-lg font-semibold text-slate-900 hover:text-brand-teal"
                   >
-                    {p.name}
+                    <span className="flex items-center gap-2">
+                      {p.isNew && <Scale size={18} className="text-brand-teal shrink-0" />}
+                      <span>{p.name}</span>
+                    </span>
+                    {p.isNew && (
+                      <span className="text-xs font-bold uppercase px-2 py-0.5 rounded bg-brand-teal/10 text-brand-teal">
+                        Fokus
+                      </span>
+                    )}
                   </Link>
                 ))}
               </div>
