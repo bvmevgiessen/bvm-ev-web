@@ -13,12 +13,12 @@ import {
   TrendingUp,
   FileSpreadsheet
 } from 'lucide-react';
-import { infographicSections } from '../../data/justiceSquareData';
+import { infographicSections, InfographicSection, StatMetric } from '../../data/justiceSquareData';
 
 export default function JusticeInfographics() {
   const [activeTabId, setActiveTabId] = useState<string>(infographicSections[0].id);
 
-  const currentSection = infographicSections.find((s) => s.id === activeTabId) || infographicSections[0];
+  const currentSection: InfographicSection = infographicSections.find((s: InfographicSection) => s.id === activeTabId) || infographicSections[0];
 
   return (
     <section id="infografiken" className="py-20 bg-slate-50 border-b border-slate-200">
@@ -40,7 +40,7 @@ export default function JusticeInfographics() {
 
         {/* Tab Navigation */}
         <div className="flex flex-wrap gap-2 sm:gap-3 mb-8 p-1.5 bg-slate-200/60 rounded-2xl w-fit">
-          {infographicSections.map((sec) => {
+          {infographicSections.map((sec: InfographicSection) => {
             const isActive = sec.id === activeTabId;
             return (
               <button
@@ -59,23 +59,23 @@ export default function JusticeInfographics() {
           })}
         </div>
 
-        {/* Infographic Active Content Display */}
+        {/* Active Section Content */}
         <AnimatePresence mode="wait">
           <motion.div
             key={currentSection.id}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3 }}
             className="space-y-8"
           >
-            {/* Theme Intro Card */}
-            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
+            {/* Title & Description Header */}
+            <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
-                <h3 className="text-2xl font-black text-brand-navy mb-2">
+                <h3 className="text-xl sm:text-2xl font-black text-brand-navy mb-2">
                   {currentSection.title}
                 </h3>
-                <p className="text-slate-600 text-sm sm:text-base max-w-3xl leading-relaxed">
+                <p className="text-sm sm:text-base text-slate-600 max-w-3xl leading-relaxed">
                   {currentSection.description}
                 </p>
               </div>
@@ -88,7 +88,7 @@ export default function JusticeInfographics() {
 
             {/* 4 Large Highlight Metrics Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {currentSection.keyMetrics.map((metric, idx) => (
+              {currentSection.keyMetrics.map((metric: StatMetric, idx: number) => (
                 <div
                   key={idx}
                   className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-brand-teal/40 transition-all flex flex-col justify-between group"
@@ -117,20 +117,20 @@ export default function JusticeInfographics() {
               <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
                 <h4 className="text-lg font-bold text-brand-navy mb-1 flex items-center gap-2">
                   <TrendingUp size={18} className="text-brand-teal" />
-                  <span>Strukturierte Aufschlüsselung nach Berufsgruppen</span>
+                  <span>Strukturierte Aufschlüsselung nach Indikatoren & Sektoren</span>
                 </h4>
                 <p className="text-xs sm:text-sm text-slate-500 mb-6">
-                  Überblick über die am stärksten von Amtsenthebungen und Berufsverboten betroffenen Sektoren
+                  Verifizierte Kennzahlen aus offiziellen Gerichtsdatenbanken und institutionellen Jahresberichten
                 </p>
 
                 <div className="space-y-4">
-                  {currentSection.chartData.map((bar, i) => {
-                    // Normalize relative percentage to max 45,000 for visual scaling
-                    const percentage = Math.min(100, Math.round((bar.value / 45000) * 100));
+                  {currentSection.chartData.map((bar: { name: string; value: number; formatted: string; note?: string }, i: number) => {
+                    const maxValue = Math.max(...(currentSection.chartData || []).map(b => b.value), 100);
+                    const percentage = Math.min(100, Math.max(10, Math.round((bar.value / maxValue) * 100)));
                     return (
                       <div key={i} className="space-y-1.5">
                         <div className="flex justify-between items-center text-xs sm:text-sm">
-                          <span className="font-semibold text-slate-700">{bar.name}</span>
+                          <span className="font-semibold text-slate-700">{bar.name} {bar.note ? `(${bar.note})` : ''}</span>
                           <span className="font-bold text-brand-navy">{bar.formatted}</span>
                         </div>
                         <div className="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
@@ -141,9 +141,6 @@ export default function JusticeInfographics() {
                             className="bg-brand-teal h-full rounded-full"
                           />
                         </div>
-                        {bar.note && (
-                          <span className="text-[11px] text-slate-400 block">{bar.note}</span>
-                        )}
                       </div>
                     );
                   })}
@@ -151,16 +148,16 @@ export default function JusticeInfographics() {
               </div>
             )}
 
-            {/* Detailed Findings & Official Sources */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Findings */}
-              <div className="lg:col-span-2 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+            {/* Findings and Sources 2-Column Section */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Detailed Findings */}
+              <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
                 <h4 className="text-lg font-bold text-brand-navy mb-4 flex items-center gap-2">
                   <CheckCircle2 size={18} className="text-brand-teal" />
                   <span>Dokumentierte Kernbefunde</span>
                 </h4>
                 <ul className="space-y-3">
-                  {currentSection.detailedFindings.map((finding, idx) => (
+                  {currentSection.detailedFindings.map((finding: string, idx: number) => (
                     <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-slate-700 leading-relaxed">
                       <ChevronRight size={16} className="text-brand-teal shrink-0 mt-0.5" />
                       <span>{finding}</span>
@@ -180,7 +177,7 @@ export default function JusticeInfographics() {
                     Offizielle Dokumente und Berichte, auf denen diese Auswertung beruht:
                   </p>
                   <div className="space-y-2.5">
-                    {currentSection.officialSources.map((src, idx) => (
+                    {currentSection.officialSources.map((src: { name: string; url: string }, idx: number) => (
                       <a
                         key={idx}
                         href={src.url}

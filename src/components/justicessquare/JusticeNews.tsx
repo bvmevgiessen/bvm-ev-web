@@ -13,7 +13,7 @@ import {
   CheckCircle2,
   Filter
 } from 'lucide-react';
-import { justiceNewsData, JusticeNewsItem } from '../../data/justiceSquareData';
+import { justiceNewsData, JusticeNewsItem, feedMetadata } from '../../data/justiceSquareData';
 import { filterNewsItems, extractUniqueNewsTags } from '../../utils/justiceSummaryEngine';
 
 export default function JusticeNews() {
@@ -50,9 +50,15 @@ export default function JusticeNews() {
             </p>
           </div>
 
-          <div className="text-xs text-slate-500 bg-white p-3 rounded-xl border border-slate-200 shrink-0 flex items-center gap-2">
-            <CheckCircle2 size={16} className="text-brand-teal" />
-            <span>Urheberrechtskonform: Nur Zitate & Zusammenfassungen</span>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2.5 shrink-0">
+            <div className="text-xs text-slate-500 bg-white p-3 rounded-xl border border-slate-200 flex items-center gap-2">
+              <CheckCircle2 size={16} className="text-brand-teal" />
+              <span>Urheberrechtskonform: 3–4 Sätze & Originalquellen</span>
+            </div>
+            <div className="text-xs text-slate-500 bg-white p-3 rounded-xl border border-slate-200 flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
+              <span title={feedMetadata.lastUpdatedFormatted}>Feed synchronisiert ({feedMetadata.totalEntries} Einträge)</span>
+            </div>
           </div>
         </div>
 

@@ -7,7 +7,6 @@ import {
   FileText, 
   BookOpen, 
   BarChart3, 
-  Video, 
   Globe, 
   ShieldCheck 
 } from 'lucide-react';
@@ -17,7 +16,6 @@ import JusticeHero from '../components/justicesquare/JusticeHero';
 import JusticeNews from '../components/justicesquare/JusticeNews';
 import JusticeReports from '../components/justicesquare/JusticeReports';
 import JusticeInfographics from '../components/justicesquare/JusticeInfographics';
-import JusticeMultimedia from '../components/justicesquare/JusticeMultimedia';
 import JusticeUsefulLinks from '../components/justicesquare/JusticeUsefulLinks';
 import JusticeEditorialGuideline from '../components/justicesquare/JusticeEditorialGuideline';
 import ShareButtons from '../components/ShareButtons';
@@ -87,13 +85,6 @@ export default function JusticeSquarePage() {
             </button>
             <button
               type="button"
-              onClick={() => scrollToSection('multimedia')}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-brand-navy hover:bg-slate-100 transition-colors cursor-pointer"
-            >
-              Multimedia
-            </button>
-            <button
-              type="button"
               onClick={() => scrollToSection('links')}
               className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-brand-navy hover:bg-slate-100 transition-colors cursor-pointer"
             >
@@ -103,7 +94,7 @@ export default function JusticeSquarePage() {
         </div>
       </nav>
 
-      {/* Main 4 Sections */}
+      {/* Main Sections */}
       <main>
         {/* 1. NEWS-BEREICH */}
         <JusticeNews />
@@ -114,13 +105,10 @@ export default function JusticeSquarePage() {
         {/* 3. INFOGRAFIKEN */}
         <JusticeInfographics />
 
-        {/* 4. MULTIMEDIA */}
-        <JusticeMultimedia />
-
-        {/* 5. NÜTZLICHE LINKS */}
+        {/* 4. NÜTZLICHE LINKS */}
         <JusticeUsefulLinks />
 
-        {/* 6. REDAKTIONELLE LEITLINIEN */}
+        {/* 5. REDAKTIONELLE LEITLINIEN */}
         <JusticeEditorialGuideline />
 
         {/* Share & Outreach Section */}

@@ -62,7 +62,11 @@ export function filterReports(
 export function extractUniqueNewsTags(items: JusticeNewsItem[]): string[] {
   const set = new Set<string>();
   items.forEach((item) => {
-    item.tags.forEach((tag) => set.add(tag));
+    item.tags.forEach((tag) => {
+      if (tag && tag.trim().length > 0 && tag !== 'Gerichtsverfahren') {
+        set.add(tag);
+      }
+    });
   });
   return Array.from(set);
 }

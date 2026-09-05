@@ -4,7 +4,7 @@ import {
   Scale, 
   FileText, 
   BarChart3, 
-  Video, 
+  Globe, 
   ShieldCheck, 
   ArrowDown, 
   ExternalLink,
@@ -103,11 +103,11 @@ export default function JusticeHero() {
 
           <button
             type="button"
-            onClick={() => scrollToSection('multimedia')}
+            onClick={() => scrollToSection('links')}
             className="bg-white/10 hover:bg-white/15 text-white border border-white/20 font-semibold rounded-2xl py-3 px-6 text-sm flex items-center gap-2.5 backdrop-blur-sm transition-all hover:scale-[1.02] cursor-pointer"
           >
-            <Video size={16} className="text-brand-teal" />
-            <span>Multimedia</span>
+            <Globe size={16} className="text-brand-teal" />
+            <span>Quellen & Links</span>
           </button>
         </motion.div>
 
