@@ -1,0 +1,143 @@
+{
+  "project_name": "JusticeSquare",
+  "subtitle": "Menschenrechte, Freiheit & Gerechtigkeit — Dokumentation von Menschenrechtsverletzungen gegen die Gülen‑Bewegung",
+  "app_type": "hybrid_fullstack",
+  "language": "German",
+  "theme": "Light theme with high-contrast Anthracite structural frames, Deep Navy editorial accents, and warm legal paper backgrounds. Evokes serious investigative journalism, judicial authority, and archival integrity.",
+  "colors": {
+    "primary_navy": "#0F2942",
+    "primary_navy_hover": "#163B61",
+    "anthracite_dark": "#1E293B",
+    "anthracite_deep": "#0F172A",
+    "slate_text_muted": "#475569",
+    "slate_border": "#CBD5E1",
+    "paper_bg_light": "#F8FAFC",
+    "paper_card_white": "#FFFFFF",
+    "accent_justice_gold": "#D97706",
+    "accent_alert_red": "#DC2626",
+    "accent_legal_blue": "#2563EB",
+    "forbidden_colors": ["#7351B7", "#1B93A4"]
+  },
+  "typography": {
+    "headline_font": "Merriweather, Playfair Display, serif",
+    "body_font": "Inter, Manrope, sans-serif",
+    "mono_meta_font": "JetBrains Mono, Source Code Pro, monospace",
+    "rules": {
+      "h1_hero": "text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-slate-900 leading-tight",
+      "h2_section": "text-2xl sm:text-3xl lg:text-4xl font-serif font-bold tracking-tight text-slate-900",
+      "h3_card": "text-xl sm:text-2xl font-serif font-semibold text-slate-900",
+      "body": "text-base leading-relaxed text-slate-700",
+      "meta_badge": "text-xs font-mono uppercase tracking-wider font-semibold"
+    }
+  },
+  "spacing_and_layout": {
+    "grid_modes": {
+      "hero_bento": "grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-stretch",
+      "cards_grid": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8",
+      "reports_grid": "grid grid-cols-1 lg:grid-cols-2 gap-8",
+      "links_button_grid": "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"
+    },
+    "container_padding": "px-4 sm:px-6 lg:px-12 py-12 lg:py-20",
+    "card_padding": "p-6 sm:p-8"
+  },
+  "key_sections": [
+    {
+      "section_id": "hero",
+      "name": "HERO Bereich",
+      "description": "Powerful editorial banner with title 'JusticeSquare – Menschenrechte, Freiheit & Gerechtigkeit', subtitle 'Dokumentation von Menschenrechtsverletzungen gegen die Gülen‑Bewegung', Justitia & world map graphic motifs, quick statistics ticker, and quick-jump navigation buttons to the 4 main sections (NEWS, REPORTS, INFOGRAFIKEN, MULTIMEDIA).",
+      "key_elements": [
+        "Brand Badge: Verein Logo / Menschenrechtsinitiative",
+        "Hero Title & Subtitle with Serif typography",
+        "Section Quick-Jump Pills (NEWS, REPORTS, INFOGRAFIKEN, MULTIMEDIA)",
+        "Hero Background: Subtle watermarked Justitia scale & globe overlay gradient",
+        "Live Fact Stats Row: Total documented arrests, ECtHR judgments, NGO reports count"
+      ]
+    },
+    {
+      "section_id": "news",
+      "name": "NEWS (Aktuelle Nachrichten & Berichterstattung)",
+      "description": "Fact-based news cards with title, date, verified source, 3-4 sentence neutral journalistic summary, source credibility tag, and direct link to original article.",
+      "key_elements": [
+        "Filter/Search bar for news topics & keywords",
+        "Card with date in mono font, source tag, headline, summary paragraph",
+        "External source link button with explicit external link icon",
+        "Data attribute: data-testid='news-card-{id}'"
+      ]
+    },
+    {
+      "section_id": "reports",
+      "name": "REPORTS (Berichte internationaler Organisationen)",
+      "description": "Curated findings from HRW (Human Rights Watch), Amnesty International, UN/UNHCR, Freedom House, ECtHR (EGMR), US State Department. Shows title, institution logo/badge, bullet-point key findings, specific relevance for the Gülen movement, and original PDF/web link.",
+      "key_elements": [
+        "Institution Filter Tabs (Alle, HRW, Amnesty, UN, Freedom House, EGMR, US State Dept)",
+        "Structured Report Card: Header with Institution Badge & Year",
+        "Bullet Points of Key Evidence (Wichtigste Erkenntnisse)",
+        "Relevanz für die Gülen-Bewegung highlight callout box",
+        "Direct PDF / Citation link button",
+        "Data attribute: data-testid='report-card-{id}'"
+      ]
+    },
+    {
+      "section_id": "infographics",
+      "name": "INFOGRAFIKEN (Interaktive Daten & Diagramme)",
+      "description": "Interactive data charts using Recharts with hover tooltips, tab switching between key datasets (Festnahmen seit 2016, Folter- und Misshandlungsfälle, Urteile des EGMR, Internationale Reaktionen, Asylstatistiken in Europa).",
+      "key_elements": [
+        "Dataset Selector Tabs (Festnahmen, Folterfälle, EGMR Urteile, Asyl Europa)",
+        "Interactive Area/Bar/Line Chart with custom dark blue / alert red tooltip",
+        "Interactive Metric Highlight Cards with hover lift",
+        "Download / Share graphic data snippet button",
+        "Data attribute: data-testid='infographic-chart-tab-{key}'"
+      ]
+    },
+    {
+      "section_id": "multimedia",
+      "name": "MULTIMEDIA (Experteninterviews, Doku & Audio)",
+      "description": "Embedded YouTube expert interviews, documentary films, explainer videos (Erklärvideos), and audio statement players with speaker biography, duration, and German transcripts/summaries.",
+      "key_elements": [
+        "Media Filter: Alle, Videos, Dokumentation, Audio-Statements, Experten-Interviews",
+        "Video Player Modal & Embedded Cards with custom play button overlay",
+        "Speaker info, organization affiliation, duration badge",
+        "Data attribute: data-testid='multimedia-card-{id}'"
+      ]
+    },
+    {
+      "section_id": "useful_links",
+      "name": "NÜTZLICHE LINKS & DOKUMENTENDATENBANK",
+      "description": "Grid of clickable reference buttons for HRW, Amnesty, UN Human Rights Office, UNHCR, Freedom House, ECtHR, DW, TR724, Bold Medya, and ECtHR case law DB.",
+      "key_elements": [
+        "Grid of authoritative portal buttons with institution logos/icons",
+        "Hover lift transition with external link indicator",
+        "Data attribute: data-testid='useful-link-button-{id}'"
+      ]
+    }
+  ],
+  "image_urls": {
+    "hero_background_scale": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "lady_justice_statue": "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "european_parliament_flags": "https://images.unsplash.com/photo-1698191310487-9fc33b0e266a?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "court_building_columns": "https://images.unsplash.com/photo-1729434017580-5135aee50365?crop=entropy&cs=srgb&fm=jpg&q=85",
+    "world_globe": "https://images.unsplash.com/photo-1604549944235-3e5579b15cc2?crop=entropy&cs=srgb&fm=jpg&q=85"
+  },
+  "motion_and_interactions": {
+    "library": "framer-motion",
+    "scroll_animations": "Staggered fade-up on viewport entry using motion.div",
+    "hover_effects": "Card subtle translate-y-1 lift with shadow-lg and border-slate-400 tinting",
+    "chart_hover": "Recharts animated active dot & custom styled high-contrast tooltip",
+    "prefers_reduced_motion": "Wrap framer-motion components with reduced motion checks"
+  },
+  "editorial_rules": {
+    "tone": "Neutral, fact-based, journalistically clean, no political slogans, clear separation of facts/analyses/opinions, always visible source citations.",
+    "language": "German (Deutsch) strictly."
+  },
+  "data_testid_rules": "All interactive elements (buttons, links, search input, tabs, filter pills, video triggers, modal closes) MUST include explicit kebab-case data-testid attributes (e.g. data-testid='hero-section-news-button', data-testid='report-card-filter-hrw').",
+  "instructions_to_main_agent": [
+    "Ensure the JusticeSquare microsite is integrated smoothly as a dedicated route/page or prominent feature within the association website.",
+    "Utilize Lucide-react icons (Scale, FileText, BarChart3, Video, ExternalLink, ShieldCheck, Bookmark, Filter, Search, Globe, ChevronRight).",
+    "Use Recharts or Shadcn Chart primitives for the Infographics section with clear interactive tooltips and German labels.",
+    "Implement tabbed filtering for Reports, News, and Multimedia sections for fast, friction-free exploration.",
+    "Follow WCAG AA contrast standards with deep anthracite (#0F172A) text on light paper (#F8FAFC / #FFFFFF) surfaces."
+  ]
+},
+overwrite: true,
+path: "/app/design_guidelines.json"
+}

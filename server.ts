@@ -68,7 +68,7 @@ async function startServer() {
             "https://bvm-newsletter-api.onrender.com",
             "https://*.onrender.com",
             "https://newsletter.bvm-ev.de",
-            "https://events-blog-brief.preview.emergentagent.com",
+            "https://human-rights-hub-14.preview.emergentagent.com",
             "https://challenges.cloudflare.com",
             "https://*.cloudflare.com",
             "https://*.googleapis.com",

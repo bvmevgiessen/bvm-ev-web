@@ -21,6 +21,7 @@ export default function Navbar() {
     { name: 'Über uns', href: isHome ? '#about' : '/#about' },
     { name: 'Events', href: '/events' },
     { name: 'Blog', href: '/blog' },
+    { name: 'JusticeSquare', href: '/justicesquare' },
     { name: 'Kontakt', href: isHome ? '#contact' : '/#contact' },
     { name: 'Spenden', href: '/spenden' },
   ];
