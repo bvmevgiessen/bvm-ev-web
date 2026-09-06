@@ -1,43 +1,5 @@
 [
   {
-    "id": "house-of-one-bc00b061c4",
-    "title": "Mendelssohn-Preis für Rabbiner Nachama",
-    "link": "https://house-of-one.org/news/mendelssohn-preis-fuer-rabbiner-nachama",
-    "date": "2026-09-03T00:00:00+00:00",
-    "source_name": "House of One",
-    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "category": "Dialog",
-    "author": "House of One",
-    "partnerName": "House of One",
-    "partnerUrl": "https://house-of-one.org/",
-    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "excerpt": "Andreas Nachama, Rabbiner im House of One und Gründungsmitglied der Stiftung, ist mit dem Moses-Mendelssohn-Preis des Landes Berlin 2026 ausgezeichnet... Weiterlesen",
-    "tags": [
-      "Dialog"
-    ],
-    "external": true,
-    "sourceId": "house-of-one"
-  },
-  {
-    "id": "house-of-one-fc881ac030",
-    "title": "Helene Braun – die neue Stimme im House of One-Podcast",
-    "link": "https://house-of-one.org/news/helene-braun-die-neue-stimme-im-house-one-podcast",
-    "date": "2026-09-03T00:00:00+00:00",
-    "source_name": "House of One",
-    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "category": "Dialog",
-    "author": "House of One",
-    "partnerName": "House of One",
-    "partnerUrl": "https://house-of-one.org/",
-    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "excerpt": "Wir sind aus der Sommerpause zurück – erholt und mit neuer Stimme in unserer Mitte: Helene Braun, alias Leni, ist die neue jüdische Stimme in unserer ... Weiterlesen",
-    "tags": [
-      "Dialog"
-    ],
-    "external": true,
-    "sourceId": "house-of-one"
-  },
-  {
     "id": "fidev-962f06d182",
     "title": "Erste DiscoverEU-Inklusionsreisen erfolgreich umgesetzt",
     "link": "https://www.fidev.org/post/erste-discovereu-inklusionsreisen-erfolgreich-umgesetzt",
@@ -152,25 +114,6 @@
     "sourceId": "fidev"
   },
   {
-    "id": "house-of-one-d835ae9fda",
-    "title": "Für die Opfer des Anschlags auf den Berliner CSD",
-    "link": "https://house-of-one.org/news/fuer-die-opfer-des-anschlags-auf-den-berliner-csd",
-    "date": "2026-07-28T00:00:00+00:00",
-    "source_name": "House of One",
-    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "category": "Dialog",
-    "author": "House of One",
-    "partnerName": "House of One",
-    "partnerUrl": "https://house-of-one.org/",
-    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "excerpt": "Gemeinsam gegen Hass und Gewalt – ein multireligiöses Friedensgebet  von Imam Kadir Sanci – Pfarrerin Marion Gardei – Rabbiner Andreas Nachama   Mit t... Weiterlesen",
-    "tags": [
-      "Dialog"
-    ],
-    "external": true,
-    "sourceId": "house-of-one"
-  },
-  {
     "id": "sdub-a2e85c74b0",
     "title": "Stellungnahme Anschlag in Berlin",
     "link": "https://sdub.de/stellungnahme-anschlag-csd-berlin/",
@@ -192,44 +135,6 @@
     "sourceId": "sdub"
   },
   {
-    "id": "house-of-one-d74f51f85d",
-    "title": "#119: Abschied – Was ist mit Rebecca?",
-    "link": "https://house-of-one.org/news/119-abschied-was-ist-mit-rebecca",
-    "date": "2026-07-20T00:00:00+00:00",
-    "source_name": "House of One",
-    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "category": "Community",
-    "author": "House of One",
-    "partnerName": "House of One",
-    "partnerUrl": "https://house-of-one.org/",
-    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "excerpt": "In dieser Folge nehmen wir Abschied von Rebecca. Nach fünf Jahren voller Herzblut, Lachen und tiefgründigen Gesprächen dreht sie ihre letzte Runde mit... Weiterlesen",
-    "tags": [
-      "Community"
-    ],
-    "external": true,
-    "sourceId": "house-of-one"
-  },
-  {
-    "id": "house-of-one-e20f2574e4",
-    "title": "#118: Was gibt uns Hoffnung?",
-    "link": "https://house-of-one.org/news/118-was-gibt-uns-hoffnung",
-    "date": "2026-07-06T00:00:00+00:00",
-    "source_name": "House of One",
-    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "category": "Community",
-    "author": "House of One",
-    "partnerName": "House of One",
-    "partnerUrl": "https://house-of-one.org/",
-    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "excerpt": "Es gibt Tage, an denen nichts leichtfällt. Momente, in denen das Licht am Ende des Tunnels kaum zu sehen ist. Wir sprechen in dieser Folge darüber, wa... Weiterlesen",
-    "tags": [
-      "Community"
-    ],
-    "external": true,
-    "sourceId": "house-of-one"
-  },
-  {
     "id": "sdub-c1bd1343d7",
     "title": "1. Juli – Gedenktag gegen antimuslimischen Rassismus",
     "link": "https://sdub.de/gedenktag-gegen-antimuslimischen-rassismus/",
@@ -249,25 +154,6 @@
     ],
     "external": true,
     "sourceId": "sdub"
-  },
-  {
-    "id": "house-of-one-ddbe08ed27",
-    "title": "Fördern Sie die größte Friedensbotschaft der Stadt",
-    "link": "https://house-of-one.org/news/foerdern-sie-die-groesste-friedensbotschaft-der-stadt",
-    "date": "2026-06-29T00:00:00+00:00",
-    "source_name": "House of One",
-    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "category": "Integration",
-    "author": "House of One",
-    "partnerName": "House of One",
-    "partnerUrl": "https://house-of-one.org/",
-    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "excerpt": "Viele Kinder. Viele Geschichten. Eine Botschaft. Unter dem Motto \"Verschieden glauben, gemeinsam malen\" entsteht am Berliner Petriplatz, dort wo einst... Weiterlesen",
-    "tags": [
-      "Integration"
-    ],
-    "external": true,
-    "sourceId": "house-of-one"
   },
   {
     "id": "sdub-d2591f068d",
