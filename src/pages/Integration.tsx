@@ -5,7 +5,6 @@ import {
   ArrowLeft,
   Home,
   Landmark,
-  BadgeCheck,
   Languages,
   Baby,
   Briefcase,
@@ -16,7 +15,6 @@ import {
   Mail,
   ExternalLink,
   Handshake,
-  MapPin,
   CheckCircle2,
 } from 'lucide-react';
 import { Link } from 'react-router';
@@ -42,15 +40,6 @@ const services = [
       'Hilfe bei Terminen mit Behörden',
       'Unterstützung beim Ausfüllen von Dokumenten',
       'Begleitung zum Ausländerbeirat, Sozialamt, Jobcenter',
-    ],
-  },
-  {
-    icon: BadgeCheck,
-    title: 'Integrationslots*innen',
-    items: [
-      'Vereinsmitglieder mit offizieller Integrationslots*innen-Karte (ausgestellt vom Freiwilligenzentrum)',
-      'Begleitung von Geflüchteten und Migranten auf Augenhöhe',
-      'Unterstützung nach anerkannten Standards und Richtlinien',
     ],
   },
   {
@@ -100,19 +89,7 @@ const services = [
   },
 ];
 
-const vernetzungInstitutions = [
-  'Freiwilligenzentrum Gießen',
-  'Angekommen Gießen',
-  'ZIBB e.V.',
-  'Ausländerbeirat Gießen',
-  'Ausländerbeirat Wetzlar',
-  'Jobcenter Gießen',
-  'Agentur für Arbeit Gießen',
-  'VHS Gießen (Sprachkurse)',
-];
-
 const usefulLinks = [
-  { name: 'Freiwilligenzentrum Gießen', url: 'https://freiwilligenzentrum-giessen.de' },
   { name: 'Angekommen Gießen', url: 'https://angekommen-giessen.de' },
   { name: 'ZIBB e.V.', url: 'https://zibb-giessen.de' },
   { name: 'Ausländerbeirat Gießen', url: 'https://www.giessen.de' },
@@ -133,15 +110,11 @@ const faqs = [
   },
   {
     q: 'In welchen Sprachen unterstützen wir?',
-    a: 'Wir beraten auf Deutsch, Türkisch und Englisch. Für weitere Sprachen organisieren wir über unser Netzwerk geeignete Übersetzer*innen und Integrationslots*innen.',
+    a: 'Wir beraten auf Deutsch, Türkisch und Englisch. Für weitere Sprachen organisieren wir über unser Netzwerk geeignete ehrenamtliche Übersetzer*innen.',
   },
   {
     q: 'Wer kann die Angebote nutzen?',
     a: 'Alle Menschen mit Migrations- und Fluchterfahrung in Gießen, Wetzlar und der Region Mittelhessen — unabhängig von einer Vereinsmitgliedschaft. Eine Mitgliedschaft freut uns natürlich trotzdem.',
-  },
-  {
-    q: 'Wie werden die Integrationslots*innen ausgebildet?',
-    a: 'Die offizielle Ausbildung zur Integrationslotsin bzw. zum Integrationslotsen sowie die Vergabe der Integrationslots*innen-Karte erfolgt über das Freiwilligenzentrum Gießen — unser Verein selbst bietet diese Ausbildung nicht an. Eine begrenzte Anzahl unserer engagierten Mitglieder hat diese Qualifikation beim Freiwilligenzentrum erworben, verfügt über die offizielle Karte und begleitet Ratsuchende ehrenamtlich, diskret und auf Augenhöhe.',
   },
 ];
 
@@ -200,7 +173,7 @@ export default function Integration() {
         <div className="absolute inset-0 z-0">
           <img
             src="https://picsum.photos/seed/integration-mentor/1920/1080"
-            alt="Integrationslotsinnen und Teilnehmer im offenen Beratungs- und Orientierungsgespräch"
+            alt="Beratungs- und Orientierungsgespräch zur Integration und Unterstützung"
             className="w-full h-full object-cover opacity-20"
             referrerPolicy="no-referrer"
           />
@@ -285,47 +258,6 @@ export default function Integration() {
                     </li>
                   ))}
                 </ul>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Vernetzung */}
-      <section id="vernetzung" className="py-24 bg-white scroll-mt-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-teal/10 text-brand-teal font-bold text-sm mb-6">
-              <Handshake size={16} /> Vernetzung
-            </div>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-brand-navy mb-6">
-              Vernetzung
-            </h2>
-          </div>
-
-          <div className="max-w-3xl mx-auto mb-12 text-center">
-            <div className="flex items-start gap-4 p-7 rounded-[2rem] bg-brand-teal/5 border border-brand-teal/15">
-              <Landmark className="text-brand-teal shrink-0 mt-1" size={28} />
-              <p className="text-slate-600 leading-relaxed text-left">
-                Wir arbeiten eng mit dem <strong className="text-brand-navy">Ausländerbeirat Gießen</strong>{' '}
-                zusammen — Mitglieder des Ausländerbeirats sind Teil unseres Netzwerks. So
-                gewährleisten wir einen direkten Draht zu den relevanten Stellen in der Region.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-            {vernetzungInstitutions.map((name, index) => (
-              <motion.div
-                key={name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: (index % 4) * 0.07 }}
-                className="flex items-center gap-3 bg-slate-50 border border-slate-100 rounded-2xl px-5 py-4"
-              >
-                <MapPin size={18} className="text-brand-orange shrink-0" />
-                <span className="text-sm font-semibold text-brand-navy leading-snug">{name}</span>
               </motion.div>
             ))}
           </div>
