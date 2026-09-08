@@ -18,6 +18,7 @@ import KarrierePage from './pages/KarrierePage';
 import TaetigkeitsberichtPage from './pages/TaetigkeitsberichtPage';
 import AboBestaetigtPage from './pages/AboBestaetigtPage';
 import LegalPage from './pages/LegalPage';
+import JusticeSquarePage from './pages/JusticeSquarePage';
 import Footer from './components/Footer';
 import ScrollToHash from './components/ScrollToHash';
 
@@ -39,6 +40,8 @@ export default function App() {
           <Route path="/spenden" element={<SpendenPage />} />
           <Route path="/karriere" element={<KarrierePage />} />
           <Route path="/taetigkeitsbericht" element={<TaetigkeitsberichtPage />} />
+          <Route path="/justicesquare" element={<JusticeSquarePage />} />
+          <Route path="/justice-square" element={<JusticeSquarePage />} />
           <Route path="/abo-bestaetigt" element={<AboBestaetigtPage />} />
           <Route path="/newsletter/confirm" element={<AboBestaetigtPage />} />
           <Route path="/confirm" element={<AboBestaetigtPage />} />
