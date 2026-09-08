@@ -1,15 +1,15 @@
 name: Update Partner Feeds & Deploy
 
 # ---------------------------------------------------------------------------
-# Fetches the latest posts from partner RSS feeds once a day, commits the
+# Fetches the latest posts from partner RSS feeds once a week, commits the
 # refreshed `src/data/latest_updates.json` and re-deploys the site to GitHub
 # Pages. Can also be triggered manually from the Actions tab.
 # ---------------------------------------------------------------------------
 
 on:
   schedule:
-    # Daily at 05:00 UTC  (~ 06:00 CET / 07:00 CEST)
-    - cron: '0 5 * * *'
+    # Weekly on Mondays at 05:00 UTC  (~ 06:00 CET / 07:00 CEST)
+    - cron: '0 5 * * 1'
   workflow_dispatch:
 
 # Restrict workflow-level permissions to none by default for maximum security.
@@ -66,7 +66,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "chore(feeds): refresh latest_updates.json"
           title: "chore(feeds): refresh latest_updates.json"
-          body: "Automated daily refresh of partner feeds."
+          body: "Automated weekly refresh of partner feeds."
           branch: "automated-feed-update"
           delete-branch: true
 
