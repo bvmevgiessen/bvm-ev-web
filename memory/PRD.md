@@ -28,6 +28,14 @@ die Gülen-Bewegung. Vier Hauptbereiche: NEWS, REPORTS, INFOGRAFIKEN, MULTIMEDIA
 - App wird via `yarn dev` (tsx server.ts) auf Port 3000 ausgeführt (Supervisor-Config passt nicht zu diesem Repo-Layout).
 - Infografik-Zahlen sind aggregierte, illustrative Richtwerte (in der Leitlinie transparent gemacht).
 
+## Refactor (2026-06) – Automatisiertes Feed-System
+- **Dynamisches Rendering**: Seite lädt `public/data/justice_feeds.json` zur Laufzeit (Fallback: `src/data/justice_feeds.json` Build-Import). Pro Sektion „Letzte Aktualisierung".
+- **Feed-Pipeline**: `scripts/fetch_justice_feeds.py` holt News aus RSS (stockholmcf, IJA, tr724, boldmedya, zamanamerika, zamanaustralia, turkishminute + Guardian/BBC/AlJazeera/DW), strenger Gülen/Hizmet-Identitätsfilter, Dedupe (Titel+Link), Sortierung, exakte Artikel-Links. Reports/Infografiken/Multimedia kuratiert in `scripts/justice_seed.json`.
+- **Workflows**: `.github/workflows/justice-feeds-news.yml` (wöchentlich, Mo), `justice-feeds-monthly.yml` (monatlich, 1.). Committen JSON; `deploy.yml` deployt.
+- **Änderungen UI**: Infografik-Titel → „Interaktive Infografiken & Statistiken"; Reports ohne EGMR-Filter, jetzt Titel/Datum/Institution/Summary/Link; neue Report-/Multimedia-/Link-Quellen laut Vorgabe.
+- **Doku**: `docs/JUSTICESQUARE.md`.
+- Getestet: iteration_3 → 100 %, keine Bugs. News aktuell ~5 reale Einträge mit Deep-Links (variiert je Woche).
+
 ## Backlog / Next
 - P1: JusticeSquare in Footer verlinken; Home-Teaser-Sektion.
 - P1: Admin-Pflege der Inhalte (falls gewünscht) statt statischer Datei.
