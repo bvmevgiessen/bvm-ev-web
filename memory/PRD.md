@@ -36,6 +36,12 @@ die Gülen-Bewegung. Vier Hauptbereiche: NEWS, REPORTS, INFOGRAFIKEN, MULTIMEDIA
 - **Doku**: `docs/JUSTICESQUARE.md`.
 - Getestet: iteration_3 → 100 %, keine Bugs. News aktuell ~5 reale Einträge mit Deep-Links (variiert je Woche).
 
+## Refactor 2 (2026-06) – Hero-Stats & Infografiken
+- **Hero**: 4 neue Stat-Karten: > 332.000 Festnahmen seit 2016, > 150.000 KHK-Entlassungen, 17:0 EGMR Große Kammer (Yalçınkaya Art. 7 EMRK), > 30 Staaten transnationale Entführungen.
+- **Reports**: Amnesty International entfernt (Karte + Filter + Useful-Link); 10 Report-Karten.
+- **Infografiken**: 8 Datensätze (festnahmen, asyl, institutionen, sensitive, folter, folter-art3, lebensrecht, deportationen) mit Zahlen aus silencedturkey.org & turkeyrightsmonitor.com.
+- Getestet: iteration_4 → 100 %, keine Bugs.
+
 ## Backlog / Next
 - P1: JusticeSquare in Footer verlinken; Home-Teaser-Sektion.
 - P1: Admin-Pflege der Inhalte (falls gewünscht) statt statischer Datei.

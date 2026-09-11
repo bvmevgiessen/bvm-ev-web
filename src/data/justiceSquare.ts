@@ -89,7 +89,6 @@ export const FEEDS_URL = `${import.meta.env.BASE_URL}data/justice_feeds.json`;
 /* ------------------------------------------------------------------ */
 export const usefulLinks: UsefulLink[] = [
   { id: 'ul-hrw', name: 'Human Rights Watch', description: 'Internationale NGO', url: 'https://www.hrw.org/' },
-  { id: 'ul-amnesty', name: 'Amnesty International', description: 'Internationale NGO', url: 'https://www.amnesty.org/' },
   { id: 'ul-ohchr', name: 'UN Human Rights Office', description: 'OHCHR', url: 'https://www.ohchr.org/' },
   { id: 'ul-unhcr', name: 'UNHCR', description: 'UN-Flüchtlingshilfswerk', url: 'https://www.unhcr.org/' },
   { id: 'ul-freedomhouse', name: 'Freedom House', description: 'Demokratie-Index', url: 'https://freedomhouse.org/' },
@@ -106,7 +105,8 @@ export const usefulLinks: UsefulLink[] = [
 ];
 
 export const heroStats = [
-  { id: 'stat-arrests', value: '100.000+', label: 'Dokumentierte Festnahmen seit 2016' },
-  { id: 'stat-ecthr', value: 'Art. 6 · 7 · 11', label: 'EGMR-Verletzungen (Yalçınkaya, 2023)' },
-  { id: 'stat-sources', value: '15+ Quellen', label: 'NGOs, UN, Gerichte & Exil-Medien' },
+  { id: 'stat-arrests', value: '> 332.000', label: 'Festnahmen seit 2016 – amtlich erfasste Ermittlungsverfahren' },
+  { id: 'stat-khk', value: '> 150.000', label: 'KHK-Entlassungen – Lehrer, Richter, Beamte per Dekret entlassen' },
+  { id: 'stat-ecthr', value: '17 : 0', label: 'EGMR Große Kammer – Einstimmiges Yalçınkaya-Urteil (Art. 7 EMRK)' },
+  { id: 'stat-renditions', value: '> 30 Staaten', label: 'Transnationale Entführungen – dokumentiert durch UN & Freedom House' },
 ];
