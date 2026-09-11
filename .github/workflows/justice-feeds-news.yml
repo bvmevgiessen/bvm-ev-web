@@ -1,0 +1,52 @@
+name: JusticeSquare News (wöchentlich)
+
+# Holt wöchentlich aktuelle News für JusticeSquare aus RSS-Feeds und
+# committet die aktualisierte data/justice_feeds.json. Der Deploy-Workflow
+# (deploy.yml) baut und veröffentlicht die Seite beim Push auf main.
+
+on:
+  schedule:
+    # Jeden Montag 05:30 UTC
+    - cron: '30 5 * * 1'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: justice-feeds
+  cancel-in-progress: false
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install feedparser==6.0.11 beautifulsoup4==4.12.3 lxml
+
+      - name: Fetch JusticeSquare news
+        run: python scripts/fetch_justice_feeds.py --sections news
+
+      - name: Sync build fallback
+        run: cp public/data/justice_feeds.json src/data/justice_feeds.json
+
+      - name: Commit & push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/justice_feeds.json src/data/justice_feeds.json
+          if git diff --staged --quiet; then
+            echo "Keine Änderungen."
+          else
+            git commit -m "chore(justice): wöchentliches News-Update"
+            git push
+          fi

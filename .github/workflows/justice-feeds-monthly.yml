@@ -1,0 +1,52 @@
+name: JusticeSquare Reports/Infografiken/Multimedia (monatlich)
+
+# Aktualisiert monatlich die kuratierten Bereiche Reports, Infografiken und
+# Multimedia (aus scripts/justice_seed.json) sowie deren "Letzte Aktualisierung".
+# Redaktionelle Pflege erfolgt in scripts/justice_seed.json.
+
+on:
+  schedule:
+    # Am 1. jedes Monats um 05:45 UTC
+    - cron: '45 5 1 * *'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: justice-feeds
+  cancel-in-progress: false
+
+jobs:
+  update-monthly:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install feedparser==6.0.11 beautifulsoup4==4.12.3 lxml
+
+      - name: Refresh reports / infographics / multimedia
+        run: python scripts/fetch_justice_feeds.py --sections monthly
+
+      - name: Sync build fallback
+        run: cp public/data/justice_feeds.json src/data/justice_feeds.json
+
+      - name: Commit & push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/justice_feeds.json src/data/justice_feeds.json
+          if git diff --staged --quiet; then
+            echo "Keine Änderungen."
+          else
+            git commit -m "chore(justice): monatliches Reports/Infografiken/Multimedia-Update"
+            git push
+          fi
