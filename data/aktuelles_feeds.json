@@ -1,0 +1,157 @@
+{
+  "generatedAt": "2026-09-12T07:47:28.666527+00:00",
+  "lastUpdated": {
+    "news": "2026-09-12T07:47:28.666527+00:00",
+    "events": "2026-09-12T07:47:28.666527+00:00",
+    "blogs": "2026-09-12T07:47:28.666527+00:00"
+  },
+  "news": [
+    {
+      "id": "news-vorschau-landtag",
+      "category": "Vorschau",
+      "date": "2026-06-25T10:00:00",
+      "title": "Vorschau: Folgetreffen & Besuch im Hessischen Landtag",
+      "image": "https://images.unsplash.com/photo-1739128165544-532996718871?crop=entropy&cs=srgb&fm=jpg&q=85&w=1000",
+      "location": "Hessischer Landtag, Wiesbaden",
+      "shortText": "Im kommenden Monat steht das vereinbarte Folgetreffen an – geplant ist zudem ein gemeinsamer Besuch im Hessischen Landtag in Wiesbaden, um den Dialog zu Integration und Bildung fortzusetzen.",
+      "highlights": [
+        "Fortsetzung des regelmäßigen Austauschs (alle drei Monate).",
+        "Geplanter Besuch im Hessischen Landtag in Wiesbaden.",
+        "Vertiefung der Themen Demokratiebildung und Jugendförderung."
+      ],
+      "speech": "",
+      "persons": []
+    },
+    {
+      "id": "news-cdu-michelle-kraft",
+      "category": "Rückblick",
+      "date": "2026-05-14T17:00:00",
+      "title": "Treffen mit CDU‑Landtagsabgeordneter Michelle Kraft in Gießen",
+      "image": "https://images.unsplash.com/photo-1551135049-8a33b5883817?crop=entropy&cs=srgb&fm=jpg&q=85&w=1000",
+      "location": "CDU‑Geschäftsstelle Gießen",
+      "shortText": "Eine Delegation des BVM e.V. traf sich mit Michelle Kraft, Landtagsabgeordnete für Gießen I und Fachsprecherin für Integration, zum Austausch über Integration, Bildung und Jugendförderung.",
+      "highlights": [
+        "Delegation des BVM e.V. (7 Personen, inkl. Vertreter von fid e.V. und CDU‑Mitgliedern) traf sich in der CDU‑Geschäftsstelle Gießen mit Frau Michelle Kraft.",
+        "Austausch über Integration, Jugendförderung, Sprachkurse (C1‑Kurse), Herausforderungen im Bildungssystem, Lehrerüberlastung und Unterstützung für Kinder mit Migrationshintergrund.",
+        "Diskussion über Demokratiebildung für Jugendliche und Prävention von Marginalisierung.",
+        "Vereinbarung: alle drei Monate ein Folgetreffen sowie ein Besuch im Hessischen Landtag in Wiesbaden.",
+        "Frau Kraft signalisiert langfristige Zusammenarbeit und regelmäßigen Kontakt."
+      ],
+      "speech": "Sehr geehrte Frau Kraft, herzlichen Dank, dass Sie sich heute die Zeit für uns nehmen. Wir sind als postmigrantischer Verein in Gießen und Wetzlar aktiv und engagieren uns in Integration, Dialog, Bildung und Jugendarbeit. Als Fachsprecherin für Integration sind Sie eine zentrale Ansprechpartnerin für unsere Themen.",
+      "persons": [
+        {
+          "name": "Ömer Altun",
+          "role": "Stellv. Vorsitzender (BVM e.V. / Unternehmer)"
+        },
+        {
+          "name": "Fatma Altun",
+          "role": "Mitglied & Ehrenamtliche, BVM e.V."
+        },
+        {
+          "name": "Kadir Boyaci",
+          "role": "Geschäftsführer fid e.V. & langjähriges CDU‑Mitglied"
+        },
+        {
+          "name": "Mark Bramwell",
+          "role": "CDU‑Mitglied Gießen & Ehrenamtlicher, BVM e.V."
+        },
+        {
+          "name": "Serdar Gülec",
+          "role": "Protokollführer & DialogPlattform (BVM e.V. / IT‑Experte)"
+        },
+        {
+          "name": "Ensar Uzun",
+          "role": "Mitglied & Ehrenamtlicher, BVM e.V."
+        },
+        {
+          "name": "Gülbanu Özden",
+          "role": "Mitglied & Ehrenamtliche, BVM e.V. – Jugendarbeit"
+        }
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "aschura-tag-event-2026",
+      "title": "Aschura-Tag Event",
+      "date": "2026-09-19T19:00:00",
+      "location": "Bahnhofstraße 22, 35576 Wetzlar",
+      "category": "DIALOG",
+      "image": "https://www.unileverfoodsolutions.com.tr/dam/global-ufs/mcos/turkey/turk_mutfagi/G%C3%96RSEL%201%20%20(2).jpg",
+      "description": "Der Tag der Besinnung und des Gedenkens. Das Aschura-Tag Event lädt dazu ein, gemeinsam in Gemeinschaft zu feiern und die Werte von Mitgefühl, Dankbarkeit und Zusammenhalt zu erleben.",
+      "link": "/events/aschura-tag-event-2026"
+    },
+    {
+      "id": "noahs-fest-2026",
+      "title": "Noahs Fest – Aşure Tag",
+      "date": "2026-09-12T14:30:00",
+      "location": "Kirchenplatz, 35390 Gießen",
+      "category": "DIALOG",
+      "image": "https://images.unsplash.com/photo-1751879182448-d7b3dce2b00e?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Ein interreligiöses Fest für Frieden und Zusammenhalt im Herzen von Gießen. Das Noahs Fest wird in Kooperation mit der Evangelischen Philippusgemeinde Gießen organisiert und möchte zu einer friedlichen Atmosphäre in der ",
+      "link": "/events/noahs-fest-2026"
+    },
+    {
+      "id": "sprachcafe-august-2026",
+      "title": "Sprachcafé",
+      "date": "2026-08-26T14:30:00",
+      "location": "Siemensstraße 18, Gebäude 2, 35394 Gießen",
+      "category": "SOZIALES",
+      "image": "https://images.unsplash.com/photo-1705573384249-3eff0565c04d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Ein offenes Sprachcafé für alle – ein Ort der Begegnung, des Austauschs und des gemeinsamen Lernens. In entspannter Atmosphäre können Teilnehmerinnen und Teilnehmer miteinander sprechen, neue Sprachen üben und Freundscha",
+      "link": "/events/sprachcafe-august-2026"
+    },
+    {
+      "id": "Frauenmatinee-2026",
+      "title": "Frauen-Matinée – Verbirg deinen Glanz nicht!",
+      "date": "2026-08-15T16:00:00",
+      "location": "Am Hain 1A, 35444 Biebertal – Bieber",
+      "category": "SOZIALES",
+      "image": "https://images.unsplash.com/photo-1481162854517-d9e353af153d?auto=format&fit=crop&q=80&w=1200",
+      "description": "Ein glamouröser Nachmittag unter dem Motto „Verbirg deinen Glanz nicht!“ – Parla, çünkü sen zaten sahnesin! Die Veranstaltung richtet sich ausschließlich an Frauen und bietet ein abwechslungsreiches Programm mit Verlosun",
+      "link": "/events/Frauenmatinee-2026"
+    }
+  ],
+  "blogs": [
+    {
+      "id": "blog-integration-2026",
+      "title": "Integration in Mittelhessen: Neue Perspektiven für Zusammenleben",
+      "date": "2026-04-15T10:00:00",
+      "author": "Stiftung Dialog und Bildung",
+      "category": "Integration",
+      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800",
+      "excerpt": "In unserem neuesten Bericht beleuchten wir die aktuellen Herausforderungen und Chancen der Integration in der Mittelhessen-Region.",
+      "link": "/blog/blog-integration-2026"
+    },
+    {
+      "id": "blog-dialog-2026",
+      "title": "Interkultureller Dialog: Brücken bauen in der Gesellschaft",
+      "date": "2026-04-10T14:30:00",
+      "author": "Forum für Interkulturellen Dialog",
+      "category": "Dialog",
+      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800",
+      "excerpt": "Wie Dialog die Grundlage für eine erfolgreiche Gesellschaft schafft – Ein Erfahrungsbericht aus unserem neuesten Projekt.",
+      "link": "/blog/blog-dialog-2026"
+    },
+    {
+      "id": "blog-community-2026",
+      "title": "Gemeinsam für eine bessere Zukunft: Unsere Community-Projekte",
+      "date": "2026-04-08T09:15:00",
+      "author": "Time to Help e.V.",
+      "category": "Community",
+      "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=800",
+      "excerpt": "Erfahren Sie, wie unsere Freiwilligen und Partner zusammenarbeiten, um positive Veränderungen in der Gemeinschaft zu schaffen.",
+      "link": "/blog/blog-community-2026"
+    },
+    {
+      "id": "blog-jugend-2026",
+      "title": "Jugendengagement: Die nächste Generation von Veränderungsträgern",
+      "date": "2026-04-05T16:45:00",
+      "author": "LDK e.V.",
+      "category": "Jugend",
+      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800",
+      "excerpt": "Junge Menschen bringen frische Perspektiven und Leidenschaft mit – lesen Sie, wie wir Jugendliche in ihrer persönlichen Entwicklung unterstützen.",
+      "link": "/blog/blog-jugend-2026"
+    }
+  ]
+}
