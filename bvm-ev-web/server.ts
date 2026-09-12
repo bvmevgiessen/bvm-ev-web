@@ -105,6 +105,34 @@ async function startServer() {
   app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
   const DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbVB7mpSdQpm-QvzoJCTLn74BqLNdUD99ILxAoD9I7_kU3WPxNYLxF4luvr7kyDSTiE/exec";
+  let activeConfiguredGasUrl = DEFAULT_GAS_URL;
+
+  // Validate that a candidate URL strictly matches authorized Google Apps Script endpoints
+  function isValidGasUrl(candidate: unknown): candidate is string {
+    if (typeof candidate !== "string") return false;
+    const trimmed = candidate.trim();
+    return /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]{20,120}\/exec$/.test(trimmed);
+  }
+
+  // Helper to refresh configured GAS URL from Firestore
+  async function refreshConfiguredGasUrl(): Promise<string> {
+    try {
+      const configUrl = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/survey_settings/config`;
+      const response = await fetch(configUrl);
+      if (response.ok) {
+        const data = await response.json();
+        const fields = data.fields || {};
+        const fetched = fields.taetigkeitsberichtGasUrl?.stringValue;
+        if (isValidGasUrl(fetched) && !fetched.includes("AKfycb_j2093")) {
+          activeConfiguredGasUrl = fetched;
+          return fetched;
+        }
+      }
+    } catch (err) {
+      console.warn("[Server] Could not refresh gas url from Firestore:", err);
+    }
+    return activeConfiguredGasUrl;
+  }
 
   // API endpoint to fetch survey settings config via server-side REST call
   // This bypasses any client-side Firestore/iframe restriction completely.
@@ -138,6 +166,10 @@ async function startServer() {
         fetchedGasUrl = DEFAULT_GAS_URL;
       }
 
+      if (isValidGasUrl(fetchedGasUrl)) {
+        activeConfiguredGasUrl = fetchedGasUrl;
+      }
+
       const config = {
         taetigkeitsberichtGasUrl: fetchedGasUrl,
         googleSpreadsheetUrl: fields.googleSpreadsheetUrl?.stringValue || "",
@@ -164,7 +196,11 @@ async function startServer() {
       let maskParams: string[] = ["updateMask.fieldPaths=updatedAt"];
 
       if (taetigkeitsberichtGasUrl !== undefined) {
-        fields.taetigkeitsberichtGasUrl = { stringValue: taetigkeitsberichtGasUrl };
+        if (!isValidGasUrl(taetigkeitsberichtGasUrl)) {
+          return res.status(400).json({ error: "Invalid Google Apps Script Web-App URL format." });
+        }
+        activeConfiguredGasUrl = taetigkeitsberichtGasUrl.trim();
+        fields.taetigkeitsberichtGasUrl = { stringValue: activeConfiguredGasUrl };
         maskParams.push("updateMask.fieldPaths=taetigkeitsberichtGasUrl");
       }
       if (googleSpreadsheetUrl !== undefined) {
@@ -195,32 +231,45 @@ async function startServer() {
     }
   });
 
-  // API proxy route for Google Apps Script to bypass browser Content Security Policy
+  // API proxy route for Google Apps Script to bypass browser Content Security Policy.
+  // Secure against Server-Side Request Forgery (SSRF - CodeQL js/request-forgery):
+  // Outgoing requests are strictly restricted to verified Google Apps Script endpoints.
+  // User input is never used directly as an arbitrary destination URL.
   app.post("/api/proxy-apps-script", async (req, res) => {
     const { url, payload } = req.body;
-    if (!url) {
-      return res.status(400).json({ error: "Missing Apps Script url" });
+
+    // Resolve destination URL strictly from verified server-side whitelist
+    let targetUrl = DEFAULT_GAS_URL;
+
+    if (activeConfiguredGasUrl === DEFAULT_GAS_URL) {
+      await refreshConfiguredGasUrl();
     }
 
-    // SSRF Prevention: Restrict forwarded requests strictly to verified Google Apps Script endpoints
-    try {
-      const parsedUrl = new URL(url);
-      if (parsedUrl.protocol !== "https:") {
-        return res.status(400).json({ error: "Invalid protocol. Only HTTPS is allowed." });
+    if (typeof url === "string" && url.trim()) {
+      const requestedUrl = url.trim();
+      if (requestedUrl === DEFAULT_GAS_URL) {
+        targetUrl = DEFAULT_GAS_URL;
+      } else if (requestedUrl === activeConfiguredGasUrl) {
+        targetUrl = activeConfiguredGasUrl;
+      } else {
+        // Check if Firestore was recently updated with this URL
+        const latestGasUrl = await refreshConfiguredGasUrl();
+        if (requestedUrl === latestGasUrl) {
+          targetUrl = latestGasUrl;
+        } else {
+          return res.status(403).json({
+            error: "Forbidden: Target URL is not in the authorized Google Apps Script endpoint list."
+          });
+        }
       }
-      if (parsedUrl.hostname !== "script.google.com") {
-        return res.status(400).json({ error: "Invalid target host. Only script.google.com is allowed." });
-      }
-      if (!parsedUrl.pathname.startsWith("/macros/s/") || !parsedUrl.pathname.endsWith("/exec")) {
-        return res.status(400).json({ error: "Invalid Apps Script path structure." });
-      }
-    } catch (e) {
-      return res.status(400).json({ error: "Malformed URL provided." });
+    } else {
+      // Default to the configured server endpoint if url was omitted
+      targetUrl = activeConfiguredGasUrl;
     }
 
     try {
-      console.log(`[Proxy] Forwarding request to Google Apps Script: ${url.slice(0, 50)}...`);
-      const response = await fetch(url, {
+      console.log(`[Proxy] Forwarding request to authorized Google Apps Script endpoint...`);
+      const response = await fetch(targetUrl, {
         method: "POST",
         headers: {
           "Content-Type": "text/plain;charset=utf-8"
