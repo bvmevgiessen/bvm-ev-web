@@ -42,6 +42,13 @@ die Gülen-Bewegung. Vier Hauptbereiche: NEWS, REPORTS, INFOGRAFIKEN, MULTIMEDIA
 - **Infografiken**: 8 Datensätze (festnahmen, asyl, institutionen, sensitive, folter, folter-art3, lebensrecht, deportationen) mit Zahlen aus silencedturkey.org & turkeyrightsmonitor.com.
 - Getestet: iteration_4 → 100 %, keine Bugs.
 
+## Feature (2026-06) – Aktuelles-Seite (3D)
+- Neue Seite `/aktuelles`: Hero mit 3D-Karten, News (Modal mit Highlights/Sprechtext/Delegation), Events (aus events.json), Blog-3D-Slider (aus blogs.json), „Letzte Aktualisierung" je Bereich.
+- Verlinkt in Header (Navbar) + Footer (Schnellzugriff); auf Home als ERSTES Element (`AktuellesTeaser`).
+- Erste News: Treffen mit CDU-Landtagsabgeordneter Michelle Kraft (Gießen).
+- Feed-System: `scripts/build_aktuelles_feeds.py` + `scripts/aktuelles_seed.json` → `public/data/aktuelles_feeds.json`; monatlicher Workflow `aktuelles-feeds-monthly.yml`. Doku `docs/AKTUELLES.md`.
+- Getestet: iteration_5 → 100 %, keine Bugs.
+
 ## Backlog / Next
 - P1: JusticeSquare in Footer verlinken; Home-Teaser-Sektion.
 - P1: Admin-Pflege der Inhalte (falls gewünscht) statt statischer Datei.

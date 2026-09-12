@@ -18,6 +18,7 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
+    { name: 'Aktuelles', href: '/aktuelles' },
     { name: 'Über uns', href: isHome ? '#about' : '/#about' },
     { name: 'Events', href: '/events' },
     { name: 'Blog', href: '/blog' },

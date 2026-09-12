@@ -10,6 +10,7 @@
   import Partners from '../components/Partners';
   import PuzzleBackground from '../components/PuzzleBackground';
   import Newsletter from '../components/Newsletter';
+  import AktuellesTeaser from '../components/AktuellesTeaser';
 
   export default function Home() {
     return (
@@ -17,6 +18,7 @@
         <PuzzleBackground color="#0D9488" />
         <Navbar />
         <main className="relative z-10 pt-[72px]">
+          <AktuellesTeaser />
           <NewsTicker />
           <Hero />
           <Impact />

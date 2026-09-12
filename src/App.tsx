@@ -17,6 +17,7 @@ import SpendenPage from './pages/SpendenPage';
 import KarrierePage from './pages/KarrierePage';
 import TaetigkeitsberichtPage from './pages/TaetigkeitsberichtPage';
 import JusticeSquarePage from './pages/JusticeSquarePage';
+import AktuellesPage from './pages/AktuellesPage';
 import AboBestaetigtPage from './pages/AboBestaetigtPage';
 import LegalPage from './pages/LegalPage';
 import Footer from './components/Footer';
@@ -41,6 +42,7 @@ export default function App() {
           <Route path="/karriere" element={<KarrierePage />} />
           <Route path="/taetigkeitsbericht" element={<TaetigkeitsberichtPage />} />
           <Route path="/justicesquare" element={<JusticeSquarePage />} />
+          <Route path="/aktuelles" element={<AktuellesPage />} />
           <Route path="/abo-bestaetigt" element={<AboBestaetigtPage />} />
           <Route path="/newsletter/confirm" element={<AboBestaetigtPage />} />
           <Route path="/confirm" element={<AboBestaetigtPage />} />
