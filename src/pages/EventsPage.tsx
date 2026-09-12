@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Calendar, MapPin, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router';
 import Navbar from '../components/Navbar';
+import EventCountdownBadge from '../components/EventCountdownBadge';
 import eventsData from '../data/events.json';
 import { parseDateSafe } from '../utils/date';
 
@@ -61,8 +62,11 @@ export default function EventsPage() {
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           referrerPolicy="no-referrer"
                         />
-                        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black text-brand-teal uppercase tracking-[0.2em]">
-                          {event.category}
+                        <div className="absolute top-4 left-4 flex flex-wrap items-center gap-2">
+                          <span className="bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black text-brand-teal uppercase tracking-[0.2em]">
+                            {event.category}
+                          </span>
+                          <EventCountdownBadge date={event.date} />
                         </div>
                         {((event as any).badge || (event as any).notice) && (
                           <div className={`absolute top-4 right-4 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-sm ${

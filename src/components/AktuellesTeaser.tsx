@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { motion } from 'motion/react';
 import { Newspaper, CalendarDays, BookOpen, ArrowRight, Sparkles } from 'lucide-react';
 import Card3D from './aktuelles/Card3D';
+import EventCountdownBadge from './EventCountdownBadge';
 import { useAktuelles, formatDate } from '../data/aktuelles';
 
 /**
@@ -88,6 +89,9 @@ export default function AktuellesTeaser() {
                     <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white" style={{ background: c.color }}>
                       <c.icon size={11} /> {c.tag}
                     </span>
+                    {c.key === 'event' && (
+                      <EventCountdownBadge date={c.date} className="absolute right-4 top-4" />
+                    )}
                   </div>
                   <div className="flex flex-1 flex-col p-5">
                     <time className="font-mono text-[11px] uppercase tracking-wide text-slate-400">{formatDate(c.date)}</time>

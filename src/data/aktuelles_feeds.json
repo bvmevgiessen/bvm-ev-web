@@ -1,33 +1,34 @@
 {
-  "generatedAt": "2026-09-12T07:47:28.666527+00:00",
+  "generatedAt": "2026-09-12T09:42:47.592370+00:00",
   "lastUpdated": {
-    "news": "2026-09-12T07:47:28.666527+00:00",
-    "events": "2026-09-12T07:47:28.666527+00:00",
-    "blogs": "2026-09-12T07:47:28.666527+00:00"
+    "news": "2026-09-12T09:42:47.592370+00:00",
+    "events": "2026-09-12T09:42:47.592370+00:00",
+    "blogs": "2026-09-12T09:42:47.592370+00:00"
   },
   "news": [
     {
-      "id": "news-vorschau-landtag",
-      "category": "Vorschau",
-      "date": "2026-06-25T10:00:00",
-      "title": "Vorschau: Folgetreffen & Besuch im Hessischen Landtag",
-      "image": "https://images.unsplash.com/photo-1739128165544-532996718871?crop=entropy&cs=srgb&fm=jpg&q=85&w=1000",
-      "location": "Hessischer Landtag, Wiesbaden",
-      "shortText": "Im kommenden Monat steht das vereinbarte Folgetreffen an – geplant ist zudem ein gemeinsamer Besuch im Hessischen Landtag in Wiesbaden, um den Dialog zu Integration und Bildung fortzusetzen.",
-      "highlights": [
-        "Fortsetzung des regelmäßigen Austauschs (alle drei Monate).",
-        "Geplanter Besuch im Hessischen Landtag in Wiesbaden.",
-        "Vertiefung der Themen Demokratiebildung und Jugendförderung."
-      ],
-      "speech": "",
-      "persons": []
-    },
-    {
       "id": "news-cdu-michelle-kraft",
       "category": "Rückblick",
-      "date": "2026-05-14T17:00:00",
+      "date": "2026-09-11T10:00:00",
       "title": "Treffen mit CDU‑Landtagsabgeordneter Michelle Kraft in Gießen",
-      "image": "https://images.unsplash.com/photo-1551135049-8a33b5883817?crop=entropy&cs=srgb&fm=jpg&q=85&w=1000",
+      "image": "/assets/kraft_treffen_gruppe.jpeg",
+      "gallery": [
+        {
+          "url": "/assets/kraft_treffen_gruppe.jpeg",
+          "title": "Gruppenfoto der Delegation",
+          "caption": "Delegation des BVM e.V. und fid e.V. im Gespräch mit MdL Michelle Kraft in Gießen."
+        },
+        {
+          "url": "/assets/kraft_treffen_detail.jpeg",
+          "title": "Gesprächsrunde & Dialog",
+          "caption": "Vertiefender Austausch über Bildungsangebote, C1-Sprachkurse, Lehrkräfteunterstützung und Jugendprojekte."
+        },
+        {
+          "url": "/assets/kraft_treffen_story.jpeg",
+          "title": "Social-Media-Bericht von Michelle Kraft MdL",
+          "caption": "Eindrücke aus der Story von MdL Michelle Kraft zum Besuch der BVM e.V. Delegation."
+        }
+      ],
       "location": "CDU‑Geschäftsstelle Gießen",
       "shortText": "Eine Delegation des BVM e.V. traf sich mit Michelle Kraft, Landtagsabgeordnete für Gießen I und Fachsprecherin für Integration, zum Austausch über Integration, Bildung und Jugendförderung.",
       "highlights": [
@@ -94,10 +95,10 @@
     {
       "id": "sprachcafe-august-2026",
       "title": "Sprachcafé",
-      "date": "2026-08-26T14:30:00",
+      "date": "2026-09-09T14:30:00",
       "location": "Siemensstraße 18, Gebäude 2, 35394 Gießen",
       "category": "SOZIALES",
-      "image": "https://images.unsplash.com/photo-1705573384249-3eff0565c04d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=1200",
       "description": "Ein offenes Sprachcafé für alle – ein Ort der Begegnung, des Austauschs und des gemeinsamen Lernens. In entspannter Atmosphäre können Teilnehmerinnen und Teilnehmer miteinander sprechen, neue Sprachen üben und Freundscha",
       "link": "/events/sprachcafe-august-2026"
     },
