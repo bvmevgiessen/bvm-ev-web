@@ -1,0 +1,17 @@
+{
+  "summary": "Frontend-only regression of /justicesquare after Amnesty removal, hero rewrite and 8 infographics datasets. All acceptance criteria pass. Feeds JSON returns 200 with reports=10 (no Amnesty) and infographics=8. Hero shows 4 stat cards with the required values and German labels. Reports section has 10 cards, no Amnesty filter/card, TRM filter still present, 4 'Letzte Aktualisierung' badges visible. Infographics section shows all 8 tabs (festnahmen, asyl, institutionen, sensitive, folter, folter-art3, lebensrecht, deportationen); institutionen renders a bar chart with 4 categories and hover tooltip; folter tab renders 4 gender bars; heading remains 'Interaktive Infografiken & Statistiken'. News renders 5 cards with 4 filters (Alle + 3 categories). Multimedia uses data-testid prefix 'multimedia-card-' (4 cards). Useful links: 14 total, Amnesty entry absent. Mobile 390px renders single-column, no React runtime crash observed.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": [],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "JusticeSquarePage.tsx still ~600 lines — consider splitting the News/Reports/Infographics/Multimedia/UsefulLinks blocks into subcomponents.",
+    "Spec mentioned test-id prefix 'media-card-' for multimedia; actual code uses 'multimedia-card-'. Naming is fine but keep spec/data-testids in sync."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a", "frontend": "100%"},
+  "seed_data_creation": "None",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Verified via Playwright on external preview URL. Feeds JSON: reports=10 (no Amnesty), infographics=8. Hero: 4 cards with data-testid hero-stat-stat-{arrests,khk,ecthr,renditions}. Report filter for Amnesty absent; report cards = 10. Infographic tabs use data-testid infographic-chart-tab-<key>; chart uses data-testid infographic-chart-<key>; tooltip data-testid=chart-tooltip fires on hover. Multimedia cards use data-testid multimedia-card-<id> (not media-card-). Useful link ul-amnesty absent; 14 useful-link buttons total."
+}

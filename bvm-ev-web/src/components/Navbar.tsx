@@ -1,0 +1,242 @@
+import { useState, useEffect } from 'react';
+import { Menu, X, ChevronDown, Mail, Scale } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Link, useLocation } from 'react-router';
+import Logo from './Logo';
+
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [showPlatforms, setShowPlatforms] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Über uns', href: isHome ? '#about' : '/#about' },
+    { name: 'Events', href: '/events' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Kontakt', href: isHome ? '#contact' : '/#contact' },
+    { name: 'Spenden', href: '/spenden' },
+  ];
+
+  const platforms = [
+    { name: 'Jugend', href: '/jugend' },
+    { name: 'Dialog', href: '/dialog' },
+    { name: 'Integration', href: '/integration' },
+    { name: 'JusticeSquare', href: '/justicesquare', isNew: true },
+  ];
+
+  return (
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled || !isHome ? 'bg-white/90 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'}`}>
+      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <Link to="/" className="flex items-center" aria-label="Zur Startseite von BVM e.V.">
+          <Logo className="scale-90 origin-left" />
+        </Link>
+
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-4 lg:gap-6 xl:gap-8">
+          <div className="relative group">
+            <button 
+              type="button"
+              aria-expanded={showPlatforms}
+              aria-haspopup="true"
+              className="flex items-center gap-1 text-sm font-semibold text-slate-600 hover:text-brand-teal transition-colors py-2 cursor-pointer focus:outline-none focus:text-brand-teal"
+              onMouseEnter={() => setShowPlatforms(true)}
+              onMouseLeave={() => setShowPlatforms(false)}
+              onClick={() => setShowPlatforms(!showPlatforms)}
+            >
+              Plattformen <ChevronDown size={16} aria-hidden="true" />
+            </button>
+            <AnimatePresence>
+              {showPlatforms && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  onMouseEnter={() => setShowPlatforms(true)}
+                  onMouseLeave={() => setShowPlatforms(false)}
+                  className="absolute top-full left-0 w-56 bg-white shadow-xl rounded-2xl border border-slate-100 py-3 mt-1 z-50"
+                >
+                  {platforms.map((p) => (
+                    <Link
+                      key={p.name}
+                      to={p.href}
+                      className={`flex items-center justify-between px-5 py-2.5 text-sm hover:bg-slate-50 transition-colors font-medium ${
+                        p.isNew 
+                          ? 'text-brand-navy font-bold hover:text-brand-teal' 
+                          : 'text-slate-600 hover:text-brand-teal'
+                      }`}
+                    >
+                      <span className="flex items-center gap-2">
+                        {p.isNew && <Scale size={14} className="text-brand-teal shrink-0" />}
+                        <span>{p.name}</span>
+                      </span>
+                      {p.isNew && (
+                        <span className="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-brand-teal/10 text-brand-teal">
+                          Fokus
+                        </span>
+                      )}
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {navLinks.map((link) => (
+            link.href.startsWith('#') ? (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-sm font-semibold text-slate-600 hover:text-brand-teal transition-colors py-2 whitespace-nowrap"
+              >
+                {link.name}
+              </a>
+            ) : (
+              <Link
+                key={link.name}
+                to={link.href}
+                className="text-sm font-semibold text-slate-600 hover:text-brand-teal transition-colors py-2 whitespace-nowrap"
+              >
+                {link.name}
+              </Link>
+            )
+          ))}
+
+          {/* Newsletter Button (Orange with Icon as in Screenshot) */}
+          {isHome ? (
+            <a
+              href="#newsletter"
+              className="btn-secondary py-2 px-4 lg:px-5 text-sm flex items-center gap-2 shadow-sm hover:shadow-md whitespace-nowrap"
+            >
+              <Mail size={16} aria-hidden="true" />
+              <span>Newsletter</span>
+            </a>
+          ) : (
+            <Link
+              to="/#newsletter"
+              className="btn-secondary py-2 px-4 lg:px-5 text-sm flex items-center gap-2 shadow-sm hover:shadow-md whitespace-nowrap"
+            >
+              <Mail size={16} aria-hidden="true" />
+              <span>Newsletter</span>
+            </Link>
+          )}
+
+          {/* Mitmachen Button (Teal) */}
+          <Link
+            to="/mitmachen"
+            data-testid="mitmachen-cta-desktop"
+            className="btn-primary py-2 px-4 lg:px-5 text-sm whitespace-nowrap"
+          >
+            Mitmachen
+          </Link>
+        </div>
+
+        {/* Mobile Toggle */}
+        <button 
+          type="button"
+          aria-expanded={isOpen}
+          aria-label={isOpen ? "Menü schließen" : "Menü öffnen"}
+          className="md:hidden text-slate-900 p-2 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X size={28} aria-hidden="true" /> : <Menu size={28} aria-hidden="true" />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white border-b border-slate-100 overflow-hidden"
+          >
+            <div className="px-6 py-8 flex flex-col gap-6">
+              <div className="space-y-4">
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Plattformen</p>
+                {platforms.map((p) => (
+                  <Link
+                    key={p.name}
+                    to={p.href}
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center justify-between text-lg font-semibold text-slate-900 hover:text-brand-teal"
+                  >
+                    <span className="flex items-center gap-2">
+                      {p.isNew && <Scale size={18} className="text-brand-teal shrink-0" />}
+                      <span>{p.name}</span>
+                    </span>
+                    {p.isNew && (
+                      <span className="text-xs font-bold uppercase px-2 py-0.5 rounded bg-brand-teal/10 text-brand-teal">
+                        Fokus
+                      </span>
+                    )}
+                  </Link>
+                ))}
+              </div>
+              <div className="h-px bg-slate-100" />
+              {navLinks.map((link) => (
+                link.href.startsWith('#') ? (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className="text-lg font-semibold text-slate-900 hover:text-brand-teal"
+                  >
+                    {link.name}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className="text-lg font-semibold text-slate-900 hover:text-brand-teal"
+                  >
+                    {link.name}
+                  </Link>
+                )
+              ))}
+
+              <div className="flex flex-col gap-3 pt-2">
+                {isHome ? (
+                  <a
+                    href="#newsletter"
+                    onClick={() => setIsOpen(false)}
+                    className="btn-secondary w-full text-center flex items-center justify-center gap-2"
+                  >
+                    <Mail size={18} />
+                    <span>Newsletter</span>
+                  </a>
+                ) : (
+                  <Link
+                    to="/#newsletter"
+                    onClick={() => setIsOpen(false)}
+                    className="btn-secondary w-full text-center flex items-center justify-center gap-2"
+                  >
+                    <Mail size={18} />
+                    <span>Newsletter</span>
+                  </Link>
+                )}
+                <Link
+                  to="/mitmachen"
+                  onClick={() => setIsOpen(false)}
+                  data-testid="mitmachen-cta-mobile"
+                  className="btn-primary w-full text-center"
+                >
+                  Mitmachen
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+}
