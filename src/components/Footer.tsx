@@ -77,6 +77,7 @@ export default function Footer() {
           <h4 className="text-lg font-bold mb-8 text-brand-teal">Schnellzugriff</h4>
           <ul className="space-y-4 text-slate-400 text-sm">
             <li><Link to="/#home" className="hover:text-white transition-colors">Startseite</Link></li>
+            <li><Link to="/aktuelles" className="hover:text-white transition-colors">Aktuelles</Link></li>
             <li><Link to="/#about" className="hover:text-white transition-colors">Über uns</Link></li>
             <li><Link to="/#impact" className="hover:text-white transition-colors">Unsere Impact</Link></li>
             <li><Link to="/#events" className="hover:text-white transition-colors">Veranstaltungen</Link></li>
