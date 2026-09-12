@@ -228,6 +228,7 @@ async function startServer() {
       res.status(500).json({ error: err.message });
     }
   });
+  app.use(import_express.default.static(import_path.default.join(process.cwd(), "public")));
   if (process.env.NODE_ENV !== "production") {
     const vite = await (0, import_vite.createServer)({
       server: { middlewareMode: true },
