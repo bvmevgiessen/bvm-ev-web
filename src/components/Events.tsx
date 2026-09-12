@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Calendar, MapPin, Clock, ArrowRight, Timer } from 'lucide-react';
 import { Link } from 'react-router';
+import EventCountdownBadge from './EventCountdownBadge';
 import eventsData from '../data/events.json';
 import { parseDateSafe } from '../utils/date';
 
@@ -118,6 +119,7 @@ export default function Events() {
                     <div className="bg-white/10 backdrop-blur-xl border border-white/20 px-5 py-2 rounded-full text-[10px] font-black text-white uppercase tracking-[0.3em]">
                       {event.category}
                     </div>
+                    <EventCountdownBadge date={event.date} />
                     {((event as any).badge || (event as any).notice) && (
                       <div className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg ${
                         ((event as any).badge?.toLowerCase().includes('abgesagt') || (event as any).notice?.type === 'cancel')

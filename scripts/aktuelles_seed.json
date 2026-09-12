@@ -1,11 +1,63 @@
 {
   "news": [
     {
+      "id": "noahs-fest-2026-heute",
+      "category": "Veranstaltung",
+      "date": "2026-09-12T09:30:00",
+      "title": "Heute: Noahs Fest – Aşure Tag auf dem Kirchenplatz Gießen",
+      "image": "https://images.unsplash.com/photo-1751879182448-d7b3dce2b00e?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "gallery": [
+        {
+          "url": "https://images.unsplash.com/photo-1751879182448-d7b3dce2b00e?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "title": "Noahs Fest – Aşure Tag",
+          "caption": "Interreligiöses Fest für Frieden und Zusammenhalt im Herzen von Gießen."
+        },
+        {
+          "url": "https://www.unileverfoodsolutions.com.tr/dam/global-ufs/mcos/turkey/turk_mutfagi/G%C3%96RSEL%201%20%20(2).jpg",
+          "title": "Traditionelle Aşure (Noahs Pudding)",
+          "caption": "Köstliche Asure-Speise als Zeichen des Teilens und der Verbundenheit."
+        }
+      ],
+      "location": "Kirchenplatz, 35390 Gießen",
+      "shortText": "Heute ab 14:30 Uhr laden der BVM e.V. und die Evangelische Philippusgemeinde herzlich zum Noahs Fest auf dem Kirchenplatz in Gießen ein: Kurzvorträge, gemeinsames Friedensgebet und Verteilung von Noahs Pudding (Aşure) ohne Voranmeldung.",
+      "highlights": [
+        "Interreligiöses Fest für Frieden und Zusammenhalt im Herzen von Gießen in Kooperation mit der Evangelischen Philippusgemeinde Gießen.",
+        "Kurze Ansprachen über die Bedeutung des Noahs Festes und friedliches Zusammenleben über Kultur- und Religionsgrenzen hinweg.",
+        "Gemeinsames Friedensgebet für den Zusammenhalt in unserer Stadt.",
+        "Kostenlose Verteilung von traditionellem Noahs Pudding (Aşure) an Passantinnen, Passanten, Gäste und Freundinnen und Freunde.",
+        "Offene Begegnung und Raum für Dialog bei angenehmer Hintergrundmusik – keine Voranmeldung erforderlich (Eintritt frei)."
+      ],
+      "speech": "Das Noahs Fest und die Asure-Tradition symbolisieren, wie viele verschiedene Gaben zu einem harmonischen Ganzen zusammenkommen. Genau wie die unterschiedlichen Zutaten im Asure-Pudding bereichern Menschen verschiedener Herkunft und Überzeugungen unsere Stadtgesellschaft. Wir laden alle Bürgerinnen und Bürger herzlich ein, heute mit uns ins Gespräch zu kommen!",
+      "persons": [
+        { "name": "Evangelische Philippusgemeinde Gießen", "role": "Kooperationspartner & Mitveranstalter" },
+        { "name": "BVM e.V. DialogPlattform", "role": "Organisation & Interreligiöser Dialog" },
+        { "name": "Ömer Altun", "role": "Stellv. Vorsitzender BVM e.V." },
+        { "name": "Ehrenamtsteam BVM e.V.", "role": "Aşure-Zubereitung & Gästebetreuung" }
+      ]
+    },
+    {
       "id": "news-cdu-michelle-kraft",
       "category": "Rückblick",
-      "date": "2026-05-14T17:00:00",
+      "date": "2026-09-11T10:00:00",
       "title": "Treffen mit CDU‑Landtagsabgeordneter Michelle Kraft in Gießen",
-      "image": "https://images.unsplash.com/photo-1551135049-8a33b5883817?crop=entropy&cs=srgb&fm=jpg&q=85&w=1000",
+      "image": "/assets/kraft_treffen_gruppe.jpeg",
+      "gallery": [
+        {
+          "url": "/assets/kraft_treffen_gruppe.jpeg",
+          "title": "Gruppenfoto der Delegation",
+          "caption": "Delegation des BVM e.V. und fid e.V. im Gespräch mit MdL Michelle Kraft in Gießen."
+        },
+        {
+          "url": "/assets/kraft_treffen_detail.jpeg",
+          "title": "Gesprächsrunde & Dialog",
+          "caption": "Vertiefender Austausch über Bildungsangebote, C1-Sprachkurse, Lehrkräfteunterstützung und Jugendprojekte."
+        },
+        {
+          "url": "/assets/kraft_treffen_story.jpeg",
+          "title": "Social-Media-Bericht von Michelle Kraft MdL",
+          "caption": "Eindrücke aus der Story von MdL Michelle Kraft zum Besuch der BVM e.V. Delegation."
+        }
+      ],
       "location": "CDU‑Geschäftsstelle Gießen",
       "shortText": "Eine Delegation des BVM e.V. traf sich mit Michelle Kraft, Landtagsabgeordnete für Gießen I und Fachsprecherin für Integration, zum Austausch über Integration, Bildung und Jugendförderung.",
       "highlights": [
@@ -25,22 +77,6 @@
         { "name": "Ensar Uzun", "role": "Mitglied & Ehrenamtlicher, BVM e.V." },
         { "name": "Gülbanu Özden", "role": "Mitglied & Ehrenamtliche, BVM e.V. – Jugendarbeit" }
       ]
-    },
-    {
-      "id": "news-vorschau-landtag",
-      "category": "Vorschau",
-      "date": "2026-06-25T10:00:00",
-      "title": "Vorschau: Folgetreffen & Besuch im Hessischen Landtag",
-      "image": "https://images.unsplash.com/photo-1739128165544-532996718871?crop=entropy&cs=srgb&fm=jpg&q=85&w=1000",
-      "location": "Hessischer Landtag, Wiesbaden",
-      "shortText": "Im kommenden Monat steht das vereinbarte Folgetreffen an – geplant ist zudem ein gemeinsamer Besuch im Hessischen Landtag in Wiesbaden, um den Dialog zu Integration und Bildung fortzusetzen.",
-      "highlights": [
-        "Fortsetzung des regelmäßigen Austauschs (alle drei Monate).",
-        "Geplanter Besuch im Hessischen Landtag in Wiesbaden.",
-        "Vertiefung der Themen Demokratiebildung und Jugendförderung."
-      ],
-      "speech": "",
-      "persons": []
     }
   ]
 }

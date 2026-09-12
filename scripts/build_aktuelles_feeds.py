@@ -78,8 +78,14 @@ def build_events(now):
     sel = within_window(items, now, upcoming_bias=True)
     if len(sel) < 3:
         sel = nearest(items, now, MAX_ITEMS)
-    sel.sort(key=lambda it: it["_dt"], reverse=True)
-    return [{k: v for k, v in it.items() if k != "_dt"} for it in sel[:MAX_ITEMS]]
+    # Order upcoming events (today first) chronologically, followed by recent past events
+    today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    upcoming = [it for it in sel if it["_dt"] >= today_start]
+    past = [it for it in sel if it["_dt"] < today_start]
+    upcoming.sort(key=lambda it: it["_dt"])
+    past.sort(key=lambda it: it["_dt"], reverse=True)
+    sorted_events = upcoming + past
+    return [{k: v for k, v in it.items() if k != "_dt"} for it in sorted_events[:MAX_ITEMS]]
 
 
 def build_blogs(now):
