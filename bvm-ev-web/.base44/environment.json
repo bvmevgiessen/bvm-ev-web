@@ -1,0 +1,27 @@
+{
+  "previewPort": 3000,
+  "healthPath": "/",
+  "startCommand": "docker compose -f docker-compose.base44.yml up -d",
+  "secrets": [
+    {
+      "name": "VITE_FIREBASE_API_KEY",
+      "description": "Firebase Web API key (Firebase console → Project settings → General → Web API key). Needed for Firestore/auth features to work.",
+      "requiredAtBoot": false
+    },
+    {
+      "name": "VITE_FIREBASE_PROJECT_ID",
+      "description": "Firebase project ID. Optional; the app has a built-in default.",
+      "requiredAtBoot": false
+    },
+    {
+      "name": "VITE_FIREBASE_APP_ID",
+      "description": "Firebase App ID. Optional; the app has a built-in default.",
+      "requiredAtBoot": false
+    },
+    {
+      "name": "GEMINI_API_KEY",
+      "description": "Google Gemini API key (Google AI Studio). Optional; only used if the app calls Gemini.",
+      "requiredAtBoot": false
+    }
+  ]
+}

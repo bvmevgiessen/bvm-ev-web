@@ -1,0 +1,97 @@
+name: Update Partner Feeds & Deploy
+
+# ---------------------------------------------------------------------------
+# Fetches the latest posts from partner RSS feeds once a week, commits the
+# refreshed `src/data/latest_updates.json` and re-deploys the site to GitHub
+# Pages. Can also be triggered manually from the Actions tab.
+# ---------------------------------------------------------------------------
+
+on:
+  schedule:
+    # Weekly on Mondays at 05:00 UTC  (~ 06:00 CET / 07:00 CEST)
+    - cron: '0 5 * * 1'
+  workflow_dispatch:
+
+# Restrict workflow-level permissions to none by default for maximum security.
+permissions: {}
+
+# Avoid clashing with the regular Deploy workflow.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  update-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      # Required to check out code and push refreshed RSS data to latest_updates.json.
+      contents: write
+      # Required to create or update pull requests
+      pull-requests: write
+      # Required to deploy GitHub Pages and authenticate with OIDC.
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          # Do NOT persist credentials into git config (avoids duplicate Authorization headers)
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Install Playwright (Chromium for JS-rendered sources)
+        run: python -m playwright install --with-deps chromium
+
+      - name: Fetch partner feeds
+        run: python scripts/fetch_feeds.py
+
+      - name: Create Pull Request or push refreshed feed data
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          # Use either the built-in token or your PAT secret:
+          # token: ${{ secrets.GITHUB_TOKEN }}
+          # or token: ${{ secrets.GIT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(feeds): refresh latest_updates.json"
+          title: "chore(feeds): refresh latest_updates.json"
+          body: "Automated weekly refresh of partner feeds."
+          branch: "automated-feed-update"
+          delete-branch: true
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        env:
+          ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install npm dependencies
+        run: npm ci || npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: ./dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

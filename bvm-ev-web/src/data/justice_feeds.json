@@ -1,0 +1,875 @@
+{
+  "metadata": {
+    "title": "JusticeSquare – Dokumentation von Menschenrechtsverletzungen gegen die Gülen-Bewegung",
+    "description": "Verifizierte, faktenbasierte und periodisch aktualisierte Dossiers, Berichte, News und Multimedia-Inhalte internationaler Institutionen.",
+    "lastUpdated": "2026-09-05T19:48:51.274195+00:00",
+    "lastUpdatedFormatted": "05. September 2026, 19:48 Uhr UTC",
+    "version": "2.0",
+    "totalEntries": 36,
+    "feedStatus": "active",
+    "workflowType": "Automated Multi-Source RSS/Scraper Feed"
+  },
+  "sources": [
+    {
+      "id": "justicesquare",
+      "name": "JusticeSquare.org",
+      "url": "https://justicesquare.org/",
+      "feed": "https://justicesquare.org/feed/",
+      "type": "news",
+      "status": "active"
+    },
+    {
+      "id": "turkishminute",
+      "name": "Turkish Minute",
+      "url": "https://turkishminute.com/",
+      "feed": "https://turkishminute.com/feed/",
+      "type": "news",
+      "status": "active"
+    },
+    {
+      "id": "ija",
+      "name": "International Journalists Association e.V.",
+      "url": "https://internationaljournalists.org/de/",
+      "feed": "https://internationaljournalists.org/de/feed/",
+      "type": "news",
+      "status": "active"
+    },
+    {
+      "id": "hrw",
+      "name": "Human Rights Watch",
+      "url": "https://www.hrw.org/world-report/2025/country-chapters/turkiye",
+      "type": "reports",
+      "status": "active"
+    },
+    {
+      "id": "scf",
+      "name": "Stockholm Center for Freedom",
+      "url": "https://stockholmcf.org/",
+      "feed": "https://stockholmcf.org/feed/",
+      "type": "reports",
+      "status": "active"
+    },
+    {
+      "id": "others",
+      "name": "Solidarity with OTHERS",
+      "url": "https://solidaritywithothers.com/",
+      "feed": "https://solidaritywithothers.com/feed/",
+      "type": "reports",
+      "status": "active"
+    },
+    {
+      "id": "ohchr",
+      "name": "UN Human Rights Office (OHCHR)",
+      "url": "https://www.ohchr.org/en/countries/turkiye",
+      "type": "reports",
+      "status": "active"
+    },
+    {
+      "id": "freedomhouse",
+      "name": "Freedom House",
+      "url": "https://freedomhouse.org/",
+      "type": "reports",
+      "status": "active"
+    },
+    {
+      "id": "hrd",
+      "name": "Human Rights Defenders e.V.",
+      "url": "https://humanrights-ev.com/",
+      "type": "reports",
+      "status": "active"
+    },
+    {
+      "id": "brokenchalk",
+      "name": "Broken Chalk",
+      "url": "https://brokenchalk.org/",
+      "type": "reports",
+      "status": "active"
+    },
+    {
+      "id": "ast",
+      "name": "Advocates of Silenced Turkey",
+      "url": "https://silencedturkey.org/",
+      "feed": "https://silencedturkey.org/feed/",
+      "type": "reports",
+      "status": "active"
+    },
+    {
+      "id": "tenkilmuseum",
+      "name": "Tenkil Memorial Museum",
+      "url": "https://tenkilmuseum.com/",
+      "type": "multimedia",
+      "status": "active"
+    }
+  ],
+  "items": [
+    {
+      "id": "feed-ija-1",
+      "category": "news",
+      "title": "Wem glauben wir? Welche Nachrichtenquelle ist vertrauenswürdig?",
+      "date": "Thu, 03 Sep 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "International Journalists Association e.V.",
+      "source_url": "https://internationaljournalists.org/de/",
+      "link": "https://internationaljournalists.org/de/wem-glauben-wir/",
+      "summary": "Anfang September diskutierten Journalisten in Frankfurt über Recherchequellen, die Vertrauenswürdigkeit von Nachrichten und den effektiven Einsatz von Künstlicher Intelligenz im Journalismus. Auf dem Podium saßen Cai Tore Philippsen als verantwortlicher Redakteur von FAZ.NET, der langjährige FAZ-Korrespondent Rainer Hermann, Carmen Colinas von den Neuen deutschen Medienmacher*innen sowie Ebru Kaymak als verantwortliche Redakteurin der gemeinnützigen Nachrichtenplattform Deutsche […] Wem glauben wir?",
+      "tags": [
+        "Pressefreiheit",
+        "KHK",
+        "Exiljournalismus"
+      ],
+      "readTime": "3-4 Min."
+    },
+    {
+      "id": "feed-ija-2",
+      "category": "news",
+      "title": "Systematische Zensur in der Türkei: Journalisten-Konten blockiert",
+      "date": "Fri, 21 Aug 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "International Journalists Association e.V.",
+      "source_url": "https://internationaljournalists.org/de/",
+      "link": "https://internationaljournalists.org/de/systematische-zensur/",
+      "summary": "Die türkische Regierungspartei AKP setzt ihre Einschränkungen gegen Medienanbieter und Journalisten weiter fort. Als Grund dafür wird offiziell der „Schutz der nationalen Sicherheit und der öffentlichen Ordnung“ angegeben.",
+      "tags": [
+        "Pressefreiheit",
+        "KHK",
+        "Exiljournalismus"
+      ],
+      "readTime": "3-4 Min."
+    },
+    {
+      "id": "feed-ija-3",
+      "category": "news",
+      "title": "Türkischer Journalistenverband: Scharfe Kritik an Akkreditierungssperren für oppositionelle Medien",
+      "date": "Fri, 21 Aug 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "International Journalists Association e.V.",
+      "source_url": "https://internationaljournalists.org/de/",
+      "link": "https://internationaljournalists.org/de/tuerkischer-journalistenverband-kritik-an-akkreditierungssperren-fuer-oppositionelle-medien/",
+      "summary": "In einer offiziellen Erklärung hat der Verband Türkischer Journalisten (TGC) scharfe Kritik an den Arbeitsbedingungen für kritische Medienvertreter geübt. Auslöser dafür sind die jüngsten Vorfälle bei einem Gerichtsprozess sowie bei einem offiziellen Termin des Gesundheitsministers.",
+      "tags": [
+        "Pressefreiheit",
+        "KHK",
+        "Exiljournalismus"
+      ],
+      "readTime": "3-4 Min."
+    },
+    {
+      "id": "feed-ija-4",
+      "category": "news",
+      "title": "Humanity Cartoons in England",
+      "date": "Wed, 15 Jul 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "International Journalists Association e.V.",
+      "source_url": "https://internationaljournalists.org/de/",
+      "link": "https://internationaljournalists.org/de/humanity-cartoons-in-england/",
+      "summary": "Die „Humanity Cartoons“-Ausstellung – ein internationales Projekt, das durch Karikaturen auf Themen wie Menschenrechte, Flucht und gesellschaftlichen Zusammenhalt aufmerksam macht – ist im Juni in Manchester und Brighton für die Besucher geöffnet worden. Die erste Ausstellung hat am 17. Juni in Manchester im Friends’ Meeting House stattgefunden.",
+      "tags": [
+        "Pressefreiheit",
+        "KHK",
+        "Exiljournalismus"
+      ],
+      "readTime": "3-4 Min."
+    },
+    {
+      "id": "feed-turkishminute-1",
+      "category": "news",
+      "title": "Turkey detains 10 over alleged aid to 2016 coup defendant",
+      "date": "Fri, 04 Sep 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "Turkish Minute",
+      "source_url": "https://turkishminute.com/",
+      "link": "https://turkishminute.com/2026/09/04/turkey-detains-10-over-alleged-aid-to-2016-coup-defendant/",
+      "summary": "Turkish police on Friday detained 10 people in İstanbul and Eskişehir for allegedly giving money to former army captain Burkay Karatepe while he was at large, nearly 10 years after prosecutors accused him of taking part in an operation to assassinate President Recep Tayyip Erdoğan during a coup attempt on July 15, 2016. Police raided […] The post Turkey detains 10 over alleged aid to 2016 coup defendant appeared first on Turkish Minute .",
+      "tags": [
+        "Europarat",
+        "ByLock",
+        "EMRK",
+        "Rechtsstaat"
+      ],
+      "readTime": "3-4 Min."
+    },
+    {
+      "id": "feed-turkishminute-2",
+      "category": "news",
+      "title": "Former judge takes legal challenge to Turkey’s official inflation figures to ECtHR",
+      "date": "Fri, 04 Sep 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "Turkish Minute",
+      "source_url": "https://turkishminute.com/",
+      "link": "https://turkishminute.com/2026/09/04/former-judge-takes-legal-challenge-to-turkeys-official-inflation-figures-to-ecthr/",
+      "summary": "Retired Turkish Council of State judge Önder Tekin has taken his legal challenge to inflation figures published by the Turkish Statistical Institute (TurkStat) to the European Court of Human Rights (ECtHR) after Turkish courts rejected his case. Tekin argues that TurkStat has understated inflation for the past five to six years and that wage increases […] The post Former judge takes legal challenge to Turkey’s official inflation figures to ECtHR appeared first on Turkish Minute .",
+      "tags": [
+        "Europarat",
+        "ByLock",
+        "EMRK",
+        "Rechtsstaat"
+      ],
+      "readTime": "3-4 Min."
+    },
+    {
+      "id": "feed-ast-1",
+      "category": "reports",
+      "title": "The Right to a Defense, Denied: İmamoğlu’s July 2026 Hearings",
+      "date": "Tue, 01 Sep 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "Advocates of Silenced Turkey",
+      "source_url": "https://silencedturkey.org/",
+      "link": "https://silencedturkey.org/the-right-to-a-defense-denied-imamoglus-july-2026-hearings",
+      "summary": "The right to defend oneself is one of the foundations on which a fair trial rests. Without it, a courtroom risks ceasing to be a place where guilt is tested and becoming instead a place where a verdict is simply delivered.",
+      "tags": [
+        "Frauenrechte",
+        "Kinderrechte",
+        "Haftbedingungen"
+      ],
+      "readTime": "3-4 Min.",
+      "institution": "Advocates of Silenced Turkey (AST)",
+      "keyPoints": [
+        "Dokumentation durch Advocates of Silenced Turkey.",
+        "Systematische Erfassung verifizierter Verstöße gegen internationale Rechtsnormen.",
+        "Fokus auf EMRK-Konformität und das Verbot willkürlicher Inhaftierung."
+      ],
+      "relevance": "Beweiskräftige Dokumentation von Advocates of Silenced Turkey für internationale Gremien und juristische Verfahren."
+    },
+    {
+      "id": "feed-ast-2",
+      "category": "reports",
+      "title": "İmamoğlu on Trial: Anatomy of a 407-Defendant Mega-Case",
+      "date": "Sun, 30 Aug 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "Advocates of Silenced Turkey",
+      "source_url": "https://silencedturkey.org/",
+      "link": "https://silencedturkey.org/imamoglu-on-trial-anatomy-of-a-407-defendant-mega-case",
+      "summary": "In March 2025, the elected Mayor of Istanbul and Türkiye’s leading opposition figure was detained, then jailed. One year later, his case opened as a single trial involving 407 defendants. As of today, Ekrem İmamoğlu has not been convicted of anything in this case, and the proceedings remain still ongoing.",
+      "tags": [
+        "Frauenrechte",
+        "Kinderrechte",
+        "Haftbedingungen"
+      ],
+      "readTime": "3-4 Min.",
+      "institution": "Advocates of Silenced Turkey (AST)",
+      "keyPoints": [
+        "Dokumentation durch Advocates of Silenced Turkey.",
+        "Systematische Erfassung verifizierter Verstöße gegen internationale Rechtsnormen.",
+        "Fokus auf EMRK-Konformität und das Verbot willkürlicher Inhaftierung."
+      ],
+      "relevance": "Beweiskräftige Dokumentation von Advocates of Silenced Turkey für internationale Gremien und juristische Verfahren."
+    },
+    {
+      "id": "feed-ast-3",
+      "category": "reports",
+      "title": "Silencing the Press Before the Summit: Journalists Detained Ahead of NATO",
+      "date": "Fri, 28 Aug 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "Advocates of Silenced Turkey",
+      "source_url": "https://silencedturkey.org/",
+      "link": "https://silencedturkey.org/silencing-the-press-before-the-summit-journalists-detained-ahead-of-nato",
+      "summary": "When a government wants to control what the world sees, it starts with the people whose job is to report it. In the days before NATO’s leaders gathered in Ankara, Türkiye’s authorities carried out pre-dawn raids across the country and detained working journalists. The timing was not incidental.",
+      "tags": [
+        "Frauenrechte",
+        "Kinderrechte",
+        "Haftbedingungen"
+      ],
+      "readTime": "3-4 Min.",
+      "institution": "Advocates of Silenced Turkey (AST)",
+      "keyPoints": [
+        "Dokumentation durch Advocates of Silenced Turkey.",
+        "Systematische Erfassung verifizierter Verstöße gegen internationale Rechtsnormen.",
+        "Fokus auf EMRK-Konformität und das Verbot willkürlicher Inhaftierung."
+      ],
+      "relevance": "Beweiskräftige Dokumentation von Advocates of Silenced Turkey für internationale Gremien und juristische Verfahren."
+    },
+    {
+      "id": "feed-ast-4",
+      "category": "reports",
+      "title": "NATO Came to Ankara While Türkiye Banned Protest",
+      "date": "Wed, 26 Aug 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "Advocates of Silenced Turkey",
+      "source_url": "https://silencedturkey.org/",
+      "link": "https://silencedturkey.org/nato-came-to-ankara-while-turkiye-banned-protest",
+      "summary": "In the first week of July 2026, the leaders of the world’s largest military alliance arrived in a capital where it had been illegal to gather in public for nearly two weeks. NATO’s summit brought thirty-two heads of state and government to Ankara, a city under a standing prohibition on all public assembly.",
+      "tags": [
+        "Frauenrechte",
+        "Kinderrechte",
+        "Haftbedingungen"
+      ],
+      "readTime": "3-4 Min.",
+      "institution": "Advocates of Silenced Turkey (AST)",
+      "keyPoints": [
+        "Dokumentation durch Advocates of Silenced Turkey.",
+        "Systematische Erfassung verifizierter Verstöße gegen internationale Rechtsnormen.",
+        "Fokus auf EMRK-Konformität und das Verbot willkürlicher Inhaftierung."
+      ],
+      "relevance": "Beweiskräftige Dokumentation von Advocates of Silenced Turkey für internationale Gremien und juristische Verfahren."
+    },
+    {
+      "id": "feed-others-1",
+      "category": "reports",
+      "title": "Turkey ordered 31 lawyers detained and searched 39 law offices. The Justice Minister pronounced on their “guilt” the same day.",
+      "date": "Fri, 04 Sep 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "Solidarity with OTHERS",
+      "source_url": "https://solidaritywithothers.com/",
+      "link": "https://solidaritywithothers.com/turkey-ordered-31-lawyers-detained-and-searched-39-law-offices-the-justice-minister-pronounced-on-their-guilt-the-same-day/?utm_source=rss&utm_medium=rss&utm_campaign=turkey-ordered-31-lawyers-detained-and-searched-39-law-offices-the-justice-minister-pronounced-on-their-guilt-the-same-day",
+      "summary": "The post Turkey ordered 31 lawyers detained and searched 39 law offices. The Justice Minister pronounced on their “guilt” the same day. appeared first on Solidarity with OTHERS .",
+      "tags": [
+        "KHK",
+        "Gefängnisdatenbank",
+        "Ziviler Tod"
+      ],
+      "readTime": "3-4 Min.",
+      "institution": "Solidarity with OTHERS",
+      "keyPoints": [
+        "Dokumentation durch Solidarity with OTHERS.",
+        "Systematische Erfassung verifizierter Verstöße gegen internationale Rechtsnormen.",
+        "Fokus auf EMRK-Konformität und das Verbot willkürlicher Inhaftierung."
+      ],
+      "relevance": "Beweiskräftige Dokumentation von Solidarity with OTHERS für internationale Gremien und juristische Verfahren."
+    },
+    {
+      "id": "feed-others-2",
+      "category": "reports",
+      "title": "Did Davutoğlu insult President Erdoğan? Turkey has opened an insult investigation into its own former prime minister over a speech he gave five years ago.",
+      "date": "Fri, 04 Sep 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "Solidarity with OTHERS",
+      "source_url": "https://solidaritywithothers.com/",
+      "link": "https://solidaritywithothers.com/did-davutoglu-insult-president-erdogan-turkey-has-opened-an-insult-investigation-into-its-own-former-prime-minister-over-a-speech-he-gave-five-years-ago/?utm_source=rss&utm_medium=rss&utm_campaign=did-davutoglu-insult-president-erdogan-turkey-has-opened-an-insult-investigation-into-its-own-former-prime-minister-over-a-speech-he-gave-five-years-ago",
+      "summary": "The post Did Davutoğlu insult President Erdoğan? Turkey has opened an insult investigation into its own former prime minister over a speech he gave five years ago. appeared first on Solidarity with OTHERS .",
+      "tags": [
+        "KHK",
+        "Gefängnisdatenbank",
+        "Ziviler Tod"
+      ],
+      "readTime": "3-4 Min.",
+      "institution": "Solidarity with OTHERS",
+      "keyPoints": [
+        "Dokumentation durch Solidarity with OTHERS.",
+        "Systematische Erfassung verifizierter Verstöße gegen internationale Rechtsnormen.",
+        "Fokus auf EMRK-Konformität und das Verbot willkürlicher Inhaftierung."
+      ],
+      "relevance": "Beweiskräftige Dokumentation von Solidarity with OTHERS für internationale Gremien und juristische Verfahren."
+    },
+    {
+      "id": "feed-others-3",
+      "category": "reports",
+      "title": "Turkey has Europe’s highest imprisonment rate. Its prisons now hold 130,000 more people than they were built for.",
+      "date": "Fri, 04 Sep 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "Solidarity with OTHERS",
+      "source_url": "https://solidaritywithothers.com/",
+      "link": "https://solidaritywithothers.com/turkey-has-europes-highest-imprisonment-rate-its-prisons-now-hold-130000-more-people-than-they-were-built-for/?utm_source=rss&utm_medium=rss&utm_campaign=turkey-has-europes-highest-imprisonment-rate-its-prisons-now-hold-130000-more-people-than-they-were-built-for",
+      "summary": "The post Turkey has Europe’s highest imprisonment rate. Its prisons now hold 130,000 more people than they were built for. appeared first on Solidarity with OTHERS .",
+      "tags": [
+        "KHK",
+        "Gefängnisdatenbank",
+        "Ziviler Tod"
+      ],
+      "readTime": "3-4 Min.",
+      "institution": "Solidarity with OTHERS",
+      "keyPoints": [
+        "Dokumentation durch Solidarity with OTHERS.",
+        "Systematische Erfassung verifizierter Verstöße gegen internationale Rechtsnormen.",
+        "Fokus auf EMRK-Konformität und das Verbot willkürlicher Inhaftierung."
+      ],
+      "relevance": "Beweiskräftige Dokumentation von Solidarity with OTHERS für internationale Gremien und juristische Verfahren."
+    },
+    {
+      "id": "feed-others-4",
+      "category": "reports",
+      "title": "Issue 323",
+      "date": "Thu, 03 Sep 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "Solidarity with OTHERS",
+      "source_url": "https://solidaritywithothers.com/",
+      "link": "https://solidaritywithothers.com/issue-323/?utm_source=rss&utm_medium=rss&utm_campaign=issue-323",
+      "summary": "Download PDF 24-30 August 2026 Arbitrary Detention and Arrest Throughout the week, prosecutors ordered the detention of at least 5 people over alleged links to the Gülen movement. In October 2020, a UN Working Group on Arbitrary Detention (WGAD) opinion said that widespread or systematic imprisonment of individuals with alleged links to the group may […] The post Issue 323 appeared first on Solidarity with OTHERS .",
+      "tags": [
+        "KHK",
+        "Gefängnisdatenbank",
+        "Ziviler Tod"
+      ],
+      "readTime": "3-4 Min.",
+      "institution": "Solidarity with OTHERS",
+      "keyPoints": [
+        "Dokumentation durch Solidarity with OTHERS.",
+        "Systematische Erfassung verifizierter Verstöße gegen internationale Rechtsnormen.",
+        "Fokus auf EMRK-Konformität und das Verbot willkürlicher Inhaftierung."
+      ],
+      "relevance": "Beweiskräftige Dokumentation von Solidarity with OTHERS für internationale Gremien und juristische Verfahren."
+    },
+    {
+      "id": "feed-scf-1",
+      "category": "reports",
+      "title": "Turkish court orders at least 21 X accounts blocked over national security claims",
+      "date": "Fri, 04 Sep 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "Stockholm Center for Freedom",
+      "source_url": "https://stockholmcf.org/",
+      "link": "https://stockholmcf.org/turkish-court-orders-at-least-21-x-accounts-blocked-over-national-security-claims/",
+      "summary": "An Istanbul court has ordered access blocked to at least 21 accounts on X, including those of a group representing relatives of jailed opposition figures and a left-wing news outlet, as Turkish authorities expand restrictions on social media accounts over alleged threats to national security, the Bianet news website reported Friday The order was issued […] The post Turkish court orders at least 21 X accounts blocked over national security claims appeared first on Stockholm Center for Freedom .",
+      "tags": [
+        "Folter",
+        "Entführungen",
+        "Transnationale Repression"
+      ],
+      "readTime": "3-4 Min.",
+      "institution": "Stockholm Center for Freedom (SCF)",
+      "keyPoints": [
+        "Dokumentation durch Stockholm Center for Freedom.",
+        "Systematische Erfassung verifizierter Verstöße gegen internationale Rechtsnormen.",
+        "Fokus auf EMRK-Konformität und das Verbot willkürlicher Inhaftierung."
+      ],
+      "relevance": "Beweiskräftige Dokumentation von Stockholm Center for Freedom für internationale Gremien und juristische Verfahren."
+    },
+    {
+      "id": "feed-scf-2",
+      "category": "reports",
+      "title": "Turkey orders detention of 31 lawyers over alleged use of illegal data systems",
+      "date": "Fri, 04 Sep 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "Stockholm Center for Freedom",
+      "source_url": "https://stockholmcf.org/",
+      "link": "https://stockholmcf.org/turkey-orders-detention-of-31-lawyers-over-alleged-use-of-illegal-data-systems/",
+      "summary": "Turkish prosecutors have issued detention warrants for 31 lawyers accused of using subscription-based, illegal data-query systems to access citizens’ personal information and target people with false debt claims, Justice Minister Akın Gürlek said Friday. Police also began searches and seizures at 39 law offices across İstanbul as part of an investigation led by the Cybercrimes Investigation Bureau […] The post Turkey orders detention of 31 lawyers over alleged use of illegal data systems appeared first on Stockholm Center for Freedom .",
+      "tags": [
+        "Folter",
+        "Entführungen",
+        "Transnationale Repression"
+      ],
+      "readTime": "3-4 Min.",
+      "institution": "Stockholm Center for Freedom (SCF)",
+      "keyPoints": [
+        "Dokumentation durch Stockholm Center for Freedom.",
+        "Systematische Erfassung verifizierter Verstöße gegen internationale Rechtsnormen.",
+        "Fokus auf EMRK-Konformität und das Verbot willkürlicher Inhaftierung."
+      ],
+      "relevance": "Beweiskräftige Dokumentation von Stockholm Center for Freedom für internationale Gremien und juristische Verfahren."
+    },
+    {
+      "id": "feed-scf-3",
+      "category": "reports",
+      "title": "Turkish journalist detained over social media posts, YouTube broadcasts",
+      "date": "Fri, 04 Sep 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "Stockholm Center for Freedom",
+      "source_url": "https://stockholmcf.org/",
+      "link": "https://stockholmcf.org/turkish-journalist-detained-over-social-media-posts-youtube-broadcasts/",
+      "summary": "Turkish journalist Oya Lale Arslan was detained Friday as part of an investigation into her social media posts and YouTube broadcasts on suspicion of publicly disseminating misleading information and spreading terrorist propaganda, the TR724 news website reported. The Ankara Chief Public Prosecutor’s Office is investigating Arslan over her social media posts and YouTube broadcasts.",
+      "tags": [
+        "Folter",
+        "Entführungen",
+        "Transnationale Repression"
+      ],
+      "readTime": "3-4 Min.",
+      "institution": "Stockholm Center for Freedom (SCF)",
+      "keyPoints": [
+        "Dokumentation durch Stockholm Center for Freedom.",
+        "Systematische Erfassung verifizierter Verstöße gegen internationale Rechtsnormen.",
+        "Fokus auf EMRK-Konformität und das Verbot willkürlicher Inhaftierung."
+      ],
+      "relevance": "Beweiskräftige Dokumentation von Stockholm Center for Freedom für internationale Gremien und juristische Verfahren."
+    },
+    {
+      "id": "feed-scf-4",
+      "category": "reports",
+      "title": "CPJ calls for release of Turkish journalist jailed over ‘Erdoğan passed away’ post",
+      "date": "Thu, 03 Sep 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "Stockholm Center for Freedom",
+      "source_url": "https://stockholmcf.org/",
+      "link": "https://stockholmcf.org/cpj-calls-for-release-of-turkish-journalist-jailed-over-erdogan-passed-away-post/",
+      "summary": "The Committee to Protect Journalists (CPJ) has called on Turkish authorities to immediately release journalist İrem Delice, who was jailed under the country’s disinformation law over a social media post announcing the death of a local woman who shares President Recep Tayyip Erdoğan’s surname. “İrem Delice should be released immediately, and authorities must stop their […] The post CPJ calls for release of Turkish journalist jailed over ‘Erdoğan passed away’ post appeared first on Stockholm Center for Freedom .",
+      "tags": [
+        "Folter",
+        "Entführungen",
+        "Transnationale Repression"
+      ],
+      "readTime": "3-4 Min.",
+      "institution": "Stockholm Center for Freedom (SCF)",
+      "keyPoints": [
+        "Dokumentation durch Stockholm Center for Freedom.",
+        "Systematische Erfassung verifizierter Verstöße gegen internationale Rechtsnormen.",
+        "Fokus auf EMRK-Konformität und das Verbot willkürlicher Inhaftierung."
+      ],
+      "relevance": "Beweiskräftige Dokumentation von Stockholm Center for Freedom für internationale Gremien und juristische Verfahren."
+    },
+    {
+      "id": "feed-justicesquare-1",
+      "category": "news",
+      "title": "URGENT APPEAL: MASS ARREST OF 968 PERSONS ON JULY 13, 2026 (ACCUSED TO BE THE MEMBER OF GÜLEN MOVEMENT)",
+      "date": "Thu, 16 Jul 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "JusticeSquare.org",
+      "source_url": "https://justicesquare.org/",
+      "link": "https://justicesquare.org/urgent-appeal-mass-arrest-of-968-persons-on-july-13-2026-accused-to-be-the-member-of-gulen-movement/",
+      "summary": "In response to the mass detention of 968 people in nationwide operations carried out as a symbolic act marking the 10th anniversary of the 15 July […]",
+      "tags": [
+        "EGMR",
+        "Rechtsstaat",
+        "Dokumentation"
+      ],
+      "readTime": "3-4 Min."
+    },
+    {
+      "id": "feed-justicesquare-2",
+      "category": "news",
+      "title": "TURKİYE HUMAN RIGHTS REPORT",
+      "date": "Wed, 15 Jul 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "JusticeSquare.org",
+      "source_url": "https://justicesquare.org/",
+      "link": "https://justicesquare.org/turkiye-human-rights-report/",
+      "summary": "This report presents our findings on the alarming human rights violations that took place in Türkiye between 2016 and 2026. In this report, we focus on […]",
+      "tags": [
+        "EGMR",
+        "Rechtsstaat",
+        "Dokumentation"
+      ],
+      "readTime": "3-4 Min."
+    },
+    {
+      "id": "feed-justicesquare-3",
+      "category": "news",
+      "title": "VIOLATION JUDGMENTS DELIVERED BY THE EUROPEAN COURT OF HUMAN RIGHTS AGAINST TÜRKİYE IN THE AFTERMATH OF 15 JULY",
+      "date": "Tue, 14 Jul 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "JusticeSquare.org",
+      "source_url": "https://justicesquare.org/",
+      "link": "https://justicesquare.org/violation-judgments-delivered-by-the-european-court-of-human-rights-against-turkiye-in-the-aftermath-of-15-july/",
+      "summary": "In Türkiye, tens of thousands of people have been subjected to violations of their rights through unlawful practices and decisions that began as a reaction to […]",
+      "tags": [
+        "EGMR",
+        "Rechtsstaat",
+        "Dokumentation"
+      ],
+      "readTime": "3-4 Min."
+    },
+    {
+      "id": "feed-justicesquare-4",
+      "category": "news",
+      "title": "NEW RELEASE: HUMAN RIGHTS REPORTS TÜRKİYE – FEBRUARY 2026",
+      "date": "Mon, 16 Feb 2026",
+      "isoDate": "2026-09-05",
+      "source_name": "JusticeSquare.org",
+      "source_url": "https://justicesquare.org/",
+      "link": "https://justicesquare.org/new-release-human-rights-reports-turkiye-february-2026/",
+      "summary": "Stichting Justice Square officially submits its latest comprehensive report, documenting the alarming and escalating pattern of human rights violations in Türkiye as of early 2026.",
+      "tags": [
+        "EGMR",
+        "Rechtsstaat",
+        "Dokumentation"
+      ],
+      "readTime": "3-4 Min."
+    },
+    {
+      "id": "feed-news-1",
+      "category": "news",
+      "title": "Strukturelle Verfassungsverstöße: Weigerung lokaler Gerichte bei der Umsetzung des Yalçınkaya-Urteils",
+      "date": "03. Sep 2026",
+      "isoDate": "2026-09-03",
+      "source_name": "JusticeSquare.org",
+      "source_url": "https://justicesquare.org/",
+      "link": "https://justicesquare.org/",
+      "summary": "Türkische Strafgerichte missachten weiterhin in Hunderten Fällen die bindenden Vorgaben der Großen Kammer des Europäischen Gerichtshofs für Menschenrechte. Trotz des Grundsatzurteils im Fall Yüksel Yalçınkaya v. Turkey werden Betroffene weiterhin allein auf Basis legaler Handlungen wie ByLock-Nutzung oder Konten bei der Bank Asya zu langjährigen Haftstrafen verurteilt. JusticeSquare dokumentiert die anhaltende Justizkrise und fordert den Europarat zu schärferen Sanktionen auf.",
+      "tags": [
+        "EGMR",
+        "Yalçınkaya",
+        "Rechtsstaat",
+        "Europarat"
+      ],
+      "readTime": "3 Min."
+    },
+    {
+      "id": "feed-news-2",
+      "category": "news",
+      "title": "Europarat fordert von Ankara konkreten Aktionsplan zur Entlastung Zehntausender Beschwerdeführer",
+      "date": "29. Aug 2026",
+      "isoDate": "2026-08-29",
+      "source_name": "Turkish Minute",
+      "source_url": "https://turkishminute.com/",
+      "link": "https://turkishminute.com/",
+      "summary": "Das Ministerkomitee des Europarats hat die türkische Regierung formell ermahnt, unverzüglich Maßnahmen zur Umsetzung des Straßburger EGMR-Präzedenzfalls vorzulegen. Da über 25.000 identische Beschwerden in Straßburg anhängig sind, droht der Türkei ein Vertragsverletzungsverfahren, sollte die pauschale Terrorverurteilung auf Vorrat nicht gestoppt werden. Experten heben hervor, dass das Rückwirkungsverbot nach Art. 7 EMRK unverletzlich ist.",
+      "tags": [
+        "Strafrecht",
+        "Europarat",
+        "ByLock",
+        "EMRK Art. 7"
+      ],
+      "readTime": "4 Min."
+    },
+    {
+      "id": "feed-news-3",
+      "category": "news",
+      "title": "IJA-Sonderbericht: Zehn Jahre nach den Notstandsdekreten – Medienschaffende im Fadenkreuz",
+      "date": "22. Aug 2026",
+      "isoDate": "2026-08-22",
+      "source_name": "International Journalists Association e.V.",
+      "source_url": "https://internationaljournalists.org/de/",
+      "link": "https://internationaljournalists.org/de/",
+      "summary": "Die International Journalists Association e.V. zieht in einer umfassenden Analyse Bilanz über die Zerschlagung unabhängiger Zeitungen, Rundfunkanstalten und Verlage. Über 150 Medienhäuser wurden im Rahmen der KHK-Dekrete enteignet, während Dutzende Exil-Journalisten mit Interpol-Fahndungen und digitaler Ausspähung überzogen werden. Die IJA fordert die europäischen Demokratien auf, exilierte Medienschaffende wirksam vor transnationaler Repression zu schützen.",
+      "tags": [
+        "Pressefreiheit",
+        "KHK",
+        "Exiljournalismus",
+        "IJA"
+      ],
+      "readTime": "4 Min."
+    },
+    {
+      "id": "feed-news-4",
+      "category": "news",
+      "title": "Deutsche Welle Investigativ: Festnahmen wegen humanitärer Hilfe an Gefangenenfamilien",
+      "date": "14. Aug 2026",
+      "isoDate": "2026-08-14",
+      "source_name": "Deutsche Welle",
+      "source_url": "https://www.dw.com",
+      "link": "https://www.dw.com",
+      "summary": "Eine investigative Recherche der Deutschen Welle enthüllt die Kriminalisierung privater Hilfsnetzwerke für die Angehörigen inhaftierter Gülen-Anhänger. Türkische Sicherheitsbehörden deklarieren selbst den Einkauf von Lebensmitteln oder Mietzuschüsse für mittellose Mütter als Terrorfinanzierung. Völkerrechtler werten dieses Vorgehen als gezielte Sippenhaft und Zerstörung sozialer Existenzgrundlagen.",
+      "tags": [
+        "Sippenhaft",
+        "Humanitäre Hilfe",
+        "Investigativ",
+        "DW"
+      ],
+      "readTime": "3 Min."
+    },
+    {
+      "id": "feed-news-5",
+      "category": "news",
+      "title": "TR724 & Bold Medya: Über 500 Kleinkinder weiterhin mit ihren Müttern in Haft",
+      "date": "05. Aug 2026",
+      "isoDate": "2026-08-05",
+      "source_name": "TR724 / Bold Medya",
+      "source_url": "https://boldmedya.com",
+      "link": "https://boldmedya.com",
+      "summary": "Unabhängige Exil-Medien machen erneut auf die prekären Zustände in türkischen Frauenhaftanstalten aufmerksam. Trotz eindeutiger Bestimmungen im Strafvollzugsgesetz werden junge Mütter und Neugeborene in überbelegten Zellen ohne kindgerechte Nahrung festgehalten. Petitionen an internationale Kinderschutzorganisationen drängen auf eine Aussetzung des Strafvollzugs für betroffene Mütter.",
+      "tags": [
+        "Frauen im Gefängnis",
+        "Kinderrechte",
+        "Haftbedingungen"
+      ],
+      "readTime": "3 Min."
+    },
+    {
+      "id": "feed-report-1",
+      "category": "reports",
+      "title": "Human Rights Watch World Report 2025: Türkei-Kapitel",
+      "institution": "Human Rights Watch",
+      "year": "2025",
+      "referenceNumber": "HRW-WR-2025-TR",
+      "source_name": "Human Rights Watch",
+      "source_url": "https://www.hrw.org/world-report/2025/country-chapters/turkiye",
+      "link": "https://www.hrw.org/world-report/2025/country-chapters/turkiye",
+      "summary": "Der World Report 2025 von Human Rights Watch belegt die fortdauernde Demontage rechtsstaatlicher Kontrollinstanzen in der Türkei. Insbesondere die pauschale Anwendung von Terrorparagrafen auf Personen mit vermuteter Nähe zur Gülen-Bewegung wird scharf gerügt. Die Weigerung der türkischen Gerichte, das wegweisende EGMR-Urteil Yalçınkaya umzusetzen, stelle einen gravierenden Bruch der völkerrechtlichen Verpflichtungen der Türkei dar.",
+      "keyPoints": [
+        "Fortgesetzter Missbrauch des Antiterrorgesetzes (Art. 314 TCK) zur Kriminalisierung friedlicher bürgerlicher Aktivitäten.",
+        "Systematische Weigerung, das Urteil der Großen Kammer des EGMR im Fall Yalçınkaya v. Turkey umzusetzen.",
+        "Anhaltende gesellschaftliche Stigmatisierung und Berufsverbote für zehntausende per Notstandsdekret (KHK) entlassene Akademiker und Beamte.",
+        "Einschüchterung und Strafverfolgung von Verteidigern, die Mandanten in Gülen-bezogenen Prozessen vertreten."
+      ],
+      "relevance": "Beweist auf höchster internationaler NGO-Ebene, dass die Verfolgung von Gülen-Anhängern keine historische Ausnahmesituation war, sondern als institutionalisiertes Repressionssystem fortbesteht.",
+      "tags": [
+        "HRW",
+        "World Report 2025",
+        "Antiterrorgesetz",
+        "EGMR"
+      ]
+    },
+    {
+      "id": "feed-report-2",
+      "category": "reports",
+      "title": "Stockholm Center for Freedom: Bericht zu Folter, Entführungen & Straflosigkeit",
+      "institution": "Stockholm Center for Freedom (SCF)",
+      "year": "2025/2026",
+      "referenceNumber": "SCF-REP-2025-09",
+      "source_name": "Stockholm Center for Freedom",
+      "source_url": "https://stockholmcf.org/",
+      "link": "https://stockholmcf.org/",
+      "summary": "Der SCF-Jahresbericht dokumentiert akribisch Einzelschicksale und statistische Trends zur Folterpraxis in türkischen Haftanstalten und informellen Verhörzentren. Zudem werden über 110 extraterritoriale Verschleppungen durch den Geheimdienst MİT quer durch Afrika, Asien und den Balkan analysiert. Straflosigkeit für Täter in Sicherheitsorganen ist laut SCF zur Norm geworden.",
+      "keyPoints": [
+        "Dokumentation von über 110 Fällen illegaler Entführungen und Überstellungen türkischer Staatsbürger aus über 30 Staaten.",
+        "Systematische Verweigerung von Ermittlungen bei substantiierten Folter- und Misshandlungsvorwürfen in Polizeigewahrsam.",
+        "Erfassung verdächtiger Todesfälle in Haftanstalten sowie akute Unterversorgung schwerkranker Gefangener.",
+        "Veröffentlichung von Primärdokumenten und forensischen Befunden für internationale Ermittlungsbehörden."
+      ],
+      "relevance": "Das Stockholm Center for Freedom liefert primäre Beweisketten und Namenslisten für Asylverfahren und internationale Sanktionsmechanismen.",
+      "tags": [
+        "SCF",
+        "Folter",
+        "Entführungen",
+        "Transnationale Repression"
+      ]
+    },
+    {
+      "id": "feed-report-3",
+      "category": "reports",
+      "title": "Solidarity with OTHERS: Die KHK-Maschinerie und Todesfälle in Gewahrsam",
+      "institution": "Solidarity with OTHERS",
+      "year": "2025",
+      "referenceNumber": "OTHERS-MON-2025",
+      "source_name": "Solidarity with OTHERS",
+      "source_url": "https://solidaritywithothers.com/",
+      "link": "https://solidaritywithothers.com/",
+      "summary": "Solidarity with OTHERS analysiert die sozioökonomischen und physischen Folgen der Massenentlassungen durch Notstandsdekrete. Durch die Erfassung von über 100 Todesfällen in Haft und Dutzenden Suiziden infolge von Berufsverboten zeigt der Bericht den 'zivilen Tod' der Opfer auf. Die Organisation stellt interaktive Datenbanken für die weltweite Forschung bereit.",
+      "keyPoints": [
+        "Verifizierung von über 100 verdächtigen Todesfällen in türkischen Gefängnissen seit 2016.",
+        "Über 150.000 KHK-Entlassene leiden unter digitaler Brandmarkung in den Sozialversicherungsregistern (Code 36/37).",
+        "Pauschale Beschlagnahme privater Vermögenswerte und Kontensperren ohne ordentliches Gerichtsverfahren.",
+        "Ausführliche Dossiers zu Frauen, chronisch Kranken und betroffenen Kindern im Justizsystem."
+      ],
+      "relevance": "Zentraler Beleg für das Konzept der kollektiven Bestrafung und der sozialen Ausgrenzung von Familienangehörigen der Gülen-Bewegung.",
+      "tags": [
+        "OTHERS",
+        "KHK",
+        "Todesfälle in Haft",
+        "Sippenhaft"
+      ]
+    },
+    {
+      "id": "feed-report-4",
+      "category": "reports",
+      "title": "UN Working Group on Arbitrary Detention (WGAD): Willkürliche Freiheitsberaubung",
+      "institution": "UN Human Rights Council (OHCHR / WGAD)",
+      "year": "2024/2025",
+      "referenceNumber": "UN-WGAD-TUR-SERIES",
+      "source_name": "UN OHCHR",
+      "source_url": "https://www.ohchr.org/en/countries/turkiye",
+      "link": "https://www.ohchr.org/en/countries/turkiye",
+      "summary": "In einer Serie von über 40 Gutachten stellt die UN-Arbeitsgruppe für willkürliche Inhaftierungen fest, dass Festnahmen von Gülen-Anhängern willkürlich sind. Der friedliche Gebrauch von Kommunikations-Apps, Spenden oder Vereinstätigkeiten stellt völkerrechtlich geschützte Freiheitsrechte dar. Die UN fordert die sofortige Freilassung und Entschädigung der Betroffenen.",
+      "keyPoints": [
+        "Nutzung von ByLock und Kontoführung bei Bank Asya sind völkerrechtlich geschützte Grundrechtsausübungen.",
+        "Verletzung der Artikel 9, 10, 11, 18 und 19 der Allgemeinen Erklärung der Menschenrechte.",
+        "Kategorische Einstufung der Inhaftierungen in Kategorie I, II und III der willkürlichen Freiheitsberaubung.",
+        "Völkerrechtliche Pflicht der Türkei zur sofortigen Haftentlassung und Wiedergutmachung."
+      ],
+      "relevance": "Höchste völkerrechtliche Feststellung, dass die Masseninhaftierungen fundamental gegen das Völkerrecht und die UN-Konventionen verstoßen.",
+      "tags": [
+        "UN OHCHR",
+        "WGAD",
+        "Völkerrecht",
+        "Willkürliche Haft"
+      ]
+    },
+    {
+      "id": "feed-report-5",
+      "category": "reports",
+      "title": "Freedom House: Out of Sight, Not Out of Reach – Transnationale Repression der Türkei",
+      "institution": "Freedom House",
+      "year": "2024/2025",
+      "referenceNumber": "FH-TNR-GLOBAL",
+      "source_name": "Freedom House",
+      "source_url": "https://freedomhouse.org/",
+      "link": "https://freedomhouse.org/",
+      "summary": "Der globale Bericht von Freedom House stuft die Türkei als einen der rücksichtslosesten Akteure weltweiter Verfolgung Andersdenkender ein. Über 110 bestätigte MİT-Geheimdienstoperationen zur Entführung von Gülen-Anhängern wurden auf vier Kontinenten verifiziert. Freedom House mahnt demokratische Staaten zur Wachsamkeit gegen Interpol-Missbrauch.",
+      "keyPoints": [
+        "Die Türkei gehört neben Russland und China zu den weltweit intensivsten Verfolgern im Ausland.",
+        "Über 110 erfolgreiche Entführungsoperationen (Renditions) seit 2016 in über 30 Ländern dokumentiert.",
+        "Instrumentalisierung von Interpol Red Notices und Reisepassannullierungen als Druckmittel.",
+        "Direkte Bedrohung und Einschüchterung von Diaspora-Gemeinschaften in Europa und Nordamerika."
+      ],
+      "relevance": "Erklärt den globalen Schutzbedarf für im Exil lebende Personen und warnt westliche Behörden vor türkischen Auslieferungsersuchen.",
+      "tags": [
+        "Freedom House",
+        "Transnationale Repression",
+        "Interpol",
+        "Geheimdienst"
+      ]
+    },
+    {
+      "id": "feed-report-6",
+      "category": "reports",
+      "title": "Advocates of Silenced Turkey (AST): Frauen und Kinder im türkischen Strafvollzug",
+      "institution": "Advocates of Silenced Turkey (AST)",
+      "year": "2024/2025",
+      "referenceNumber": "AST-WOMEN-CHILDREN",
+      "source_name": "Advocates of Silenced Turkey",
+      "source_url": "https://silencedturkey.org/",
+      "link": "https://silencedturkey.org/",
+      "summary": "AST dokumentiert in erschütternden Einzelfallstudien die Verhaftung von Schwangeren, frisch entbundenen Müttern und schwer erkrankten Frauen. Die Studie prangert an, dass über 500 Kinder unter 6 Jahren gezwungen sind, ihre Entwicklungsjahre hinter Gittern zu verbringen. AST appelliert an die Vereinten Nationen, humanitäre Inspektoren zu entsenden.",
+      "keyPoints": [
+        "Verhaftungen direkt in Geburtskliniken im Widerspruch zu Art. 16 des Gesetzes Nr. 5275.",
+        "Schwere Traumatisierung von über 500 Kleinkindern in unhygienischen Haftbedingungen.",
+        "Verweigerung von lebensrettenden Medikamenten für inhaftierte Krebspatientinnen.",
+        "Erhöhung des Drucks auf das internationale Rote Kreuz und das CPT für Direktbesuche."
+      ],
+      "relevance": "Sensibilisiert für die humanitäre Dringlichkeit des Schutzes von Kindern und Müttern im Strafvollzug.",
+      "tags": [
+        "AST",
+        "Frauenrechte",
+        "Kinderrechte",
+        "Strafvollzug"
+      ]
+    },
+    {
+      "id": "feed-report-7",
+      "category": "reports",
+      "title": "Broken Chalk: Die Zerstörung des Bildungssektors und Verfolgung von Pädagogen",
+      "institution": "Broken Chalk (Amsterdam)",
+      "year": "2024/2025",
+      "referenceNumber": "BC-EDU-TUR-REPORT",
+      "source_name": "Broken Chalk",
+      "source_url": "https://brokenchalk.org/",
+      "link": "https://brokenchalk.org/",
+      "summary": "Die in den Niederlanden ansässige Menschenrechtsorganisation Broken Chalk analysiert den Kahlschlag im türkischen Erziehungswesen. Mehr als 33.000 Lehrer und 6.000 Professoren wurden entlassen, hunderte Schulen geschlossen und Bildungsvermögen enteignet. Broken Chalk zeigt auf, wie ein ganzer Berufsstand seiner Existenzgrundlage beraubt wurde.",
+      "keyPoints": [
+        "Entlassung von über 33.000 Lehrkräften und 6.000 Universitätsprofessoren ohne faires Verfahren.",
+        "Schließung von über 1.000 Privatschulen, Nachhilfezentren und 15 renommierten Universitäten.",
+        "Verweigerung von Arbeitszeugnissen und Aberkennung pädagogischer Lizenzen auf Lebenszeit.",
+        "Verletzung des universellen Rechts auf Bildung (Art. 26 AEMR) und akademische Freiheit."
+      ],
+      "relevance": "Dokumentiert spezifisch das Schicksal von Bildungsbürgern, die wegen ihrer pädagogischen Tätigkeit verfolgt werden.",
+      "tags": [
+        "Broken Chalk",
+        "Bildung",
+        "Lehrer",
+        "Akademische Freiheit"
+      ]
+    },
+    {
+      "id": "feed-report-8",
+      "category": "reports",
+      "title": "Human Rights Defenders e.V. (HRD): Justizbeobachtung und Prozessanalysen",
+      "institution": "Human Rights Defenders e.V.",
+      "year": "2024/2025",
+      "referenceNumber": "HRD-GER-MONITOR",
+      "source_name": "Human Rights Defenders e.V.",
+      "source_url": "https://humanrights-ev.com/",
+      "link": "https://humanrights-ev.com/",
+      "summary": "Der in Deutschland gegründete Verein HRD e.V. beobachtet und analysiert Strafverfahren vor türkischen Sondergerichten. Die detaillierten Berichte weisen nach, dass Richter und Staatsanwälte als politische Vollzugsorgane agieren und Entlastungsbeweise systematisch ignorieren. HRD unterstützt Betroffene bei Beschwerden vor dem EGMR und den UN-Ausschüssen.",
+      "keyPoints": [
+        "Systematische Verletzung des Grundsatzes der Waffengleichheit vor Schweren Strafgerichten.",
+        "Einschüchterung von Pflicht- und Wahlverteidigern durch eigene Strafanzeigen.",
+        "Verwendung standardisierter Urteilsbausteine ohne individuelle Beweiswürdigung.",
+        "Leitfäden und Dokumentationen für Asyl- und Revisionsverfahren in der Europäischen Union."
+      ],
+      "relevance": "Liefert fundierte juristische Prozessbeobachtungen aus der deutschen Zivilgesellschaft heraus.",
+      "tags": [
+        "HRD e.V.",
+        "Justizbeobachtung",
+        "Faires Verfahren",
+        "Prozessrecht"
+      ]
+    },
+    {
+      "id": "feed-multimedia-1",
+      "category": "multimedia",
+      "title": "Tenkil Memorial Museum: Das digitale Gedächtnis der Säuberungswelle",
+      "creator": "Tenkil Memorial Museum",
+      "date": "Dauerausstellung 2026",
+      "duration": "Interaktives Museum",
+      "source_name": "Tenkil Memorial Museum",
+      "source_url": "https://tenkilmuseum.com/",
+      "link": "https://tenkilmuseum.com/",
+      "summary": "Das Tenkil Memorial Museum sammelt und bewahrt persönliche Gegenstände, Rettungswesten von der Flucht über den Evros, handgeschriebene Gefängnisbriefe und audiovisuelle Zeitzeugenberichte. Die interaktive Plattform erinnert an die Opfer der Säuberungswelle und dient als visuelles Mahnmal gegen staatliche Willkür und das Vergessen.",
+      "thumbnailUrl": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?q=80&w=800&auto=format&fit=crop",
+      "mediaType": "museum",
+      "tags": [
+        "Museum",
+        "Gedenkstätte",
+        "Evros",
+        "Zeitzeugen"
+      ]
+    }
+  ]
+}

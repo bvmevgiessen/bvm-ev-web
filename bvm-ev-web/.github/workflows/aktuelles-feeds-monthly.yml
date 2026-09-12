@@ -1,0 +1,49 @@
+name: Aktuelles Feeds (monatlich)
+
+# Baut monatlich die Aktuelles-Feeds (News + Events aus events.json + Blogs aus
+# blogs.json) und committet data/aktuelles_feeds.json. Der Deploy-Workflow
+# veröffentlicht die Seite beim Push auf main.
+
+on:
+  schedule:
+    # Am 1. jedes Monats um 06:00 UTC
+    - cron: '0 6 1 * *'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: aktuelles-feeds
+  cancel-in-progress: false
+
+jobs:
+  update-aktuelles:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Build Aktuelles feeds
+        run: python scripts/build_aktuelles_feeds.py
+
+      - name: Sync build fallback
+        run: cp public/data/aktuelles_feeds.json src/data/aktuelles_feeds.json
+
+      - name: Commit & push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/aktuelles_feeds.json src/data/aktuelles_feeds.json
+          if git diff --staged --quiet; then
+            echo "Keine Änderungen."
+          else
+            git commit -m "chore(aktuelles): monatliches Feed-Update"
+            git push
+          fi
