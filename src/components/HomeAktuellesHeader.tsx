@@ -16,9 +16,6 @@ import {
 } from 'lucide-react';
 import EventCountdownBadge from './EventCountdownBadge';
 import { useAktuelles, formatDate } from '../data/aktuelles';
-import newsFallback from '../data/news.json';
-import eventsFallback from '../data/events.json';
-import blogsFallback from '../data/blogs.json';
 
 export interface UnifiedFeedItem {
   category: 'news' | 'event' | 'blog';
@@ -56,9 +53,9 @@ export default function HomeAktuellesHeader() {
   // - Top 3 News, Top 3 Events, Top 3 Blogs (innerhalb von ~1 Monat davor bis danach)
   // - Abwechselnde Reihenfolge: News -> Events -> Blog -> wieder News
   const items: UnifiedFeedItem[] = useMemo(() => {
-    const rawNews = feeds.news && feeds.news.length > 0 ? feeds.news : (newsFallback as any[]);
-    const rawEvents = feeds.events && feeds.events.length > 0 ? feeds.events : (eventsFallback as any[]);
-    const rawBlogs = feeds.blogs && feeds.blogs.length > 0 ? feeds.blogs : (blogsFallback as any[]);
+    const rawNews = feeds.news || [];
+    const rawEvents = feeds.events || [];
+    const rawBlogs = feeds.blogs || [];
 
     // Hilfsfunktion: Veranstalter für Events ermitteln (Vereinsplattform / Kooperationspartner)
     const getEventOrganizer = (e: any): string => {
@@ -94,7 +91,7 @@ export default function HomeAktuellesHeader() {
     const newsList: UnifiedFeedItem[] = rawNews.slice(0, 3).map((n) => ({
       category: 'news',
       title: n.title,
-      summary: n.shortText || (n.highlights && n.highlights[0]) || n.summary || '',
+      summary: n.shortText || (n.highlights && n.highlights[0]) || '',
       date: n.date,
       image: normalizeAssetUrl(n.image),
       link: '/aktuelles#news',
@@ -107,7 +104,7 @@ export default function HomeAktuellesHeader() {
     const eventsList: UnifiedFeedItem[] = rawEvents.slice(0, 3).map((e) => ({
       category: 'event',
       title: e.title,
-      summary: e.description || e.summary || '',
+      summary: e.description || '',
       date: e.date,
       image: normalizeAssetUrl(e.image),
       link: e.link || `/events/${e.id}`,
@@ -120,7 +117,7 @@ export default function HomeAktuellesHeader() {
     const blogsList: UnifiedFeedItem[] = rawBlogs.slice(0, 3).map((b) => ({
       category: 'blog',
       title: b.title,
-      summary: b.excerpt || b.content || b.summary || '',
+      summary: b.excerpt || '',
       date: b.date,
       image: normalizeAssetUrl(b.image),
       link: b.link || `/blog/${b.id}`,
