@@ -2,6 +2,7 @@
   import Navbar from '../components/Navbar';
   import Hero from '../components/Hero';
   import NewsTicker from '../components/NewsTicker';
+  import AktuellesTeaser from '../components/AktuellesTeaser';
   import Impact from '../components/Impact';
   import About from '../components/About';
   import CommunityPulse from '../components/CommunityPulse';
@@ -10,7 +11,6 @@
   import Partners from '../components/Partners';
   import PuzzleBackground from '../components/PuzzleBackground';
   import Newsletter from '../components/Newsletter';
-  import AktuellesTeaser from '../components/AktuellesTeaser';
 
   export default function Home() {
     return (
