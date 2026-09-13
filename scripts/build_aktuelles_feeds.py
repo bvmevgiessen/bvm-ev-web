@@ -72,16 +72,11 @@ def build_events(now):
             "description": (e.get("description") or "")[:220],
             "link": f"/events/{e.get('id')}",
         })
-    # Nur Events innerhalb von 1 Monat vor und nach heute
-    sel = within_window(items, now)
-    # Bevorstehende Events (ab heute) zuerst chronologisch, gefolgt von kürzlich vergangenen Events
+    # Nur bevorstehende/aktuelle Events ab heute (keine vergangenen Events als Rückblick)
     today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
-    upcoming = [it for it in sel if it["_dt"] >= today_start]
-    past = [it for it in sel if it["_dt"] < today_start]
+    upcoming = [it for it in items if it["_dt"] >= today_start]
     upcoming.sort(key=lambda it: it["_dt"])
-    past.sort(key=lambda it: it["_dt"], reverse=True)
-    sorted_events = upcoming + past
-    return [{k: v for k, v in it.items() if k != "_dt"} for it in sorted_events[:MAX_ITEMS]]
+    return [{k: v for k, v in it.items() if k != "_dt"} for it in upcoming[:MAX_ITEMS]]
 
 
 def build_blogs(now):
@@ -120,6 +115,10 @@ def build_news():
         news = seed.get("news", [])
     else:
         news = []
+    # Bereinigung: News des Vereins sind echte Nachrichten (Kategorie 'News')
+    for n in news:
+        if n.get("category") in ("Rückblick", "Vorschau", None, ""):
+            n["category"] = "News"
     news.sort(key=lambda n: parse_date(n.get("date", "")), reverse=True)
     return news
 

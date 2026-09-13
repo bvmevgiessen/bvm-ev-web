@@ -64,7 +64,7 @@ export default function EventCountdownBadge({
       className={`inline-flex items-center gap-1.5 rounded-full bg-slate-700/90 px-2.5 py-0.5 font-mono text-[10px] font-semibold text-slate-200 backdrop-blur ${className}`}
     >
       <CheckCircle2 size={11} className="shrink-0 text-slate-300" />
-      Rückblick
+      Vergangen
     </span>
   );
 }

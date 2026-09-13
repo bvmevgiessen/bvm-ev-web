@@ -88,18 +88,21 @@ export default function HomeAktuellesHeader() {
       return 'BVM e.V.';
     };
 
-    // Strikte Filterung: Events und Blogs müssen innerhalb von einem Monat vor und nach heute liegen (±31 Tage)
-    const ONE_MONTH_MS = 31 * 24 * 60 * 60 * 1000;
+    // Filterung: Events sollen anstehend sein (ab heute), Blogs aus den letzten 3 Monaten
+    const THREE_MONTHS_MS = 90 * 24 * 60 * 60 * 1000;
     const nowMs = Date.now();
-    const isWithinOneMonth = (dateStr?: string): boolean => {
-      if (!dateStr) return false;
-      const t = new Date(dateStr).getTime();
-      if (isNaN(t)) return false;
-      return t >= nowMs - ONE_MONTH_MS && t <= nowMs + ONE_MONTH_MS;
-    };
+    const startOfTodayMs = new Date().setHours(0, 0, 0, 0);
 
-    const validEvents = rawEvents.filter((e) => isWithinOneMonth(e.date));
-    const validBlogs = rawBlogs.filter((b) => isWithinOneMonth(b.date));
+    const validEvents = rawEvents.filter((e) => {
+      if (!e.date) return false;
+      const t = new Date(e.date).getTime();
+      return !isNaN(t) && t >= startOfTodayMs;
+    });
+    const validBlogs = rawBlogs.filter((b) => {
+      if (!b.date) return true;
+      const t = new Date(b.date).getTime();
+      return !isNaN(t) && t >= nowMs - THREE_MONTHS_MS;
+    });
 
     // 1. News aufbereiten (bis zu 3) - Alle News sind vom BVM e.V.
     const newsList: UnifiedFeedItem[] = rawNews.slice(0, 3).map((n) => ({
