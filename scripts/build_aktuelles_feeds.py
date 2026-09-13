@@ -23,9 +23,10 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+NEWS = ROOT / "src" / "data" / "news.json"
 SEED = Path(__file__).resolve().parent / "aktuelles_seed.json"
 EVENTS = ROOT / "src" / "data" / "events.json"
-BLOGS = ROOT / "src" / "data" / "blogs.json"
+BLOGS = ROOT / "src" / "data" / "latest_updates.json"
 OUTPUT = ROOT / "public" / "data" / "aktuelles_feeds.json"
 
 WINDOW_DAYS = 31
@@ -48,15 +49,11 @@ def parse_date(value: str) -> datetime:
     return dt
 
 
-def within_window(items, now, upcoming_bias):
-    """Einträge im Fenster [now-31, now+31] (Events) bzw. [now-31, now] (Blogs)."""
+def within_window(items, now):
+    """Einträge strikt im Fenster [now - 31 Tage, now + 31 Tage] (1 Monat vor und nach heute)."""
     lo = now - timedelta(days=WINDOW_DAYS)
-    hi = now + timedelta(days=WINDOW_DAYS if upcoming_bias else 0)
+    hi = now + timedelta(days=WINDOW_DAYS)
     return [it for it in items if lo <= it["_dt"] <= hi]
-
-
-def nearest(items, now, count):
-    return sorted(items, key=lambda it: abs((it["_dt"] - now).total_seconds()))[:count]
 
 
 def build_events(now):
@@ -75,10 +72,9 @@ def build_events(now):
             "description": (e.get("description") or "")[:220],
             "link": f"/events/{e.get('id')}",
         })
-    sel = within_window(items, now, upcoming_bias=True)
-    if len(sel) < 3:
-        sel = nearest(items, now, MAX_ITEMS)
-    # Order upcoming events (today first) chronologically, followed by recent past events
+    # Nur Events innerhalb von 1 Monat vor und nach heute
+    sel = within_window(items, now)
+    # Bevorstehende Events (ab heute) zuerst chronologisch, gefolgt von kürzlich vergangenen Events
     today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
     upcoming = [it for it in sel if it["_dt"] >= today_start]
     past = [it for it in sel if it["_dt"] < today_start]
@@ -98,22 +94,32 @@ def build_blogs(now):
             "id": b.get("id"),
             "title": b.get("title"),
             "date": b.get("date"),
-            "author": b.get("author", ""),
+            "author": b.get("author") or b.get("partnerName", ""),
+            "partnerName": b.get("partnerName") or b.get("author", ""),
+            "partnerUrl": b.get("partnerUrl", ""),
             "category": b.get("category", "Blog"),
-            "image": b.get("image", ""),
+            "image": b.get("image") or b.get("image_url", ""),
             "excerpt": b.get("excerpt", ""),
-            "link": f"/blog/{b.get('id')}",
+            "link": b.get("link", ""),
         })
-    sel = within_window(items, now, upcoming_bias=False)
+    # Nur Blogs innerhalb von 1 Monat vor und nach heute
+    sel = within_window(items, now)
     if len(sel) < 3:
         sel = sorted(items, key=lambda it: it["_dt"], reverse=True)[:MAX_ITEMS]
-    sel.sort(key=lambda it: it["_dt"], reverse=True)
+    else:
+        sel.sort(key=lambda it: it["_dt"], reverse=True)
     return [{k: v for k, v in it.items() if k != "_dt"} for it in sel[:MAX_ITEMS]]
 
 
 def build_news():
-    seed = json.loads(SEED.read_text(encoding="utf-8"))
-    news = seed.get("news", [])
+    if NEWS.exists():
+        raw = json.loads(NEWS.read_text(encoding="utf-8"))
+        news = raw if isinstance(raw, list) else raw.get("news", [])
+    elif SEED.exists():
+        seed = json.loads(SEED.read_text(encoding="utf-8"))
+        news = seed.get("news", [])
+    else:
+        news = []
     news.sort(key=lambda n: parse_date(n.get("date", "")), reverse=True)
     return news
 
@@ -161,19 +167,7 @@ def main() -> int:
     (ROOT / "src" / "data" / "aktuelles_feeds.json").write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     # Sync public/data json feeds for standalone consumption
-    news_items = []
-    for n in out["news"]:
-        news_items.append({
-            "category": "news",
-            "title": n.get("title"),
-            "summary": n.get("shortText") or (n.get("highlights") and n["highlights"][0]) or "",
-            "date": n.get("date"),
-            "image": n.get("image"),
-            "link": "/aktuelles#news",
-            "author": "BVM e.V."
-        })
-    (ROOT / "public" / "data" / "news.json").write_text(json.dumps(news_items, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    (ROOT / "src" / "data" / "news.json").write_text(json.dumps(news_items, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (ROOT / "public" / "data" / "news.json").write_text(json.dumps(out["news"], ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (ROOT / "public" / "data" / "events.json").write_text(EVENTS.read_text(encoding="utf-8"), encoding="utf-8")
     (ROOT / "public" / "data" / "blogs.json").write_text(BLOGS.read_text(encoding="utf-8"), encoding="utf-8")
 

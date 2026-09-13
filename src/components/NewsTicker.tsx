@@ -44,7 +44,7 @@ export default function NewsTicker() {
       id: `blog-${blog.id}`,
       type: 'blog' as const,
       title: blog.title,
-      link: `/blog/${blog.id}`,
+      link: (blog as any).link || `/blog/${blog.id}`,
       date: blog.date
     }))
   ];
@@ -81,12 +81,9 @@ export default function NewsTicker() {
                   ? dateObj.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })
                   : '';
                   
-                return (
-                  <Link
-                    key={`accessible-${item.id}`}
-                    to={item.link}
-                    className="flex items-center space-x-3 px-6 text-sm font-medium hover:text-brand-teal transition-colors focus:outline-none focus:text-brand-teal"
-                  >
+                const isExternal = item.link.startsWith('http');
+                const content = (
+                  <>
                     {item.type === 'event' ? (
                       <Calendar className="w-4 h-4 text-brand-teal shrink-0" aria-hidden="true" />
                     ) : (
@@ -97,6 +94,26 @@ export default function NewsTicker() {
                       {item.title}
                     </span>
                     <span className="px-6 text-white/30" aria-hidden="true">•</span>
+                  </>
+                );
+
+                return isExternal ? (
+                  <a
+                    key={`accessible-${item.id}`}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-3 px-6 text-sm font-medium hover:text-brand-teal transition-colors focus:outline-none focus:text-brand-teal"
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <Link
+                    key={`accessible-${item.id}`}
+                    to={item.link}
+                    className="flex items-center space-x-3 px-6 text-sm font-medium hover:text-brand-teal transition-colors focus:outline-none focus:text-brand-teal"
+                  >
+                    {content}
                   </Link>
                 );
               })}
@@ -109,14 +126,9 @@ export default function NewsTicker() {
                 const formattedDate = dateObj 
                   ? dateObj.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })
                   : '';
-                  
-                return (
-                  <Link
-                    key={`duplicate-${item.id}`}
-                    to={item.link}
-                    tabIndex={-1}
-                    className="flex items-center space-x-3 px-6 text-sm font-medium hover:text-brand-teal transition-colors"
-                  >
+                const isExternal = item.link.startsWith('http');
+                const content = (
+                  <>
                     {item.type === 'event' ? (
                       <Calendar className="w-4 h-4 text-brand-teal shrink-0" />
                     ) : (
@@ -127,6 +139,28 @@ export default function NewsTicker() {
                       {item.title}
                     </span>
                     <span className="px-6 text-white/30">•</span>
+                  </>
+                );
+                  
+                return isExternal ? (
+                  <a
+                    key={`duplicate-${item.id}`}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    tabIndex={-1}
+                    className="flex items-center space-x-3 px-6 text-sm font-medium hover:text-brand-teal transition-colors"
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <Link
+                    key={`duplicate-${item.id}`}
+                    to={item.link}
+                    tabIndex={-1}
+                    className="flex items-center space-x-3 px-6 text-sm font-medium hover:text-brand-teal transition-colors"
+                  >
+                    {content}
                   </Link>
                 );
               })}

@@ -12,7 +12,8 @@ import {
   ChevronRight,
   Pause,
   Play,
-  Sparkles
+  Sparkles,
+  ExternalLink
 } from 'lucide-react';
 import EventCountdownBadge from './EventCountdownBadge';
 import { useAktuelles, formatDate } from '../data/aktuelles';
@@ -87,6 +88,19 @@ export default function HomeAktuellesHeader() {
       return 'BVM e.V.';
     };
 
+    // Strikte Filterung: Events und Blogs müssen innerhalb von einem Monat vor und nach heute liegen (±31 Tage)
+    const ONE_MONTH_MS = 31 * 24 * 60 * 60 * 1000;
+    const nowMs = Date.now();
+    const isWithinOneMonth = (dateStr?: string): boolean => {
+      if (!dateStr) return false;
+      const t = new Date(dateStr).getTime();
+      if (isNaN(t)) return false;
+      return t >= nowMs - ONE_MONTH_MS && t <= nowMs + ONE_MONTH_MS;
+    };
+
+    const validEvents = rawEvents.filter((e) => isWithinOneMonth(e.date));
+    const validBlogs = rawBlogs.filter((b) => isWithinOneMonth(b.date));
+
     // 1. News aufbereiten (bis zu 3) - Alle News sind vom BVM e.V.
     const newsList: UnifiedFeedItem[] = rawNews.slice(0, 3).map((n) => ({
       category: 'news',
@@ -100,8 +114,8 @@ export default function HomeAktuellesHeader() {
       sourceId: n.id,
     }));
 
-    // 2. Events aufbereiten (bis zu 3) - Veranstalter
-    const eventsList: UnifiedFeedItem[] = rawEvents.slice(0, 3).map((e) => ({
+    // 2. Events aufbereiten (bis zu 3) - Veranstalter (nur innerhalb von 1 Monat)
+    const eventsList: UnifiedFeedItem[] = validEvents.slice(0, 3).map((e) => ({
       category: 'event',
       title: e.title,
       summary: e.description || '',
@@ -113,8 +127,8 @@ export default function HomeAktuellesHeader() {
       sourceId: e.id,
     }));
 
-    // 3. Blogs aufbereiten (bis zu 3) - Verein aus dem der Blog stammt
-    const blogsList: UnifiedFeedItem[] = rawBlogs.slice(0, 3).map((b) => ({
+    // 3. Blogs aufbereiten (bis zu 3) - Verein aus dem der Blog stammt (nur innerhalb von 1 Monat)
+    const blogsList: UnifiedFeedItem[] = validBlogs.slice(0, 3).map((b) => ({
       category: 'blog',
       title: b.title,
       summary: b.excerpt || '',
@@ -350,7 +364,19 @@ export default function HomeAktuellesHeader() {
 
                   {/* Titel */}
                   <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight leading-snug line-clamp-2 hover:text-teal-300 transition-colors">
-                    <Link to={activeItem.link}>{activeItem.title}</Link>
+                    {activeItem.link.startsWith('http') ? (
+                      <a
+                        href={activeItem.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline flex items-center gap-2"
+                      >
+                        <span>{activeItem.title}</span>
+                        <ExternalLink size={18} className="shrink-0 text-slate-400" />
+                      </a>
+                    ) : (
+                      <Link to={activeItem.link}>{activeItem.title}</Link>
+                    )}
                   </h3>
 
                   {/* Kurztext (max. 2–3 Zeilen wie gewünscht) */}
@@ -368,13 +394,26 @@ export default function HomeAktuellesHeader() {
 
                 {/* Footer-Bereich der Card: Mehr-erfahren-Button & Mini-Pagination */}
                 <div className="mt-6 pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
-                  <Link
-                    to={activeItem.link}
-                    data-testid="header-card-cta"
-                    className="inline-flex items-center gap-2 rounded-full bg-brand-orange hover:bg-amber-600 text-white px-5 py-2.5 text-sm font-bold shadow-lg shadow-orange-500/20 transition-all active:scale-95"
-                  >
-                    Mehr erfahren <ArrowRight size={15} />
-                  </Link>
+                  {activeItem.link.startsWith('http') ? (
+                    <a
+                      href={activeItem.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-testid="header-card-cta"
+                      className="inline-flex items-center gap-2 rounded-full bg-brand-orange hover:bg-amber-600 text-white px-5 py-2.5 text-sm font-bold shadow-lg shadow-orange-500/20 transition-all active:scale-95"
+                    >
+                      {activeItem.category === 'blog' ? 'Zum Originalbeitrag' : 'Mehr erfahren'}{' '}
+                      <ExternalLink size={15} />
+                    </a>
+                  ) : (
+                    <Link
+                      to={activeItem.link}
+                      data-testid="header-card-cta"
+                      className="inline-flex items-center gap-2 rounded-full bg-brand-orange hover:bg-amber-600 text-white px-5 py-2.5 text-sm font-bold shadow-lg shadow-orange-500/20 transition-all active:scale-95"
+                    >
+                      Mehr erfahren <ArrowRight size={15} />
+                    </Link>
+                  )}
 
                   {/* Fortschritts-Indikatoren / Mini-Tabs */}
                   <div className="flex items-center gap-1.5">
