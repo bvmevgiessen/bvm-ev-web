@@ -76,14 +76,14 @@ export default function Footer() {
         <div>
           <h4 className="text-lg font-bold mb-8 text-brand-teal">Schnellzugriff</h4>
           <ul className="space-y-4 text-slate-400 text-sm">
+            <li><Link to="/aktuelles" className="text-white hover:text-brand-teal transition-colors font-semibold flex items-center gap-1.5">📰 Aktuelles & Feeds</Link></li>
             <li><Link to="/#home" className="hover:text-white transition-colors">Startseite</Link></li>
-            <li><Link to="/aktuelles" className="hover:text-white transition-colors">Aktuelles</Link></li>
             <li><Link to="/#about" className="hover:text-white transition-colors">Über uns</Link></li>
             <li><Link to="/#impact" className="hover:text-white transition-colors">Unsere Impact</Link></li>
             <li><Link to="/#events" className="hover:text-white transition-colors">Veranstaltungen</Link></li>
             <li><Link to="/karriere" className="hover:text-white transition-colors">Karriere</Link></li>
             <li><Link to="/taetigkeitsbericht" className="hover:text-white transition-colors">Tätigkeitsbericht</Link></li>
-            <li><Link to="/justicesquare" className="hover:text-white transition-colors">JusticeSquare</Link></li>
+            <li><Link to="/justicesquare" className="text-brand-teal hover:text-white transition-colors font-bold flex items-center gap-1.5">⚖️ JusticeSquare</Link></li>
             <li><Link to="/#contact" className="hover:text-white transition-colors">Kontakt</Link></li>
             <li><Link to="/admin/surveys" className="text-slate-500 hover:text-brand-teal transition-colors font-semibold">🔑 Admin-Dashboard</Link></li>
           </ul>

@@ -158,6 +158,25 @@ def main() -> int:
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (ROOT / "src" / "data" / "aktuelles_feeds.json").write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    # Sync public/data json feeds for standalone consumption
+    news_items = []
+    for n in out["news"]:
+        news_items.append({
+            "category": "news",
+            "title": n.get("title"),
+            "summary": n.get("shortText") or (n.get("highlights") and n["highlights"][0]) or "",
+            "date": n.get("date"),
+            "image": n.get("image"),
+            "link": "/aktuelles#news",
+            "author": "BVM e.V."
+        })
+    (ROOT / "public" / "data" / "news.json").write_text(json.dumps(news_items, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (ROOT / "src" / "data" / "news.json").write_text(json.dumps(news_items, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (ROOT / "public" / "data" / "events.json").write_text(EVENTS.read_text(encoding="utf-8"), encoding="utf-8")
+    (ROOT / "public" / "data" / "blogs.json").write_text(BLOGS.read_text(encoding="utf-8"), encoding="utf-8")
+
     print(f"Geschrieben: {OUTPUT.relative_to(ROOT)}")
     print(f"  news={len(out['news'])} events={len(out['events'])} blogs={len(out['blogs'])}")
     return 0
