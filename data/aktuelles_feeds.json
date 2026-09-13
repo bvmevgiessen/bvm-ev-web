@@ -1,58 +1,11 @@
 {
-  "generatedAt": "2026-09-13T16:01:45.454907+00:00",
+  "generatedAt": "2026-09-13T20:30:02.144524+00:00",
   "lastUpdated": {
-    "news": "2026-09-13T16:01:45.454907+00:00",
-    "events": "2026-09-13T16:01:45.454907+00:00",
-    "blogs": "2026-09-13T16:01:45.454907+00:00"
+    "news": "2026-09-13T20:30:02.144524+00:00",
+    "events": "2026-09-13T20:25:04.435320+00:00",
+    "blogs": "2026-09-13T20:25:04.435320+00:00"
   },
   "news": [
-    {
-      "id": "noahs-fest-2026-heute",
-      "category": "Veranstaltung",
-      "date": "2026-09-12T09:30:00",
-      "title": "Heute: Noahs Fest – Aşure Tag auf dem Kirchenplatz Gießen",
-      "image": "https://images.unsplash.com/photo-1751879182448-d7b3dce2b00e?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "gallery": [
-        {
-          "url": "https://images.unsplash.com/photo-1751879182448-d7b3dce2b00e?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-          "title": "Noahs Fest – Aşure Tag",
-          "caption": "Interreligiöses Fest für Frieden und Zusammenhalt im Herzen von Gießen."
-        },
-        {
-          "url": "https://www.unileverfoodsolutions.com.tr/dam/global-ufs/mcos/turkey/turk_mutfagi/G%C3%96RSEL%201%20%20(2).jpg",
-          "title": "Traditionelle Aşure (Noahs Pudding)",
-          "caption": "Köstliche Asure-Speise als Zeichen des Teilens und der Verbundenheit."
-        }
-      ],
-      "location": "Kirchenplatz, 35390 Gießen",
-      "shortText": "Heute ab 14:30 Uhr laden der BVM e.V. und die Evangelische Philippusgemeinde herzlich zum Noahs Fest auf dem Kirchenplatz in Gießen ein: Kurzvorträge, gemeinsames Friedensgebet und Verteilung von Noahs Pudding (Aşure) ohne Voranmeldung.",
-      "highlights": [
-        "Interreligiöses Fest für Frieden und Zusammenhalt im Herzen von Gießen in Kooperation mit der Evangelischen Philippusgemeinde Gießen.",
-        "Kurze Ansprachen über die Bedeutung des Noahs Festes und friedliches Zusammenleben über Kultur- und Religionsgrenzen hinweg.",
-        "Gemeinsames Friedensgebet für den Zusammenhalt in unserer Stadt.",
-        "Kostenlose Verteilung von traditionellem Noahs Pudding (Aşure) an Passantinnen, Passanten, Gäste und Freundinnen und Freunde.",
-        "Offene Begegnung und Raum für Dialog bei angenehmer Hintergrundmusik – keine Voranmeldung erforderlich (Eintritt frei)."
-      ],
-      "speech": "Das Noahs Fest und die Asure-Tradition symbolisieren, wie viele verschiedene Gaben zu einem harmonischen Ganzen zusammenkommen. Genau wie die unterschiedlichen Zutaten im Asure-Pudding bereichern Menschen verschiedener Herkunft und Überzeugungen unsere Stadtgesellschaft. Wir laden alle Bürgerinnen und Bürger herzlich ein, heute mit uns ins Gespräch zu kommen!",
-      "persons": [
-        {
-          "name": "Evangelische Philippusgemeinde Gießen",
-          "role": "Kooperationspartner & Mitveranstalter"
-        },
-        {
-          "name": "BVM e.V. DialogPlattform",
-          "role": "Organisation & Interreligiöser Dialog"
-        },
-        {
-          "name": "Ömer Altun",
-          "role": "Stellv. Vorsitzender BVM e.V."
-        },
-        {
-          "name": "Ehrenamtsteam BVM e.V.",
-          "role": "Aşure-Zubereitung & Gästebetreuung"
-        }
-      ]
-    },
     {
       "id": "news-cdu-michelle-kraft",
       "category": "Rückblick",
@@ -63,7 +16,7 @@
         {
           "url": "/assets/kraft_treffen_gruppe.jpeg",
           "title": "Gruppenfoto der Delegation",
-          "caption": "Delegation des BVM e.V. und fid e.V. im Gespräch mit MdL Michelle Kraft in Gießen."
+          "caption": "Delegation des BVM e.V. und FIDeV im Gespräch mit MdL Michelle Kraft in Gießen."
         },
         {
           "url": "/assets/kraft_treffen_detail.jpeg",
@@ -158,44 +111,76 @@
   ],
   "blogs": [
     {
-      "id": "blog-integration-2026",
-      "title": "Integration in Mittelhessen: Neue Perspektiven für Zusammenleben",
-      "date": "2026-04-15T10:00:00",
-      "author": "Stiftung Dialog und Bildung",
-      "category": "Integration",
-      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800",
-      "excerpt": "In unserem neuesten Bericht beleuchten wir die aktuellen Herausforderungen und Chancen der Integration in der Mittelhessen-Region.",
-      "link": "/blog/blog-integration-2026"
-    },
-    {
-      "id": "blog-dialog-2026",
-      "title": "Interkultureller Dialog: Brücken bauen in der Gesellschaft",
-      "date": "2026-04-10T14:30:00",
+      "id": "fidev-fe0838f36a",
+      "title": "Streetart-Workshop",
+      "date": "2026-09-02T10:40:50+00:00",
       "author": "Forum für Interkulturellen Dialog",
-      "category": "Dialog",
-      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800",
-      "excerpt": "Wie Dialog die Grundlage für eine erfolgreiche Gesellschaft schafft – Ein Erfahrungsbericht aus unserem neuesten Projekt.",
-      "link": "/blog/blog-dialog-2026"
-    },
-    {
-      "id": "blog-community-2026",
-      "title": "Gemeinsam für eine bessere Zukunft: Unsere Community-Projekte",
-      "date": "2026-04-08T09:15:00",
-      "author": "Time to Help e.V.",
+      "partnerName": "Forum für Interkulturellen Dialog",
+      "partnerUrl": "https://www.fidev.org/",
       "category": "Community",
-      "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=800",
-      "excerpt": "Erfahren Sie, wie unsere Freiwilligen und Partner zusammenarbeiten, um positive Veränderungen in der Gemeinschaft zu schaffen.",
-      "link": "/blog/blog-community-2026"
+      "image": "https://static.wixstatic.com/media/2d6f92_daaf832f48e742e0a24454d7f29cc426~mv2.png/v1/fit/w_1000,h_904,al_c,q_80/file.png",
+      "excerpt": "Entdecke die Ursprünge urbaner Kunst, experimentiere mit Farben und Techniken und entwickle deinen ganz eigenen Style. Streetart ist mehr als Graffiti auf Wänden: Sie verbindet Kreativität, gesellschaftlichen Ausdruck u…",
+      "link": "https://www.fidev.org/post/streetart-workshop"
     },
     {
-      "id": "blog-jugend-2026",
-      "title": "Jugendengagement: Die nächste Generation von Veränderungsträgern",
-      "date": "2026-04-05T16:45:00",
-      "author": "LDK e.V.",
+      "id": "fidev-962f06d182",
+      "title": "Erste DiscoverEU-Inklusionsreisen erfolgreich umgesetzt",
+      "date": "2026-09-02T10:27:12+00:00",
+      "author": "Forum für Interkulturellen Dialog",
+      "partnerName": "Forum für Interkulturellen Dialog",
+      "partnerUrl": "https://www.fidev.org/",
       "category": "Jugend",
-      "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800",
-      "excerpt": "Junge Menschen bringen frische Perspektiven und Leidenschaft mit – lesen Sie, wie wir Jugendliche in ihrer persönlichen Entwicklung unterstützen.",
-      "link": "/blog/blog-jugend-2026"
+      "image": "https://static.wixstatic.com/media/2d6f92_7434e30e8f3f4f018ce2b036143f1ed7~mv2.jpg/v1/fit/w_1000,h_720,al_c,q_80/file.png",
+      "excerpt": "Brücken bauen – Europa entdecken: Erste DiscoverEU-Inklusionsreisen erfolgreich umgesetzt Mit unseren ersten beiden DiscoverEU-Inklusionsprojekten über Ostern und im Sommer 2026 haben insgesamt 50 junge Menschen mit Mig…",
+      "link": "https://www.fidev.org/post/erste-discovereu-inklusionsreisen-erfolgreich-umgesetzt"
+    },
+    {
+      "id": "fidev-6992822c8b",
+      "title": "Erinnerung und Exil: Warum persönliche Geschichten unsere Stadtgesellschaft stärken",
+      "date": "2026-09-02T09:25:23+00:00",
+      "author": "Forum für Interkulturellen Dialog",
+      "partnerName": "Forum für Interkulturellen Dialog",
+      "partnerUrl": "https://www.fidev.org/",
+      "category": "Integration",
+      "image": "https://static.wixstatic.com/media/2d6f92_9829299b97fb445eb438738d40c24f8c~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
+      "excerpt": "Persönliche Exilgeschichten verbinden Vergangenheit und Gegenwart. Ein verantwortungsvoller Umgang mit Erinnerung kann Empathie, Bildung und Dialog fördern.",
+      "link": "https://www.fidev.org/post/erinnerung-exil-persoenliche-geschichten-frankfurt"
+    },
+    {
+      "id": "fidev-ca6903eadc",
+      "title": "Was Helsinki über Integration lehrt: Ein Besuch in der Bibliothek Oodi",
+      "date": "2026-09-01T10:25:38+00:00",
+      "author": "Forum für Interkulturellen Dialog",
+      "partnerName": "Forum für Interkulturellen Dialog",
+      "partnerUrl": "https://www.fidev.org/",
+      "category": "Integration",
+      "image": "https://static.wixstatic.com/media/2d6f92_f5394576328a4045830202fc67e0fe5d~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
+      "excerpt": "Was wäre, wenn Integration nicht zuerst im Amt beginnt? Ein Besuch in Helsinkis Zentralbibliothek Oodi zeigt, was offene Begegnungsorte bewirken können.",
+      "link": "https://www.fidev.org/post/integration-helsinki-oodi"
+    },
+    {
+      "id": "fidev-66a276d491",
+      "title": "Der Mensch hinter der Geschichte - Dialog, der verbindet",
+      "date": "2026-09-01T09:43:37+00:00",
+      "author": "Forum für Interkulturellen Dialog",
+      "partnerName": "Forum für Interkulturellen Dialog",
+      "partnerUrl": "https://www.fidev.org/",
+      "category": "Dialog",
+      "image": "https://static.wixstatic.com/media/2d6f92_52c923e8877a4935a2489c348569c97c~mv2.jpg/v1/fit/w_900,h_1000,al_c,q_80/file.png",
+      "excerpt": "Im Rahmen der Veranstaltung kamen zehn Menschen mit unterschiedlichen persönlichen Lebensgeschichten zusammen. Im Mittelpunkt stand der persönliche Austausch über Erfahrungen von Flucht, Ankommen, Neuanfang und dem Aufb…",
+      "link": "https://www.fidev.org/post/der-mensch-hinter-der-geschichte-dialog-der-verbindet"
+    },
+    {
+      "id": "fidev-3fe2ba2bdc",
+      "title": "Medienkompetenz im digitalen Zeitalter: Umgang mit Desinformation und Vorurteilen",
+      "date": "2026-08-23T10:32:35+00:00",
+      "author": "Forum für Interkulturellen Dialog",
+      "partnerName": "Forum für Interkulturellen Dialog",
+      "partnerUrl": "https://www.fidev.org/",
+      "category": "Community",
+      "image": "https://static.wixstatic.com/media/a7ec0d_c83c7773fb204542ae1e4be8d313d63c~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
+      "excerpt": "Medienkompetenz hilft, Desinformation zu erkennen, Quellen zu prüfen und Vorurteilen im Netz mit Ruhe und digitaler Zivilcourage zu begegnen.",
+      "link": "https://www.fidev.org/post/medienkompetenz-desinformation-vorurteile"
     }
   ]
 }
