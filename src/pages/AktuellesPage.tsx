@@ -135,7 +135,7 @@ export default function AktuellesPage() {
             News des Vereins <span className="text-slate-400">– Rückblick & Vorschau</span>
           </h2>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div className={`grid grid-cols-1 gap-8 ${feeds.news.length > 1 ? 'md:grid-cols-2' : 'max-w-2xl'}`}>
             {feeds.news.map((n, i) => (
               <motion.div
                 key={n.id}

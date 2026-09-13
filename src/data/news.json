@@ -1,0 +1,62 @@
+[
+  {
+    "id": "news-cdu-michelle-kraft",
+    "category": "Rückblick",
+    "date": "2026-09-11T10:00:00",
+    "title": "Treffen mit CDU‑Landtagsabgeordneter Michelle Kraft in Gießen",
+    "image": "/assets/kraft_treffen_gruppe.jpeg",
+    "gallery": [
+      {
+        "url": "/assets/kraft_treffen_gruppe.jpeg",
+        "title": "Gruppenfoto der Delegation",
+        "caption": "Delegation des BVM e.V. und FIDeV im Gespräch mit MdL Michelle Kraft in Gießen."
+      },
+      {
+        "url": "/assets/kraft_treffen_detail.jpeg",
+        "title": "Gesprächsrunde & Dialog",
+        "caption": "Vertiefender Austausch über Bildungsangebote, C1-Sprachkurse, Lehrkräfteunterstützung und Jugendprojekte."
+      },
+      {
+        "url": "/assets/kraft_treffen_story.jpeg",
+        "title": "Social-Media-Bericht von Michelle Kraft MdL",
+        "caption": "Eindrücke aus der Story von MdL Michelle Kraft zum Besuch der BVM e.V. Delegation."
+      }
+    ],
+    "location": "CDU‑Geschäftsstelle Gießen",
+    "shortText": "Eine Delegation des BVM e.V. traf sich mit Michelle Kraft, Landtagsabgeordnete für Gießen I und Fachsprecherin für Integration, zum Austausch über Integration, Bildung und Jugendförderung.",
+    "highlights": [
+      "Delegation des BVM e.V. (7 Personen, inkl. Vertreter von FIDeV und CDU‑Mitgliedern) traf sich in der CDU‑Geschäftsstelle Gießen mit Frau Michelle Kraft.",
+      "Austausch über Integration, Jugendförderung, Sprachkurse (C1‑Kurse), Herausforderungen im Bildungssystem, Lehrerüberlastung und Unterstützung für Kinder mit Migrationshintergrund.",
+      "Diskussion über Demokratiebildung für Jugendliche und Prävention von Marginalisierung.",
+      "Vereinbarung: alle drei Monate ein Folgetreffen sowie ein Besuch im Hessischen Landtag in Wiesbaden.",
+      "Frau Kraft signalisiert langfristige Zusammenarbeit und regelmäßigen Kontakt."
+    ],
+    "speech": "Sehr geehrte Frau Kraft, herzlichen Dank, dass Sie sich heute die Zeit für uns nehmen. Wir sind als postmigrantischer Verein in Gießen und Wetzlar aktiv und engagieren uns in Integration, Dialog, Bildung und Jugendarbeit. Als Fachsprecherin für Integration sind Sie eine zentrale Ansprechpartnerin für unsere Themen.",
+    "persons": [
+      {
+        "name": "Ömer Altun",
+        "role": "Stellv. Vorsitzender (BVM e.V. / Unternehmer)"
+      },
+      {
+        "name": "Kadir Boyaci",
+        "role": "Geschäftsführer FIDeV"
+      },
+      {
+        "name": "Mark Bramwell",
+        "role": "CDU‑Mitglied Gießen & Ehrenamtlicher, BVM e.V."
+      },
+      {
+        "name": "Serdar Gülec",
+        "role": "Protokollführer & DialogPlattform (BVM e.V. / IT‑Experte)"
+      },
+      {
+        "name": "Ensar Uzun",
+        "role": "Mitglied & Ehrenamtlicher, BVM e.V."
+      },
+      {
+        "name": "Gülbanu Özden",
+        "role": "Mitglied & Ehrenamtliche, BVM e.V. – Jugendarbeit"
+      }
+    ]
+  }
+]

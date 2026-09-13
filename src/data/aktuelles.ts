@@ -168,7 +168,9 @@ function normalizeAssetUrl(url?: string): string {
 
 function processFeeds(raw: AktuellesFeeds): AktuellesFeeds {
   if (!raw) return raw;
-  const mergedNews = deriveAutoNewsFromEvents(raw.events || [], raw.news || []).map((n) => ({
+  // News wird separat geführt und enthält nur echte Vereinsnachrichten (keine Duplikate aus Events)
+  const rawNews = Array.isArray(raw.news) ? raw.news : [];
+  const normalizedNews = rawNews.map((n) => ({
     ...n,
     image: normalizeAssetUrl(n.image),
     gallery: n.gallery?.map((g) => ({
@@ -178,7 +180,7 @@ function processFeeds(raw: AktuellesFeeds): AktuellesFeeds {
   }));
   return {
     ...raw,
-    news: mergedNews,
+    news: normalizedNews,
   };
 }
 

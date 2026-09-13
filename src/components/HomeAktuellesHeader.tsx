@@ -87,6 +87,19 @@ export default function HomeAktuellesHeader() {
       return 'BVM e.V.';
     };
 
+    // Strikte Filterung: Events und Blogs müssen innerhalb von einem Monat vor und nach heute liegen (±31 Tage)
+    const ONE_MONTH_MS = 31 * 24 * 60 * 60 * 1000;
+    const nowMs = Date.now();
+    const isWithinOneMonth = (dateStr?: string): boolean => {
+      if (!dateStr) return false;
+      const t = new Date(dateStr).getTime();
+      if (isNaN(t)) return false;
+      return t >= nowMs - ONE_MONTH_MS && t <= nowMs + ONE_MONTH_MS;
+    };
+
+    const validEvents = rawEvents.filter((e) => isWithinOneMonth(e.date));
+    const validBlogs = rawBlogs.filter((b) => isWithinOneMonth(b.date));
+
     // 1. News aufbereiten (bis zu 3) - Alle News sind vom BVM e.V.
     const newsList: UnifiedFeedItem[] = rawNews.slice(0, 3).map((n) => ({
       category: 'news',
@@ -100,8 +113,8 @@ export default function HomeAktuellesHeader() {
       sourceId: n.id,
     }));
 
-    // 2. Events aufbereiten (bis zu 3) - Veranstalter
-    const eventsList: UnifiedFeedItem[] = rawEvents.slice(0, 3).map((e) => ({
+    // 2. Events aufbereiten (bis zu 3) - Veranstalter (nur innerhalb von 1 Monat)
+    const eventsList: UnifiedFeedItem[] = validEvents.slice(0, 3).map((e) => ({
       category: 'event',
       title: e.title,
       summary: e.description || '',
@@ -113,8 +126,8 @@ export default function HomeAktuellesHeader() {
       sourceId: e.id,
     }));
 
-    // 3. Blogs aufbereiten (bis zu 3) - Verein aus dem der Blog stammt
-    const blogsList: UnifiedFeedItem[] = rawBlogs.slice(0, 3).map((b) => ({
+    // 3. Blogs aufbereiten (bis zu 3) - Verein aus dem der Blog stammt (nur innerhalb von 1 Monat)
+    const blogsList: UnifiedFeedItem[] = validBlogs.slice(0, 3).map((b) => ({
       category: 'blog',
       title: b.title,
       summary: b.excerpt || '',
