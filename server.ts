@@ -106,6 +106,13 @@ async function startServer() {
 
   const DEFAULT_GAS_URL = "https://script.google.com/macros/s/AKfycbVB7mpSdQpm-QvzoJCTLn74BqLNdUD99ILxAoD9I7_kU3WPxNYLxF4luvr7kyDSTiE/exec";
 
+  // Validate that a candidate URL strictly matches authorized Google Apps Script endpoints
+  function isValidGasUrl(candidate: unknown): candidate is string {
+    if (typeof candidate !== "string") return false;
+    const trimmed = candidate.trim();
+    return /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]{20,120}\/exec$/.test(trimmed);
+  }
+
   // API endpoint to fetch survey settings config via server-side REST call
   // This bypasses any client-side Firestore/iframe restriction completely.
   app.get("/api/survey-settings/config", async (req, res) => {
@@ -164,15 +171,18 @@ async function startServer() {
       let maskParams: string[] = ["updateMask.fieldPaths=updatedAt"];
 
       if (taetigkeitsberichtGasUrl !== undefined) {
-        fields.taetigkeitsberichtGasUrl = { stringValue: taetigkeitsberichtGasUrl };
+        if (!isValidGasUrl(taetigkeitsberichtGasUrl)) {
+          return res.status(400).json({ error: "Invalid Google Apps Script Web-App URL format." });
+        }
+        fields.taetigkeitsberichtGasUrl = { stringValue: String(taetigkeitsberichtGasUrl).trim() };
         maskParams.push("updateMask.fieldPaths=taetigkeitsberichtGasUrl");
       }
       if (googleSpreadsheetUrl !== undefined) {
-        fields.googleSpreadsheetUrl = { stringValue: googleSpreadsheetUrl };
+        fields.googleSpreadsheetUrl = { stringValue: String(googleSpreadsheetUrl) };
         maskParams.push("updateMask.fieldPaths=googleSpreadsheetUrl");
       }
       if (adminPasscodeHash !== undefined) {
-        fields.adminPasscodeHash = { stringValue: adminPasscodeHash };
+        fields.adminPasscodeHash = { stringValue: String(adminPasscodeHash) };
         maskParams.push("updateMask.fieldPaths=adminPasscodeHash");
       }
 
@@ -195,32 +205,23 @@ async function startServer() {
     }
   });
 
-  // API proxy route for Google Apps Script to bypass browser Content Security Policy
+  // API proxy route for Google Apps Script to bypass browser Content Security Policy.
+  // Secure against Server-Side Request Forgery (SSRF - CodeQL js/request-forgery):
+  // Outgoing requests are strictly directed to the immutable compile-time constant DEFAULT_GAS_URL.
+  // User input is never used as a destination URL.
   app.post("/api/proxy-apps-script", async (req, res) => {
     const { url, payload } = req.body;
-    if (!url) {
-      return res.status(400).json({ error: "Missing Apps Script url" });
-    }
 
-    // SSRF Prevention: Restrict forwarded requests strictly to verified Google Apps Script endpoints
-    try {
-      const parsedUrl = new URL(url);
-      if (parsedUrl.protocol !== "https:") {
-        return res.status(400).json({ error: "Invalid protocol. Only HTTPS is allowed." });
-      }
-      if (parsedUrl.hostname !== "script.google.com") {
-        return res.status(400).json({ error: "Invalid target host. Only script.google.com is allowed." });
-      }
-      if (!parsedUrl.pathname.startsWith("/macros/s/") || !parsedUrl.pathname.endsWith("/exec")) {
-        return res.status(400).json({ error: "Invalid Apps Script path structure." });
-      }
-    } catch (e) {
-      return res.status(400).json({ error: "Malformed URL provided." });
+    // Strictly disallow arbitrary or unapproved external target URLs
+    if (typeof url === "string" && url.trim() && url.trim() !== DEFAULT_GAS_URL) {
+      return res.status(403).json({
+        error: "Forbidden: Target URL is not in the authorized Google Apps Script endpoint list."
+      });
     }
 
     try {
-      console.log(`[Proxy] Forwarding request to Google Apps Script: ${url.slice(0, 50)}...`);
-      const response = await fetch(url, {
+      console.log("[Proxy] Forwarding request to authorized Google Apps Script endpoint...");
+      const response = await fetch(DEFAULT_GAS_URL, {
         method: "POST",
         headers: {
           "Content-Type": "text/plain;charset=utf-8"
