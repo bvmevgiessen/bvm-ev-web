@@ -155,9 +155,27 @@ export function deriveAutoNewsFromEvents(events: EventItem[] = [], existingNews:
   return combined;
 }
 
+function normalizeAssetUrl(url?: string): string {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:') || url.startsWith('//')) {
+    return url;
+  }
+  const base = import.meta.env.BASE_URL || '/';
+  const prefix = base.endsWith('/') ? base.slice(0, -1) : base;
+  const path = url.startsWith('/') ? url : `/${url}`;
+  return `${prefix}${path}`;
+}
+
 function processFeeds(raw: AktuellesFeeds): AktuellesFeeds {
   if (!raw) return raw;
-  const mergedNews = deriveAutoNewsFromEvents(raw.events || [], raw.news || []);
+  const mergedNews = deriveAutoNewsFromEvents(raw.events || [], raw.news || []).map((n) => ({
+    ...n,
+    image: normalizeAssetUrl(n.image),
+    gallery: n.gallery?.map((g) => ({
+      ...g,
+      url: normalizeAssetUrl(g.url),
+    })),
+  }));
   return {
     ...raw,
     news: mergedNews,
