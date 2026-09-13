@@ -12,7 +12,8 @@ import {
   ChevronRight,
   Pause,
   Play,
-  Sparkles
+  Sparkles,
+  ExternalLink
 } from 'lucide-react';
 import EventCountdownBadge from './EventCountdownBadge';
 import { useAktuelles, formatDate } from '../data/aktuelles';
@@ -363,7 +364,19 @@ export default function HomeAktuellesHeader() {
 
                   {/* Titel */}
                   <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight leading-snug line-clamp-2 hover:text-teal-300 transition-colors">
-                    <Link to={activeItem.link}>{activeItem.title}</Link>
+                    {activeItem.link.startsWith('http') ? (
+                      <a
+                        href={activeItem.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline flex items-center gap-2"
+                      >
+                        <span>{activeItem.title}</span>
+                        <ExternalLink size={18} className="shrink-0 text-slate-400" />
+                      </a>
+                    ) : (
+                      <Link to={activeItem.link}>{activeItem.title}</Link>
+                    )}
                   </h3>
 
                   {/* Kurztext (max. 2–3 Zeilen wie gewünscht) */}
@@ -381,13 +394,26 @@ export default function HomeAktuellesHeader() {
 
                 {/* Footer-Bereich der Card: Mehr-erfahren-Button & Mini-Pagination */}
                 <div className="mt-6 pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4">
-                  <Link
-                    to={activeItem.link}
-                    data-testid="header-card-cta"
-                    className="inline-flex items-center gap-2 rounded-full bg-brand-orange hover:bg-amber-600 text-white px-5 py-2.5 text-sm font-bold shadow-lg shadow-orange-500/20 transition-all active:scale-95"
-                  >
-                    Mehr erfahren <ArrowRight size={15} />
-                  </Link>
+                  {activeItem.link.startsWith('http') ? (
+                    <a
+                      href={activeItem.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-testid="header-card-cta"
+                      className="inline-flex items-center gap-2 rounded-full bg-brand-orange hover:bg-amber-600 text-white px-5 py-2.5 text-sm font-bold shadow-lg shadow-orange-500/20 transition-all active:scale-95"
+                    >
+                      {activeItem.category === 'blog' ? 'Zum Originalbeitrag' : 'Mehr erfahren'}{' '}
+                      <ExternalLink size={15} />
+                    </a>
+                  ) : (
+                    <Link
+                      to={activeItem.link}
+                      data-testid="header-card-cta"
+                      className="inline-flex items-center gap-2 rounded-full bg-brand-orange hover:bg-amber-600 text-white px-5 py-2.5 text-sm font-bold shadow-lg shadow-orange-500/20 transition-all active:scale-95"
+                    >
+                      Mehr erfahren <ArrowRight size={15} />
+                    </Link>
+                  )}
 
                   {/* Fortschritts-Indikatoren / Mini-Tabs */}
                   <div className="flex items-center gap-1.5">

@@ -45,6 +45,8 @@ export interface BlogItem {
   title: string;
   date: string;
   author: string;
+  partnerName?: string;
+  partnerUrl?: string;
   category: string;
   image: string;
   excerpt: string;

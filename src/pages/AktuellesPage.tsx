@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router';
 import {
@@ -15,6 +15,7 @@ import {
   Sparkles,
   ChevronLeft,
   ChevronRight,
+  ExternalLink,
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Card3D from '../components/aktuelles/Card3D';
@@ -22,6 +23,7 @@ import NewsPhotoGallery from '../components/NewsPhotoGallery';
 import NewsShareButtons from '../components/NewsShareButtons';
 import EventCountdownBadge from '../components/EventCountdownBadge';
 import { useAktuelles, formatDate, type NewsItem } from '../data/aktuelles';
+import updatesData from '../data/latest_updates.json';
 
 const TEAL = '#0d9488';
 const NAVY = '#0f172a';
@@ -42,7 +44,24 @@ export default function AktuellesPage() {
   const [openNews, setOpenNews] = useState<NewsItem | null>(null);
   const [slide, setSlide] = useState(0);
 
-  const blogs = feeds.blogs;
+  // Blog-Einträge: Exakt die Einträge von der Blog-Seite (latest_updates.json)
+  const blogs = useMemo(() => {
+    if (feeds.blogs && feeds.blogs.length > 0 && feeds.blogs.some((b) => b.link && b.link.startsWith('http'))) {
+      return feeds.blogs;
+    }
+    return updatesData.slice(0, 9).map((u) => ({
+      id: u.id,
+      title: u.title,
+      date: u.date,
+      author: u.author || u.partnerName,
+      partnerName: u.partnerName || u.author,
+      category: u.category || 'Blog',
+      image: u.image || (u as any).image_url,
+      excerpt: u.excerpt,
+      link: u.link,
+    }));
+  }, [feeds.blogs]);
+
   const nextSlide = () => setSlide((s) => (s + 1) % Math.max(blogs.length, 1));
   const prevSlide = () => setSlide((s) => (s - 1 + Math.max(blogs.length, 1)) % Math.max(blogs.length, 1));
 
@@ -264,15 +283,28 @@ export default function AktuellesPage() {
             </div>
             <UpdatedBadge iso={feeds.lastUpdated?.blogs} testid="blogs-updated" />
           </div>
-          <div className="mb-8 flex items-end justify-between">
-            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy md:text-4xl">Aus dem Blog</h2>
-            <div className="flex gap-2">
-              <button type="button" data-testid="blog-prev" onClick={prevSlide} aria-label="Vorheriger Beitrag" className="rounded-full border border-slate-200 bg-white p-2.5 text-slate-600 transition-all hover:border-brand-teal hover:text-brand-teal active:scale-95">
-                <ChevronLeft size={18} />
-              </button>
-              <button type="button" data-testid="blog-next" onClick={nextSlide} aria-label="Nächster Beitrag" className="rounded-full border border-slate-200 bg-white p-2.5 text-slate-600 transition-all hover:border-brand-teal hover:text-brand-teal active:scale-95">
-                <ChevronRight size={18} />
-              </button>
+          <div className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy md:text-4xl">Aus dem Blog</h2>
+              <p className="mt-1 text-sm text-slate-600">
+                Aktuelle Beiträge und Einblicke direkt aus den Partner-Newsrooms.
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <Link
+                to="/blog"
+                className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-teal hover:text-brand-navy transition-colors mr-2"
+              >
+                Alle Blogbeiträge <ArrowRight size={15} />
+              </Link>
+              <div className="flex gap-2">
+                <button type="button" data-testid="blog-prev" onClick={prevSlide} aria-label="Vorheriger Beitrag" className="rounded-full border border-slate-200 bg-white p-2.5 text-slate-600 transition-all hover:border-brand-teal hover:text-brand-teal active:scale-95">
+                  <ChevronLeft size={18} />
+                </button>
+                <button type="button" data-testid="blog-next" onClick={nextSlide} aria-label="Nächster Beitrag" className="rounded-full border border-slate-200 bg-white p-2.5 text-slate-600 transition-all hover:border-brand-teal hover:text-brand-teal active:scale-95">
+                  <ChevronRight size={18} />
+                </button>
+              </div>
             </div>
           </div>
 
@@ -281,6 +313,8 @@ export default function AktuellesPage() {
               {blogs.map((b, i) => {
                 const offset = ((i - slide) % blogs.length + blogs.length) % blogs.length;
                 const featured = offset === 0;
+                const isExternal = b.link && (b.link.startsWith('http://') || b.link.startsWith('https://'));
+                const authorDisplay = b.partnerName || b.author;
                 return (
                   <motion.div
                     key={b.id}
@@ -291,25 +325,67 @@ export default function AktuellesPage() {
                       opacity: featured ? 1 : 0.85,
                     }}
                     transition={{ type: 'spring', stiffness: 80 }}
-                    className={`overflow-hidden rounded-3xl border bg-white shadow-md [transform-style:preserve-3d] ${featured ? 'border-brand-teal ring-1 ring-brand-teal/30' : 'border-slate-200'}`}
+                    className={`group overflow-hidden rounded-3xl border bg-white shadow-md transition-all duration-300 [transform-style:preserve-3d] ${featured ? 'border-brand-teal ring-1 ring-brand-teal/30' : 'border-slate-200 hover:border-slate-300'}`}
                   >
-                    <Link to={b.link} className="flex h-full flex-col">
-                      <div className="relative h-44 overflow-hidden">
-                        <img src={b.image} alt={b.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" referrerPolicy="no-referrer" />
-                        <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-indigo-600">
-                          {b.category}
-                        </span>
-                      </div>
-                      <div className="flex flex-1 flex-col p-5">
-                        <time className="font-mono text-[11px] uppercase tracking-wide text-slate-400">{formatDate(b.date)}</time>
-                        <h3 className="mt-1 text-lg font-extrabold leading-snug text-brand-navy">{b.title}</h3>
-                        <p className="mt-1 text-xs text-slate-500">von {b.author}</p>
-                        <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600 line-clamp-3">{b.excerpt}</p>
-                        <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand-teal">
-                          Weiterlesen <ArrowRight size={14} />
-                        </span>
-                      </div>
-                    </Link>
+                    {isExternal ? (
+                      <a
+                        href={b.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-full flex-col"
+                      >
+                        <div className="relative h-44 overflow-hidden bg-slate-100">
+                          <img
+                            src={b.image}
+                            alt={b.title}
+                            loading="lazy"
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            referrerPolicy="no-referrer"
+                          />
+                          <span className="absolute left-4 top-4 rounded-full bg-white/95 backdrop-blur-sm px-3 py-1 text-[10px] font-black uppercase tracking-widest text-indigo-600 border border-white/50 shadow-sm">
+                            {b.category}
+                          </span>
+                        </div>
+                        <div className="flex flex-1 flex-col p-5">
+                          <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-wide text-slate-400">
+                            <time>{formatDate(b.date)}</time>
+                            <ExternalLink size={12} className="text-slate-400 group-hover:text-brand-teal transition-colors" />
+                          </div>
+                          <h3 className="mt-1.5 text-lg font-extrabold leading-snug text-brand-navy group-hover:text-brand-teal transition-colors line-clamp-2">
+                            {b.title}
+                          </h3>
+                          <p className="mt-1 text-xs text-slate-500">von {authorDisplay}</p>
+                          <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600 line-clamp-3">{b.excerpt}</p>
+                          <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand-teal group-hover:gap-2 transition-all">
+                            Zum Originalbeitrag <ExternalLink size={14} />
+                          </span>
+                        </div>
+                      </a>
+                    ) : (
+                      <Link to={b.link} className="flex h-full flex-col">
+                        <div className="relative h-44 overflow-hidden bg-slate-100">
+                          <img
+                            src={b.image}
+                            alt={b.title}
+                            loading="lazy"
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            referrerPolicy="no-referrer"
+                          />
+                          <span className="absolute left-4 top-4 rounded-full bg-white/95 backdrop-blur-sm px-3 py-1 text-[10px] font-black uppercase tracking-widest text-indigo-600 border border-white/50 shadow-sm">
+                            {b.category}
+                          </span>
+                        </div>
+                        <div className="flex flex-1 flex-col p-5">
+                          <time className="font-mono text-[11px] uppercase tracking-wide text-slate-400">{formatDate(b.date)}</time>
+                          <h3 className="mt-1.5 text-lg font-extrabold leading-snug text-brand-navy group-hover:text-brand-teal transition-colors line-clamp-2">{b.title}</h3>
+                          <p className="mt-1 text-xs text-slate-500">von {authorDisplay}</p>
+                          <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600 line-clamp-3">{b.excerpt}</p>
+                          <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand-teal group-hover:gap-2 transition-all">
+                            Weiterlesen <ArrowRight size={14} />
+                          </span>
+                        </div>
+                      </Link>
+                    )}
                   </motion.div>
                 );
               })}

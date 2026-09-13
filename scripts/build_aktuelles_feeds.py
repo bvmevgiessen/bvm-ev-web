@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parent.parent
 NEWS = ROOT / "src" / "data" / "news.json"
 SEED = Path(__file__).resolve().parent / "aktuelles_seed.json"
 EVENTS = ROOT / "src" / "data" / "events.json"
-BLOGS = ROOT / "src" / "data" / "blogs.json"
+BLOGS = ROOT / "src" / "data" / "latest_updates.json"
 OUTPUT = ROOT / "public" / "data" / "aktuelles_feeds.json"
 
 WINDOW_DAYS = 31
@@ -94,16 +94,20 @@ def build_blogs(now):
             "id": b.get("id"),
             "title": b.get("title"),
             "date": b.get("date"),
-            "author": b.get("author", ""),
-            "partnerName": b.get("partnerName", b.get("author", "")),
+            "author": b.get("author") or b.get("partnerName", ""),
+            "partnerName": b.get("partnerName") or b.get("author", ""),
+            "partnerUrl": b.get("partnerUrl", ""),
             "category": b.get("category", "Blog"),
-            "image": b.get("image", ""),
+            "image": b.get("image") or b.get("image_url", ""),
             "excerpt": b.get("excerpt", ""),
-            "link": f"/blog/{b.get('id')}",
+            "link": b.get("link", ""),
         })
     # Nur Blogs innerhalb von 1 Monat vor und nach heute
     sel = within_window(items, now)
-    sel.sort(key=lambda it: it["_dt"], reverse=True)
+    if len(sel) < 3:
+        sel = sorted(items, key=lambda it: it["_dt"], reverse=True)[:MAX_ITEMS]
+    else:
+        sel.sort(key=lambda it: it["_dt"], reverse=True)
     return [{k: v for k, v in it.items() if k != "_dt"} for it in sel[:MAX_ITEMS]]
 
 

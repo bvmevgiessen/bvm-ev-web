@@ -1,14 +1,16 @@
 import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router';
 import { motion } from 'motion/react';
-import { Calendar, User, Tag, ArrowLeft, Share2 } from 'lucide-react';
+import { Calendar, User, Tag, ArrowLeft, Share2, ExternalLink } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import blogsData from '../data/blogs.json';
+import updatesData from '../data/latest_updates.json';
 
 export default function BlogDetailPage() {
   const { blogId } = useParams();
   const navigate = useNavigate();
-  const blog = blogsData.find(b => b.id === blogId);
+  const allBlogs = [...(blogsData as any[]), ...(updatesData as any[])];
+  const blog = allBlogs.find(b => b.id === blogId);
 
   if (!blog) {
     return (
@@ -127,7 +129,7 @@ export default function BlogDetailPage() {
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2 my-8">
-              {blog.tags.map((tag) => (
+              {(blog.tags || []).map((tag: string) => (
                 <span key={tag} className="px-4 py-2 bg-slate-100 text-slate-700 rounded-full font-semibold hover:bg-brand-teal hover:text-white transition-all cursor-pointer">
                   #{tag}
                 </span>
@@ -144,15 +146,16 @@ export default function BlogDetailPage() {
           >
             <p className="text-sm text-slate-600 mb-2">Dieser Beitrag stammt von</p>
             <a
-              href={blog.partnerUrl}
+              href={(blog as any).link || blog.partnerUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-2xl font-extrabold text-brand-navy hover:text-brand-teal transition-colors"
+              className="text-2xl font-extrabold text-brand-navy hover:text-brand-teal transition-colors inline-flex items-center gap-2"
             >
-              {blog.partnerName} ↗
+              <span>{blog.partnerName}</span>
+              <ExternalLink size={20} />
             </a>
             <p className="text-slate-600 mt-4 text-sm">
-              Besuchen Sie die Website unseres Partners, um mehr über ihre Arbeit und Projekte zu erfahren.
+              {(blog as any).link ? 'Besuchen Sie den Originalbeitrag unseres Partners auf deren Website.' : 'Besuchen Sie die Website unseres Partners, um mehr über ihre Arbeit und Projekte zu erfahren.'}
             </p>
           </motion.div>
 
