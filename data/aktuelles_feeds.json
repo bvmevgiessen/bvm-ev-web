@@ -1,166 +1,207 @@
-{
-  "generatedAt": "2026-09-14T11:53:04.216423+00:00",
-  "lastUpdated": {
-    "news": "2026-09-14T11:53:04.216423+00:00",
-    "events": "2026-09-13T20:45:49.295617+00:00",
-    "blogs": "2026-09-13T20:45:49.295617+00:00"
-  },
-  "news": [
-    {
-      "id": "news-cdu-michelle-kraft",
-      "category": "News",
-      "date": "2026-09-11T10:00:00",
-      "title": "Treffen mit CDU‑Landtagsabgeordneter Michelle Kraft in Gießen",
-      "image": "/assets/kraft_treffen_gruppe.jpeg",
-      "gallery": [
-        {
-          "url": "/assets/kraft_treffen_gruppe.jpeg",
-          "title": "Gruppenfoto der Delegation",
-          "caption": "Delegation des BVM e.V. und FIDeV im Gespräch mit MdL Michelle Kraft in Gießen."
-        },
-        {
-          "url": "/assets/kraft_treffen_detail.jpeg",
-          "title": "Gesprächsrunde & Dialog",
-          "caption": "Vertiefender Austausch über Bildungsangebote, C1-Sprachkurse, Lehrkräfteunterstützung und Jugendprojekte."
-        },
-        {
-          "url": "/assets/kraft_treffen_story.jpeg",
-          "title": "Social-Media-Bericht von Michelle Kraft MdL",
-          "caption": "Eindrücke aus der Story von MdL Michelle Kraft zum Besuch der BVM e.V. Delegation."
-        }
-      ],
-      "location": "CDU‑Geschäftsstelle Gießen",
-      "shortText": "Eine Delegation des BVM e.V. traf sich mit Michelle Kraft, Landtagsabgeordnete für Gießen I und Fachsprecherin für Integration, zum Austausch über Integration, Bildung und Jugendförderung.",
-      "highlights": [
-        "Delegation des BVM e.V. (7 Personen, inkl. Vertreter von FIDeV und CDU‑Mitgliedern) traf sich in der CDU‑Geschäftsstelle Gießen mit Frau Michelle Kraft.",
-        "Austausch über Integration, Jugendförderung, Sprachkurse (C1‑Kurse), Herausforderungen im Bildungssystem, Lehrerüberlastung und Unterstützung für Kinder mit Migrationshintergrund.",
-        "Diskussion über Demokratiebildung für Jugendliche und Prävention von Marginalisierung.",
-        "Vereinbarung: alle drei Monate ein Folgetreffen sowie ein Besuch im Hessischen Landtag in Wiesbaden.",
-        "Frau Kraft signalisiert langfristige Zusammenarbeit und regelmäßigen Kontakt."
-      ],
-      "speech": "Sehr geehrte Frau Kraft, herzlichen Dank, dass Sie sich heute die Zeit für uns nehmen. Wir sind als postmigrantischer Verein in Gießen und Wetzlar aktiv und engagieren uns in Integration, Dialog, Bildung und Jugendarbeit. Als Fachsprecherin für Integration sind Sie eine zentrale Ansprechpartnerin für unsere Themen.",
-      "persons": [
-        {
-          "name": "Ömer Altun",
-          "role": "Stellv. Vorsitzender (BVM e.V. / Unternehmer)"
-        },
-        {
-          "name": "Kadir Boyaci",
-          "role": "Geschäftsführer FIDeV"
-        },
-        {
-          "name": "Mark Bramwell",
-          "role": "CDU‑Mitglied Gießen & Ehrenamtlicher, BVM e.V."
-        },
-        {
-          "name": "Serdar Gülec",
-          "role": "Protokollführer & DialogPlattform (BVM e.V. / IT‑Experte)"
-        },
-        {
-          "name": "Ensar Uzun",
-          "role": "Mitglied & Ehrenamtlicher, BVM e.V."
-        },
-        {
-          "name": "Gülbanu Özden",
-          "role": "Mitglied & Ehrenamtliche, BVM e.V. – Jugendarbeit"
-        }
-      ]
+"""
+Aktuelles Feed-System.
+
+Bündelt drei Quellen zu einer Datei `public/data/aktuelles_feeds.json`:
+  * NEWS   – kuratierte Vereins-News aus `scripts/aktuelles_seed.json`
+  * EVENTS – aus `src/data/events.json` (aktuell, innerhalb ~1 Monat)
+  * BLOGS  – aus `src/data/blogs.json`  (aktuell, innerhalb ~1 Monat)
+
+Dedupliziert, sortiert nach Datum (neueste zuerst) und ergänzt
+`lastUpdated` je Bereich. Fällt ein Zeitfenster leer aus, werden die
+zeitnächsten Einträge als Fallback verwendet, damit keine Sektion leer ist.
+
+Nutzung:
+    python scripts/build_aktuelles_feeds.py            # alles
+    python scripts/build_aktuelles_feeds.py --sections events blogs
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+SEED = Path(__file__).resolve().parent / "aktuelles_seed.json"
+EVENTS = ROOT / "src" / "data" / "events.json"
+BLOGS = ROOT / "src" / "data" / "blogs.json"
+OUTPUT = ROOT / "public" / "data" / "aktuelles_feeds.json"
+
+WINDOW_DAYS = 31
+MAX_ITEMS = 8
+
+
+def parse_date(value: str) -> datetime:
+    if not value:
+        return datetime.now(timezone.utc)
+    v = value.replace("Z", "+00:00")
+    try:
+        dt = datetime.fromisoformat(v)
+    except ValueError:
+        try:
+            dt = datetime.strptime(value[:10], "%Y-%m-%d")
+        except ValueError:
+            dt = datetime.now(timezone.utc)
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt
+
+
+def within_window(items, now, upcoming_bias):
+    """Einträge im Fenster [now-31, now+31] (Events) bzw. [now-31, now] (Blogs)."""
+    lo = now - timedelta(days=WINDOW_DAYS)
+    hi = now + timedelta(days=WINDOW_DAYS if upcoming_bias else 0)
+    return [it for it in items if lo <= it["_dt"] <= hi]
+
+
+def nearest(items, now, count):
+    return sorted(items, key=lambda it: abs((it["_dt"] - now).total_seconds()))[:count]
+
+
+def build_events(now):
+    raw = json.loads(EVENTS.read_text(encoding="utf-8"))
+    items = []
+    for e in raw:
+        dt = parse_date(e.get("date", ""))
+        items.append({
+            "_dt": dt,
+            "id": e.get("id"),
+            "title": e.get("title"),
+            "date": e.get("date"),
+            "location": e.get("location", ""),
+            "category": e.get("category", "Event"),
+            "image": e.get("image", ""),
+            "description": (e.get("description") or "")[:220],
+            "link": f"/events/{e.get('id')}",
+        })
+    sel = within_window(items, now, upcoming_bias=True)
+    if len(sel) < 3:
+        sel = nearest(items, now, MAX_ITEMS)
+    # Order upcoming events (today first) chronologically, followed by recent past events
+    today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    upcoming = [it for it in sel if it["_dt"] >= today_start]
+    past = [it for it in sel if it["_dt"] < today_start]
+    upcoming.sort(key=lambda it: it["_dt"])
+    past.sort(key=lambda it: it["_dt"], reverse=True)
+    sorted_events = upcoming + past
+    return [{k: v for k, v in it.items() if k != "_dt"} for it in sorted_events[:MAX_ITEMS]]
+
+
+def build_blogs(now):
+    raw = json.loads(BLOGS.read_text(encoding="utf-8"))
+    items = []
+    for b in raw:
+        dt = parse_date(b.get("date", ""))
+        items.append({
+            "_dt": dt,
+            "id": b.get("id"),
+            "title": b.get("title"),
+            "date": b.get("date"),
+            "author": b.get("author", ""),
+            "category": b.get("category", "Blog"),
+            "image": b.get("image", ""),
+            "excerpt": b.get("excerpt", ""),
+            "link": f"/blog/{b.get('id')}",
+        })
+    sel = within_window(items, now, upcoming_bias=False)
+    if len(sel) < 3:
+        sel = sorted(items, key=lambda it: it["_dt"], reverse=True)[:MAX_ITEMS]
+    sel.sort(key=lambda it: it["_dt"], reverse=True)
+    return [{k: v for k, v in it.items() if k != "_dt"} for it in sel[:MAX_ITEMS]]
+
+
+def build_news():
+    seed = json.loads(SEED.read_text(encoding="utf-8"))
+    news = seed.get("news", [])
+    news.sort(key=lambda n: parse_date(n.get("date", "")), reverse=True)
+    return news
+
+
+def sync_bidirectional(src_path: Path, pub_path: Path):
+    """Hält src/ und public/ synchron; übernimmt die neuere Datei, falls Unterschiede vorliegen."""
+    if src_path.exists() and pub_path.exists():
+        src_text = src_path.read_text(encoding="utf-8")
+        pub_text = pub_path.read_text(encoding="utf-8")
+        if src_text != pub_text:
+            if pub_path.stat().st_mtime > src_path.stat().st_mtime:
+                src_path.write_text(pub_text, encoding="utf-8")
+            else:
+                pub_path.write_text(src_text, encoding="utf-8")
+    elif src_path.exists():
+        pub_path.parent.mkdir(parents=True, exist_ok=True)
+        pub_path.write_text(src_path.read_text(encoding="utf-8"), encoding="utf-8")
+    elif pub_path.exists():
+        src_path.parent.mkdir(parents=True, exist_ok=True)
+        src_path.write_text(pub_path.read_text(encoding="utf-8"), encoding="utf-8")
+
+
+def main() -> int:
+    sync_bidirectional(ROOT / "src" / "data" / "events.json", ROOT / "public" / "data" / "events.json")
+    sync_bidirectional(ROOT / "src" / "data" / "blogs.json", ROOT / "public" / "data" / "blogs.json")
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--sections", nargs="+",
+                    choices=["news", "events", "blogs"],
+                    default=["news", "events", "blogs"])
+    args = ap.parse_args()
+
+    now = datetime.now(timezone.utc)
+    iso = now.isoformat()
+
+    existing = {}
+    if OUTPUT.exists():
+        try:
+            existing = json.loads(OUTPUT.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            existing = {}
+
+    out = {
+        "generatedAt": iso,
+        "lastUpdated": dict(existing.get("lastUpdated") or {}),
+        "news": existing.get("news") or [],
+        "events": existing.get("events") or [],
+        "blogs": existing.get("blogs") or [],
     }
-  ],
-  "events": [
-    {
-      "id": "aschura-tag-event-2026",
-      "title": "Aschura-Tag Event",
-      "date": "2026-09-19T19:00:00",
-      "location": "Bahnhofstraße 22, 35576 Wetzlar",
-      "category": "DIALOG",
-      "image": "https://www.unileverfoodsolutions.com.tr/dam/global-ufs/mcos/turkey/turk_mutfagi/G%C3%96RSEL%201%20%20(2).jpg",
-      "description": "Der Tag der Besinnung und des Gedenkens. Das Aschura-Tag Event lädt dazu ein, gemeinsam in Gemeinschaft zu feiern und die Werte von Mitgefühl, Dankbarkeit und Zusammenhalt zu erleben.",
-      "link": "/events/aschura-tag-event-2026"
-    },
-    {
-      "id": "pilzwanderung-marburg-2026",
-      "title": "Pilzwanderung in Marburg",
-      "date": "2026-10-18T11:00:00",
-      "location": "Marburg Botanischer Garten – Lahnberge Parkplatz (Uni Marburg)",
-      "category": "SOZIALES",
-      "image": "https://plus.unsplash.com/premium_photo-1675727579781-48c0cfefc835?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "description": "Eine geführte Pilzwanderung im Waldgebiet rund um den Botanischen Garten in Marburg. Während der Tour erhalten die Teilnehmenden spannende Erklärungen zu verschiedenen Pilzarten – ob essbar oder giftig – und haben die Mö",
-      "link": "/events/pilzwanderung-marburg-2026"
-    }
-  ],
-  "blogs": [
-    {
-      "id": "fidev-fe0838f36a",
-      "title": "Streetart-Workshop",
-      "date": "2026-09-02T10:40:50+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Community",
-      "image": "https://static.wixstatic.com/media/2d6f92_daaf832f48e742e0a24454d7f29cc426~mv2.png/v1/fit/w_1000,h_904,al_c,q_80/file.png",
-      "excerpt": "Entdecke die Ursprünge urbaner Kunst, experimentiere mit Farben und Techniken und entwickle deinen ganz eigenen Style. Streetart ist mehr als Graffiti auf Wänden: Sie verbindet Kreativität, gesellschaftlichen Ausdruck u…",
-      "link": "https://www.fidev.org/post/streetart-workshop"
-    },
-    {
-      "id": "fidev-962f06d182",
-      "title": "Erste DiscoverEU-Inklusionsreisen erfolgreich umgesetzt",
-      "date": "2026-09-02T10:27:12+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Jugend",
-      "image": "https://static.wixstatic.com/media/2d6f92_7434e30e8f3f4f018ce2b036143f1ed7~mv2.jpg/v1/fit/w_1000,h_720,al_c,q_80/file.png",
-      "excerpt": "Brücken bauen – Europa entdecken: Erste DiscoverEU-Inklusionsreisen erfolgreich umgesetzt Mit unseren ersten beiden DiscoverEU-Inklusionsprojekten über Ostern und im Sommer 2026 haben insgesamt 50 junge Menschen mit Mig…",
-      "link": "https://www.fidev.org/post/erste-discovereu-inklusionsreisen-erfolgreich-umgesetzt"
-    },
-    {
-      "id": "fidev-6992822c8b",
-      "title": "Erinnerung und Exil: Warum persönliche Geschichten unsere Stadtgesellschaft stärken",
-      "date": "2026-09-02T09:25:23+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Integration",
-      "image": "https://static.wixstatic.com/media/2d6f92_9829299b97fb445eb438738d40c24f8c~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
-      "excerpt": "Persönliche Exilgeschichten verbinden Vergangenheit und Gegenwart. Ein verantwortungsvoller Umgang mit Erinnerung kann Empathie, Bildung und Dialog fördern.",
-      "link": "https://www.fidev.org/post/erinnerung-exil-persoenliche-geschichten-frankfurt"
-    },
-    {
-      "id": "fidev-ca6903eadc",
-      "title": "Was Helsinki über Integration lehrt: Ein Besuch in der Bibliothek Oodi",
-      "date": "2026-09-01T10:25:38+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Integration",
-      "image": "https://static.wixstatic.com/media/2d6f92_f5394576328a4045830202fc67e0fe5d~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
-      "excerpt": "Was wäre, wenn Integration nicht zuerst im Amt beginnt? Ein Besuch in Helsinkis Zentralbibliothek Oodi zeigt, was offene Begegnungsorte bewirken können.",
-      "link": "https://www.fidev.org/post/integration-helsinki-oodi"
-    },
-    {
-      "id": "fidev-66a276d491",
-      "title": "Der Mensch hinter der Geschichte - Dialog, der verbindet",
-      "date": "2026-09-01T09:43:37+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Dialog",
-      "image": "https://static.wixstatic.com/media/2d6f92_52c923e8877a4935a2489c348569c97c~mv2.jpg/v1/fit/w_900,h_1000,al_c,q_80/file.png",
-      "excerpt": "Im Rahmen der Veranstaltung kamen zehn Menschen mit unterschiedlichen persönlichen Lebensgeschichten zusammen. Im Mittelpunkt stand der persönliche Austausch über Erfahrungen von Flucht, Ankommen, Neuanfang und dem Aufb…",
-      "link": "https://www.fidev.org/post/der-mensch-hinter-der-geschichte-dialog-der-verbindet"
-    },
-    {
-      "id": "fidev-3fe2ba2bdc",
-      "title": "Medienkompetenz im digitalen Zeitalter: Umgang mit Desinformation und Vorurteilen",
-      "date": "2026-08-23T10:32:35+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Community",
-      "image": "https://static.wixstatic.com/media/a7ec0d_c83c7773fb204542ae1e4be8d313d63c~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
-      "excerpt": "Medienkompetenz hilft, Desinformation zu erkennen, Quellen zu prüfen und Vorurteilen im Netz mit Ruhe und digitaler Zivilcourage zu begegnen.",
-      "link": "https://www.fidev.org/post/medienkompetenz-desinformation-vorurteile"
-    }
-  ]
-}
+
+    if "news" in args.sections:
+        out["news"] = build_news()
+        out["lastUpdated"]["news"] = iso
+    if "events" in args.sections:
+        out["events"] = build_events(now)
+        out["lastUpdated"]["events"] = iso
+    if "blogs" in args.sections:
+        out["blogs"] = build_blogs(now)
+        out["lastUpdated"]["blogs"] = iso
+
+    for k in ("news", "events", "blogs"):
+        out["lastUpdated"].setdefault(k, iso)
+
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT.write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (ROOT / "src" / "data" / "aktuelles_feeds.json").write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    # Sync public/data json feeds for standalone consumption
+    news_items = []
+    for n in out["news"]:
+        news_items.append({
+            "category": "news",
+            "title": n.get("title"),
+            "summary": n.get("shortText") or (n.get("highlights") and n["highlights"][0]) or "",
+            "date": n.get("date"),
+            "image": n.get("image"),
+            "link": "/aktuelles#news",
+            "author": "BVM e.V."
+        })
+    (ROOT / "public" / "data" / "news.json").write_text(json.dumps(news_items, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (ROOT / "src" / "data" / "news.json").write_text(json.dumps(news_items, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (ROOT / "public" / "data" / "events.json").write_text(EVENTS.read_text(encoding="utf-8"), encoding="utf-8")
+    (ROOT / "public" / "data" / "blogs.json").write_text(BLOGS.read_text(encoding="utf-8"), encoding="utf-8")
+
+    print(f"Geschrieben: {OUTPUT.relative_to(ROOT)}")
+    print(f"  news={len(out['news'])} events={len(out['events'])} blogs={len(out['blogs'])}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
