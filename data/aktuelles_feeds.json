@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-09-13T20:30:02.144524+00:00",
+  "generatedAt": "2026-09-14T11:53:04.216423+00:00",
   "lastUpdated": {
-    "news": "2026-09-13T20:30:02.144524+00:00",
-    "events": "2026-09-13T20:25:04.435320+00:00",
-    "blogs": "2026-09-13T20:25:04.435320+00:00"
+    "news": "2026-09-14T11:53:04.216423+00:00",
+    "events": "2026-09-13T20:45:49.295617+00:00",
+    "blogs": "2026-09-13T20:45:49.295617+00:00"
   },
   "news": [
     {
       "id": "news-cdu-michelle-kraft",
-      "category": "Rückblick",
+      "category": "News",
       "date": "2026-09-11T10:00:00",
       "title": "Treffen mit CDU‑Landtagsabgeordneter Michelle Kraft in Gießen",
       "image": "/assets/kraft_treffen_gruppe.jpeg",
@@ -79,34 +79,14 @@
       "link": "/events/aschura-tag-event-2026"
     },
     {
-      "id": "noahs-fest-2026",
-      "title": "Noahs Fest – Aşure Tag",
-      "date": "2026-09-12T14:30:00",
-      "location": "Kirchenplatz, 35390 Gießen",
-      "category": "DIALOG",
-      "image": "https://images.unsplash.com/photo-1751879182448-d7b3dce2b00e?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "description": "Ein interreligiöses Fest für Frieden und Zusammenhalt im Herzen von Gießen. Das Noahs Fest wird in Kooperation mit der Evangelischen Philippusgemeinde Gießen organisiert und möchte zu einer friedlichen Atmosphäre in der ",
-      "link": "/events/noahs-fest-2026"
-    },
-    {
-      "id": "sprachcafe-august-2026",
-      "title": "Sprachcafé",
-      "date": "2026-09-09T14:30:00",
-      "location": "Siemensstraße 18, Gebäude 2, 35394 Gießen",
+      "id": "pilzwanderung-marburg-2026",
+      "title": "Pilzwanderung in Marburg",
+      "date": "2026-10-18T11:00:00",
+      "location": "Marburg Botanischer Garten – Lahnberge Parkplatz (Uni Marburg)",
       "category": "SOZIALES",
-      "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=1200",
-      "description": "Ein offenes Sprachcafé für alle – ein Ort der Begegnung, des Austauschs und des gemeinsamen Lernens. In entspannter Atmosphäre können Teilnehmerinnen und Teilnehmer miteinander sprechen, neue Sprachen üben und Freundscha",
-      "link": "/events/sprachcafe-august-2026"
-    },
-    {
-      "id": "Frauenmatinee-2026",
-      "title": "Frauen-Matinée – Verbirg deinen Glanz nicht!",
-      "date": "2026-08-15T16:00:00",
-      "location": "Am Hain 1A, 35444 Biebertal – Bieber",
-      "category": "SOZIALES",
-      "image": "https://images.unsplash.com/photo-1481162854517-d9e353af153d?auto=format&fit=crop&q=80&w=1200",
-      "description": "Ein glamouröser Nachmittag unter dem Motto „Verbirg deinen Glanz nicht!“ – Parla, çünkü sen zaten sahnesin! Die Veranstaltung richtet sich ausschließlich an Frauen und bietet ein abwechslungsreiches Programm mit Verlosun",
-      "link": "/events/Frauenmatinee-2026"
+      "image": "https://plus.unsplash.com/premium_photo-1675727579781-48c0cfefc835?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "description": "Eine geführte Pilzwanderung im Waldgebiet rund um den Botanischen Garten in Marburg. Während der Tour erhalten die Teilnehmenden spannende Erklärungen zu verschiedenen Pilzarten – ob essbar oder giftig – und haben die Mö",
+      "link": "/events/pilzwanderung-marburg-2026"
     }
   ],
   "blogs": [
