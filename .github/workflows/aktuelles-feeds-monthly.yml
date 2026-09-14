@@ -1,14 +1,27 @@
-name: Aktuelles Feeds (monatlich)
+name: Aktuelles Feeds (monatlich & bei Datenänderung)
 
-# Baut monatlich die Aktuelles-Feeds (News + Events aus events.json + Blogs aus
-# blogs.json) und committet data/aktuelles_feeds.json. Der Deploy-Workflow
-# veröffentlicht die Seite beim Push auf main.
+# Baut monatlich sowie bei Änderungen an events.json, blogs.json oder News
+# die Aktuelles-Feeds (News + Events aus events.json + Blogs aus blogs.json)
+# und committet data/aktuelles_feeds.json. Der Deploy-Workflow
+# veröffentlicht die Seite anschließend beim Push auf main.
 
 on:
   schedule:
     # Am 1. jedes Monats um 06:00 UTC
     - cron: '0 6 1 * *'
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'design/*'
+      - 'design/**'
+    paths:
+      - 'src/data/events.json'
+      - 'public/data/events.json'
+      - 'scripts/aktuelles_seed.json'
+      - 'src/data/blogs.json'
+      - 'public/data/blogs.json'
+      - 'scripts/build_aktuelles_feeds.py'
 
 permissions: {}
 
@@ -47,12 +60,17 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/data/aktuelles_feeds.json src/data/aktuelles_feeds.json
+          git add public/data/aktuelles_feeds.json src/data/aktuelles_feeds.json public/data/events.json src/data/events.json public/data/news.json src/data/news.json || true
           if git diff --staged --quiet; then
             echo "Keine Änderungen."
             exit 0
           fi
-          git commit -m "chore(aktuelles): monatliches Feed-Update"
+          if [ "${GITHUB_EVENT_NAME:-}" = "push" ]; then
+            COMMIT_MSG="chore(aktuelles): Feed-Update nach Änderung an Quelldaten"
+          else
+            COMMIT_MSG="chore(aktuelles): monatliches Feed-Update"
+          fi
+          git commit -m "${COMMIT_MSG}"
 
           BRANCH="${GITHUB_REF_NAME:-main}"
           PROTECTED=false
@@ -88,8 +106,8 @@ jobs:
           PR_URL=$(gh pr create \
             --base "${BRANCH}" \
             --head "${PR_BRANCH}" \
-            --title "chore(aktuelles): monatliches Feed-Update" \
-            --body "Automatisch erzeugtes Update der Aktuelles-Feeds (public/data/aktuelles_feeds.json und src/data/aktuelles_feeds.json), erstellt vom Workflow aktuelles-feeds-monthly.yml.")
+            --title "${COMMIT_MSG}" \
+            --body "Automatisch erzeugtes Update der Aktuelles-Feeds (public/data/aktuelles_feeds.json und src/data/aktuelles_feeds.json), ausgelöst durch ${GITHUB_EVENT_NAME:-Workflow}.")
           echo "Pull Request erstellt: ${PR_URL}"
 
           # Versuche sofort zu mergen; falls Checks/Reviews nötig sind,
