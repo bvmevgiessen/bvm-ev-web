@@ -4,6 +4,7 @@ import rateLimit from "express-rate-limit";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import fs from "fs";
+import { GoogleGenAI } from "@google/genai";
 
 async function startServer() {
   const app = express();
@@ -241,6 +242,109 @@ async function startServer() {
     } catch (err: any) {
       console.error("[Proxy] Error forwarding request:", err);
       res.status(500).json({ error: err.message });
+    }
+  });
+
+  // Lazy initialize Gemini client for on-demand server-side translation
+  let aiClient: GoogleGenAI | null = null;
+  function getGeminiClient(): GoogleGenAI | null {
+    if (!aiClient && process.env.GEMINI_API_KEY) {
+      try {
+        aiClient = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      } catch (err) {
+        console.error("[Gemini] Initialization error:", err);
+      }
+    }
+    return aiClient;
+  }
+
+  // API endpoint: Get Social Monitor Feed (with caching headers)
+  app.get("/api/social-monitor/feed", (req, res) => {
+    try {
+      const publicPath = path.join(process.cwd(), "public", "data", "social_posts.json");
+      const srcPath = path.join(process.cwd(), "src", "data", "social_posts.json");
+      let data = null;
+
+      if (fs.existsSync(publicPath)) {
+        data = JSON.parse(fs.readFileSync(publicPath, "utf-8"));
+      } else if (fs.existsSync(srcPath)) {
+        data = JSON.parse(fs.readFileSync(srcPath, "utf-8"));
+      }
+
+      if (!data) {
+        return res.status(404).json({ error: "Social posts data not found." });
+      }
+
+      // Allow client & CDN caching for up to 1 hour
+      res.set("Cache-Control", "public, max-age=3600, stale-while-revalidate=86400");
+      res.status(200).json(data);
+    } catch (err: any) {
+      console.error("[Server] Error reading social posts feed:", err);
+      res.status(500).json({ error: "Failed to read social feed data." });
+    }
+  });
+
+  // API endpoint: Get Social Monitor Config
+  app.get("/api/social-monitor/config", (req, res) => {
+    try {
+      const configPath = path.join(process.cwd(), "src", "data", "social_monitor_config.json");
+      if (fs.existsSync(configPath)) {
+        const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+        return res.status(200).json(config);
+      }
+      res.status(404).json({ error: "Config not found." });
+    } catch (err: any) {
+      res.status(500).json({ error: "Failed to read config." });
+    }
+  });
+
+  // API endpoint: On-Demand German Translation for Social Posts
+  app.post("/api/social-monitor/translate", async (req, res) => {
+    const { text, targetLang = "de" } = req.body;
+
+    if (!text || typeof text !== "string") {
+      return res.status(400).json({ error: "Missing or invalid 'text' field." });
+    }
+
+    const ai = getGeminiClient();
+    if (!ai) {
+      return res.status(200).json({
+        translatedText: null,
+        fallback: true,
+        message: "Gemini API-Schlüssel nicht auf dem Server hinterlegt. Bitte nutzen Sie die hinterlegte redaktionelle Übersetzung oder konfigurieren Sie GEMINI_API_KEY."
+      });
+    }
+
+    try {
+      const prompt = `Du bist ein professioneller juristischer und menschenrechtlicher Fachübersetzer. Übersetze den folgenden Social-Media-Beitrag (in der Regel auf Türkisch) präzise, sachlich, neutral und respektvoll ins Deutsche. 
+Wichtige Konventionen:
+- Behalte Namen von Personen unverändert bei.
+- Übersetze rechtliche Fachbegriffe verständlich und nenne ggf. das deutsche Äquivalent (z. B. AİHM = EGMR, AYM = Verfassungsgericht, KHK = Notstandsdekret, Adli Tıp = Gerichtsmedizin).
+- Behalte Twitter-/Instagram-Hashtags und Erwähnungen sinngemäß oder im Original bei.
+- Gib ausschließlich den übersetzten deutschen Text aus, ohne Metakommentare, Anführungszeichen oder Erklärungen.
+
+Zu übersetzender Text:
+${text}`;
+
+      const response = await ai.models.generateContent({
+        model: "gemini-2.5-flash",
+        contents: prompt,
+      });
+
+      const translatedText = response.text ? response.text.trim() : null;
+
+      return res.status(200).json({
+        translatedText,
+        sourceLanguage: "tr",
+        targetLanguage: targetLang,
+        provider: "gemini-2.5-flash"
+      });
+    } catch (err: any) {
+      console.error("[Gemini Translate] Error:", err);
+      return res.status(500).json({
+        error: "Fehler bei der automatischen Übersetzung.",
+        details: err?.message
+      });
     }
   });
 

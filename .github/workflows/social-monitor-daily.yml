@@ -1,0 +1,54 @@
+name: JusticeSquare Social Monitor (täglich)
+
+# Tägliche Aggregation der Social-Media-Feeds von X und Instagram
+# für den JusticeSquare Social Monitor. Committet die aktualisierten
+# Daten nach public/data/social_posts.json und src/data/social_posts.json.
+
+on:
+  schedule:
+    # Jeden Tag um 06:00 UTC (07:00 bzw. 08:00 Uhr MEZ)
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: social-monitor-feeds
+  cancel-in-progress: false
+
+jobs:
+  update-social-monitor:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Social Monitor Fetcher
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+        run: |
+          python scripts/fetch_social_monitor.py
+
+      - name: Sync build fallback
+        run: |
+          cp public/data/social_posts.json src/data/social_posts.json
+
+      - name: Commit & push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/social_posts.json src/data/social_posts.json config/social_monitor_config.json src/data/social_monitor_config.json
+          if git diff --staged --quiet; then
+            echo "Keine neuen Social-Media-Beiträge zu committen."
+          else
+            git commit -m "chore(social-monitor): tägliches Social-Feed-Update [skip ci]"
+            git push
+          fi
