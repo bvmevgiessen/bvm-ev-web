@@ -32,6 +32,7 @@ var import_genai = require("@google/genai");
 async function startServer() {
   const app = (0, import_express.default)();
   const PORT = 3e3;
+  app.set("trust proxy", 1);
   const limiter = (0, import_express_rate_limit.default)({
     windowMs: 15 * 60 * 1e3,
     // 15 minutes
@@ -39,6 +40,7 @@ async function startServer() {
     // Limit each IP to 300 requests per windowMs
     standardHeaders: true,
     legacyHeaders: false,
+    validate: { xForwardedForHeader: false },
     message: { error: "Too many requests, please try again later." }
   });
   app.use("/api/", limiter);
