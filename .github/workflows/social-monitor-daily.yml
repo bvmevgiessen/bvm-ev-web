@@ -21,9 +21,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -41,14 +44,64 @@ jobs:
         run: |
           cp public/data/social_posts.json src/data/social_posts.json
 
-      - name: Commit & push changes
+      - name: Commit & push (direkt oder per Pull Request)
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add public/data/social_posts.json src/data/social_posts.json config/social_monitor_config.json src/data/social_monitor_config.json
           if git diff --staged --quiet; then
             echo "Keine neuen Social-Media-Beiträge zu committen."
+            exit 0
+          fi
+          git commit -m "chore(social-monitor): tägliches Social-Feed-Update [skip ci]"
+
+          BRANCH="${GITHUB_REF_NAME:-main}"
+          PROTECTED=false
+
+          # 1) Direkter Push – funktioniert, wenn main nicht geschützt ist
+          #    (oder der Bot die Schutzregel umgehen darf).
+          for attempt in 1 2 3; do
+            if git push origin "HEAD:${BRANCH}" >push.log 2>&1; then
+              cat push.log
+              echo "Direkter Push erfolgreich (Versuch ${attempt})."
+              exit 0
+            fi
+            cat push.log
+            if grep -qi "GH006\|protected branch" push.log; then
+              echo "Branch '${BRANCH}' ist geschützt – wechsle auf Pull-Request-Verfahren."
+              PROTECTED=true
+              break
+            fi
+            echo "Push abgelehnt (non-fast-forward) – hole Remote-Änderungen (Versuch ${attempt}) …"
+            git pull --rebase -X theirs origin "${BRANCH}"
+            sleep 5
+          done
+
+          if [ "${PROTECTED}" != "true" ]; then
+            echo "::error::Push nach 3 Versuchen fehlgeschlagen."
+            exit 1
+          fi
+
+          # 2) Pull-Request-Verfahren für geschützte Branches
+          PR_BRANCH="social-monitor/daily-update-${GITHUB_RUN_ID}"
+          git branch -m "${PR_BRANCH}"
+          git push origin "HEAD:${PR_BRANCH}"
+          PR_URL=$(gh pr create \
+            --base "${BRANCH}" \
+            --head "${PR_BRANCH}" \
+            --title "chore(social-monitor): tägliches Social-Feed-Update" \
+            --body "Automatisches tägliches Update des JusticeSquare Social Monitors (public/data/social_posts.json und src/data/social_posts.json), erstellt vom Workflow social-monitor-daily.yml.")
+          echo "Pull Request erstellt: ${PR_URL}"
+
+          # Versuche sofort zu mergen; falls Checks/Reviews nötig sind,
+          # aktiviere Auto-Merge (Repo-Einstellung 'Allow auto-merge' nötig).
+          if gh pr merge "${PR_URL}" --squash --delete-branch >/dev/null 2>&1; then
+            echo "PR automatisch gemergt."
+          elif gh pr merge "${PR_URL}" --squash --auto --delete-branch >/dev/null 2>&1; then
+            echo "Auto-Merge aktiviert – PR wird gemergt, sobald alle Bedingungen erfüllt sind."
           else
-            git commit -m "chore(social-monitor): tägliches Social-Feed-Update [skip ci]"
-            git push
+            echo "Auto-Merge konnte nicht aktiviert werden; PR bleibt zur manuellen Überprüfung offen."
           fi
