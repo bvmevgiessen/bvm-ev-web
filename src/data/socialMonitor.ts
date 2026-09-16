@@ -71,9 +71,28 @@ export interface SocialMonitorConfig {
   accounts: SocialAccountConfig[];
 }
 
-export const SOCIAL_MONITOR_CONFIG: SocialMonitorConfig = socialConfigData as SocialMonitorConfig;
+export const SOCIAL_MONITOR_CONFIG: SocialMonitorConfig = {
+  title: 'JusticeSquare Social Monitor Configuration',
+  description: 'Social Media Feed ausgewählter Accounts.',
+  fetchInterval: 'daily',
+  scheduleCron: '0 6 * * *',
+  cacheTtlHours: 24,
+  postsPerAccount: 5,
+  maxTotalPosts: 95,
+  supportedPlatforms: ['x', 'instagram'],
+  accounts: [],
+  ...(socialConfigData as Partial<SocialMonitorConfig>),
+};
 
-export const FALLBACK_SOCIAL_FEED: SocialFeedPayload = fallbackPostsData as SocialFeedPayload;
+export const FALLBACK_SOCIAL_FEED: SocialFeedPayload = {
+  lastUpdated: new Date().toISOString(),
+  fetchInterval: 'daily',
+  cacheTtlHours: 24,
+  totalPosts: 0,
+  accountsCount: 0,
+  posts: [],
+  ...(fallbackPostsData as Partial<SocialFeedPayload>),
+};
 
 /**
  * Format relative time in natural German
