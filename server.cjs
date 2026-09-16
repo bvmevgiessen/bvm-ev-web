@@ -28,6 +28,7 @@ var import_express_rate_limit = __toESM(require("express-rate-limit"), 1);
 var import_path = __toESM(require("path"), 1);
 var import_vite = require("vite");
 var import_fs = __toESM(require("fs"), 1);
+var import_genai = require("@google/genai");
 async function startServer() {
   const app = (0, import_express.default)();
   const PORT = 3e3;
@@ -226,6 +227,91 @@ async function startServer() {
     } catch (err) {
       console.error("[Proxy] Error forwarding request:", err);
       res.status(500).json({ error: err.message });
+    }
+  });
+  let aiClient = null;
+  function getGeminiClient() {
+    if (!aiClient && process.env.GEMINI_API_KEY) {
+      try {
+        aiClient = new import_genai.GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+      } catch (err) {
+        console.error("[Gemini] Initialization error:", err);
+      }
+    }
+    return aiClient;
+  }
+  app.get("/api/social-monitor/feed", (req, res) => {
+    try {
+      const publicPath = import_path.default.join(process.cwd(), "public", "data", "social_posts.json");
+      const srcPath = import_path.default.join(process.cwd(), "src", "data", "social_posts.json");
+      let data = null;
+      if (import_fs.default.existsSync(publicPath)) {
+        data = JSON.parse(import_fs.default.readFileSync(publicPath, "utf-8"));
+      } else if (import_fs.default.existsSync(srcPath)) {
+        data = JSON.parse(import_fs.default.readFileSync(srcPath, "utf-8"));
+      }
+      if (!data) {
+        return res.status(404).json({ error: "Social posts data not found." });
+      }
+      res.set("Cache-Control", "public, max-age=3600, stale-while-revalidate=86400");
+      res.status(200).json(data);
+    } catch (err) {
+      console.error("[Server] Error reading social posts feed:", err);
+      res.status(500).json({ error: "Failed to read social feed data." });
+    }
+  });
+  app.get("/api/social-monitor/config", (req, res) => {
+    try {
+      const configPath = import_path.default.join(process.cwd(), "src", "data", "social_monitor_config.json");
+      if (import_fs.default.existsSync(configPath)) {
+        const config = JSON.parse(import_fs.default.readFileSync(configPath, "utf-8"));
+        return res.status(200).json(config);
+      }
+      res.status(404).json({ error: "Config not found." });
+    } catch (err) {
+      res.status(500).json({ error: "Failed to read config." });
+    }
+  });
+  app.post("/api/social-monitor/translate", async (req, res) => {
+    const { text, targetLang = "de" } = req.body;
+    if (!text || typeof text !== "string") {
+      return res.status(400).json({ error: "Missing or invalid 'text' field." });
+    }
+    const ai = getGeminiClient();
+    if (!ai) {
+      return res.status(200).json({
+        translatedText: null,
+        fallback: true,
+        message: "Gemini API-Schl\xFCssel nicht auf dem Server hinterlegt. Bitte nutzen Sie die hinterlegte redaktionelle \xDCbersetzung oder konfigurieren Sie GEMINI_API_KEY."
+      });
+    }
+    try {
+      const prompt = `Du bist ein professioneller juristischer und menschenrechtlicher Fach\xFCbersetzer. \xDCbersetze den folgenden Social-Media-Beitrag (in der Regel auf T\xFCrkisch) pr\xE4zise, sachlich, neutral und respektvoll ins Deutsche. 
+Wichtige Konventionen:
+- Behalte Namen von Personen unver\xE4ndert bei.
+- \xDCbersetze rechtliche Fachbegriffe verst\xE4ndlich und nenne ggf. das deutsche \xC4quivalent (z. B. A\u0130HM = EGMR, AYM = Verfassungsgericht, KHK = Notstandsdekret, Adli T\u0131p = Gerichtsmedizin).
+- Behalte Twitter-/Instagram-Hashtags und Erw\xE4hnungen sinngem\xE4\xDF oder im Original bei.
+- Gib ausschlie\xDFlich den \xFCbersetzten deutschen Text aus, ohne Metakommentare, Anf\xFChrungszeichen oder Erkl\xE4rungen.
+
+Zu \xFCbersetzender Text:
+${text}`;
+      const response = await ai.models.generateContent({
+        model: "gemini-2.5-flash",
+        contents: prompt
+      });
+      const translatedText = response.text ? response.text.trim() : null;
+      return res.status(200).json({
+        translatedText,
+        sourceLanguage: "tr",
+        targetLanguage: targetLang,
+        provider: "gemini-2.5-flash"
+      });
+    } catch (err) {
+      console.error("[Gemini Translate] Error:", err);
+      return res.status(500).json({
+        error: "Fehler bei der automatischen \xDCbersetzung.",
+        details: err?.message
+      });
     }
   });
   app.use(import_express.default.static(import_path.default.join(process.cwd(), "public")));
