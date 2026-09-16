@@ -10,12 +10,16 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  // Enable trust proxy for reverse proxies (e.g. Nginx, Cloud Run, Base44)
+  app.set("trust proxy", 1);
+
   // Rate limiting middleware to prevent DoS attacks on API endpoints
   const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 300, // Limit each IP to 300 requests per windowMs
     standardHeaders: true,
     legacyHeaders: false,
+    validate: { xForwardedForHeader: false },
     message: { error: "Too many requests, please try again later." }
   });
 
