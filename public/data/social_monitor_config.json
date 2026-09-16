@@ -1,0 +1,15 @@
+{
+  "title": "JusticeSquare Social Monitor Configuration",
+  "description": "Daily-updated social media feed aggregating latest posts from selected X and Instagram accounts documenting human rights violations against members of the Gülen Movement.",
+  "fetchInterval": "daily",
+  "scheduleCron": "0 6 * * *",
+  "cacheTtlHours": 24,
+  "postsPerAccount": 5,
+  "maxTotalPosts": 105,
+  "supportedPlatforms": ["x", "instagram"],
+  "translation": {
+    "defaultTargetLanguage": "de",
+    "provider": "serverless-gemini-fallback",
+    "geminiModel": "gemini-3.8-flash"
+  }
+}

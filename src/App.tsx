@@ -19,6 +19,7 @@ import TaetigkeitsberichtPage from './pages/TaetigkeitsberichtPage';
 import AboBestaetigtPage from './pages/AboBestaetigtPage';
 import LegalPage from './pages/LegalPage';
 import JusticeSquarePage from './pages/JusticeSquarePage';
+import JusticeSquareSocialMonitorPage from './pages/JusticeSquareSocialMonitorPage';
 import AktuellesPage from './pages/AktuellesPage';
 import Footer from './components/Footer';
 import ScrollToHash from './components/ScrollToHash';
@@ -43,6 +44,10 @@ export default function App() {
           <Route path="/taetigkeitsbericht" element={<TaetigkeitsberichtPage />} />
           <Route path="/justicesquare" element={<JusticeSquarePage />} />
           <Route path="/justice-square" element={<JusticeSquarePage />} />
+          <Route path="/justicesquare/social" element={<JusticeSquareSocialMonitorPage />} />
+          <Route path="/justice-square/social" element={<JusticeSquareSocialMonitorPage />} />
+          <Route path="/social" element={<JusticeSquareSocialMonitorPage />} />
+          <Route path="/feeds" element={<JusticeSquareSocialMonitorPage />} />
           <Route path="/aktuelles" element={<AktuellesPage />} />
           <Route path="/abo-bestaetigt" element={<AboBestaetigtPage />} />
           <Route path="/newsletter/confirm" element={<AboBestaetigtPage />} />

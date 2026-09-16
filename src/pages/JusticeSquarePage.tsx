@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router';
 import {
   Scale,
   FileText,
@@ -239,6 +240,41 @@ export default function JusticeSquarePage() {
                 <p className="mt-1 text-xs leading-relaxed text-slate-300">{st.label}</p>
               </div>
             ))}
+          </motion.div>
+
+          {/* Social Monitor Callout Banner */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mt-8"
+          >
+            <Link
+              to="/justicesquare/social"
+              className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-teal-400/30 bg-teal-950/40 p-5 text-white backdrop-blur hover:bg-teal-950/65 hover:border-teal-400/50 transition-all group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-teal-500/20 text-teal-300">
+                  <Radio size={24} className="animate-pulse" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold uppercase tracking-wider text-teal-300">Live-Dokumentation</span>
+                    <span className="rounded bg-teal-400/20 px-2 py-0.5 text-[10px] font-bold text-teal-200">21 Accounts • Täglich aktualisiert</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-white group-hover:text-teal-200 transition-colors mt-0.5">
+                    JusticeSquare Social Monitor
+                  </h3>
+                  <p className="text-xs text-slate-300 mt-0.5 max-w-2xl">
+                    Tagesaktuelle X- &amp; Instagram-Meldungen zu Menschenrechtsverletzungen und Haftbedingungen mit On-Demand-Übersetzung ins Deutsche.
+                  </p>
+                </div>
+              </div>
+              <span className="inline-flex items-center gap-1.5 rounded-xl bg-teal-500 px-4 py-2.5 text-xs font-bold text-slate-900 group-hover:bg-teal-400 transition-all shrink-0">
+                <span>Zum Social Monitor</span>
+                <ArrowUpRight size={14} />
+              </span>
+            </Link>
           </motion.div>
         </div>
       </section>

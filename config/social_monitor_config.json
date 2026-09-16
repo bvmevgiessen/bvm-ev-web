@@ -1,0 +1,226 @@
+{
+  "title": "JusticeSquare Social Monitor Configuration",
+  "description": "Daily-updated social media feed aggregating latest posts from selected X accounts documenting human rights violations against members of the Gülen Movement.",
+  "fetchInterval": "daily",
+  "scheduleCron": "0 6 * * *",
+  "cacheTtlHours": 24,
+  "postsPerAccount": 5,
+  "maxTotalPosts": 95,
+  "supportedPlatforms": ["x", "instagram"],
+  "translation": {
+    "defaultTargetLanguage": "de",
+    "provider": "serverless-gemini-fallback",
+    "geminiModel": "gemini-3.8-flash"
+  },
+  "accounts": [
+    {
+      "id": "sevinc-ozarslan",
+      "name": "Sevinç Özarslan",
+      "handleX": "sevincozarslan",
+      "handleInstagram": "",
+      "profileUrlX": "https://x.com/sevincozarslan",
+      "profileUrlInstagram": "",
+      "avatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&auto=format&fit=crop&q=80",
+      "category": "Investigativ-Journalismus",
+      "focus": "Schwerpunkt: Unrechtmäßige Festnahmen, Misshandlungen in Haft und Einzelschicksale von Frauen und Müttern."
+    },
+    {
+      "id": "omer-faruk-gergerlioglu",
+      "name": "Ömer Faruk Gergerlioğlu",
+      "handleX": "gergerliogluof",
+      "handleInstagram": "gergerliogluof",
+      "profileUrlX": "https://x.com/gergerliogluof",
+      "profileUrlInstagram": "https://www.instagram.com/gergerliogluof/",
+      "avatar": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&auto=format&fit=crop&q=80",
+      "category": "Parlamentarische Kontrolle",
+      "focus": "Menschenrechtsaktivist, Arzt und Parlamentsabgeordneter; kontinuierliche Vor-Ort-Recherchen zu Folter und Haftbedingungen."
+    },
+    {
+      "id": "tr724",
+      "name": "Tr724",
+      "handleX": "tr724com",
+      "handleInstagram": "",
+      "profileUrlX": "https://x.com/tr724com",
+      "profileUrlInstagram": "",
+      "avatar": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=120&auto=format&fit=crop&q=80",
+      "category": "Nachrichten & Meinungen",
+      "focus": "Tagesaktuelle Berichterstattung, juristische Urteilsanalysen und investigative Recherchen zur Menschenrechtslage."
+    },
+    {
+      "id": "samanyoluhaber",
+      "name": "Samanyolu Haber",
+      "handleX": "shaber_com",
+      "handleInstagram": "",
+      "profileUrlX": "https://x.com/shaber_com",
+      "profileUrlInstagram": "",
+      "avatar": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=120&auto=format&fit=crop&q=80",
+      "category": "Exilmedien",
+      "focus": "Nachrichten zu Massenprozessen, EGMR-Entscheidungen, KHK-Verordnungen und Verfolgung im Ausland."
+    },
+    {
+      "id": "masum-asker-ogr",
+      "name": "Masum Askeri Öğrenciler",
+      "handleX": "MasumAskerOgr",
+      "handleInstagram": "",
+      "profileUrlX": "https://x.com/MasumAskerOgr",
+      "profileUrlInstagram": "",
+      "avatar": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=120&auto=format&fit=crop&q=80",
+      "category": "Justizopfer & Kadetten",
+      "focus": "Dokumentation und Solidarität für lebenslänglich verurteilte Militärschüler und Kadetten, die unschuldig inhaftiert wurden."
+    },
+    {
+      "id": "biten-hayatlar",
+      "name": "Biten Hayatlar",
+      "handleX": "biten_hayatlar1",
+      "handleInstagram": "",
+      "profileUrlX": "https://x.com/biten_hayatlar1",
+      "profileUrlInstagram": "",
+      "avatar": "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=120&auto=format&fit=crop&q=80",
+      "category": "Gedenkinitiative",
+      "focus": "Dokumentation und Gedenken an Todesopfer der Verfolgung – Ertrunkene im Evros und in der Ägäis sowie Tote in Haft."
+    },
+    {
+      "id": "kaybedilen-hayatlar",
+      "name": "Kaybedilen Hayatlar",
+      "handleX": "kybdlnhayatlar",
+      "handleInstagram": "",
+      "profileUrlX": "https://x.com/kybdlnhayatlar",
+      "profileUrlInstagram": "",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&auto=format&fit=crop&q=80",
+      "category": "Menschenrechte & Verschwundene",
+      "focus": "Aufklärung und Chronik über erzwungenes Verschwindenlassen, Entführungen und durch staatliche Willkür zerstörte Existenzen."
+    },
+    {
+      "id": "alesta",
+      "name": "Alesta",
+      "handleX": "alesta2002",
+      "handleInstagram": "",
+      "profileUrlX": "https://x.com/alesta2002",
+      "profileUrlInstagram": "",
+      "avatar": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=120&auto=format&fit=crop&q=80",
+      "category": "Rechtsanalyse & Monitoring",
+      "focus": "Detaillierte juristische Urteilskritik, Verfahrensfehler türkischer Gerichte, AİHM/EGMR-Präzedenzfälle und Rechtsstaatsmonitoring."
+    },
+    {
+      "id": "odak-dunyam",
+      "name": "Odak Dünyam",
+      "handleX": "odakdunyam",
+      "handleInstagram": "odakdunyam",
+      "profileUrlX": "https://x.com/odakdunyam",
+      "profileUrlInstagram": "https://www.instagram.com/odakdunyam/",
+      "avatar": "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=120&auto=format&fit=crop&q=80",
+      "category": "Medien & Analyse",
+      "focus": "Aktuelle Menschenrechtsberichte, Rechtsgutachten und Hintergrundanalysen zur Verfolgung."
+    },
+    {
+      "id": "saban-ali-ozel",
+      "name": "Şaban Ali Özel",
+      "handleX": "sabanaliozel",
+      "handleInstagram": "",
+      "profileUrlX": "https://x.com/sabanaliozel",
+      "profileUrlInstagram": "",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&auto=format&fit=crop&q=80",
+      "category": "Rechtsanalyse",
+      "focus": "Juristische Urteilskritik, Verstöße gegen die Europäische Menschenrechtskonvention und Strafprozessordnung."
+    },
+    {
+      "id": "ayhan-tekines",
+      "name": "Ayhan Tekineş",
+      "handleX": "AyhanTekines",
+      "handleInstagram": "",
+      "profileUrlX": "https://x.com/AyhanTekines",
+      "profileUrlInstagram": "",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80",
+      "category": "Wissenschaft & Ethik",
+      "focus": "Reflexionen über Rechtsstaatlichkeit, Religionsfreiheit, Unschuldsvermutung und demokratische Grundwerte."
+    },
+    {
+      "id": "bold-medya",
+      "name": "Bold Medya",
+      "handleX": "boldmedya",
+      "handleInstagram": "boldmedya",
+      "profileUrlX": "https://x.com/boldmedya",
+      "profileUrlInstagram": "https://www.instagram.com/boldmedya/",
+      "avatar": "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=120&auto=format&fit=crop&q=80",
+      "category": "Exil-Journalismus",
+      "focus": "Tägliche Videoreportagen, Enthüllungen zu Geheimgefängnissen und Entführungen durch den türkischen Geheimdienst."
+    },
+    {
+      "id": "kronos",
+      "name": "Kronos",
+      "handleX": "KronosHaber",
+      "handleInstagram": "kronoshaber",
+      "profileUrlX": "https://x.com/KronosHaber",
+      "profileUrlInstagram": "https://www.instagram.com/kronoshaber/",
+      "avatar": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=120&auto=format&fit=crop&q=80",
+      "category": "Wirtschaft & Justiz",
+      "focus": "Enteignungen, Beschlagnahmungen von Vermögenswerten, Stiftungsschließungen und wirtschaftliche Vernichtung."
+    },
+    {
+      "id": "tutsak-bebekler",
+      "name": "Tutsak Bebekler",
+      "handleX": "TutsakBebekler",
+      "handleInstagram": "tutsakbebekler",
+      "profileUrlX": "https://x.com/TutsakBebekler",
+      "profileUrlInstagram": "https://www.instagram.com/tutsakbebekler/",
+      "avatar": "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=120&auto=format&fit=crop&q=80",
+      "category": "Kinderrechte",
+      "focus": "Dokumentation von Hunderten Kleinkindern und Babys, die zusammen mit ihren Müttern in türkischen Gefängnissen einsitzen."
+    },
+    {
+      "id": "iskence-raport",
+      "name": "İşkence Raport",
+      "handleX": "IskenceRaporu",
+      "handleInstagram": "",
+      "profileUrlX": "https://x.com/IskenceRaporu",
+      "profileUrlInstagram": "",
+      "avatar": "https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=120&auto=format&fit=crop&q=80",
+      "category": "Anti-Folter Dokumentation",
+      "focus": "Sammeln forensischer Nachweise zu systematischer Folter, Schlägen und erniedrigender Behandlung in Polizeigewahrsam."
+    },
+    {
+      "id": "cezaevi-ihlalleri",
+      "name": "Cezaevi İhlalleri",
+      "handleX": "cezaeviihlaller",
+      "handleInstagram": "",
+      "profileUrlX": "https://x.com/cezaeviihlaller",
+      "profileUrlInstagram": "",
+      "avatar": "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=120&auto=format&fit=crop&q=80",
+      "category": "Strafvollzug",
+      "focus": "Tägliche Protokolle über Isolationshaft, verweigerte Arztbesuche, Briefzensur und Schikanen in Typ-F-Gefängnissen."
+    },
+    {
+      "id": "tenkil-memorial",
+      "name": "TenkilMemorial",
+      "handleX": "TenkilMemorial",
+      "handleInstagram": "tenkilmemorial",
+      "profileUrlX": "https://x.com/TenkilMemorial",
+      "profileUrlInstagram": "https://www.instagram.com/tenkilmemorial/",
+      "avatar": "https://images.unsplash.com/photo-1461360370896-922624d12aa1?w=120&auto=format&fit=crop&q=80",
+      "category": "Gedenk-Museum",
+      "focus": "Dauerhafte Dokumentation, Archivierung materieller Zeugnisse und Erinnerungskultur an den Tenkil-Prozess."
+    },
+    {
+      "id": "magdurlarin-sesi",
+      "name": "Mağdurların Sesi",
+      "handleX": "magdurlarinsesi",
+      "handleInstagram": "",
+      "profileUrlX": "https://x.com/magdurlarinsesi",
+      "profileUrlInstagram": "",
+      "avatar": "https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?w=120&auto=format&fit=crop&q=80",
+      "category": "Opfersolidarität",
+      "focus": "Gezielte Zeugnisse und Audioberichte von Hinterbliebenen, Angehörigen und unschuldig Inhaftierten."
+    },
+    {
+      "id": "australia-zaman",
+      "name": "Australia Zaman",
+      "handleX": "AustraliaZaman",
+      "handleInstagram": "",
+      "profileUrlX": "https://x.com/AustraliaZaman",
+      "profileUrlInstagram": "",
+      "avatar": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=120&auto=format&fit=crop&q=80",
+      "category": "Internationale Berichterstattung",
+      "focus": "Australisch-türkische Exilberichterstattung über Asylverfahren, Auslieferungsversuche und Transnationale Repression."
+    }
+  ]
+}

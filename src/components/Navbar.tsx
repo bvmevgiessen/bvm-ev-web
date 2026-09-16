@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, Mail, Scale } from 'lucide-react';
+import { Menu, X, ChevronDown, Mail, Scale, Radio } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link, useLocation } from 'react-router';
 import Logo from './Logo';
@@ -31,6 +31,7 @@ export default function Navbar() {
     { name: 'Dialog', href: '/dialog' },
     { name: 'Integration', href: '/integration' },
     { name: 'JusticeSquare', href: '/justicesquare', isNew: true },
+    { name: 'Social Monitor', href: '/justicesquare/social', isLive: true },
   ];
 
   return (
@@ -69,18 +70,24 @@ export default function Navbar() {
                       key={p.name}
                       to={p.href}
                       className={`flex items-center justify-between px-5 py-2.5 text-sm hover:bg-slate-50 transition-colors font-medium ${
-                        p.isNew 
+                        p.isNew || p.isLive
                           ? 'text-brand-navy font-bold hover:text-brand-teal' 
                           : 'text-slate-600 hover:text-brand-teal'
                       }`}
                     >
                       <span className="flex items-center gap-2">
                         {p.isNew && <Scale size={14} className="text-brand-teal shrink-0" />}
+                        {p.isLive && <Radio size={14} className="text-pink-600 shrink-0 animate-pulse" />}
                         <span>{p.name}</span>
                       </span>
                       {p.isNew && (
                         <span className="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-brand-teal/10 text-brand-teal">
                           Fokus
+                        </span>
+                      )}
+                      {p.isLive && (
+                        <span className="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-pink-100 text-pink-700">
+                          Live
                         </span>
                       )}
                     </Link>
@@ -172,11 +179,17 @@ export default function Navbar() {
                   >
                     <span className="flex items-center gap-2">
                       {p.isNew && <Scale size={18} className="text-brand-teal shrink-0" />}
+                      {p.isLive && <Radio size={18} className="text-pink-600 shrink-0 animate-pulse" />}
                       <span>{p.name}</span>
                     </span>
                     {p.isNew && (
                       <span className="text-xs font-bold uppercase px-2 py-0.5 rounded bg-brand-teal/10 text-brand-teal">
                         Fokus
+                      </span>
+                    )}
+                    {p.isLive && (
+                      <span className="text-xs font-bold uppercase px-2 py-0.5 rounded bg-pink-100 text-pink-700">
+                        Live
                       </span>
                     )}
                   </Link>
