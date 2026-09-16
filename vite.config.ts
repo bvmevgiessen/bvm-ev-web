@@ -1,13 +1,54 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import {defineConfig, loadEnv} from 'vite';
+import fs from 'fs';
+import {defineConfig, loadEnv, type Plugin} from 'vite';
+
+function safeJsonPlugin(): Plugin {
+  return {
+    name: 'safe-json-plugin',
+    enforce: 'pre',
+    load(id: string) {
+      const cleanId = id.split('?')[0];
+      if (cleanId.endsWith('.json')) {
+        const isArrayExpected =
+          cleanId.endsWith('events.json') ||
+          cleanId.endsWith('blogs.json') ||
+          cleanId.endsWith('latest_updates.json') ||
+          cleanId.endsWith('news.json');
+        const fallback = isArrayExpected ? '[]' : '{}';
+
+        try {
+          if (fs.existsSync(cleanId)) {
+            const raw = fs.readFileSync(cleanId, 'utf-8');
+            const trimmed = raw.trim();
+            if (!trimmed) {
+              console.warn(`[safe-json-plugin] Empty JSON in ${cleanId}, using fallback.`);
+              return fallback;
+            }
+            try {
+              JSON.parse(trimmed);
+              return raw;
+            } catch {
+              console.warn(`[safe-json-plugin] Malformed JSON in ${cleanId}, using fallback.`);
+              return fallback;
+            }
+          }
+          return fallback;
+        } catch {
+          return fallback;
+        }
+      }
+      return null;
+    },
+  };
+}
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
     base: process.env.VITE_BASE_PATH || '/',
-    plugins: [react(), tailwindcss()],
+    plugins: [safeJsonPlugin(), react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY || process.env.GEMINI_API_KEY || ''),
       'import.meta.env.VITE_FIREBASE_API_KEY': JSON.stringify(env.VITE_FIREBASE_API_KEY || process.env.VITE_FIREBASE_API_KEY || ''),
