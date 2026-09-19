@@ -1,8 +1,9 @@
 {
-  "lastUpdated": "2026-09-16T08:00:00.000Z",
+  "lastUpdated": "2026-09-19T10:25:31.409878+00:00",
   "fetchInterval": "daily",
+  "scheduleCron": "0 6 * * *",
   "cacheTtlHours": 24,
-  "totalPosts": 22,
+  "totalPosts": 19,
   "accountsCount": 19,
   "posts": [
     {
@@ -21,8 +22,16 @@
       "thumbnailUrl": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800&auto=format&fit=crop&q=80",
       "mediaUrl": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=1600&auto=format&fit=crop&q=80",
       "mediaAlt": "Aktenmappe mit medizinischen Befunden vor Gerichtssaal",
-      "metrics": { "reposts": 480, "likes": 1420, "replies": 92 },
-      "tags": ["Haftbedingungen", "RechtAufLeben", "Justizskandal"]
+      "metrics": {
+        "reposts": 480,
+        "likes": 1420,
+        "replies": 92
+      },
+      "tags": [
+        "Haftbedingungen",
+        "RechtAufLeben",
+        "Justizskandal"
+      ]
     },
     {
       "id": "post-tr724-01",
@@ -39,8 +48,16 @@
       "mediaType": "image",
       "thumbnailUrl": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=800&auto=format&fit=crop&q=80",
       "mediaUrl": "https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1600&auto=format&fit=crop&q=80",
-      "metrics": { "reposts": 520, "likes": 1780, "replies": 64 },
-      "tags": ["Europarat", "Justiz", "Völkerrecht"]
+      "metrics": {
+        "reposts": 520,
+        "likes": 1780,
+        "replies": 64
+      },
+      "tags": [
+        "Europarat",
+        "Justiz",
+        "Völkerrecht"
+      ]
     },
     {
       "id": "post-shaber-01",
@@ -57,8 +74,16 @@
       "mediaType": "image",
       "thumbnailUrl": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&auto=format&fit=crop&q=80",
       "mediaUrl": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&auto=format&fit=crop&q=80",
-      "metrics": { "reposts": 610, "likes": 1840, "replies": 45 },
-      "tags": ["UN", "BM", "İnsanHakları"]
+      "metrics": {
+        "reposts": 610,
+        "likes": 1840,
+        "replies": 45
+      },
+      "tags": [
+        "UN",
+        "BM",
+        "İnsanHakları"
+      ]
     },
     {
       "id": "post-masum-asker-01",
@@ -75,8 +100,16 @@
       "mediaType": "image",
       "thumbnailUrl": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&auto=format&fit=crop&q=80",
       "mediaUrl": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1600&auto=format&fit=crop&q=80",
-      "metrics": { "reposts": 940, "likes": 3210, "replies": 165 },
-      "tags": ["AskeriÖğrenci", "HarpOkulu", "Adalet"]
+      "metrics": {
+        "reposts": 940,
+        "likes": 3210,
+        "replies": 165
+      },
+      "tags": [
+        "AskeriÖğrenci",
+        "HarpOkulu",
+        "Adalet"
+      ]
     },
     {
       "id": "post-biten-hayatlar-01",
@@ -93,8 +126,17 @@
       "mediaType": "image",
       "thumbnailUrl": "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&auto=format&fit=crop&q=80",
       "mediaUrl": "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=1600&auto=format&fit=crop&q=80",
-      "metrics": { "reposts": 760, "likes": 2680, "replies": 105 },
-      "tags": ["BitenHayatlar", "Meriç", "Ege", "Unutmayacağız"]
+      "metrics": {
+        "reposts": 760,
+        "likes": 2680,
+        "replies": 105
+      },
+      "tags": [
+        "BitenHayatlar",
+        "Meriç",
+        "Ege",
+        "Unutmayacağız"
+      ]
     },
     {
       "id": "post-kybdln-hayatlar-01",
@@ -111,8 +153,16 @@
       "mediaType": "image",
       "thumbnailUrl": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
       "mediaUrl": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=1600&auto=format&fit=crop&q=80",
-      "metrics": { "reposts": 890, "likes": 2890, "replies": 96 },
-      "tags": ["ZorlaKaybetme", "KaybedilenHayatlar", "Cezasızlık"]
+      "metrics": {
+        "reposts": 890,
+        "likes": 2890,
+        "replies": 96
+      },
+      "tags": [
+        "ZorlaKaybetme",
+        "KaybedilenHayatlar",
+        "Cezasızlık"
+      ]
     },
     {
       "id": "post-alesta-01",
@@ -129,8 +179,17 @@
       "mediaType": "image",
       "thumbnailUrl": "https://images.unsplash.com/photo-1450133064473-71024230f91b?w=800&auto=format&fit=crop&q=80",
       "mediaUrl": "https://images.unsplash.com/photo-1450133064473-71024230f91b?w=1600&auto=format&fit=crop&q=80",
-      "metrics": { "reposts": 670, "likes": 2190, "replies": 78 },
-      "tags": ["Yalçınkaya", "AİHM", "Kanunilikİlkesi", "Hukuk"]
+      "metrics": {
+        "reposts": 670,
+        "likes": 2190,
+        "replies": 78
+      },
+      "tags": [
+        "Yalçınkaya",
+        "AİHM",
+        "Kanunilikİlkesi",
+        "Hukuk"
+      ]
     },
     {
       "id": "post-gergerlioglu-01",
@@ -147,8 +206,16 @@
       "mediaType": "image",
       "thumbnailUrl": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&auto=format&fit=crop&q=80",
       "mediaUrl": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&auto=format&fit=crop&q=80",
-      "metrics": { "reposts": 830, "likes": 2940, "replies": 195 },
-      "tags": ["Parlament", "Menschenrechte", "Strafvollzug"]
+      "metrics": {
+        "reposts": 830,
+        "likes": 2940,
+        "replies": 195
+      },
+      "tags": [
+        "Parlament",
+        "Menschenrechte",
+        "Strafvollzug"
+      ]
     },
     {
       "id": "post-tutsak-bebekler-01",
@@ -165,8 +232,16 @@
       "mediaType": "image",
       "thumbnailUrl": "https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=800&auto=format&fit=crop&q=80",
       "mediaUrl": "https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=1600&auto=format&fit=crop&q=80",
-      "metrics": { "likes": 1420, "replies": 110, "reposts": 490 },
-      "tags": ["Kinderrechte", "TutsakBebekler", "Familientrennung"]
+      "metrics": {
+        "likes": 1420,
+        "replies": 110,
+        "reposts": 490
+      },
+      "tags": [
+        "Kinderrechte",
+        "TutsakBebekler",
+        "Familientrennung"
+      ]
     },
     {
       "id": "post-tenkil-01",
@@ -183,8 +258,16 @@
       "mediaType": "image",
       "thumbnailUrl": "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=800&auto=format&fit=crop&q=80",
       "mediaUrl": "https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=1600&auto=format&fit=crop&q=80",
-      "metrics": { "reposts": 520, "likes": 1890, "replies": 76 },
-      "tags": ["Gedenken", "Flucht", "Tenkil"]
+      "metrics": {
+        "reposts": 520,
+        "likes": 1890,
+        "replies": 76
+      },
+      "tags": [
+        "Gedenken",
+        "Flucht",
+        "Tenkil"
+      ]
     },
     {
       "id": "post-bold-01",
@@ -201,8 +284,16 @@
       "mediaType": "video",
       "thumbnailUrl": "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&auto=format&fit=crop&q=80",
       "mediaUrl": "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1600&auto=format&fit=crop&q=80",
-      "metrics": { "reposts": 680, "likes": 2150, "replies": 132 },
-      "tags": ["EGMR", "Yalcinkaya", "Rechtsstaat"]
+      "metrics": {
+        "reposts": 680,
+        "likes": 2150,
+        "replies": 132
+      },
+      "tags": [
+        "EGMR",
+        "Yalcinkaya",
+        "Rechtsstaat"
+      ]
     },
     {
       "id": "post-iskence-01",
@@ -219,8 +310,16 @@
       "mediaType": "image",
       "thumbnailUrl": "https://images.unsplash.com/photo-1453733197781-344407b46652?w=800&auto=format&fit=crop&q=80",
       "mediaUrl": "https://images.unsplash.com/photo-1453733197781-344407b46652?w=1600&auto=format&fit=crop&q=80",
-      "metrics": { "reposts": 615, "likes": 1820, "replies": 62 },
-      "tags": ["FolterVerbot", "Menschenrechte", "Forensik"]
+      "metrics": {
+        "reposts": 615,
+        "likes": 1820,
+        "replies": 62
+      },
+      "tags": [
+        "FolterVerbot",
+        "Menschenrechte",
+        "Forensik"
+      ]
     },
     {
       "id": "post-kronos-01",
@@ -237,8 +336,16 @@
       "mediaType": "image",
       "thumbnailUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&auto=format&fit=crop&q=80",
       "mediaUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&auto=format&fit=crop&q=80",
-      "metrics": { "reposts": 380, "likes": 1240, "replies": 41 },
-      "tags": ["Enteignung", "TMSF", "Eigentumsrecht"]
+      "metrics": {
+        "reposts": 380,
+        "likes": 1240,
+        "replies": 41
+      },
+      "tags": [
+        "Enteignung",
+        "TMSF",
+        "Eigentumsrecht"
+      ]
     },
     {
       "id": "post-cezaevi-ihlalleri-01",
@@ -255,8 +362,16 @@
       "mediaType": "image",
       "thumbnailUrl": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
       "mediaUrl": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=1600&auto=format&fit=crop&q=80",
-      "metrics": { "reposts": 470, "likes": 1510, "replies": 59 },
-      "tags": ["TahliyeEngeli", "Strafvollzug", "Willkür"]
+      "metrics": {
+        "reposts": 470,
+        "likes": 1510,
+        "replies": 59
+      },
+      "tags": [
+        "TahliyeEngeli",
+        "Strafvollzug",
+        "Willkür"
+      ]
     },
     {
       "id": "post-odak-dunyam-01",
@@ -273,8 +388,16 @@
       "mediaType": "image",
       "thumbnailUrl": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&auto=format&fit=crop&q=80",
       "mediaUrl": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600&auto=format&fit=crop&q=80",
-      "metrics": { "reposts": 290, "likes": 840, "replies": 22 },
-      "tags": ["BasınÖzgürlüğü", "Hukuk", "Rapor"]
+      "metrics": {
+        "reposts": 290,
+        "likes": 840,
+        "replies": 22
+      },
+      "tags": [
+        "BasınÖzgürlüğü",
+        "Hukuk",
+        "Rapor"
+      ]
     },
     {
       "id": "post-saban-ali-01",
@@ -291,8 +414,16 @@
       "mediaType": "image",
       "thumbnailUrl": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&auto=format&fit=crop&q=80",
       "mediaUrl": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&auto=format&fit=crop&q=80",
-      "metrics": { "reposts": 340, "likes": 1120, "replies": 35 },
-      "tags": ["CezaHukuku", "InDubioProReo", "AdilYargılanma"]
+      "metrics": {
+        "reposts": 340,
+        "likes": 1120,
+        "replies": 35
+      },
+      "tags": [
+        "CezaHukuku",
+        "InDubioProReo",
+        "AdilYargılanma"
+      ]
     },
     {
       "id": "post-ayhan-tekines-01",
@@ -307,8 +438,16 @@
       "text": "Adalet, bir toplumun ruhudur. Masum bir insanın haksız yere bir gün dahi hapsedilmesine rıza gösteren bir zihniyet, hiçbir ahlaki ve insani değerle bağdaşamaz. Zulüm karşısında sessiz kalmak, zulmü meşrulaştırmaktır.",
       "textDe": "Gerechtigkeit ist die Seele einer Gesellschaft. Eine Gesinnung, die duldet, dass ein unschuldiger Mensch auch nur einen einzigen Tag unrechtmäßig eingesperrt wird, lässt sich mit keinem moralischen und menschlichen Wert vereinbaren. Vor dem Unrecht zu schweigen bedeutet, das Unrecht zu legitimieren.",
       "mediaType": "none",
-      "metrics": { "reposts": 410, "likes": 1690, "replies": 55 },
-      "tags": ["Ahlak", "Adalet", "İnsanOnuru"]
+      "metrics": {
+        "reposts": 410,
+        "likes": 1690,
+        "replies": 55
+      },
+      "tags": [
+        "Ahlak",
+        "Adalet",
+        "İnsanOnuru"
+      ]
     },
     {
       "id": "post-magdurlarinsesi-01",
@@ -325,8 +464,16 @@
       "mediaType": "image",
       "thumbnailUrl": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&auto=format&fit=crop&q=80",
       "mediaUrl": "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1600&auto=format&fit=crop&q=80",
-      "metrics": { "reposts": 360, "likes": 1280, "replies": 42 },
-      "tags": ["KHK", "SivilÖlüm", "Adalet"]
+      "metrics": {
+        "reposts": 360,
+        "likes": 1280,
+        "replies": 42
+      },
+      "tags": [
+        "KHK",
+        "SivilÖlüm",
+        "Adalet"
+      ]
     },
     {
       "id": "post-australia-zaman-01",
@@ -343,8 +490,16 @@
       "mediaType": "image",
       "thumbnailUrl": "https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?w=800&auto=format&fit=crop&q=80",
       "mediaAlt": "Parlamentsgebäude in Canberra",
-      "metrics": { "reposts": 280, "likes": 890, "replies": 19 },
-      "tags": ["TransnationalRepression", "Magnitsky", "Australia"]
+      "metrics": {
+        "reposts": 280,
+        "likes": 890,
+        "replies": 19
+      },
+      "tags": [
+        "TransnationalRepression",
+        "Magnitsky",
+        "Australia"
+      ]
     }
   ]
 }
