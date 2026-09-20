@@ -32,11 +32,15 @@ export interface NewsItem {
 export interface EventItem {
   id: string;
   title: string;
+  titleTr?: string;
   date: string;
   location: string;
+  locationTr?: string;
   category: string;
+  categoryTr?: string;
   image: string;
   description: string;
+  descriptionTr?: string;
   link: string;
 }
 
