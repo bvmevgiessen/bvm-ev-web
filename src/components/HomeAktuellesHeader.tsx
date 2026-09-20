@@ -111,7 +111,7 @@ export default function HomeAktuellesHeader() {
       summary: n.shortText || (n.highlights && n.highlights[0]) || '',
       date: n.date,
       image: normalizeAssetUrl(n.image),
-      link: '/aktuelles#news',
+      link: `/aktuelles#news-${n.id}`,
       author: 'BVM e.V.',
       location: n.location,
       sourceId: n.id,
