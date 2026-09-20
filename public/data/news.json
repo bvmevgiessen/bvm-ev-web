@@ -1,5 +1,68 @@
 [
   {
+    "id": "news-gazelle-film-frankfurt-2026",
+    "category": "Kino & Dialog",
+    "date": "2026-09-20T12:00:00",
+    "title": "Kino-Tipp & Frankfurt-Screening: »Gazelle« mit Live-Q&A von Nadir Sarıbacak",
+    "image": "/assets/gazelle_poster.jpg",
+    "gallery": [
+      {
+        "url": "/assets/gazelle_poster.jpg",
+        "title": "Offizielles Filmplakat: Gazelle",
+        "caption": "Spielfilm von und mit Nadir Sarıbacak – Gewinner des VIFF Vanguard Audience Award."
+      },
+      {
+        "url": "/assets/gazelle_still.jpg",
+        "title": "Filmszene aus »Gazelle«",
+        "caption": "Gedreht in New York und New Jersey: Authentische Erzählung über Neuanfang und Exil."
+      }
+    ],
+    "location": "ASTOR Film Lounge, Zeil 106, 60313 Frankfurt am Main",
+    "ticketLink": "https://events.gazellefilm.com/events/gazellefilm/2346017",
+    "ticketLabel": "Tickets buchen (events.gazellefilm.com)",
+    "eventDetails": {
+      "dateFormatted": "Dienstag, 6. Oktober 2026",
+      "time": "20:00 – 22:10 Uhr CEST",
+      "doorsOpen": "19:30 Uhr",
+      "venue": "ASTOR Film Lounge",
+      "address": "Zeil 106, 60313 Frankfurt am Main",
+      "runtime": "100 Min. Film + ca. 30 Min. Live-Q&A",
+      "language": "Englisch & Türkisch",
+      "subtitles": "Mit englischen und türkischen Untertiteln",
+      "note": "Exklusives One-Night-Only Event mit limitierter Platzkapazität (First-Come, First-Served). Tickets sind für Datum und Uhrzeit gebunden (kein 14-tägiges Widerrufsrecht, keine Rückerstattung), aber uneingeschränkt übertragbar."
+    },
+    "shortText": "Am Dienstag, 6. Oktober 2026 um 20:00 Uhr, zeigt die renommierte ASTOR Film Lounge in Frankfurt den preisgekrönten Film »Gazelle« mit persönlicher Anwesenheit von Co-Regisseur und Hauptdarsteller Nadir Sarıbacak. Im Anschluss moderiert Dr. Margrit Frölich (Ev. Akademie Frankfurt) ein exklusives Live-Q&A. Der Film berührt existenzielle Erfahrungen, die viele unserer Vereinsmitglieder aus eigener Biografie kennen: Neuanfang im Exil, Identitätsfindung und das Überwinden traumatischer Entwurzelung.",
+    "customSectionTitle": "Die Brücke zu unserem Verein: Geteilte Erfahrungen des Exils und Neubeginns",
+    "customSectionContent": "Die im Film erzählte Geschichte von Yakup ist weit mehr als eine fiktive Filmhandlung – sie spiegelt die gelebte Realität zahlreicher Mitglieder und Familien von Bildung und Verständigung Mittelhessen e.V. (BVM e.V.) wider. Viele von uns mussten infolge politischer Repression und Willkür ihre Heimat, ihre vertrauten Berufe und sozialen Wurzeln abrupt zurücklassen. Im Exil standen sie vor der enormen Herausforderung, sich in Deutschland eine neue Existenz aufzubauen, für die Zusammenführung ihrer Familien zu kämpfen und trotz seelischer Wunden und bürokratischer Hürden ihre Würde und Tatkraft zu bewahren.\n\n»Exile is only the beginning« – das Exil ist erst der Anfang. Genau aus dieser Kraft des Zusammenhalts und der gegenseitigen Ermutigung schöpft auch unser Verein tagtäglich. Dieser besondere Kinoabend bietet unserem Verein und allen Interessierten die wertvolle Chance, diese universellen Erfahrungen auf der Kinoleinwand zu sehen und im Anschluss direkt mit Hauptdarsteller Nadir Sarıbacak und Filmwissenschaftlerin Dr. Margrit Frölich ins Gespräch zu kommen. Wir laden unsere Mitglieder, Freundinnen und Freunde herzlich ein, diese Vorführung zu besuchen!",
+    "highlights": [
+      "Screening & Live-Q&A: Dienstag, 6. Oktober 2026, 20:00 Uhr (Einlass ab 19:30 Uhr), ASTOR Film Lounge Frankfurt (Zeil 106).",
+      "Stargast vor Ort: Nadir Sarıbacak (Co-Regisseur & Hauptdarsteller, bekannt u. a. aus 'Winterschlaf' / Goldene Palme Cannes).",
+      "Publikumsgespräch & Moderation: Dr. Margrit Frölich (Studienleiterin Evangelische Akademie Frankfurt, Filmkuratorin; Moderation in englischer Sprache).",
+      "Thematische Tiefe: Psychologische Folgen von Entwurzelung, Wiederaufbau eines Lebens im fremden Land, Identität und Belonging.",
+      "Auszeichnungen & Festivals: VIFF Vanguard Audience Award (Vancouver International Film Festival), Industry Choice Award (Dances With Films New York), offizielle Auswahl Chicago, Sedona und Aegean Film Festival.",
+      "Tickets & Buchung: Jetzt online Plätze sichern unter events.gazellefilm.com/events/gazellefilm/2346017 (Plätze limitiert, übertragbar)."
+    ],
+    "speech": "»Exile is only the beginning.« Gazelle erzählt mit berührender Nähe und Intimität vom schmerzhaften Verlust der Heimat und dem unermüdlichen Kampf um Würde und Zukunft. Ein Film, der unseren Vereinsmitgliedern aus tiefstem Herzen spricht.",
+    "persons": [
+      {
+        "name": "Nadir Sarıbacak",
+        "role": "Hauptdarsteller, Co-Regisseur & Co-Autor (»Gazelle«)"
+      },
+      {
+        "name": "Dr. Margrit Frölich",
+        "role": "Moderation & Filmwissenschaftlerin (Ev. Akademie Frankfurt)"
+      },
+      {
+        "name": "Samy Pioneer",
+        "role": "Co-Regisseur (»Gazelle«)"
+      },
+      {
+        "name": "Ayhan Hulagu",
+        "role": "Co-Autor (»Gazelle«)"
+      }
+    ]
+  },
+  {
     "id": "news-cdu-michelle-kraft",
     "category": "News",
     "date": "2026-09-11T10:00:00",
