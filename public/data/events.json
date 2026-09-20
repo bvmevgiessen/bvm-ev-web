@@ -1,0 +1,28 @@
+[
+  {
+    "category": "news",
+    "title": "Kino-Tipp & Frankfurt-Screening: »Gazelle« mit Live-Q&A von Nadir Sarıbacak",
+    "summary": "Am Dienstag, 6. Oktober 2026 um 20:00 Uhr, zeigt die ASTOR Film Lounge in Frankfurt das preisgekrönte Drama »Gazelle« im Beisein von Hauptdarsteller Nadir Sarıbacak und Filmkuratorin Dr. Margrit Frölich. Ein Film über Flucht, Exil und Hoffnung – mit tiefer Verbundenheit zu den Biografien unserer Vereinsmitglieder.",
+    "date": "2026-09-20T12:00:00",
+    "image": "/assets/gazelle_poster.jpg",
+    "link": "/aktuelles#news-news-gazelle-film-frankfurt-2026",
+    "author": "BVM e.V."
+  },
+  {
+    "category": "news",
+    "summary": "Heute ab 14:30 Uhr laden der BVM e.V. und die Evangelische Philippusgemeinde herzlich zum Noahs Fest auf dem Kirchenplatz in Gießen ein: Kurzvorträge, gemeinsames Friedensgebet und Verteilung von Noahs Pudding (Aşure) ohne Voranmeldung.",
+    "date": "2026-09-12T09:30:00",
+    "image": "https://images.unsplash.com/photo-1751879182448-d7b3dce2b00e?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "link": "/aktuelles#news",
+    "author": "BVM e.V."
+  },
+  {
+    "category": "news",
+    "title": "Treffen mit CDU‑Landtagsabgeordneter Michelle Kraft in Gießen",
+    "summary": "Eine Delegation des BVM e.V. traf sich mit Michelle Kraft, Landtagsabgeordnete für Gießen I und Fachsprecherin für Integration, zum Austausch über Integration, Bildung und Jugendförderung.",
+    "date": "2026-09-11T10:00:00",
+    "image": "/assets/kraft_treffen_gruppe.jpeg",
+    "link": "/aktuelles#news",
+    "author": "BVM e.V."
+  }
+]

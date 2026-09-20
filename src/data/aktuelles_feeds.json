@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-20T13:09:48.829375+00:00",
+  "generatedAt": "2026-09-20T13:44:05.113589+00:00",
   "lastUpdated": {
-    "news": "2026-09-20T13:09:48.829375+00:00",
-    "events": "2026-09-20T13:09:48.829375+00:00",
-    "blogs": "2026-09-20T13:09:48.829375+00:00"
+    "news": "2026-09-20T13:44:05.113589+00:00",
+    "events": "2026-09-20T13:44:05.113589+00:00",
+    "blogs": "2026-09-20T13:44:05.113589+00:00"
   },
   "news": [
     {
@@ -132,112 +132,112 @@
   ],
   "events": [
     {
-      "id": "pilzwanderung-marburg-2026",
-      "title": "Pilzwanderung in Marburg",
-      "date": "2026-10-04T11:00:00",
-      "location": "Marburg Botanischer Garten – Lahnberge Parkplatz (Uni Marburg)",
-      "category": "SOZIALES",
-      "image": "https://plus.unsplash.com/premium_photo-1675727579781-48c0cfefc835?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "description": "Eine geführte Pilzwanderung im Waldgebiet rund um den Botanischen Garten in Marburg. Während der Tour erhalten die Teilnehmenden spannende Erklärungen zu verschiedenen Pilzarten – ob essbar oder giftig – und haben die Mö",
-      "link": "/events/pilzwanderung-marburg-2026"
+      "id": null,
+      "title": "Kino-Tipp & Frankfurt-Screening: »Gazelle« mit Live-Q&A von Nadir Sarıbacak",
+      "date": "2026-09-20T12:00:00",
+      "location": "",
+      "category": "news",
+      "image": "/assets/gazelle_poster.jpg",
+      "description": "",
+      "link": "/events/None"
     }
   ],
   "blogs": [
     {
-      "id": "fidev-78eadb80d1",
-      "title": "Erasmus+ Jugendprojekte: FIDeV als erfahrener Kooperationspartner",
-      "date": "2026-08-04T12:58:00+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Jugend",
-      "image": "https://static.wixstatic.com/media/2d6f92_e02fc9671ccc46dd874ceb1e440a5ffd~mv2.png/v1/fit/w_1000,h_704,al_c,q_80/file.png",
-      "excerpt": "FIDeV bringt praktische Erfahrung mit KA153-YOU und KA155-YOU ein und ist offen für verlässliche Partnerschaften in europäischen Jugendprojekten.",
-      "link": "https://www.fidev.org/post/erasmus-plus-jugendprojekte-kooperation-fidev"
-    },
-    {
-      "id": "fidev-13314fad42",
-      "title": "Zivilgesellschaftliches Engagement von Jugendlichen: Wege zu mehr Bürgerbeteiligung",
-      "date": "2026-08-04T07:15:05+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Jugend",
-      "image": "https://static.wixstatic.com/media/2d6f92_2e28834f2355469c9b70d4ae26374f04~mv2.png/v1/fit/w_1000,h_704,al_c,q_80/file.png",
-      "excerpt": "Junge Menschen wollen Gesellschaft mitgestalten. Dieser Leitfaden zeigt, wie Jugendprojekte, Ehrenamt und echte Beteiligung den Einstieg erleichtern.",
-      "link": "https://www.fidev.org/post/zivilgesellschaftliches-engagement-jugendlicher"
-    },
-    {
-      "id": "fidev-936fc961b4",
-      "title": "N.O.A.H.S. – Das Leben einer Kichererbse",
-      "date": "2026-08-03T10:29:27+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Community",
-      "image": "https://static.wixstatic.com/media/2d6f92_74ff984f663d4a63ba15da709f8eec56~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
-      "excerpt": "„N.O.A.H.S. (Nachhaltige Orientierung durch Anerkennung, Haltung und Solidarität) – Das Leben einer Kichererbse“ ist ein Workshopformat für Schulklassen der Unter- und Mittelstufe, das spielerisch demokratische Werte un…",
-      "link": "https://www.fidev.org/post/noahs"
-    },
-    {
-      "id": "fidev-cf3ef08640",
-      "title": "Was ist interkultureller Dialog? Warum er für den gesellschaftlichen Frieden entscheidend ist",
-      "date": "2026-08-03T09:49:46+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Dialog",
-      "image": "https://static.wixstatic.com/media/2d6f92_95934f04beb44a9ea582264caba7aab6~mv2.png/v1/fit/w_1000,h_860,al_c,q_80/file.png",
-      "excerpt": "Interkultureller Dialog schafft Verständnis über kulturelle Grenzen hinweg. Erfahren Sie, wie Begegnung Vorurteile abbaut und gesellschaftlichen Zusammenhalt stärkt.",
-      "link": "https://www.fidev.org/post/was-ist-interkultureller-dialog"
-    },
-    {
-      "id": "sdub-a2e85c74b0",
-      "title": "Stellungnahme Anschlag in Berlin",
-      "date": "2026-07-26T16:26:03+00:00",
-      "author": "Stiftung Dialog und Bildung",
-      "partnerName": "Stiftung Dialog und Bildung",
-      "partnerUrl": "https://sdub.de/",
-      "category": "Dialog",
-      "image": "https://sdub.de/wp-content/uploads/2026/07/stellungnahme-sdub_wide1-480x264.jpg",
-      "excerpt": "Nach dem Anschlag in Berlin: Stellungnahme der Stiftung Dialog und Bildung Berlin, 26. Juli 2026 Die Stiftung Dialog und Bildung ist erschüttert über den Anschlag auf den Christopher Street Day in Berlin. Wir trauern um…",
-      "link": "https://sdub.de/stellungnahme-anschlag-csd-berlin/"
-    },
-    {
-      "id": "fidev-8b45628938",
-      "title": "Projektwoche für Schulklassen",
-      "date": "2026-07-06T10:21:03+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Jugend",
-      "image": "https://static.wixstatic.com/media/2d6f92_f23d066ad9f04626954b5cb8d5efa2bc~mv2.png/v1/fit/w_412,h_232,al_c,q_80/file.png",
-      "excerpt": "Besuch der Goethe Universität mit der Ricarda- Huch- Schule Dreieich Angesichts einer sich schnell wandelnden Arbeitswelt, vielfältiger Bildungswege und gesellschaftlicher Unsicherheiten stehen viele junge Menschen heut…",
-      "link": "https://www.fidev.org/post/projektwoche-f%C3%BCr-schulklassen"
-    },
-    {
-      "id": "house-of-one-e20f2574e4",
-      "title": "#118: Was gibt uns Hoffnung?",
-      "date": "2026-07-06T00:00:00+00:00",
+      "id": "house-of-one-bc00b061c4",
+      "title": "Mendelssohn-Preis für Rabbiner Nachama",
+      "date": "2026-09-03T00:00:00+00:00",
       "author": "House of One",
       "partnerName": "House of One",
       "partnerUrl": "https://house-of-one.org/",
-      "category": "Community",
+      "category": "Dialog",
       "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-      "excerpt": "Es gibt Tage, an denen nichts leichtfällt. Momente, in denen das Licht am Ende des Tunnels kaum zu sehen ist. Wir sprechen in dieser Folge darüber, wa... Weiterlesen",
-      "link": "https://house-of-one.org/news/118-was-gibt-uns-hoffnung"
+      "excerpt": "Andreas Nachama, Rabbiner im House of One und Gründungsmitglied der Stiftung, ist mit dem Moses-Mendelssohn-Preis des Landes Berlin 2026 ausgezeichnet... Weiterlesen",
+      "link": "https://house-of-one.org/news/mendelssohn-preis-fuer-rabbiner-nachama"
     },
     {
-      "id": "sdub-c1bd1343d7",
-      "title": "1. Juli – Gedenktag gegen antimuslimischen Rassismus",
-      "date": "2026-07-01T11:04:00+00:00",
-      "author": "Stiftung Dialog und Bildung",
-      "partnerName": "Stiftung Dialog und Bildung",
-      "partnerUrl": "https://sdub.de/",
+      "id": "house-of-one-fc881ac030",
+      "title": "Helene Braun – die neue Stimme im House of One-Podcast",
+      "date": "2026-09-03T00:00:00+00:00",
+      "author": "House of One",
+      "partnerName": "House of One",
+      "partnerUrl": "https://house-of-one.org/",
       "category": "Dialog",
-      "image": "https://sdub.de/wp-content/uploads/2026/07/tag-gegen-antimuslimischen-rassismus-768x614.jpg",
-      "excerpt": "Rassismus hat keinen Platz in unserer Gesellschaft – gegen niemanden. Heute erinnern wir an die Menschen, die antimuslimischen Rassismus erfahren, und setzen ein Zeichen für Respekt, Menschenwürde und Zusammenhalt. Wer…",
-      "link": "https://sdub.de/gedenktag-gegen-antimuslimischen-rassismus/"
+      "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+      "excerpt": "Wir sind aus der Sommerpause zurück – erholt und mit neuer Stimme in unserer Mitte: Helene Braun, alias Leni, ist die neue jüdische Stimme in unserer ... Weiterlesen",
+      "link": "https://house-of-one.org/news/helene-braun-die-neue-stimme-im-house-one-podcast"
+    },
+    {
+      "id": "fidev-fe0838f36a",
+      "title": "Streetart-Workshop",
+      "date": "2026-09-02T10:40:50+00:00",
+      "author": "Forum für Interkulturellen Dialog",
+      "partnerName": "Forum für Interkulturellen Dialog",
+      "partnerUrl": "https://www.fidev.org/",
+      "category": "Community",
+      "image": "https://static.wixstatic.com/media/2d6f92_daaf832f48e742e0a24454d7f29cc426~mv2.png/v1/fit/w_1000,h_904,al_c,q_80/file.png",
+      "excerpt": "Entdecke die Ursprünge urbaner Kunst, experimentiere mit Farben und Techniken und entwickle deinen ganz eigenen Style. Streetart ist mehr als Graffiti auf Wänden: Sie verbindet Kreativität, gesellschaftlichen Ausdruck u…",
+      "link": "https://www.fidev.org/post/streetart-workshop"
+    },
+    {
+      "id": "fidev-962f06d182",
+      "title": "Erste DiscoverEU-Inklusionsreisen erfolgreich umgesetzt",
+      "date": "2026-09-02T10:27:12+00:00",
+      "author": "Forum für Interkulturellen Dialog",
+      "partnerName": "Forum für Interkulturellen Dialog",
+      "partnerUrl": "https://www.fidev.org/",
+      "category": "Jugend",
+      "image": "https://static.wixstatic.com/media/2d6f92_7434e30e8f3f4f018ce2b036143f1ed7~mv2.jpg/v1/fit/w_1000,h_720,al_c,q_80/file.png",
+      "excerpt": "Brücken bauen – Europa entdecken: Erste DiscoverEU-Inklusionsreisen erfolgreich umgesetzt Mit unseren ersten beiden DiscoverEU-Inklusionsprojekten über Ostern und im Sommer 2026 haben insgesamt 50 junge Menschen mit Mig…",
+      "link": "https://www.fidev.org/post/erste-discovereu-inklusionsreisen-erfolgreich-umgesetzt"
+    },
+    {
+      "id": "fidev-6992822c8b",
+      "title": "Erinnerung und Exil: Warum persönliche Geschichten unsere Stadtgesellschaft stärken",
+      "date": "2026-09-02T09:25:23+00:00",
+      "author": "Forum für Interkulturellen Dialog",
+      "partnerName": "Forum für Interkulturellen Dialog",
+      "partnerUrl": "https://www.fidev.org/",
+      "category": "Integration",
+      "image": "https://static.wixstatic.com/media/2d6f92_9829299b97fb445eb438738d40c24f8c~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
+      "excerpt": "Persönliche Exilgeschichten verbinden Vergangenheit und Gegenwart. Ein verantwortungsvoller Umgang mit Erinnerung kann Empathie, Bildung und Dialog fördern.",
+      "link": "https://www.fidev.org/post/erinnerung-exil-persoenliche-geschichten-frankfurt"
+    },
+    {
+      "id": "fidev-ca6903eadc",
+      "title": "Was Helsinki über Integration lehrt: Ein Besuch in der Bibliothek Oodi",
+      "date": "2026-09-01T10:25:38+00:00",
+      "author": "Forum für Interkulturellen Dialog",
+      "partnerName": "Forum für Interkulturellen Dialog",
+      "partnerUrl": "https://www.fidev.org/",
+      "category": "Integration",
+      "image": "https://static.wixstatic.com/media/2d6f92_f5394576328a4045830202fc67e0fe5d~mv2.jpg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
+      "excerpt": "Was wäre, wenn Integration nicht zuerst im Amt beginnt? Ein Besuch in Helsinkis Zentralbibliothek Oodi zeigt, was offene Begegnungsorte bewirken können.",
+      "link": "https://www.fidev.org/post/integration-helsinki-oodi"
+    },
+    {
+      "id": "fidev-66a276d491",
+      "title": "Der Mensch hinter der Geschichte - Dialog, der verbindet",
+      "date": "2026-09-01T09:43:37+00:00",
+      "author": "Forum für Interkulturellen Dialog",
+      "partnerName": "Forum für Interkulturellen Dialog",
+      "partnerUrl": "https://www.fidev.org/",
+      "category": "Dialog",
+      "image": "https://static.wixstatic.com/media/2d6f92_52c923e8877a4935a2489c348569c97c~mv2.jpg/v1/fit/w_900,h_1000,al_c,q_80/file.png",
+      "excerpt": "Im Rahmen der Veranstaltung kamen zehn Menschen mit unterschiedlichen persönlichen Lebensgeschichten zusammen. Im Mittelpunkt stand der persönliche Austausch über Erfahrungen von Flucht, Ankommen, Neuanfang und dem Aufb…",
+      "link": "https://www.fidev.org/post/der-mensch-hinter-der-geschichte-dialog-der-verbindet"
+    },
+    {
+      "id": "fidev-3fe2ba2bdc",
+      "title": "Medienkompetenz im digitalen Zeitalter: Umgang mit Desinformation und Vorurteilen",
+      "date": "2026-08-23T10:32:35+00:00",
+      "author": "Forum für Interkulturellen Dialog",
+      "partnerName": "Forum für Interkulturellen Dialog",
+      "partnerUrl": "https://www.fidev.org/",
+      "category": "Community",
+      "image": "https://static.wixstatic.com/media/a7ec0d_c83c7773fb204542ae1e4be8d313d63c~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
+      "excerpt": "Medienkompetenz hilft, Desinformation zu erkennen, Quellen zu prüfen und Vorurteilen im Netz mit Ruhe und digitaler Zivilcourage zu begegnen.",
+      "link": "https://www.fidev.org/post/medienkompetenz-desinformation-vorurteile"
     }
   ]
 }
