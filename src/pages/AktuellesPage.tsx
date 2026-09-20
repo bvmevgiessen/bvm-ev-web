@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router';
 import {
@@ -15,7 +15,12 @@ import {
   Sparkles,
   ChevronLeft,
   ChevronRight,
+  Ticket,
   ExternalLink,
+  Film,
+  Calendar,
+  Clock,
+  Info
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Card3D from '../components/aktuelles/Card3D';
@@ -23,7 +28,6 @@ import NewsPhotoGallery from '../components/NewsPhotoGallery';
 import NewsShareButtons from '../components/NewsShareButtons';
 import EventCountdownBadge from '../components/EventCountdownBadge';
 import { useAktuelles, formatDate, type NewsItem } from '../data/aktuelles';
-import updatesData from '../data/latest_updates.json';
 
 const TEAL = '#0d9488';
 const NAVY = '#0f172a';
@@ -44,24 +48,36 @@ export default function AktuellesPage() {
   const [openNews, setOpenNews] = useState<NewsItem | null>(null);
   const [slide, setSlide] = useState(0);
 
-  // Blog-Einträge: Exakt die Einträge von der Blog-Seite (latest_updates.json)
-  const blogs = useMemo(() => {
-    if (feeds.blogs && feeds.blogs.length > 0 && feeds.blogs.some((b) => b.link && b.link.startsWith('http'))) {
-      return feeds.blogs;
-    }
-    return updatesData.slice(0, 9).map((u) => ({
-      id: u.id,
-      title: u.title,
-      date: u.date,
-      author: u.author || u.partnerName,
-      partnerName: u.partnerName || u.author,
-      category: u.category || 'Blog',
-      image: u.image || (u as any).image_url,
-      excerpt: u.excerpt,
-      link: u.link,
-    }));
-  }, [feeds.blogs]);
+  // Deep-link support: open news modal from hash e.g. #news-news-gazelle-film-frankfurt-2026 or ?news=...
+  useEffect(() => {
+    const handleUrlTarget = () => {
+      const hash = window.location.hash;
+      const searchParams = new URLSearchParams(window.location.search);
+      const queryNews = searchParams.get('news');
 
+      if (queryNews) {
+        const found = feeds.news.find((n) => n.id === queryNews);
+        if (found) {
+          setOpenNews(found);
+          return;
+        }
+      }
+
+      if (hash && hash.startsWith('#news-')) {
+        const targetId = hash.replace('#news-', '');
+        const found = feeds.news.find((n) => n.id === targetId);
+        if (found) {
+          setOpenNews(found);
+        }
+      }
+    };
+
+    handleUrlTarget();
+    window.addEventListener('hashchange', handleUrlTarget);
+    return () => window.removeEventListener('hashchange', handleUrlTarget);
+  }, [feeds.news]);
+
+  const blogs = feeds.blogs;
   const nextSlide = () => setSlide((s) => (s + 1) % Math.max(blogs.length, 1));
   const prevSlide = () => setSlide((s) => (s - 1 + Math.max(blogs.length, 1)) % Math.max(blogs.length, 1));
 
@@ -96,7 +112,8 @@ export default function AktuellesPage() {
                 Aktuelles aus dem Verein
               </h1>
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-300">
-                Alle Neuigkeiten auf einen Blick – aktuelle Vereins‑News, anstehende Veranstaltungen und frische Blogbeiträge unserer Partner.
+                Alle Neuigkeiten auf einen Blick – Vereins‑News des letzten Monats mit Vorschau,
+                aktuelle Veranstaltungen und frische Blogbeiträge, gebündelt und interaktiv.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a href="#news" data-testid="cta-news" className="inline-flex items-center gap-2 rounded-full bg-brand-teal px-6 py-3 text-sm font-bold text-white transition-all hover:bg-teal-600 hover:shadow-lg active:scale-95">
@@ -150,10 +167,10 @@ export default function AktuellesPage() {
             <UpdatedBadge iso={feeds.lastUpdated?.news} testid="news-updated" />
           </div>
           <h2 className="mb-8 text-3xl font-extrabold tracking-tight text-brand-navy md:text-4xl">
-            News des Vereins
+            News des Vereins <span className="text-slate-400">– Rückblick & Vorschau</span>
           </h2>
 
-          <div className={`grid grid-cols-1 gap-8 ${feeds.news.length > 1 ? 'md:grid-cols-2' : 'max-w-2xl'}`}>
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {feeds.news.map((n, i) => (
               <motion.div
                 key={n.id}
@@ -168,9 +185,19 @@ export default function AktuellesPage() {
                       <img src={n.image} alt={n.title} loading="lazy" className="h-full w-full object-cover" referrerPolicy="no-referrer" />
                       <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/50 to-transparent" />
                       <div className="absolute left-4 top-4 flex flex-wrap items-center gap-2">
-                        <span className="rounded-full bg-white/95 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-brand-teal shadow-sm">
-                          {n.category || 'News'}
+                        <span className={`rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest ${n.category === 'Vorschau' ? 'bg-brand-orange text-white' : 'bg-white/95 text-brand-teal'}`}>
+                          {n.category}
                         </span>
+                        {n.ticketLink && (
+                          <span className="rounded-full bg-amber-500/95 backdrop-blur px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white shadow-sm inline-flex items-center gap-1">
+                            <Ticket size={10} /> Screening 06.10.
+                          </span>
+                        )}
+                        {n.isAutoGenerated && (
+                          <span className="rounded-full bg-teal-900/80 backdrop-blur px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-teal-200">
+                            Event-Rückblick
+                          </span>
+                        )}
                         {n.gallery && n.gallery.length > 0 && (
                           <span className="rounded-full bg-white/90 backdrop-blur px-2.5 py-0.5 text-[9px] font-bold text-brand-navy">
                             {n.gallery.length} Fotos
@@ -188,16 +215,29 @@ export default function AktuellesPage() {
                       )}
                       <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600 line-clamp-3">{n.shortText}</p>
                       
-                      {/* Card Footer: Mehr erfahren + Teilen-Button */}
-                      <div className="mt-5 flex items-center justify-between gap-3 border-t border-slate-100 pt-4">
-                        <button
-                          type="button"
-                          data-testid={`news-more-${n.id}`}
-                          onClick={() => setOpenNews(n)}
-                          className="inline-flex items-center gap-1.5 rounded-full bg-brand-teal px-4 py-2 text-xs sm:text-sm font-bold text-white transition-all hover:gap-2.5 hover:bg-teal-600 active:scale-95"
-                        >
-                          Mehr erfahren <ArrowRight size={14} />
-                        </button>
+                      {/* Card Footer: Mehr erfahren + Ticket-Button + Teilen-Button */}
+                      <div className="mt-5 flex items-center justify-between gap-2 border-t border-slate-100 pt-4 flex-wrap">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <button
+                            type="button"
+                            data-testid={`news-more-${n.id}`}
+                            onClick={() => setOpenNews(n)}
+                            className="inline-flex items-center gap-1.5 rounded-full bg-brand-teal px-3.5 py-2 text-xs sm:text-sm font-bold text-white transition-all hover:gap-2.5 hover:bg-teal-600 active:scale-95"
+                          >
+                            Mehr erfahren <ArrowRight size={14} />
+                          </button>
+                          {n.ticketLink && (
+                            <a
+                              href={n.ticketLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="inline-flex items-center gap-1.5 rounded-full bg-amber-500 hover:bg-amber-600 px-3.5 py-2 text-xs sm:text-sm font-bold text-white shadow-sm transition-all hover:scale-105 active:scale-95"
+                            >
+                              <Ticket size={13} /> {n.ticketLabel ? 'Tickets' : 'Tickets'} <ExternalLink size={12} />
+                            </a>
+                          )}
+                        </div>
                         <NewsShareButtons
                           title={n.title}
                           shortText={n.shortText}
@@ -277,28 +317,15 @@ export default function AktuellesPage() {
             </div>
             <UpdatedBadge iso={feeds.lastUpdated?.blogs} testid="blogs-updated" />
           </div>
-          <div className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div>
-              <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy md:text-4xl">Aus dem Blog</h2>
-              <p className="mt-1 text-sm text-slate-600">
-                Aktuelle Beiträge und Einblicke direkt aus den Partner-Newsrooms.
-              </p>
-            </div>
-            <div className="flex items-center gap-3">
-              <Link
-                to="/blog"
-                className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-teal hover:text-brand-navy transition-colors mr-2"
-              >
-                Alle Blogbeiträge <ArrowRight size={15} />
-              </Link>
-              <div className="flex gap-2">
-                <button type="button" data-testid="blog-prev" onClick={prevSlide} aria-label="Vorheriger Beitrag" className="rounded-full border border-slate-200 bg-white p-2.5 text-slate-600 transition-all hover:border-brand-teal hover:text-brand-teal active:scale-95">
-                  <ChevronLeft size={18} />
-                </button>
-                <button type="button" data-testid="blog-next" onClick={nextSlide} aria-label="Nächster Beitrag" className="rounded-full border border-slate-200 bg-white p-2.5 text-slate-600 transition-all hover:border-brand-teal hover:text-brand-teal active:scale-95">
-                  <ChevronRight size={18} />
-                </button>
-              </div>
+          <div className="mb-8 flex items-end justify-between">
+            <h2 className="text-3xl font-extrabold tracking-tight text-brand-navy md:text-4xl">Aus dem Blog</h2>
+            <div className="flex gap-2">
+              <button type="button" data-testid="blog-prev" onClick={prevSlide} aria-label="Vorheriger Beitrag" className="rounded-full border border-slate-200 bg-white p-2.5 text-slate-600 transition-all hover:border-brand-teal hover:text-brand-teal active:scale-95">
+                <ChevronLeft size={18} />
+              </button>
+              <button type="button" data-testid="blog-next" onClick={nextSlide} aria-label="Nächster Beitrag" className="rounded-full border border-slate-200 bg-white p-2.5 text-slate-600 transition-all hover:border-brand-teal hover:text-brand-teal active:scale-95">
+                <ChevronRight size={18} />
+              </button>
             </div>
           </div>
 
@@ -307,8 +334,6 @@ export default function AktuellesPage() {
               {blogs.map((b, i) => {
                 const offset = ((i - slide) % blogs.length + blogs.length) % blogs.length;
                 const featured = offset === 0;
-                const isExternal = b.link && (b.link.startsWith('http://') || b.link.startsWith('https://'));
-                const authorDisplay = b.partnerName || b.author;
                 return (
                   <motion.div
                     key={b.id}
@@ -319,67 +344,25 @@ export default function AktuellesPage() {
                       opacity: featured ? 1 : 0.85,
                     }}
                     transition={{ type: 'spring', stiffness: 80 }}
-                    className={`group overflow-hidden rounded-3xl border bg-white shadow-md transition-all duration-300 [transform-style:preserve-3d] ${featured ? 'border-brand-teal ring-1 ring-brand-teal/30' : 'border-slate-200 hover:border-slate-300'}`}
+                    className={`overflow-hidden rounded-3xl border bg-white shadow-md [transform-style:preserve-3d] ${featured ? 'border-brand-teal ring-1 ring-brand-teal/30' : 'border-slate-200'}`}
                   >
-                    {isExternal ? (
-                      <a
-                        href={b.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex h-full flex-col"
-                      >
-                        <div className="relative h-44 overflow-hidden bg-slate-100">
-                          <img
-                            src={b.image}
-                            alt={b.title}
-                            loading="lazy"
-                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            referrerPolicy="no-referrer"
-                          />
-                          <span className="absolute left-4 top-4 rounded-full bg-white/95 backdrop-blur-sm px-3 py-1 text-[10px] font-black uppercase tracking-widest text-indigo-600 border border-white/50 shadow-sm">
-                            {b.category}
-                          </span>
-                        </div>
-                        <div className="flex flex-1 flex-col p-5">
-                          <div className="flex items-center justify-between font-mono text-[11px] uppercase tracking-wide text-slate-400">
-                            <time>{formatDate(b.date)}</time>
-                            <ExternalLink size={12} className="text-slate-400 group-hover:text-brand-teal transition-colors" />
-                          </div>
-                          <h3 className="mt-1.5 text-lg font-extrabold leading-snug text-brand-navy group-hover:text-brand-teal transition-colors line-clamp-2">
-                            {b.title}
-                          </h3>
-                          <p className="mt-1 text-xs text-slate-500">von {authorDisplay}</p>
-                          <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600 line-clamp-3">{b.excerpt}</p>
-                          <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand-teal group-hover:gap-2 transition-all">
-                            Zum Originalbeitrag <ExternalLink size={14} />
-                          </span>
-                        </div>
-                      </a>
-                    ) : (
-                      <Link to={b.link} className="flex h-full flex-col">
-                        <div className="relative h-44 overflow-hidden bg-slate-100">
-                          <img
-                            src={b.image}
-                            alt={b.title}
-                            loading="lazy"
-                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            referrerPolicy="no-referrer"
-                          />
-                          <span className="absolute left-4 top-4 rounded-full bg-white/95 backdrop-blur-sm px-3 py-1 text-[10px] font-black uppercase tracking-widest text-indigo-600 border border-white/50 shadow-sm">
-                            {b.category}
-                          </span>
-                        </div>
-                        <div className="flex flex-1 flex-col p-5">
-                          <time className="font-mono text-[11px] uppercase tracking-wide text-slate-400">{formatDate(b.date)}</time>
-                          <h3 className="mt-1.5 text-lg font-extrabold leading-snug text-brand-navy group-hover:text-brand-teal transition-colors line-clamp-2">{b.title}</h3>
-                          <p className="mt-1 text-xs text-slate-500">von {authorDisplay}</p>
-                          <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600 line-clamp-3">{b.excerpt}</p>
-                          <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand-teal group-hover:gap-2 transition-all">
-                            Weiterlesen <ArrowRight size={14} />
-                          </span>
-                        </div>
-                      </Link>
-                    )}
+                    <Link to={b.link} className="flex h-full flex-col">
+                      <div className="relative h-44 overflow-hidden">
+                        <img src={b.image} alt={b.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" referrerPolicy="no-referrer" />
+                        <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-indigo-600">
+                          {b.category}
+                        </span>
+                      </div>
+                      <div className="flex flex-1 flex-col p-5">
+                        <time className="font-mono text-[11px] uppercase tracking-wide text-slate-400">{formatDate(b.date)}</time>
+                        <h3 className="mt-1 text-lg font-extrabold leading-snug text-brand-navy">{b.title}</h3>
+                        <p className="mt-1 text-xs text-slate-500">von {b.author}</p>
+                        <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600 line-clamp-3">{b.excerpt}</p>
+                        <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand-teal">
+                          Weiterlesen <ArrowRight size={14} />
+                        </span>
+                      </div>
+                    </Link>
                   </motion.div>
                 );
               })}
@@ -447,7 +430,116 @@ export default function AktuellesPage() {
                   </p>
                 )}
 
+                {/* Event Details & Ticket Box */}
+                {(openNews.ticketLink || openNews.eventDetails) && (
+                  <div className="rounded-2xl border-2 border-amber-500/30 bg-gradient-to-br from-amber-50/80 via-white to-orange-50/40 p-5 sm:p-6 shadow-sm">
+                    <div className="flex flex-wrap items-center justify-between gap-3 border-b border-amber-200/60 pb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-500 text-white shadow-sm">
+                          <Film size={22} />
+                        </div>
+                        <div>
+                          <span className="font-mono text-[11px] font-black uppercase tracking-wider text-amber-700">
+                            Kino-Screening & Live-Q&A
+                          </span>
+                          <h4 className="text-lg font-extrabold text-brand-navy">
+                            {openNews.eventDetails?.venue || 'ASTOR Film Lounge'}
+                          </h4>
+                        </div>
+                      </div>
+
+                      {openNews.ticketLink && (
+                        <a
+                          href={openNews.ticketLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-600 px-5 py-2.5 text-sm font-bold text-white shadow transition-all hover:scale-105 active:scale-95"
+                        >
+                          <Ticket size={16} /> Jetzt Tickets buchen <ExternalLink size={14} />
+                        </a>
+                      )}
+                    </div>
+
+                    <div className="mt-4 grid gap-3 sm:grid-cols-2 text-sm text-slate-700">
+                      {openNews.eventDetails?.dateFormatted && (
+                        <div className="flex items-start gap-2.5 rounded-xl bg-white/90 p-3 border border-amber-100">
+                          <Calendar size={16} className="mt-0.5 text-amber-600 shrink-0" />
+                          <div>
+                            <span className="block text-[11px] font-bold uppercase text-slate-400">Datum & Einlass</span>
+                            <span className="font-semibold text-brand-navy">{openNews.eventDetails.dateFormatted}</span>
+                            {openNews.eventDetails.doorsOpen && (
+                              <span className="text-xs text-slate-500 block">Einlass ab {openNews.eventDetails.doorsOpen}</span>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {openNews.eventDetails?.time && (
+                        <div className="flex items-start gap-2.5 rounded-xl bg-white/90 p-3 border border-amber-100">
+                          <Clock size={16} className="mt-0.5 text-amber-600 shrink-0" />
+                          <div>
+                            <span className="block text-[11px] font-bold uppercase text-slate-400">Uhrzeit & Ablauf</span>
+                            <span className="font-semibold text-brand-navy">{openNews.eventDetails.time}</span>
+                            {openNews.eventDetails.runtime && (
+                              <span className="text-xs text-slate-500 block">{openNews.eventDetails.runtime}</span>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {openNews.eventDetails?.address && (
+                        <div className="flex items-start gap-2.5 rounded-xl bg-white/90 p-3 border border-amber-100">
+                          <MapPin size={16} className="mt-0.5 text-amber-600 shrink-0" />
+                          <div>
+                            <span className="block text-[11px] font-bold uppercase text-slate-400">Veranstaltungsort</span>
+                            <span className="font-semibold text-brand-navy">{openNews.eventDetails.venue}</span>
+                            <span className="text-xs text-slate-500 block">{openNews.eventDetails.address}</span>
+                          </div>
+                        </div>
+                      )}
+
+                      {openNews.eventDetails?.language && (
+                        <div className="flex items-start gap-2.5 rounded-xl bg-white/90 p-3 border border-amber-100">
+                          <Info size={16} className="mt-0.5 text-amber-600 shrink-0" />
+                          <div>
+                            <span className="block text-[11px] font-bold uppercase text-slate-400">Sprache & Untertitel</span>
+                            <span className="font-semibold text-brand-navy">{openNews.eventDetails.language}</span>
+                            {openNews.eventDetails.subtitles && (
+                              <span className="text-xs text-slate-500 block">{openNews.eventDetails.subtitles}</span>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {openNews.eventDetails?.note && (
+                      <p className="mt-4 rounded-lg bg-amber-500/10 px-3.5 py-2 text-xs text-amber-900 leading-relaxed border border-amber-200/50">
+                        🎟️ <strong>Wichtige Ticket-Info:</strong> {openNews.eventDetails.note}
+                      </p>
+                    )}
+                  </div>
+                )}
+
                 <p className="text-base leading-relaxed text-slate-700">{openNews.shortText}</p>
+
+                {/* Brücke / Verbindung zu den Erfahrungen der Vereinsmitglieder */}
+                {openNews.customSectionContent && (
+                  <div className="rounded-2xl border border-brand-teal/30 bg-gradient-to-br from-teal-50/70 via-white to-slate-50 p-5 sm:p-6 shadow-sm">
+                    <div className="flex items-center gap-2.5 mb-3">
+                      <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-teal text-white shadow-sm">
+                        <Sparkles size={15} />
+                      </div>
+                      <h4 className="font-mono text-xs font-black uppercase tracking-wider text-brand-navy">
+                        {openNews.customSectionTitle || 'Verbindung zu unserem Verein'}
+                      </h4>
+                    </div>
+                    <div className="space-y-3 text-sm sm:text-base leading-relaxed text-slate-700">
+                      {openNews.customSectionContent.split('\n\n').map((para, idx) => (
+                        <p key={idx}>{para}</p>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {openNews.highlights.length > 0 && (
                   <div className="rounded-2xl bg-slate-50 border border-slate-200/70 p-5">
@@ -475,7 +567,10 @@ export default function AktuellesPage() {
                 {openNews.persons.length > 0 && (
                   <div>
                     <p className="mb-3 inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-widest text-brand-navy">
-                      <Users size={14} className="text-brand-teal" /> Delegation des BVM e.V.
+                      <Users size={14} className="text-brand-teal" />{' '}
+                      {openNews.id.includes('gazelle')
+                        ? 'Gäste & Mitwirkende des Abends'
+                        : 'Delegation des BVM e.V.'}
                     </p>
                     <div className="grid gap-2.5 sm:grid-cols-2">
                       {openNews.persons.map((p) => (

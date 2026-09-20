@@ -107,17 +107,16 @@ def build_blogs(now):
 
 
 def build_news():
-    if NEWS.exists():
-        raw = json.loads(NEWS.read_text(encoding="utf-8"))
-        news = raw if isinstance(raw, list) else raw.get("news", [])
-    elif SEED.exists():
+    if SEED.exists():
         seed = json.loads(SEED.read_text(encoding="utf-8"))
         news = seed.get("news", [])
+    elif NEWS.exists():
+        raw = json.loads(NEWS.read_text(encoding="utf-8"))
+        news = raw if isinstance(raw, list) else raw.get("news", [])
     else:
         news = []
-    # Bereinigung: News des Vereins sind echte Nachrichten (Kategorie 'News')
     for n in news:
-        if n.get("category") in ("Rückblick", "Vorschau", None, ""):
+        if not n.get("category") or n.get("category") in ("Rückblick", "Vorschau"):
             n["category"] = "News"
     news.sort(key=lambda n: parse_date(n.get("date", "")), reverse=True)
     return news
