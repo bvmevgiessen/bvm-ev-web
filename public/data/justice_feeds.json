@@ -1,47 +1,38 @@
 {
-  "generatedAt": "2026-09-14T21:12:04.896886+00:00",
+  "generatedAt": "2026-09-21T10:57:35.806601+00:00",
   "lastUpdated": {
-    "news": "2026-09-11T18:53:42.217466+00:00",
+    "news": "2026-09-21T10:57:35.806601+00:00",
     "reports": "2026-09-14T21:12:04.896886+00:00",
     "infographics": "2026-09-14T21:12:04.896886+00:00",
     "multimedia": "2026-09-14T21:12:04.896886+00:00"
   },
   "news": [
     {
-      "id": "stockholmcf-4491306100",
-      "title": "Luxembourg court grants previously denied refugee status for Turkish man at risk of persecution over Gülen links",
-      "date": "2026-09-11T15:47:56+00:00",
-      "source": "Stockholm Center for Freedom",
+      "id": "boldmedya-2372282164",
+      "title": "Duşta gizli kamera bulundu: İşletmeden kumpas iddiası",
+      "date": "2026-09-21T07:35:44+00:00",
+      "source": "Bold Medya",
       "category": "Exil-Medien",
-      "summary": "A Luxembourg court has overturned the rejection of an asylum application filed by a Turkish man linked to the Gülen movement, ruling that his father’s conviction and his own activities with the movement put him at risk of persecution if returned to Turkey. …",
-      "url": "https://stockholmcf.org/luxembourg-court-grants-previously-denied-refugee-status-for-turkish-man-at-risk-of-persecution-over-gulen-links/"
+      "summary": "İzmir’in Karşıyaka ilçesinde hizmet veren SlimShape adlı kilo verme merkezinin duş bölümünde gizli kamera lensi bulunması üzerine soruşturma başlatıldı. Kamerayı fark eden kadın üye H.C., görüntüleri cep telefonuyla kaydedip emniyete giderek şikayetçi oldu. …",
+      "url": "https://boldmedya.com/2026/09/21/dusta-gizli-kamera-slimshape-karsiyaka/"
     },
     {
-      "id": "stockholmcf-8298486229",
-      "title": "Turkey detains 20 in raids over alleged Gülen movement links",
-      "date": "2026-09-11T15:33:53+00:00",
-      "source": "Stockholm Center for Freedom",
+      "id": "turkishminute-2472418127",
+      "title": "Turkey detains 21 in İzmir over humanitarian aid to people linked to Gülen movement",
+      "date": "2026-09-19T11:49:34+00:00",
+      "source": "Turkish Minute",
       "category": "Exil-Medien",
-      "summary": "Turkish police have detained 20 people in raids across six provinces over alleged links to the faith-based Gülen movement, the state-run TRT Haber reported Friday. …",
-      "url": "https://stockholmcf.org/turkey-detains-20-in-raids-over-alleged-gulen-movement-links/"
+      "summary": "Turkish authorities detained 21 people in the western province of İzmir on Friday in an investigation targeting people accused of both links to the Gülen movement and of providing humanitarian assistance to people in need, the Stockholm Center for Freedom reported, citing the TR724 news website. …",
+      "url": "https://turkishminute.com/2026/09/19/turkey-detains-21-in-izmir-over-humanitarian-aid-to-people-linked-to-gulen-movement/"
     },
     {
-      "id": "stockholmcf-4243149189",
-      "title": "Turkish university students jailed over alleged Gülen links still awaiting indictment 3 months on",
-      "date": "2026-09-10T13:56:15+00:00",
+      "id": "stockholmcf-9987060389",
+      "title": "Turkey detains 21 in İzmir over humanitarian aid to people linked to Gülen movement",
+      "date": "2026-09-18T14:18:11+00:00",
       "source": "Stockholm Center for Freedom",
       "category": "Exil-Medien",
-      "summary": "Thirty-six people, most of them university students, are still in pretrial detention three months after they were jailed in western Turkey over alleged links to the faith-based Gülen movement, with prosecutors yet to file an indictment, the TR724 news website reported. …",
-      "url": "https://stockholmcf.org/turkish-university-students-jailed-over-alleged-gulen-links-still-awaiting-indictment-3-months-on/"
-    },
-    {
-      "id": "zamanaustralia-2743445147",
-      "title": "İzmir’de tutuklanan kız öğrenciler üç aydır iddianame bekliyor",
-      "date": "2026-09-10T11:33:35+00:00",
-      "source": "Zaman Australia",
-      "category": "Exil-Medien",
-      "summary": "[POST_FEATURED_IMAGE] İzmir’de Hizmet Hareketi’ne yönelik nefret soruşturmaları kapsamında 9 Haziran 2026’da tutuklanan, çoğunluğu üniversite öğrencisi 36 kişi hakkında üç aydır iddianame hazırlanmadı. …",
-      "url": "https://zamanaustralia.com/izmirde-tutuklanan-kiz-ogrenciler-uc-aydir-iddianame-bekliyor/"
+      "summary": "Turkish authorities detained 21 people in the western province of İzmir on Friday in an investigation targeting people accused of both links to the Gülen movement and of providing humanitarian assistance to people in need, the TR724 reported. The İzmir Chief Public Prosecutor’s Office issued detention warrants for 26 people. …",
+      "url": "https://stockholmcf.org/turkey-detains-21-in-izmir-over-humanitarian-aid-to-people-linked-to-gulen-movement/"
     },
     {
       "id": "news-ecthr-yalcinkaya",

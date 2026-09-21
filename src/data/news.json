@@ -1,62 +1,28 @@
 [
   {
-    "id": "news-cdu-michelle-kraft",
-    "category": "News",
-    "date": "2026-09-11T10:00:00",
+    "category": "news",
+    "title": "Kino-Tipp & Frankfurt-Screening: »Gazelle« mit Live-Q&A von Nadir Sarıbacak",
+    "summary": "Am Dienstag, 6. Oktober 2026 um 20:00 Uhr, zeigt die ASTOR Film Lounge in Frankfurt das preisgekrönte Drama »Gazelle« im Beisein von Hauptdarsteller Nadir Sarıbacak und Filmkuratorin Dr. Margrit Frölich. Ein Film über Flucht, Exil und Hoffnung – mit tiefer Verbundenheit zu den Biografien unserer Vereinsmitglieder.",
+    "date": "2026-09-20T12:00:00",
+    "image": "/assets/gazelle_film_poster.jpeg",
+    "link": "/aktuelles#news-news-gazelle-film-frankfurt-2026",
+    "author": "BVM e.V."
+  },
+  {
+    "category": "news",
+    "summary": "Heute ab 14:30 Uhr laden der BVM e.V. und die Evangelische Philippusgemeinde herzlich zum Noahs Fest auf dem Kirchenplatz in Gießen ein: Kurzvorträge, gemeinsames Friedensgebet und Verteilung von Noahs Pudding (Aşure) ohne Voranmeldung.",
+    "date": "2026-09-12T09:30:00",
+    "image": "https://images.unsplash.com/photo-1751879182448-d7b3dce2b00e?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "link": "/aktuelles#news",
+    "author": "BVM e.V."
+  },
+  {
+    "category": "news",
     "title": "Treffen mit CDU‑Landtagsabgeordneter Michelle Kraft in Gießen",
+    "summary": "Eine Delegation des BVM e.V. traf sich mit Michelle Kraft, Landtagsabgeordnete für Gießen I und Fachsprecherin für Integration, zum Austausch über Integration, Bildung und Jugendförderung.",
+    "date": "2026-09-11T10:00:00",
     "image": "/assets/kraft_treffen_gruppe.jpeg",
-    "gallery": [
-      {
-        "url": "/assets/kraft_treffen_gruppe.jpeg",
-        "title": "Gruppenfoto der Delegation",
-        "caption": "Delegation des BVM e.V. und FIDeV im Gespräch mit MdL Michelle Kraft in Gießen."
-      },
-      {
-        "url": "/assets/kraft_treffen_detail.jpeg",
-        "title": "Gesprächsrunde & Dialog",
-        "caption": "Vertiefender Austausch über Bildungsangebote, C1-Sprachkurse, Lehrkräfteunterstützung und Jugendprojekte."
-      },
-      {
-        "url": "/assets/kraft_treffen_story.jpeg",
-        "title": "Social-Media-Bericht von Michelle Kraft MdL",
-        "caption": "Eindrücke aus der Story von MdL Michelle Kraft zum Besuch der BVM e.V. Delegation."
-      }
-    ],
-    "location": "CDU‑Geschäftsstelle Gießen",
-    "shortText": "Eine Delegation des BVM e.V. traf sich mit Michelle Kraft, Landtagsabgeordnete für Gießen I und Fachsprecherin für Integration, zum Austausch über Integration, Bildung und Jugendförderung.",
-    "highlights": [
-      "Delegation des BVM e.V. (7 Personen, inkl. Vertreter von FIDeV und CDU‑Mitgliedern) traf sich in der CDU‑Geschäftsstelle Gießen mit Frau Michelle Kraft.",
-      "Austausch über Integration, Jugendförderung, Sprachkurse (C1‑Kurse), Herausforderungen im Bildungssystem, Lehrerüberlastung und Unterstützung für Kinder mit Migrationshintergrund.",
-      "Diskussion über Demokratiebildung für Jugendliche und Prävention von Marginalisierung.",
-      "Vereinbarung: alle drei Monate ein Folgetreffen sowie ein Besuch im Hessischen Landtag in Wiesbaden.",
-      "Frau Kraft signalisiert langfristige Zusammenarbeit und regelmäßigen Kontakt."
-    ],
-    "speech": "Sehr geehrte Frau Kraft, herzlichen Dank, dass Sie sich heute die Zeit für uns nehmen. Wir sind als postmigrantischer Verein in Gießen und Wetzlar aktiv und engagieren uns in Integration, Dialog, Bildung und Jugendarbeit. Als Fachsprecherin für Integration sind Sie eine zentrale Ansprechpartnerin für unsere Themen.",
-    "persons": [
-      {
-        "name": "Ömer Altun",
-        "role": "Stellv. Vorsitzender (BVM e.V. / Unternehmer)"
-      },
-      {
-        "name": "Kadir Boyaci",
-        "role": "Geschäftsführer FIDeV"
-      },
-      {
-        "name": "Mark Bramwell",
-        "role": "CDU‑Mitglied Gießen & Ehrenamtlicher, BVM e.V."
-      },
-      {
-        "name": "Serdar Gülec",
-        "role": "Protokollführer & DialogPlattform (BVM e.V. / IT‑Experte)"
-      },
-      {
-        "name": "Ensar Uzun",
-        "role": "Mitglied & Ehrenamtlicher, BVM e.V."
-      },
-      {
-        "name": "Gülbanu Özden",
-        "role": "Mitglied & Ehrenamtliche, BVM e.V. – Jugendarbeit"
-      }
-    ]
+    "link": "/aktuelles#news",
+    "author": "BVM e.V."
   }
 ]
