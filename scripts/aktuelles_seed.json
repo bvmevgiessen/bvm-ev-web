@@ -1,25 +1,19 @@
 {
-  "generatedAt": "2026-09-20T13:09:48.829375+00:00",
-  "lastUpdated": {
-    "news": "2026-09-20T13:09:48.829375+00:00",
-    "events": "2026-09-20T13:09:48.829375+00:00",
-    "blogs": "2026-09-20T13:09:48.829375+00:00"
-  },
   "news": [
     {
       "id": "news-gazelle-film-frankfurt-2026",
       "category": "Kino & Dialog",
       "date": "2026-09-20T12:00:00",
       "title": "Kino-Tipp & Frankfurt-Screening: »Gazelle« mit Live-Q&A von Nadir Sarıbacak",
-      "image": "/assets/gazelle_poster.jpg",
+      "image": "/assets/gazelle_film_poster.jpeg",
       "gallery": [
         {
-          "url": "/assets/gazelle_poster.jpg",
+          "url": "/assets/gazelle_film_poster.jpeg",
           "title": "Offizielles Filmplakat: Gazelle",
           "caption": "Spielfilm von und mit Nadir Sarıbacak – Gewinner des VIFF Vanguard Audience Award."
         },
         {
-          "url": "/assets/gazelle_still.jpg",
+          "url": "/assets/gazelle_film_still.jpeg",
           "title": "Filmszene aus »Gazelle«",
           "caption": "Gedreht in New York und New Jersey: Authentische Erzählung über Neuanfang und Exil."
         }
@@ -103,141 +97,13 @@
       ],
       "speech": "Sehr geehrte Frau Kraft, herzlichen Dank, dass Sie sich heute die Zeit für uns nehmen. Wir sind als postmigrantischer Verein in Gießen und Wetzlar aktiv und engagieren uns in Integration, Dialog, Bildung und Jugendarbeit. Als Fachsprecherin für Integration sind Sie eine zentrale Ansprechpartnerin für unsere Themen.",
       "persons": [
-        {
-          "name": "Ömer Altun",
-          "role": "Stellv. Vorsitzender (BVM e.V. / Unternehmer)"
-        },
-        {
-          "name": "Kadir Boyaci",
-          "role": "Geschäftsführer FIDeV"
-        },
-        {
-          "name": "Mark Bramwell",
-          "role": "CDU‑Mitglied Gießen & Ehrenamtlicher, BVM e.V."
-        },
-        {
-          "name": "Serdar Gülec",
-          "role": "Protokollführer & DialogPlattform (BVM e.V. / IT‑Experte)"
-        },
-        {
-          "name": "Ensar Uzun",
-          "role": "Mitglied & Ehrenamtlicher, BVM e.V."
-        },
-        {
-          "name": "Gülbanu Özden",
-          "role": "Mitglied & Ehrenamtliche, BVM e.V. – Jugendarbeit"
-        }
+        { "name": "Ömer Altun", "role": "Stellv. Vorsitzender (BVM e.V. / Unternehmer)" },
+        { "name": "Kadir Boyaci", "role": "Geschäftsführer FIDeV" },
+        { "name": "Mark Bramwell", "role": "CDU‑Mitglied Gießen & Ehrenamtlicher, BVM e.V." },
+        { "name": "Serdar Gülec", "role": "Protokollführer & DialogPlattform (BVM e.V. / IT‑Experte)" },
+        { "name": "Ensar Uzun", "role": "Mitglied & Ehrenamtlicher, BVM e.V." },
+        { "name": "Gülbanu Özden", "role": "Mitglied & Ehrenamtliche, BVM e.V. – Jugendarbeit" }
       ]
-    }
-  ],
-  "events": [
-    {
-      "id": "pilzwanderung-marburg-2026",
-      "title": "Pilzwanderung in Marburg",
-      "date": "2026-10-04T11:00:00",
-      "location": "Marburg Botanischer Garten – Lahnberge Parkplatz (Uni Marburg)",
-      "category": "SOZIALES",
-      "image": "https://plus.unsplash.com/premium_photo-1675727579781-48c0cfefc835?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "description": "Eine geführte Pilzwanderung im Waldgebiet rund um den Botanischen Garten in Marburg. Während der Tour erhalten die Teilnehmenden spannende Erklärungen zu verschiedenen Pilzarten – ob essbar oder giftig – und haben die Mö",
-      "link": "/events/pilzwanderung-marburg-2026"
-    }
-  ],
-  "blogs": [
-    {
-      "id": "fidev-78eadb80d1",
-      "title": "Erasmus+ Jugendprojekte: FIDeV als erfahrener Kooperationspartner",
-      "date": "2026-08-04T12:58:00+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Jugend",
-      "image": "https://static.wixstatic.com/media/2d6f92_e02fc9671ccc46dd874ceb1e440a5ffd~mv2.png/v1/fit/w_1000,h_704,al_c,q_80/file.png",
-      "excerpt": "FIDeV bringt praktische Erfahrung mit KA153-YOU und KA155-YOU ein und ist offen für verlässliche Partnerschaften in europäischen Jugendprojekten.",
-      "link": "https://www.fidev.org/post/erasmus-plus-jugendprojekte-kooperation-fidev"
-    },
-    {
-      "id": "fidev-13314fad42",
-      "title": "Zivilgesellschaftliches Engagement von Jugendlichen: Wege zu mehr Bürgerbeteiligung",
-      "date": "2026-08-04T07:15:05+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Jugend",
-      "image": "https://static.wixstatic.com/media/2d6f92_2e28834f2355469c9b70d4ae26374f04~mv2.png/v1/fit/w_1000,h_704,al_c,q_80/file.png",
-      "excerpt": "Junge Menschen wollen Gesellschaft mitgestalten. Dieser Leitfaden zeigt, wie Jugendprojekte, Ehrenamt und echte Beteiligung den Einstieg erleichtern.",
-      "link": "https://www.fidev.org/post/zivilgesellschaftliches-engagement-jugendlicher"
-    },
-    {
-      "id": "fidev-936fc961b4",
-      "title": "N.O.A.H.S. – Das Leben einer Kichererbse",
-      "date": "2026-08-03T10:29:27+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Community",
-      "image": "https://static.wixstatic.com/media/2d6f92_74ff984f663d4a63ba15da709f8eec56~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
-      "excerpt": "„N.O.A.H.S. (Nachhaltige Orientierung durch Anerkennung, Haltung und Solidarität) – Das Leben einer Kichererbse“ ist ein Workshopformat für Schulklassen der Unter- und Mittelstufe, das spielerisch demokratische Werte un…",
-      "link": "https://www.fidev.org/post/noahs"
-    },
-    {
-      "id": "fidev-cf3ef08640",
-      "title": "Was ist interkultureller Dialog? Warum er für den gesellschaftlichen Frieden entscheidend ist",
-      "date": "2026-08-03T09:49:46+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Dialog",
-      "image": "https://static.wixstatic.com/media/2d6f92_95934f04beb44a9ea582264caba7aab6~mv2.png/v1/fit/w_1000,h_860,al_c,q_80/file.png",
-      "excerpt": "Interkultureller Dialog schafft Verständnis über kulturelle Grenzen hinweg. Erfahren Sie, wie Begegnung Vorurteile abbaut und gesellschaftlichen Zusammenhalt stärkt.",
-      "link": "https://www.fidev.org/post/was-ist-interkultureller-dialog"
-    },
-    {
-      "id": "sdub-a2e85c74b0",
-      "title": "Stellungnahme Anschlag in Berlin",
-      "date": "2026-07-26T16:26:03+00:00",
-      "author": "Stiftung Dialog und Bildung",
-      "partnerName": "Stiftung Dialog und Bildung",
-      "partnerUrl": "https://sdub.de/",
-      "category": "Dialog",
-      "image": "https://sdub.de/wp-content/uploads/2026/07/stellungnahme-sdub_wide1-480x264.jpg",
-      "excerpt": "Nach dem Anschlag in Berlin: Stellungnahme der Stiftung Dialog und Bildung Berlin, 26. Juli 2026 Die Stiftung Dialog und Bildung ist erschüttert über den Anschlag auf den Christopher Street Day in Berlin. Wir trauern um…",
-      "link": "https://sdub.de/stellungnahme-anschlag-csd-berlin/"
-    },
-    {
-      "id": "fidev-8b45628938",
-      "title": "Projektwoche für Schulklassen",
-      "date": "2026-07-06T10:21:03+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Jugend",
-      "image": "https://static.wixstatic.com/media/2d6f92_f23d066ad9f04626954b5cb8d5efa2bc~mv2.png/v1/fit/w_412,h_232,al_c,q_80/file.png",
-      "excerpt": "Besuch der Goethe Universität mit der Ricarda- Huch- Schule Dreieich Angesichts einer sich schnell wandelnden Arbeitswelt, vielfältiger Bildungswege und gesellschaftlicher Unsicherheiten stehen viele junge Menschen heut…",
-      "link": "https://www.fidev.org/post/projektwoche-f%C3%BCr-schulklassen"
-    },
-    {
-      "id": "house-of-one-e20f2574e4",
-      "title": "#118: Was gibt uns Hoffnung?",
-      "date": "2026-07-06T00:00:00+00:00",
-      "author": "House of One",
-      "partnerName": "House of One",
-      "partnerUrl": "https://house-of-one.org/",
-      "category": "Community",
-      "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-      "excerpt": "Es gibt Tage, an denen nichts leichtfällt. Momente, in denen das Licht am Ende des Tunnels kaum zu sehen ist. Wir sprechen in dieser Folge darüber, wa... Weiterlesen",
-      "link": "https://house-of-one.org/news/118-was-gibt-uns-hoffnung"
-    },
-    {
-      "id": "sdub-c1bd1343d7",
-      "title": "1. Juli – Gedenktag gegen antimuslimischen Rassismus",
-      "date": "2026-07-01T11:04:00+00:00",
-      "author": "Stiftung Dialog und Bildung",
-      "partnerName": "Stiftung Dialog und Bildung",
-      "partnerUrl": "https://sdub.de/",
-      "category": "Dialog",
-      "image": "https://sdub.de/wp-content/uploads/2026/07/tag-gegen-antimuslimischen-rassismus-768x614.jpg",
-      "excerpt": "Rassismus hat keinen Platz in unserer Gesellschaft – gegen niemanden. Heute erinnern wir an die Menschen, die antimuslimischen Rassismus erfahren, und setzen ein Zeichen für Respekt, Menschenwürde und Zusammenhalt. Wer…",
-      "link": "https://sdub.de/gedenktag-gegen-antimuslimischen-rassismus/"
     }
   ]
 }

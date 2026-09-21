@@ -262,6 +262,14 @@ async function startServer() {
     }
   });
 
+  // Explicitly serve static assets with cross-origin permissions
+  app.use("/assets", express.static(path.join(process.cwd(), "public", "assets"), {
+    setHeaders: (res) => {
+      res.setHeader("Cross-Origin-Resource-Policy", "cross-origin");
+      res.setHeader("Access-Control-Allow-Origin", "*");
+    }
+  }));
+
   // Serve static files from public directory
   app.use(express.static(path.join(process.cwd(), "public")));
 
