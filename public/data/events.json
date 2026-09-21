@@ -1,28 +1,762 @@
 [
   {
-    "category": "news",
-    "title": "Kino-Tipp & Frankfurt-Screening: »Gazelle« mit Live-Q&A von Nadir Sarıbacak",
-    "summary": "Am Dienstag, 6. Oktober 2026 um 20:00 Uhr, zeigt die ASTOR Film Lounge in Frankfurt das preisgekrönte Drama »Gazelle« im Beisein von Hauptdarsteller Nadir Sarıbacak und Filmkuratorin Dr. Margrit Frölich. Ein Film über Flucht, Exil und Hoffnung – mit tiefer Verbundenheit zu den Biografien unserer Vereinsmitglieder.",
-    "date": "2026-09-20T12:00:00",
-    "image": "/assets/gazelle_poster.jpg",
-    "link": "/aktuelles#news-news-gazelle-film-frankfurt-2026",
-    "author": "BVM e.V."
+    "id": "iftar-2026",
+    "title": "Iftar der Begegnung",
+    "category": "KULTUR",
+    "stream": "Festive Events",
+    "date": "2026-02-21T17:30:00",
+    "location": "Bieber Bürgerhaus, Biebertal",
+    "image": "https://images.unsplash.com/photo-1577214407836-1f3a0604ecb2?q=80&w=872&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Ein gemeinsames Fastenbrechen für alle Bürgerinnen und Bürger, unabhängig von ihrer religiösen Zugehörigkeit.",
+    "wasErwartetSie": [
+      "Interkulturelle Begegnung",
+      "Der Moment des Iftar",
+      "Impulsvortrag und Ramadan-Quiz",
+      "Musikalische Beiträge",
+      "Kulinarische Vielfalt"
+    ],
+    "fuerWen": "Jeder ist willkommen – Muslime und Nicht-Muslime – um den Dialog zu fördern.",
+    "titleTr": "Buluşma İftarı (Iftar der Begegnung)",
+    "categoryTr": "KÜLTÜR",
+    "streamTr": "Kültürel Kutlamalar",
+    "descriptionTr": "Dini inancı ne olursa olsun tüm vatandaşların bir araya geldiği, komşuluk ve dostluğu pekiştiren ortak bir iftar programı.",
+    "wasErwartetSieTr": [
+      "Kültürlerarası buluşma ve samimi sohbetler",
+      "Birlikte oruç açma ve iftar anı",
+      "Kısa bilgilendirici konuşma ve Ramazan yarışması",
+      "Müzikal dinletiler",
+      "Zengin mutfak lezzetleri ve ikramlar"
+    ],
+    "fuerWenTr": "Diyaloğu ve karşılıklı anlayışı güçlendirmek için Müslüman ve gayrimüslim herkes davetlidir."
   },
   {
-    "category": "news",
-    "summary": "Heute ab 14:30 Uhr laden der BVM e.V. und die Evangelische Philippusgemeinde herzlich zum Noahs Fest auf dem Kirchenplatz in Gießen ein: Kurzvorträge, gemeinsames Friedensgebet und Verteilung von Noahs Pudding (Aşure) ohne Voranmeldung.",
-    "date": "2026-09-12T09:30:00",
+    "id": "iftar-2026",
+    "title": "Iftar der Begegnung",
+    "category": "KULTUR",
+    "stream": "Festive Events",
+    "date": "2026-02-28T17:30:00",
+    "location": "Bieber Bürgerhaus, Biebertal",
+    "image": "https://images.unsplash.com/photo-1477506350614-fcdc29a3b157?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGlmdGFyfGVufDB8fDB8fHwy",
+    "description": "Ein gemeinsames Fastenbrechen für alle Bürgerinnen und Bürger, unabhängig von ihrer religiösen Zugehörigkeit.",
+    "wasErwartetSie": [
+      "Interkulturelle Begegnung",
+      "Der Moment des Iftar",
+      "Kulinarische Vielfalt"
+    ],
+    "fuerWen": "Jeder ist willkommen – Muslime und Nicht-Muslime – um den Dialog zu fördern.",
+    "titleTr": "Buluşma İftarı (Iftar der Begegnung)",
+    "categoryTr": "KÜLTÜR",
+    "streamTr": "Kültürel Kutlamalar",
+    "descriptionTr": "Dini inancı ne olursa olsun tüm vatandaşların bir araya geldiği, komşuluk ve dostluğu pekiştiren ortak bir iftar programı.",
+    "wasErwartetSieTr": [
+      "Kültürlerarası buluşma ve samimi sohbetler",
+      "Birlikte oruç açma ve iftar anı",
+      "Zengin mutfak lezzetleri ve ikramlar"
+    ],
+    "fuerWenTr": "Diyaloğu ve karşılıklı anlayışı güçlendirmek için Müslüman ve gayrimüslim herkes davetlidir."
+  },
+  {
+    "id": "jugendiftar-2026",
+    "title": "Gießen Jugend-Iftar",
+    "category": "KULTUR",
+    "stream": "Festive Events",
+    "date": "2026-02-26T17:30:00",
+    "location": "Siemensstraße 18, 35394 Gießen",
+    "image": "https://images.unsplash.com/photo-1587617425953-9075d28b8c46?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Ein besonderer Abend im Monat Ramadan, an dem junge Menschen in Gießen zusammenkommen, um das Fasten zu brechen, Gemeinschaft zu erleben und den Segen des Teilens zu spüren.",
+    "wasErwartetSie": [
+      "Gemeinsames Fastenbrechen",
+      "Jugendliche Begegnung und Austausch",
+      "Spirituelle Atmosphäre und Herzlichkeit"
+    ],
+    "fuerWen": "Jugendliche und junge Erwachsene, offen für alle Interessierten.",
+    "titleTr": "Gießen Gençlik İftarı",
+    "categoryTr": "KÜLTÜR",
+    "streamTr": "Kültürel Kutlamalar",
+    "descriptionTr": "Gießen'deki gençlerin Ramazan ayında bir araya gelerek oruçlarını açtığı, paylaşmanın ve dayanışmanın bereketini birlikte yaşadığı özel bir akşam.",
+    "wasErwartetSieTr": [
+      "Birlikte iftar ve oruç açma",
+      "Gençler arası tanışma ve fikir alışverişi",
+      "Manevi atmosfer ve sıcak bir ortam"
+    ],
+    "fuerWenTr": "Gençler, üniversiteliler ve ilgi duyan tüm genç yetişkinler davetlidir."
+  },
+  {
+    "id": "willkommen-ramadan-2026",
+    "title": "Willkommen Ramadan – Kinderveranstaltung",
+    "category": "KULTUR",
+    "stream": "Festive Events",
+    "date": "2026-02-07T13:00:00",
+    "location": "Siemensstraße 18, 35394 Gießen",
+    "image": "https://images.unsplash.com/photo-1617142860117-c1097c5f9373?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Eine besondere Ramadan-Veranstaltung für Kinder im Kulturzentrum. Gemeinsam entdecken wir die Bedeutung und den Wert des Monats Ramadan. Es wird gebastelt, gespielt und gelacht – mit einem fröhlichen Ramadan-Kalender, Gesprächen und kleinen Überraschungen.",
+    "wasErwartetSie": [
+      "Basteln eines Ramadan-Kalenders",
+      "Spiele und Gespräche",
+      "Kleine Überraschungen für Kinder",
+      "Gemeinsames Lernen über Ramadan"
+    ],
+    "fuerWen": "Kinder und Familien, die die Freude des Ramadans gemeinsam erleben möchten.",
+    "titleTr": "Hoş Geldin Ramazan – Çocuk Etkinliği",
+    "categoryTr": "KÜLTÜR",
+    "streamTr": "Kültürel Kutlamalar",
+    "descriptionTr": "Kültür merkezimizde çocuklar için özel Ramazan buluşması. Ramazan ayının değerini ve güzelliklerini birlikte keşfediyoruz. El sanatları, oyunlar, Ramazan takvimi hazırlama ve küçük sürprizlerle dolu neşeli bir gün.",
+    "wasErwartetSieTr": [
+      "Ramazan takvimi el işi atölyesi",
+      "Eğlenceli çocuk oyunları ve sohbet",
+      "Çocuklar için sürpriz hediyeler",
+      "Ramazan ayı hakkında eğlenceli öğrenme"
+    ],
+    "fuerWenTr": "Ramazan sevincini paylaşmak isteyen tüm çocuklar ve aileleri davetlidir."
+  },
+  {
+    "id": "iftarprogramm-2026",
+    "title": "Besonderes Iftar-Programm",
+    "category": "KULTUR",
+    "stream": "Festive Events",
+    "date": "2026-03-07T17:15:00",
+    "location": "Sport- und Kulturhalle Garbenteich, Fröbelstraße 1, 35415 Pohlheim",
+    "image": "https://images.unsplash.com/photo-1587409059079-e1f9f840caa0?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Ein herzliches Iftar-Programm zum gesegneten Ramadan-Abend. Wir freuen uns, das Fastenbrechen gemeinsam zu erleben und den Segen, Frieden und die Brüderlichkeit miteinander zu teilen.",
+    "wasErwartetSie": [
+      "Gemeinsames Fastenbrechen",
+      "Spirituelle Atmosphäre",
+      "Kulturelle Begegnung und Austausch"
+    ],
+    "fuerWen": "Alle Freundinnen und Freunde des Hauses – Muslime und Nicht-Muslime.",
+    "titleTr": "Özel Ramazan İftar Programı",
+    "categoryTr": "KÜLTÜR",
+    "streamTr": "Kültürel Kutlamalar",
+    "descriptionTr": "Mübarek Ramazan akşamında sevgi, huzur ve kardeşliği paylaşmak üzere düzenlenen sıcak bir iftar programı. Birlikte oruç açmanın huzurunu yaşıyoruz.",
+    "wasErwartetSieTr": [
+      "Birlikte iftar ve oruç açma",
+      "Manevi ve huzurlu atmosfer",
+      "Kültürlerarası buluşma ve sohbet"
+    ],
+    "fuerWenTr": "Müslüman ve gayrimüslim tüm dostlarımız ve komşularımız davetlidir."
+  },
+  {
+    "id": "iftar-2026",
+    "title": "Iftar der Begegnung",
+    "category": "KULTUR",
+    "stream": "Festive Events",
+    "date": "2026-03-14T17:30:00",
+    "location": "BVM, Wetzlar",
+    "image": "https://images.unsplash.com/photo-1477506350614-fcdc29a3b157?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGlmdGFyfGVufDB8fDB8fHwy",
+    "description": "Ein gemeinsames Fastenbrechen für alle Bürgerinnen und Bürger, unabhängig von ihrer religiösen Zugehörigkeit.",
+    "wasErwartetSie": [
+      "Interkulturelle Begegnung",
+      "Der Moment des Iftar",
+      "Kulinarische Vielfalt"
+    ],
+    "fuerWen": "Jeder ist willkommen – Muslime und Nicht-Muslime – um den Dialog zu fördern.",
+    "titleTr": "Wetzlar Buluşma İftarı",
+    "categoryTr": "KÜLTÜR",
+    "streamTr": "Kültürel Kutlamalar",
+    "descriptionTr": "Wetzlar'da dini ve kültürel kökeni ne olursa olsun tüm vatandaşların bir araya geldiği geleneksel iftar buluşması.",
+    "wasErwartetSieTr": [
+      "Kültürlerarası buluşma ve kaynaşma",
+      "Birlikte oruç açma anı",
+      "Zengin mutfak lezzetleri"
+    ],
+    "fuerWenTr": "Diyaloğu destekleyen, komşuluk bağlarını güçlendirmek isteyen herkes davetlidir."
+  },
+  {
+    "id": "zuckerfest-2026",
+    "title": "Zuckerfest (Eid al-Fitr)",
+    "category": "KULTUR",
+    "stream": "Festive Events",
+    "date": "2026-03-21T10:00:00",
+    "location": "Garbenteich Kulturhalle, Pohlheim",
+    "image": "https://images.unsplash.com/photo-1512731762289-4ea947d516a7?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cmFtYWRhbiUyMGZlc3R8ZW58MHx8MHx8fDI%3D",
+    "description": "Feiern Sie mit uns das Ende des Ramadan mit Süßigkeiten und Gemeinschaft.",
+    "wasErwartetSie": [
+      "Gemeinsames Gebet",
+      "Süßigkeiten für Kinder",
+      "Nachbarschaftliches Beisammensein"
+    ],
+    "fuerWen": "Familien, Nachbarn und alle, die Freude teilen möchten.",
+    "titleTr": "Ramazan Bayramı Kutlaması (Eid al-Fitr)",
+    "categoryTr": "KÜLTÜR",
+    "streamTr": "Kültürel Kutlamalar",
+    "descriptionTr": "Ramazan ayının ardından bayram sevincini tatlılar, ikramlar ve komşuluk dayanışmasıyla birlikte kutluyoruz.",
+    "wasErwartetSieTr": [
+      "Bayramlaşma ve buluşma",
+      "Çocuklara bayram hediyeleri ve tatlı ikramları",
+      "Komşuluk ve dostluk sohbetleri"
+    ],
+    "fuerWenTr": "Aileler, çocuklar, komşular ve bayram sevincini paylaşmak isteyen herkes."
+  },
+  {
+    "id": "opferfest-2026",
+    "title": "Opferfest (Eid al-Adha)",
+    "category": "KULTUR",
+    "stream": "Festive Events",
+    "date": "2026-05-27T16:00:00",
+    "location": "Muschenheim Kulturhalle, Lich",
+    "image": "https://images.unsplash.com/photo-1658758062547-3dc96542eae6?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZWlkJTIwYWwlMjBhZGhhfGVufDB8fDB8fHwy",
+    "description": "Eines der wichtigsten Feste im islamischen Kalender, gefeiert mit Wohltätigkeit und Gemeinschaft.",
+    "wasErwartetSie": [
+      "Verteilung von Gaben",
+      "Festessen",
+      "Gemeinschaftliche Aktivitäten"
+    ],
+    "fuerWen": "Familien, Nachbarn und alle, die Freude teilen möchten.",
+    "titleTr": "Kurban Bayramı Buluşması (Eid al-Adha)",
+    "categoryTr": "KÜLTÜR",
+    "streamTr": "Kültürel Kutlamalar",
+    "descriptionTr": "İslam takviminin en önemli bayramlarından birini yardımlaşma, paylaşma ve birlik duygusuyla kutluyoruz.",
+    "wasErwartetSieTr": [
+      "Yardımlaşma ve ikram dağıtımı",
+      "Bayram yemeği ve tatlı ikramları",
+      "Topluluk etkinlikleri ve çocuklar için neşeli anlar"
+    ],
+    "fuerWenTr": "Aileler, komşular ve bayram dayanışmasını paylaşmak isteyen herkes."
+  },
+  {
+    "id": "frauentag-2026",
+    "title": "Internationaler Frauentag",
+    "category": "SOZIALES",
+    "stream": "Community Begegnungen",
+    "date": "2026-03-08T15:00:00",
+    "location": "BVM Zentrum, Gießen",
+    "image": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1200",
+    "description": "Ein Nachmittag gewidmet den Errungenschaften von Frauen in unserer Gesellschaft.",
+    "wasErwartetSie": [
+      "Inspirierende Vorträge",
+      "Networking-Kaffee",
+      "Kulturelle Darbietungen"
+    ],
+    "fuerWen": "Frauen aller Hintergründe und ihre Unterstützer.",
+    "titleTr": "Dünya Kadınlar Günü Özel Buluşması",
+    "categoryTr": "TOPLUMSAL",
+    "streamTr": "Topluluk Buluşmaları",
+    "descriptionTr": "Kadınların toplumdaki başarılarına ve emeğine adanmış özel bir öğleden sonra buluşması. İlham verici paylaşımlar ve networking.",
+    "wasErwartetSieTr": [
+      "İlham veren konuşmalar ve paylaşımlar",
+      "Tanışma ve networking kahvesi",
+      "Kültürel sunumlar ve dinletiler"
+    ],
+    "fuerWenTr": "Tüm kadınlar ve kadın haklarını destekleyen herkes davetlidir."
+  },
+  {
+    "id": "muttertag-2026",
+    "title": "Muttertag Spezial",
+    "category": "SOZIALES",
+    "stream": "Community Begegnungen",
+    "date": "2026-05-16T14:00:00",
+    "location": "Siemensstraße 18, 35394 Gießen",
+    "image": "https://images.unsplash.com/photo-1619903180479-6602d32de99c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Ein besonderer Nachmittag voller Kunst, Freude und schöner Erinnerungen. Das Muttertagsprogramm lädt Mütter und Damen zu einem kreativen und herzlichen Austausch ein – mit Kalligrafie-Kunst, Überraschungen, Spielen, Leckereien und netten Gesprächen.",
+    "wasErwartetSie": [
+      "Kalligrafie-Kunst mit Maltechnik",
+      "Überraschungen & Spiele",
+      "Leckereien und nette Gespräche"
+    ],
+    "fuerWen": "Mütter, Großmütter und ihre Familien.",
+    "titleTr": "Anneler Günü Özel Programı",
+    "categoryTr": "TOPLUMSAL",
+    "streamTr": "Topluluk Buluşmaları",
+    "descriptionTr": "Sanat, neşe ve güzel anılarla dolu özel bir öğleden sonra. Anneleri ve hanımları kaligrafi sanatı, sürprizler, oyunlar ve lezzetli ikramlar eşliğinde ağırlıyoruz.",
+    "wasErwartetSieTr": [
+      "Resim tekniğiyle kaligrafi atölyesi",
+      "Sürpriz hediyeler ve eğlenceli oyunlar",
+      "Lezzetli ikramlar ve samimi sohbetler"
+    ],
+    "fuerWenTr": "Anneler, anneanneler, babaanneler ve aileleri davetlidir."
+  },
+  {
+    "id": "senioren-besuch-2025",
+    "title": "Besuch im Seniorenhaus",
+    "category": "SOZIALES",
+    "stream": "Community Begegnungen",
+    "date": "2025-04-15T14:00:00",
+    "location": "Seniorenheim Gießen",
+    "image": "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&q=80&w=1200",
+    "description": "Jung und Alt kommen zusammen für einen Nachmittag voller Geschichten und Lächeln.",
+    "wasErwartetSie": [
+      "Blumenübergabe durch Jugendliche",
+      "Gemeinsames Singen",
+      "Zeit für Gespräche"
+    ],
+    "fuerWen": "Jugendliche Freiwillige und Senioren.",
+    "titleTr": "Huzurevi & Yaşlılar Ziyareti",
+    "categoryTr": "TOPLUMSAL",
+    "streamTr": "Topluluk Buluşmaları",
+    "descriptionTr": "Gençler ve büyükler anılar ve tebessümlerle dolu bir öğleden sonra için bir araya geliyor.",
+    "wasErwartetSieTr": [
+      "Gençler tarafından çiçek takdimi",
+      "Birlikte şarkılar ve müzik dinletisi",
+      "Sıcak sohbet ve vefa zamanı"
+    ],
+    "fuerWenTr": "Gönüllü gençler ve değerli yaşlılarımız."
+  },
+  {
+    "id": "feriencamp-2025",
+    "title": "Sommer-Feriencamp",
+    "category": "JUGEND",
+    "stream": "Youth & Education",
+    "date": "2025-07-20T09:00:00",
+    "location": "Jugendherberge Wetzlar",
+    "image": "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&q=80&w=1200",
+    "description": "Eine Woche voller Abenteuer, Sport und Team-Building in der Natur.",
+    "wasErwartetSie": [
+      "Outdoor-Aktivitäten",
+      "Team-Building Spiele",
+      "Abendliches Lagerfeuer"
+    ],
+    "fuerWen": "Kinder und Jugendliche zwischen 10 und 16 Jahren.",
+    "titleTr": "Yaz Gençlik & Doğa Kampı",
+    "categoryTr": "GENÇLİK",
+    "streamTr": "Gençlik & Eğitim",
+    "descriptionTr": "Doğada macera, spor, takım ruhu ve eğlenceyle dolu bir haftalık yaz kampı.",
+    "wasErwartetSieTr": [
+      "Açık hava doğa etkinlikleri ve spor",
+      "Takım ruhunu geliştiren oyunlar",
+      "Akşam kamp ateşi ve hikaye saatleri"
+    ],
+    "fuerWenTr": "10-16 yaş arası çocuklar ve gençler."
+  },
+  {
+    "id": "karrieretag-2026",
+    "title": "Karrieretag – BVM e.V.",
+    "category": "SOZIALES",
+    "stream": "Community Days",
+    "date": "2026-04-18T14:00:00",
+    "location": "Siemensstraße 18, Gießen",
+    "image": "https://images.unsplash.com/photo-1483213097419-365e22f0f258?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fEthcnJpZXJlfGVufDB8fDB8fHww",
+    "description": "Ihre Chance, mit führenden Organisationen in Mittelhessen ins Gespräch zu kommen, Karrierewege zu entdecken und wertvolle Netzwerke zu knüpfen. Der Karrieretag bietet Perspektiven in der Sozialen Arbeit und richtet sich an alle, die sich beruflich weiterentwickeln möchten.",
+    "wasErwartetSie": [
+      "Gespräche mit führenden Organisationen",
+      "Einblicke in Karrierewege der Sozialen Arbeit",
+      "Networking und Erfahrungsaustausch"
+    ],
+    "fuerWen": "Interessierte an sozialer Arbeit, Studierende und Berufseinsteiger. Veranstaltungssprache: Türkisch.",
+    "titleTr": "Kariyer Günü – BVM e.V.",
+    "categoryTr": "TOPLUMSAL",
+    "streamTr": "Topluluk Günleri",
+    "descriptionTr": "Mittelhessen'in önde gelen kurumlarıyla tanışma, kariyer fırsatlarını keşfetme ve değerli bağlantılar kurma fırsatı. Özellikle sosyal hizmet alanındaki kariyer yolları ele alınacaktır. Etkinlik dili Türkçedir.",
+    "wasErwartetSieTr": [
+      "Önde gelen kurum ve kuruluşlarla birebir görüşmeler",
+      "Sosyal hizmet alanında kariyer yolları ve fırsatlar",
+      "Networking, tecrübe paylaşımı ve mentorluk"
+    ],
+    "fuerWenTr": "Sosyal hizmete ilgi duyanlar, üniversite öğrencileri ve yeni mezunlar. Etkinlik dili: Türkçe."
+  },
+  {
+    "id": "abrahamisches-cafe-2026",
+    "title": "Abrahamisches Café: Glaube & Demokratie",
+    "category": "DIALOG",
+    "stream": "Interreligiöser Austausch",
+    "date": "2026-05-28T18:00:00",
+    "location": "Siemensstraße 18, Gebäude 2, 35394 Gießen",
+    "image": "https://blog.hartfordinternational.edu/wp-content/uploads/sites/27/2022/04/confluence-of-religious-observances-for-Abrahamic-faiths.jpg",
+    "description": "Das Abrahamische Café lädt zu einem inspirierenden Abend über die Verbindung von Glauben und Demokratie ein. Unter dem Thema „Würde, Recht, Gemeinschaft: Was Tora, Bibel und Koran zur Demokratie sagen“ diskutieren Vertreterinnen und Vertreter aus Judentum, Christentum und Islam über die religiösen Wurzeln demokratischer Werte und ihre Bedeutung für unser Zusammenleben.",
+    "wasErwartetSie": [
+      "Interreligiöse Diskussion über Würde, Recht und Gemeinschaft",
+      "Gespräch über Freiheit, Gleichheit und Gerechtigkeit in religiösen Schriften",
+      "Austausch über die Rolle von Glaubensgemeinschaften in der Demokratie",
+      "Vertrauen und Respekt durch Begegnung fördern"
+    ],
+    "fuerWen": "Offen für alle – unabhängig von Glaubensrichtung oder Weltanschauung. Ein Ort des Dialogs und der Freundschaft.",
+    "titleTr": "İbrahimi Kafe: İnanç & Demokrasi",
+    "categoryTr": "DİYALOG",
+    "streamTr": "Dinlerarası Diyalog",
+    "descriptionTr": "İbrahimi Kafe, inanç ile demokrasi arasındaki bağı ele alan ilham verici bir akşama davet ediyor. 'Onur, Hak ve Birliktelik: Tevrat, İncil ve Kuran Demokrasi Hakkında Ne Söylüyor?' başlığı altında Yahudilik, Hristiyanlık ve İslam temsilcileri ortak değerlerimizi tartışıyor.",
+    "wasErwartetSieTr": [
+      "Onur, hak ve birliktelik üzerine dinlerarası panel",
+      "Kutsal metinlerde özgürlük, eşitlik ve adalet kavramları",
+      "Demokraside inanç topluluklarının rolü üzerine diyalog",
+      "Karşılıklı güven ve saygıyı pekiştiren samimi ortam"
+    ],
+    "fuerWenTr": "İnancı veya dünya görüşü ne olursa olsun herkese açıktır. Diyalog ve dostluk mekanı."
+  },
+  {
+    "id": "weihnachts-vortrag-2025",
+    "title": "Weihnachts-Vortrag",
+    "category": "DIALOG",
+    "stream": "Interreligiöser Austausch",
+    "date": "2025-12-15T18:00:00",
+    "location": "Siemensstraße 18, 35394 Gießen",
+    "image": "https://images.unsplash.com/photo-1482517967863-00e15c9b44be?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Ein Vortrag über die Bedeutung und Wichtigkeit von Weihnachten im baptistischen Glauben. Geistliche der International Baptist Church teilen ihre Perspektiven auf die spirituelle und gesellschaftliche Bedeutung des Weihnachtsfestes.",
+    "wasErwartetSie": [
+      "Vorträge von Geistlichen der International Baptist Church",
+      "Einblicke in den baptistischen Glauben und die Bedeutung von Weihnachten",
+      "Gelegenheit zum Austausch und zur Diskussion"
+    ],
+    "fuerWen": "Alle Interessierten, die mehr über die religiöse Bedeutung von Weihnachten erfahren möchten.",
+    "titleTr": "Noel & Hristiyan İnancı Konferansı",
+    "categoryTr": "DİYALOG",
+    "streamTr": "Dinlerarası Diyalog",
+    "descriptionTr": "Baptist inancında Noel'in anlamı ve önemine dair bilgilendirici bir konferans. International Baptist Church din görevlileri Noel bayramının manevi ve toplumsal boyutlarını paylaşıyor.",
+    "wasErwartetSieTr": [
+      "International Baptist Church din adamlarının sunumları",
+      "Baptist inancı ve Noel geleneğinin manevi derinliği",
+      "Soru-cevap ve kültürlerarası diyalog imkanı"
+    ],
+    "fuerWenTr": "Noel'in dini ve manevi anlamını öğrenmek isteyen tüm ilgililer."
+  },
+  {
+    "id": "aschura-tag-event-2026",
+    "title": "Aschura-Tag Event",
+    "category": "DIALOG",
+    "stream": "Interreligiöser Austausch",
+    "date": "2026-09-19T19:00:00",
+    "location": "Bahnhofstraße 22, 35576 Wetzlar",
+    "image": "https://www.unileverfoodsolutions.com.tr/dam/global-ufs/mcos/turkey/turk_mutfagi/G%C3%96RSEL%201%20%20(2).jpg",
+    "description": "Der Tag der Besinnung und des Gedenkens. Das Aschura-Tag Event lädt dazu ein, gemeinsam in Gemeinschaft zu feiern und die Werte von Mitgefühl, Dankbarkeit und Zusammenhalt zu erleben.",
+    "wasErwartetSie": [
+      "Gemeinsames Beisammensein und Austausch",
+      "Traditionelle Aschura-Speisen",
+      "Reflexion über die Bedeutung des Aschura-Tages"
+    ],
+    "fuerWen": "Alle Interessierten, die das Aschura-Tag Event in Gemeinschaft erleben möchten.",
+    "titleTr": "Aşure Günü Buluşması 2026",
+    "categoryTr": "DİYALOG",
+    "streamTr": "Dinlerarası Diyalog",
+    "descriptionTr": "Tefekkür, birlik ve dayanışma günü. Aşure buluşması, şefkat, şükran ve kardeşlik değerlerini birlikte yaşamak üzere herkesi davet ediyor.",
+    "wasErwartetSieTr": [
+      "Birlikte hoş vakit geçirme ve samimi sohbetler",
+      "Geleneksel Aşure tatlısı ikramı",
+      "Aşure gününün tarihi ve manevi anlamına dair paylaşımlar"
+    ],
+    "fuerWenTr": "Aşure gününü toplumla birlikte idrak etmek isteyen herkes."
+  },
+  {
+    "id": "aschura-event-2025",
+    "title": "Aschura Event",
+    "category": "DIALOG",
+    "stream": "Interreligiöser Austausch",
+    "date": "2025-07-10T17:30:00",
+    "location": "Siemensstraße 18, 35394 Gießen",
+    "image": "https://www.erk-bs.ch/_upload/15601.jpg",
+    "description": "Ein Event der Besinnung und des Gedenkens. Das Aschura-Event lädt dazu ein, gemeinsam in Gemeinschaft zu feiern und die Werte von Mitgefühl, Dankbarkeit und Zusammenhalt zu erleben.",
+    "wasErwartetSie": [
+      "Gemeinsames Beisammensein und Austausch",
+      "Traditionelle Aschura-Speisen",
+      "Reflexion über die Bedeutung des Aschura-Events"
+    ],
+    "fuerWen": "Alle Interessierten, die das Aschura-Event in Gemeinschaft erleben möchten.",
+    "titleTr": "Aşure Etkinliği 2025",
+    "categoryTr": "DİYALOG",
+    "streamTr": "Dinlerarası Diyalog",
+    "descriptionTr": "Tefekkür ve anma günü. Aşure etkinliği, şefkat, şükran ve toplumsal dayanışma ruhunu hep birlikte yaşatmayı amaçlıyor.",
+    "wasErwartetSieTr": [
+      "Birlikte sohbet ve kaynaşma",
+      "Geleneksel Aşure ikramı",
+      "Aşure gününün birleştirici mesajı üzerine konuşmalar"
+    ],
+    "fuerWenTr": "Aşure etkinliğine katılmak isteyen tüm komşular ve vatandaşlar."
+  },
+  {
+    "id": "halloween-spieleabend-2025",
+    "title": "Halloween Spieleabend",
+    "category": "JUGEND",
+    "stream": "Youth & Education",
+    "date": "2025-10-24T20:00:00",
+    "location": "Siemensstraße 18, 35394 Gießen",
+    "image": "https://images.unsplash.com/photo-1740381347162-bf9ca4b517c4?q=80&w=2590&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Ein Abend voller Grusel, Spannung und Spaß! Der Halloween-Spieleabend der Jugendplattform war einfach nur gruselig-gut. Spiele, Snacks und Spuk sorgten für eine großartige Stimmung in Gießen – ein perfekter Mix für alle, die Halloween lieben.",
+    "wasErwartetSie": [
+      "Spieleabend mit Halloween-Thema",
+      "Snacks und Getränke",
+      "Gruselige Atmosphäre und Spaß in Gemeinschaft"
+    ],
+    "fuerWen": "Jugendliche und junge Erwachsene, die Lust auf einen spannenden und unterhaltsamen Abend haben.",
+    "titleTr": "Gençlik Cadılar Bayramı Oyun Gecesi",
+    "categoryTr": "GENÇLİK",
+    "streamTr": "Gençlik & Eğitim",
+    "descriptionTr": "Gizem, heyecan ve kahkaha dolu bir akşam! Gençlik platformumuzun düzenlediği oyun gecesinde kutu oyunları, atıştırmalıklar ve harika bir arkadaşlık ortamı bir aradaydı.",
+    "wasErwartetSieTr": [
+      "Cadılar Bayramı temalı grup ve kutu oyunları",
+      "Lezzetli atıştırmalıklar ve içecekler",
+      "Gençler arasında neşeli ve samimi bir atmosfer"
+    ],
+    "fuerWenTr": "Eğlenceli ve heyecanlı bir oyun akşamı geçirmek isteyen gençler ve genç yetişkinler."
+  },
+  {
+    "id": "tag-der-offenen-tuer-2025",
+    "title": "Tag der offenen Tür",
+    "category": "SOZIALES",
+    "stream": "Community Begegnungen",
+    "date": "2025-01-22T12:00:00",
+    "location": "Siemensstraße 18, Gebäude 2, 35394 Gießen",
+    "image": "https://images.unsplash.com/photo-1664562780891-78cd08e2cc6c?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Ein Tag der offenen Tür bei Bildung und Verständigung Mittelhessen e.V. – entdecken Sie unser Vereinshaus, lernen Sie Mitglieder und den Vorstand kennen und erfahren Sie mehr über unsere Aktivitäten. Dazu gibt es leckere türkische Fingerfoods und viele Gelegenheiten zum Austausch.",
+    "wasErwartetSie": [
+      "Kennenlernen des Vorstands und der Mitglieder",
+      "Führung durch das Vereinshaus",
+      "Informationsveranstaltung über Vereinsaktivitäten",
+      "Leckere türkische Fingerfoods"
+    ],
+    "fuerWen": "Alle Interessierten, die unseren Verein und seine Arbeit kennenlernen möchten.",
+    "titleTr": "Açık Kapı Günü – BVM e.V.",
+    "categoryTr": "TOPLUMSAL",
+    "streamTr": "Topluluk Buluşmaları",
+    "descriptionTr": "Bildung und Verständigung Mittelhessen e.V. merkezimizde Açık Kapı Günü! Dernek binamızı gezebilir, üyelerimiz ve yönetim kurulumuzla tanışabilir, faaliyetlerimiz hakkında bilgi edinebilirsiniz. Ayrıca lezzetli Türk ikramları ve sıcak çay eşliğinde sohbet imkanı.",
+    "wasErwartetSieTr": [
+      "Yönetim kurulu ve dernek üyeleriyle tanışma",
+      "Dernek binası ve eğitim alanlarının tanıtımı",
+      "Faaliyetler ve gelecek projeler hakkında bilgilendirme",
+      "Lezzetli Türk atıştırmalıkları ve çay ikramı"
+    ],
+    "fuerWenTr": "Derneğimizi ve çalışmalarımızı yakından tanımak isteyen tüm vatandaşlar."
+  },
+  {
+    "id": "basketball-turnier-2026",
+    "title": "Basketball Turnier – Nur für Mädels",
+    "category": "JUGEND",
+    "stream": "Youth & Education",
+    "date": "2026-08-03T12:45:00",
+    "location": "Ginnheimer Landstraße 39, 60487 Frankfurt am Main",
+    "image": "https://i.etsystatic.com/8809174/r/il/bfd9f5/7278945186/il_fullxfull.7278945186_efsc.jpg",
+    "description": "Ein spannendes Basketball-Turnier für junge Frauen im Alter von 17 bis 25 Jahren. Unter dem Motto „Wer ist die beste Basketball-Stadt Hessens?“ treten Teams gegeneinander an, um sportlichen Ehrgeiz, Teamgeist und Fairplay zu zeigen. Das Event wird vom Forum für Interkulturellen Dialog (Fid e.V.) organisiert – Bildung und Verständigung Mittelhessen e.V. ist stolzer Partner. Weitere Partner sind Mosaik e.V., Rumi Maximum, Merak und Kunterbunt Kulturzentrum e.V. Die Anmeldung ist erforderlich und erfolgt per E-Mail an anmeldung@fidev.org bis zum 28. Juli 2026.",
+    "wasErwartetSie": [
+      "Basketball-Turnier für junge Frauen (17–25 Jahre)",
+      "Sportlicher Wettbewerb und Teamgeist",
+      "Kooperation zwischen mehreren Vereinen",
+      "Motivierende Atmosphäre und Fairplay"
+    ],
+    "fuerWen": "Junge Frauen im Alter von 17 bis 25 Jahren, die Spaß am Basketball und Teamgeist haben.",
+    "titleTr": "Basketbol Turnuvası – Genç Kadınlar",
+    "categoryTr": "GENÇLİK",
+    "streamTr": "Gençlik & Eğitim",
+    "descriptionTr": "17-25 yaş arası genç kadınlar için heyecan dolu bir basketbol turnuvası! 'Hessen'in en iyi basketbol şehri kim?' sloganıyla takımlar centilmenlik ve takım ruhuyla mücadele ediyor. Forum für Interkulturellen Dialog (Fid e.V.) öncülüğünde düzenlenen turnuvanın gururlu ortakları arasındayız. Kayıt zorunludur.",
+    "wasErwartetSieTr": [
+      "Genç kadınlar arası basketbol turnuvası (17–25 yaş)",
+      "Sportif rekabet ve güçlü takım ruhu",
+      "Sivil toplum kuruluşları arasında dayanışma",
+      "Motivasyon dolu atmosfer ve Fair-Play"
+    ],
+    "fuerWenTr": "Basketbol oynamayı ve takım sporlarını seven 17-25 yaş arası genç kadınlar."
+  },
+  {
+    "id": "sprachcafe-2026",
+    "title": "Sprachcafé",
+    "category": "SOZIALES",
+    "stream": "Community Days",
+    "date": "2026-06-11T14:30:00",
+    "location": "Siemensstraße 18, Gebäude 2, 35394 Gießen",
+    "image": "https://images.unsplash.com/photo-1705573384249-3eff0565c04d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Ein offenes Sprachcafé für alle – ein Ort der Begegnung, des Austauschs und des gemeinsamen Lernens. In entspannter Atmosphäre können Teilnehmerinnen miteinander sprechen, neue Sprachen üben und Freundschaften knüpfen.",
+    "wasErwartetSie": [
+      "Gemeinsames Gespräch in Deutsch",
+      "Kultureller Austausch und gegenseitiges Kennenlernen",
+      "Offene und herzliche Atmosphäre"
+    ],
+    "fuerWen": "Frauen/ Männer aller Altersgruppen und Herkunft, die sich austauschen und ihre Sprachkenntnisse erweitern möchten.",
+    "titleTr": "Dil Kafesi (Sprachcafé)",
+    "categoryTr": "TOPLUMSAL",
+    "streamTr": "Topluluk Günleri",
+    "descriptionTr": "Herkese açık bir dil kafesi – buluşma, sohbet ve birlikte pratik yapma yeri. Rahat bir atmosferde katılımcılar Almanca pratik yapabilir, yeni diller deneyimleyebilir ve kalıcı dostluklar kurabilir.",
+    "wasErwartetSieTr": [
+      "Almanca günlük konuşma ve pratik",
+      "Kültürlerarası sohbet ve karşılıklı tanışma",
+      "Sıcak, açık ve destekleyici bir ortam"
+    ],
+    "fuerWenTr": "Dil pratiği yapmak, sohbet etmek ve yeni insanlarla tanışmak isteyen her yaştan kadın ve erkek."
+  },
+  {
+    "id": "kulturzentrum-kapanis-2026",
+    "title": "Abschlussfeier der kulturellen Bildung (Kapanış Programı)",
+    "category": "KULTUR",
+    "stream": "Festive Events",
+    "date": "2026-06-30T18:00:00",
+    "location": "Am Hain 1 a, 35444 Biebertal",
+    "image": "https://images.unsplash.com/photo-1532012197267-da84d127e765?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?auto=format&fit=crop&q=80&w=1200",
+    "description": "Die wöchentlichen Kurse unserer kulturellen Bildung für Kinder gehen für dieses Schuljahr zu Ende – Zeit, die großartigen Erfolge unserer Jüngsten gebührend zu feiern! Der Verein BVM e.V. (Bildung und Verständigung Mittelhessen e.V.) lädt alle Eltern unserer Vereinskinder ganz herzlich zu diesem besonderen Abschluss-Programm (Kapanış Programı) im Gießen Kültür Merkezi ein. Gemeinsam möchten wir auf ein erfolgreiches Bildungsjahr zurückblicken und die Fortschritte der Kinder würdigen.\n\nHinweis: Das Programm wird vollständig in türkischer Sprache durchgeführt.",
+    "wasErwartetSie": [
+      "Kreative Vorführungen und Präsentationen unserer Vereinskinder",
+      "Feierliche Übergabe der Teilnahmeurkunden an alle Kinder",
+      "Gemütliches Beisammensein bei traditionellem Tee und Gebäck",
+      "Dankeschön an die Eltern und Lehrkräfte für die wöchentliche Unterstützung"
+    ],
+    "fuerWen": "Exklusiv für die Eltern der Kinder unseres Vereins (BVM e.V.), die an den wöchentlichen Kultur- und Bildungskursen teilnehmen.",
+    "titleTr": "Kültürel Eğitim Dönem Sonu Kapanış Programı",
+    "categoryTr": "KÜLTÜR",
+    "streamTr": "Kültürel Kutlamalar",
+    "descriptionTr": "Çocuklarımız için yıl boyu süren kültürel eğitim kurslarımız bu öğretim yılı için sona eriyor. Miniklerimizin başarılarını hep birlikte kutlama zamanı! BVM e.V. olarak tüm dernek velilerimizi Gießen Kültür Merkezi'ndeki bu özel kapanış programına davet ediyoruz. Not: Program Türkçe olarak icra edilecektir.",
+    "wasErwartetSieTr": [
+      "Çocuklarımızın yaratıcı gösterileri ve sunumları",
+      "Tüm çocuklara başarı ve katılım belgesi takdimi",
+      "Geleneksel çay ve ikramlar eşliğinde veli sohbeti",
+      "Haftalık destekleri için velilere ve öğretmenlere teşekkür"
+    ],
+    "fuerWenTr": "Haftalık kültür ve eğitim kurslarımıza katılan BVM e.V. dernek çocuklarımızın velilerine özeldir."
+  },
+  {
+    "id": "picknick-asure-tag-2026",
+    "title": "Einladung zum Picknick: Asure-Tag",
+    "category": "KULTUR",
+    "stream": "Festive Events",
+    "date": "2026-07-04T15:00:00",
+    "location": "Wieseckaue Park, Ringallee, 35390 Gießen",
+    "image": "https://images.pexels.com/photos/32963318/pexels-photo-32963318.jpeg?_gl=1*5sg1ht*_ga*NjQ5ODcwODg0LjE3ODI3NjYzMDA.*_ga_8JE65Q40S6*czE3ODI3NjYyOTkkbzEkZzEkdDE3ODI3NjYzOTkkajI3JGwwJGgw?auto=format&fit=crop&q=80&w=1200",
+    "description": "Im Rahmen unseres traditionellen Aşure-Tages lädt der Verein BVM e.V. (Bildung und Verständigung Mittelhessen e.V.) Sie herzlich zu einem schönen Picknick im Freien ein. Gemeinsam möchten wir einen angenehmen Nachmittag voller Begegnungen, Gespräche, Spiele und köstlicher Speisen verbringen und die Gemeinschaft sowie den Zusammenhalt stärken. Wir freuen uns sehr, Sie bei unserem Programm begrüßen zu dürfen!",
+    "wasErwartetSie": [
+      "Begegnung, Austausch und nette Gespräche",
+      "Unterhaltsame Spiele im Freien für die ganze Familie",
+      "Köstliche Verpflegung mit der traditionellen Asure-Speise (Noahs Pudding)"
+    ],
+    "fuerWen": "Offen für alle – wir laden alle Nachbarn, Familien, Freunde und Interessierte herzlich ein, einen unbeschwerten Nachmittag in Gemeinschaft zu verbringen.",
+    "titleTr": "Piknik Daveti: Aşure Günü Buluşması",
+    "categoryTr": "KÜLTÜR",
+    "streamTr": "Kültürel Kutlamalar",
+    "descriptionTr": "Geleneksel Aşure Günü vesilesiyle BVM e.V. sizleri açık havada güzel bir pikniğe davet ediyor. Buluşmalar, sohbetler, oyunlar ve lezzetli yemeklerle dolu neşeli bir öğleden sonrayı birlikte geçirerek komşuluk bağlarımızı güçlendiriyoruz.",
+    "wasErwartetSieTr": [
+      "Sıcak sohbetler, tanışma ve kaynaşma",
+      "Tüm aile için açık havada eğlenceli oyunlar",
+      "Geleneksel Aşure tatlısı ve zengin piknik ikramları"
+    ],
+    "fuerWenTr": "Herkese açık – tüm komşularımızı, aileleri, dostları ve ilgi duyan herkesi açık havada buluşmaya davet ediyoruz."
+  },
+  {
+    "id": "Frauenmatinee-2026",
+    "title": "Frauen-Matinée – Verbirg deinen Glanz nicht!",
+    "category": "SOZIALES",
+    "stream": "Festive Events",
+    "date": "2026-08-15T16:00:00",
+    "location": "Am Hain 1A, 35444 Biebertal – Bieber",
+    "image": "https://images.unsplash.com/photo-1481162854517-d9e353af153d?auto=format&fit=crop&q=80&w=1200",
+    "description": "Ein glamouröser Nachmittag unter dem Motto „Verbirg deinen Glanz nicht!“ – Parla, çünkü sen zaten sahnesin! Die Veranstaltung richtet sich ausschließlich an Frauen und bietet ein abwechslungsreiches Programm mit Verlosung, Shopping, Tanz und Bewirtung. Der Eintritt beträgt 15 € pro Person, Kinder ab 7 Jahren zahlen 7 €. Jungen über 6 Jahre sind nicht gestattet. Dresscode: Zeig dich von deiner besten Seite – mach dich schick, nimm deine Absätze und komm vorbei! Organisiert von Bildung und Verständigung Mittelhessen e.V.",
+    "wasErwartetSie": [
+      "Verlosung und Überraschungen",
+      "Shopping und kleine Stände",
+      "Tanz und Unterhaltung",
+      "Bewirtung mit Snacks und Getränken"
+    ],
+    "fuerWen": "Frauen ab 7 Jahren – eine Veranstaltung voller Glanz, Freude und Gemeinschaft.",
+    "titleTr": "Kadınlar Matinesi – Işığını Saklama!",
+    "categoryTr": "TOPLUMSAL",
+    "streamTr": "Kültürel Kutlamalar",
+    "descriptionTr": "'Parla, çünkü sen zaten sahnesin!' sloganıyla ışıltılı bir kadınlar matinesi. Sadece hanımlara özel olan bu etkinlikte çekilişler, alışveriş stantları, müzik, dans ve zengin ikramlar yer almaktadır. Kıyafet: En şık halinle gel!",
+    "wasErwartetSieTr": [
+      "Sürpriz çekilişler ve hediyeler",
+      "Alışveriş ve tasarım stantları",
+      "Müzik, dans ve eğlence",
+      "Nefis ikramlar ve içecekler"
+    ],
+    "fuerWenTr": "7 yaş ve üzeri tüm hanımlar – neşe, zarafet ve dayanışma dolu bir gün."
+  },
+  {
+    "id": "sprachcafe-august-2026",
+    "title": "Sprachcafé",
+    "category": "SOZIALES",
+    "stream": "Community Days",
+    "date": "2026-09-09T14:30:00",
+    "location": "Siemensstraße 18, Gebäude 2, 35394 Gießen",
+    "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=1200",
+    "description": "Ein offenes Sprachcafé für alle – ein Ort der Begegnung, des Austauschs und des gemeinsamen Lernens. In entspannter Atmosphäre können Teilnehmerinnen und Teilnehmer miteinander sprechen, neue Sprachen üben und Freundschaften knüpfen.",
+    "wasErwartetSie": [
+      "Gemeinsames Gespräch in Deutsch",
+      "Kultureller Austausch und gegenseitiges Kennenlernen",
+      "Offene und herzliche Atmosphäre"
+    ],
+    "fuerWen": "Frauen und Männer aller Altersgruppen und Herkunft, die sich austauschen und ihre Sprachkenntnisse erweitern möchten.",
+    "titleTr": "Eylül Dil Kafesi (Sprachcafé)",
+    "categoryTr": "TOPLUMSAL",
+    "streamTr": "Topluluk Günleri",
+    "descriptionTr": "Herkese açık dil kafesi – rahat bir atmosferde Almanca pratik yapabileceğiniz, yeni insanlarla tanışabileceğiniz ve fikir alışverişinde bulunabileceğiniz samimi bir buluşma noktası.",
+    "wasErwartetSieTr": [
+      "Almanca sohbet ve günlük konuşma pratiği",
+      "Kültürlerarası iletişim ve yeni dostluklar",
+      "Sıcak çay/kahve eşliğinde samimi bir ortam"
+    ],
+    "fuerWenTr": "Dil becerilerini geliştirmek ve sosyal çevresini genişletmek isteyen her yaştan kadın ve erkek."
+  },
+  {
+    "id": "noahs-fest-2026",
+    "title": "Noahs Fest – Aşure Tag",
+    "category": "DIALOG",
+    "stream": "Interreligiöser Austausch",
+    "date": "2026-09-12T14:30:00",
+    "location": "Kirchenplatz, 35390 Gießen",
     "image": "https://images.unsplash.com/photo-1751879182448-d7b3dce2b00e?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "link": "/aktuelles#news",
-    "author": "BVM e.V."
+    "badge": "Ohne Anmeldung",
+    "requiresRegistration": false,
+    "description": "Ein interreligiöses Fest für Frieden und Zusammenhalt im Herzen von Gießen. Das Noahs Fest wird in Kooperation mit der Evangelischen Philippusgemeinde Gießen organisiert und möchte zu einer friedlichen Atmosphäre in der Stadt beitragen. Es gibt kurze Ansprachen über die Bedeutung des Noahs Festes und darüber, wie Menschen aus verschiedenen kulturellen und religiösen Hintergründen gemeinsam in Frieden leben können. Gemeinsam sprechen wir ein Friedensgebet. Anschließend verteilen wir Noahs Pudding (Aşure) an Passantinnen und Passanten, Gäste und Freundinnen und Freunde. Bei leichter Hintergrundmusik entsteht Raum für Begegnung, Gespräche und gemeinsames Genießen. Eine Anmeldung ist nicht erforderlich.",
+    "wasErwartetSie": [
+      "Interreligiöse Kurzvorträge über das Noahs Fest",
+      "Gemeinsames Friedensgebet",
+      "Verteilung von Noahs Pudding an Gäste und Passanten",
+      "Begegnung, Austausch und leichte Hintergrundmusik"
+    ],
+    "fuerWen": "Alle Menschen in Gießen, die ein Zeichen für Frieden, Dialog und Gemeinschaft setzen möchten.",
+    "titleTr": "Nuh'un Sofrası (Noahs Fest) – Aşure Günü",
+    "categoryTr": "DİYALOG",
+    "streamTr": "Dinlerarası Diyalog",
+    "descriptionTr": "Gießen'in merkezinde barış, kardeşlik ve bir arada yaşam için dinlerarası bir festival. Evangelische Philippusgemeinde Gießen işbirliğiyle düzenlenen etkinlikte farklı inanç ve kültürlerden insanların bir arada barış içinde yaşamasının önemi vurgulanıyor. Birlikte barış duası ediliyor ve yoldan geçenlere, misafirlere Aşure ikram ediliyor. Kayıt gerekmez.",
+    "wasErwartetSieTr": [
+      "Nuh'un Sofrası ve Aşure'nin anlamı üzerine dinlerarası konuşmalar",
+      "Birlikte yapılan ortak Barış Duası",
+      "Misafirlere ve vatandaşlara geleneksel Aşure ikramı",
+      "Hafif müzik eşliğinde kültürlerarası sohbet ve kaynaşma"
+    ],
+    "fuerWenTr": "Gießen'de barış, diyalog ve kardeşlik mesajına ortak olmak isteyen tüm vatandaşlar.",
+    "badgeTr": "Kayıt Gerekmez"
   },
   {
-    "category": "news",
-    "title": "Treffen mit CDU‑Landtagsabgeordneter Michelle Kraft in Gießen",
-    "summary": "Eine Delegation des BVM e.V. traf sich mit Michelle Kraft, Landtagsabgeordnete für Gießen I und Fachsprecherin für Integration, zum Austausch über Integration, Bildung und Jugendförderung.",
-    "date": "2026-09-11T10:00:00",
-    "image": "/assets/kraft_treffen_gruppe.jpeg",
-    "link": "/aktuelles#news",
-    "author": "BVM e.V."
+    "id": "pilzwanderung-marburg-2026",
+    "title": "Pilzwanderung in Marburg",
+    "category": "SOZIALES",
+    "stream": "Community Days",
+    "date": "2026-10-04T11:00:00",
+    "location": "Marburg Botanischer Garten – Lahnberge Parkplatz (Uni Marburg)",
+    "image": "https://plus.unsplash.com/premium_photo-1675727579781-48c0cfefc835?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "description": "Eine geführte Pilzwanderung im Waldgebiet rund um den Botanischen Garten in Marburg. Während der Tour erhalten die Teilnehmenden spannende Erklärungen zu verschiedenen Pilzarten – ob essbar oder giftig – und haben die Möglichkeit, selbst Pilze zu sammeln. Das Programm findet auf Englisch statt, bei Bedarf wird ins Deutsche übersetzt. Bitte achten Sie auf das Wetter und bringen Sie geeignete Kleidung mit, insbesondere bei Regen. Eine Anmeldung ist erforderlich.",
+    "wasErwartetSie": [
+      "Geführte Wanderung durch den Wald",
+      "Erklärungen zu Pilzarten (essbar und giftig)",
+      "Gemeinsames Sammeln von Pilzen",
+      "Programm auf Englisch mit deutscher Übersetzung"
+    ],
+    "fuerWen": "Alle Interessierten, die die Natur erkunden und mehr über Pilze lernen möchten.",
+    "titleTr": "Marburg Doğa & Mantar Keşif Yürüyüşü",
+    "categoryTr": "TOPLUMSAL",
+    "streamTr": "Topluluk Günleri",
+    "descriptionTr": "Marburg Botanik Bahçesi çevresindeki ormanlık alanda rehberli mantar yürüyüşü. Tur boyunca yenilebilir ve zehirli mantar türleri hakkında uzman anlatımları dinleyecek, birlikte mantar toplama deneyimi yaşayacaksınız. Etkinlik İngilizce yürütülecek, ihtiyaç halinde Almanca tercüme yapılacaktır. Kayıt zorunludur.",
+    "wasErwartetSieTr": [
+      "Ormanda rehber eşliğinde doğa yürüyüşü",
+      "Yenilebilir ve zehirli mantar türlerini tanıma eğitimi",
+      "Birlikte mantar arama ve toplama deneyimi",
+      "İngilizce program ve Almanca çeviri desteği"
+    ],
+    "fuerWenTr": "Doğayı keşfetmek ve mantarlar hakkında bilgi edinmek isteyen tüm doğaseverler."
+  },
+  {
+    "id": "gazelle-frankfurt-screening-2026",
+    "title": "Gazelle: Frankfurt Screening + Q&A mit Nadir Sarıbacak",
+    "category": "KULTUR",
+    "stream": "Kino & Kultur",
+    "date": "2026-10-06T20:00:00",
+    "location": "ASTOR Film Lounge, Zeil 106, 60313 Frankfurt am Main",
+    "image": "/assets/gazelle_film_poster.jpeg",
+    "ticketLink": "https://events.gazellefilm.com/events/gazellefilm/2346017",
+    "ticketLabel": "Tickets buchen (events.gazellefilm.com)",
+    "ticketLabelTr": "Bilet Satın Al (events.gazellefilm.com)",
+    "description": "Die ASTOR Film Lounge in Frankfurt zeigt das preisgekrönte Drama »Gazelle« im Beisein von Co-Regisseur und Hauptdarsteller Nadir Sarıbacak (u. a. bekannt aus Nuri Bilge Ceylans 'Winterschlaf'). Im Anschluss moderiert Dr. Margrit Frölich (Evangelische Akademie Frankfurt) ein exklusives Live-Q&A. Der Film berührt existenzielle Erfahrungen, die viele unserer Vereinsmitglieder aus eigener Biografie kennen: Entwurzelung, Neuanfang im Exil und das Bewahren menschlicher Würde.",
+    "wasErwartetSie": [
+      "Filmvorführung von »Gazelle« (100 Min., OmeU/OmU in Englisch & Türkisch)",
+      "Live-Q&A mit Co-Regisseur und Hauptdarsteller Nadir Sarıbacak",
+      "Moderation durch Filmkuratorin Dr. Margrit Frölich (Ev. Akademie Frankfurt)",
+      "Exklusives Screening in der renommierten ASTOR Film Lounge Frankfurt",
+      "Gemeinsamer Austausch über Neuanfang und Identität im Exil"
+    ],
+    "fuerWen": "Mitglieder und Freundeskreis des BVM e.V., Filminteressierte sowie alle, die sich für Themen rund um Flucht, Exil und interkulturellen Dialog interessieren.",
+    "titleTr": "Gazelle: Frankfurt Özel Gösterimi & Nadir Sarıbacak ile Söyleşi",
+    "categoryTr": "KÜLTÜR",
+    "streamTr": "Sinema & Kültür Buluşmaları",
+    "descriptionTr": "Frankfurt ASTOR Film Lounge, ödüllü »Gazelle« filmini ortak yönetmen ve başrol oyuncusu Nadir Sarıbacak'ın katılımıyla seyirciyle buluşturuyor. Gösterimin ardından Frankfurt Protestan Akademisi Direktörü Dr. Margrit Frölich moderatörlüğünde canlı soru-cevap (Q&A) gerçekleştirilecektir. Film, sürgün, aidiyet ve yeniden başlama temasını işleyerek derneğimiz üyelerinin ortak deneyimlerine ayna tutuyor.",
+    "wasErwartetSieTr": [
+      "»Gazelle« filmi özel gösterimi (100 dk., İngilizce & Türkçe altyazılı)",
+      "Nadir Sarıbacak ile canlı soru-cevap ve söyleşi",
+      "Dr. Margrit Frölich moderatörlüğünde derinlemesine sohbet",
+      "ASTOR Film Lounge Frankfurt'ta seçkin sinema deneyimi",
+      "Sürgün, göç ve yeni başlangıçlar üzerine dayanışma ve paylaşım"
+    ],
+    "fuerWenTr": "Dernek üyelerimiz, sinemaseverler, kültür-sanat dostları ve sürgün deneyimini anlamak isteyen herkes.",
+    "badge": "Tickets verfügbar",
+    "badgeTr": "Biletler Satışta"
   }
 ]
