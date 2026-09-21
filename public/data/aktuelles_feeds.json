@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-21T20:17:54.683416+00:00",
+  "generatedAt": "2026-09-21T20:34:11.393717+00:00",
   "lastUpdated": {
-    "news": "2026-09-21T20:17:54.683416+00:00",
-    "events": "2026-09-21T20:17:54.683416+00:00",
-    "blogs": "2026-09-21T20:17:54.683416+00:00"
+    "news": "2026-09-21T20:34:11.393717+00:00",
+    "events": "2026-09-21T20:34:11.393717+00:00",
+    "blogs": "2026-09-21T20:34:11.393717+00:00"
   },
   "news": [
     {
@@ -11,15 +11,15 @@
       "category": "Kino & Dialog",
       "date": "2026-09-20T12:00:00",
       "title": "Kino-Tipp & Frankfurt-Screening: »Gazelle« mit Live-Q&A von Nadir Sarıbacak",
-      "image": "/assets/gazelle_poster.jpg",
+      "image": "/assets/gazelle_film_poster.jpeg",
       "gallery": [
         {
-          "url": "/assets/gazelle_poster.jpg",
+          "url": "/assets/gazelle_film_poster.jpeg",
           "title": "Offizielles Filmplakat: Gazelle",
           "caption": "Spielfilm von und mit Nadir Sarıbacak – Gewinner des VIFF Vanguard Audience Award."
         },
         {
-          "url": "/assets/gazelle_still.jpg",
+          "url": "/assets/gazelle_film_still.jpeg",
           "title": "Filmszene aus »Gazelle«",
           "caption": "Gedreht in New York und New Jersey: Authentische Erzählung über Neuanfang und Exil."
         }
@@ -147,6 +147,7 @@
       "date": "2026-10-06T20:00:00",
       "location": "ASTOR Film Lounge, Zeil 106, 60313 Frankfurt am Main",
       "category": "KULTUR",
+      "image": "/assets/gazelle_film_poster.jpeg",
       "image": "/assets/gazelle_poster.jpg",
       "description": "Die ASTOR Film Lounge in Frankfurt zeigt das preisgekrönte Drama »Gazelle« im Beisein von Co-Regisseur und Hauptdarsteller Nadir Sarıbacak (u. a. bekannt aus Nuri Bilge Ceylans 'Winterschlaf'). Im Anschluss moderiert Dr.",
       "link": "/events/gazelle-frankfurt-screening-2026"
