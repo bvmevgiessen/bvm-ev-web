@@ -312,6 +312,14 @@ export default function HomeAktuellesHeader() {
                   loading="lazy"
                   className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (target.src.includes('poster')) {
+                      target.src = '/assets/gazelle_film_still.jpeg';
+                    } else {
+                      target.src = 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200';
+                    }
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-slate-900/30 lg:to-slate-900/90" />
 
@@ -476,6 +484,14 @@ export default function HomeAktuellesHeader() {
                     className="w-full h-full object-cover"
                     loading="lazy"
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (target.src.includes('poster')) {
+                        target.src = '/assets/gazelle_film_still.jpeg';
+                      } else {
+                        target.src = 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=200';
+                      }
+                    }}
                   />
                 </div>
                 <div className="flex-1 min-w-0">

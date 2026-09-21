@@ -190,8 +190,8 @@ export default function AktuellesPage() {
                         referrerPolicy="no-referrer"
                         onError={(e) => {
                           const target = e.currentTarget;
-                          if (n.gallery && n.gallery.length > 1 && !target.src.includes('gazelle_still')) {
-                            target.src = '/assets/gazelle_still.jpg';
+                          if (n.gallery && n.gallery.length > 1 && !target.src.includes('still')) {
+                            target.src = '/assets/gazelle_film_still.jpeg';
                           }
                         }}
                       />
@@ -302,8 +302,8 @@ export default function AktuellesPage() {
                         referrerPolicy="no-referrer"
                         onError={(e) => {
                           const target = e.currentTarget;
-                          if (target.src.includes('gazelle_poster')) {
-                            target.src = '/assets/gazelle_still.jpg';
+                          if (target.src.includes('poster')) {
+                            target.src = '/assets/gazelle_film_still.jpeg';
                           }
                         }}
                       />

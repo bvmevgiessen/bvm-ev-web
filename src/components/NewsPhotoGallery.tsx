@@ -65,8 +65,8 @@ export default function NewsPhotoGallery({
             onClick={() => setLightboxOpen(true)}
             onError={(e) => {
               const target = e.currentTarget;
-              if (target.src.includes('gazelle_poster') && !target.src.includes('gazelle_still')) {
-                target.src = '/assets/gazelle_still.jpg';
+              if (target.src.includes('gazelle_film_poster') || target.src.includes('gazelle_poster')) {
+                target.src = '/assets/gazelle_film_still.jpeg';
               }
             }}
           />
