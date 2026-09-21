@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-21T21:38:28.462837+00:00",
+  "generatedAt": "2026-09-21T21:50:23.731712+00:00",
   "lastUpdated": {
-    "news": "2026-09-21T21:38:28.462837+00:00",
-    "events": "2026-09-21T21:38:28.462837+00:00",
-    "blogs": "2026-09-21T21:38:28.462837+00:00"
+    "news": "2026-09-21T21:50:23.731712+00:00",
+    "events": "2026-09-21T21:50:23.731712+00:00",
+    "blogs": "2026-09-21T21:50:23.731712+00:00"
   },
   "news": [
     {
@@ -144,100 +144,100 @@
   ],
   "blogs": [
     {
-      "id": "fidev-78eadb80d1",
-      "title": "Erasmus+ Jugendprojekte: FIDeV als erfahrener Kooperationspartner",
-      "date": "2026-08-04T12:58:00+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Jugend",
-      "image": "https://static.wixstatic.com/media/2d6f92_e02fc9671ccc46dd874ceb1e440a5ffd~mv2.png/v1/fit/w_1000,h_704,al_c,q_80/file.png",
-      "excerpt": "FIDeV bringt praktische Erfahrung mit KA153-YOU und KA155-YOU ein und ist offen für verlässliche Partnerschaften in europäischen Jugendprojekten.",
-      "link": "https://www.fidev.org/post/erasmus-plus-jugendprojekte-kooperation-fidev"
-    },
-    {
-      "id": "fidev-13314fad42",
-      "title": "Zivilgesellschaftliches Engagement von Jugendlichen: Wege zu mehr Bürgerbeteiligung",
-      "date": "2026-08-04T07:15:05+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Jugend",
-      "image": "https://static.wixstatic.com/media/2d6f92_2e28834f2355469c9b70d4ae26374f04~mv2.png/v1/fit/w_1000,h_704,al_c,q_80/file.png",
-      "excerpt": "Junge Menschen wollen Gesellschaft mitgestalten. Dieser Leitfaden zeigt, wie Jugendprojekte, Ehrenamt und echte Beteiligung den Einstieg erleichtern.",
-      "link": "https://www.fidev.org/post/zivilgesellschaftliches-engagement-jugendlicher"
-    },
-    {
-      "id": "fidev-936fc961b4",
-      "title": "N.O.A.H.S. – Das Leben einer Kichererbse",
-      "date": "2026-08-03T10:29:27+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Community",
-      "image": "https://static.wixstatic.com/media/2d6f92_74ff984f663d4a63ba15da709f8eec56~mv2.png/v1/fit/w_1000,h_504,al_c,q_80/file.png",
-      "excerpt": "„N.O.A.H.S. (Nachhaltige Orientierung durch Anerkennung, Haltung und Solidarität) – Das Leben einer Kichererbse“ ist ein Workshopformat für Schulklassen der Unter- und Mittelstufe, das spielerisch demokratische Werte un…",
-      "link": "https://www.fidev.org/post/noahs"
-    },
-    {
-      "id": "fidev-cf3ef08640",
-      "title": "Was ist interkultureller Dialog? Warum er für den gesellschaftlichen Frieden entscheidend ist",
-      "date": "2026-08-03T09:49:46+00:00",
-      "author": "Forum für Interkulturellen Dialog",
-      "partnerName": "Forum für Interkulturellen Dialog",
-      "partnerUrl": "https://www.fidev.org/",
-      "category": "Dialog",
-      "image": "https://static.wixstatic.com/media/2d6f92_95934f04beb44a9ea582264caba7aab6~mv2.png/v1/fit/w_1000,h_860,al_c,q_80/file.png",
-      "excerpt": "Interkultureller Dialog schafft Verständnis über kulturelle Grenzen hinweg. Erfahren Sie, wie Begegnung Vorurteile abbaut und gesellschaftlichen Zusammenhalt stärkt.",
-      "link": "https://www.fidev.org/post/was-ist-interkultureller-dialog"
-    },
-    {
-      "id": "sdub-a2e85c74b0",
-      "title": "Stellungnahme Anschlag in Berlin",
-      "date": "2026-07-26T16:26:03+00:00",
+      "id": "sdub-bca8a4b64c",
+      "title": "DuB Essentials Nr. 4: Islamische Perspektiven für den interreligiösen Dialog",
+      "date": "2026-09-17T16:05:34+00:00",
       "author": "Stiftung Dialog und Bildung",
       "partnerName": "Stiftung Dialog und Bildung",
       "partnerUrl": "https://sdub.de/",
       "category": "Dialog",
-      "image": "https://sdub.de/wp-content/uploads/2026/07/stellungnahme-sdub_wide1-480x264.jpg",
-      "excerpt": "Nach dem Anschlag in Berlin: Stellungnahme der Stiftung Dialog und Bildung Berlin, 26. Juli 2026 Die Stiftung Dialog und Bildung ist erschüttert über den Anschlag auf den Christopher Street Day in Berlin. Wir trauern um…",
-      "link": "https://sdub.de/stellungnahme-anschlag-csd-berlin/"
+      "image": "https://sdub.de/wp-content/uploads/2026/09/4-dub-essentials-_1-721x1024.jpeg",
+      "excerpt": "In der vierten Ausgabe dieser Reihe widmen wir uns dem Text „Islamische Perspektiven für den interreligiösen Dialog: Die Stimme von Fethullah Gülen“ des Religionswissenschaftlers Douglas Pratt. Dieser Beitrag bietet ein…",
+      "link": "https://sdub.de/dub-essentials-nr-4-islamische-perspektiven/"
     },
     {
-      "id": "fidev-8b45628938",
-      "title": "Projektwoche für Schulklassen",
-      "date": "2026-07-06T10:21:03+00:00",
+      "id": "fidev-8d087f3cce",
+      "title": "Filmempfehlung: „Gazelle“ – Ein eindringlicher Blick auf Exil, Warten und Identität",
+      "date": "2026-09-17T14:56:39+00:00",
       "author": "Forum für Interkulturellen Dialog",
       "partnerName": "Forum für Interkulturellen Dialog",
       "partnerUrl": "https://www.fidev.org/",
-      "category": "Jugend",
-      "image": "https://static.wixstatic.com/media/2d6f92_f23d066ad9f04626954b5cb8d5efa2bc~mv2.png/v1/fit/w_412,h_232,al_c,q_80/file.png",
-      "excerpt": "Besuch der Goethe Universität mit der Ricarda- Huch- Schule Dreieich Angesichts einer sich schnell wandelnden Arbeitswelt, vielfältiger Bildungswege und gesellschaftlicher Unsicherheiten stehen viele junge Menschen heut…",
-      "link": "https://www.fidev.org/post/projektwoche-f%C3%BCr-schulklassen"
+      "category": "Integration",
+      "image": "https://static.wixstatic.com/media/2d6f92_f374a79243514690a76cc73b69130bd9~mv2.png/v1/fit/w_1000,h_646,al_c,q_80/file.png",
+      "excerpt": "Als Forum für Interkulturellen Dialog e.V. setzen wir uns seit vielen Jahren für Dialogräume ein, die persönliche Geschichten von Migration, Flucht und gesellschaftlichem Ankommen sichtbar machen. Mit großer Freude möch…",
+      "link": "https://www.fidev.org/post/filmempfehlung-gazelle-ein-eindringlicher-blick-auf-exil-warten-und-identit%C3%A4t"
     },
     {
-      "id": "house-of-one-e20f2574e4",
-      "title": "#118: Was gibt uns Hoffnung?",
-      "date": "2026-07-06T00:00:00+00:00",
+      "id": "fidev-b0ae247724",
+      "title": "Tage des Exils - Beeing a Refugee",
+      "date": "2026-09-17T11:17:15+00:00",
+      "author": "Forum für Interkulturellen Dialog",
+      "partnerName": "Forum für Interkulturellen Dialog",
+      "partnerUrl": "https://www.fidev.org/",
+      "category": "Dialog",
+      "image": "https://static.wixstatic.com/media/2d6f92_32f02e2406664668a1646bb7e27bbfdd~mv2.png/v1/fit/w_1000,h_486,al_c,q_80/file.png",
+      "excerpt": "Am 2. September 2026 veranstaltete das Forum für Interkulturellen Dialog e.V. (FID e.V.) im Rahmen der „Tage des Exils“ eine Filmvorführung des Dokumentarfilms „Being a Refugee“ der israelischen Regisseurin Dr. Nurit Ca…",
+      "link": "https://www.fidev.org/post/tage-des-exils-beeing-a-refugee"
+    },
+    {
+      "id": "fidev-b2e5d82c32",
+      "title": "Nachbericht: Marktplatz der Initiativen in der Orangerie im Günthersburgpark",
+      "date": "2026-09-17T11:15:16+00:00",
+      "author": "Forum für Interkulturellen Dialog",
+      "partnerName": "Forum für Interkulturellen Dialog",
+      "partnerUrl": "https://www.fidev.org/",
+      "category": "Community",
+      "image": "https://static.wixstatic.com/media/2d6f92_6b1b1c671ce64c448ff4884a8471bb97~mv2.png/v1/fit/w_1000,h_562,al_c,q_80/file.png",
+      "excerpt": "Mit unserem Sommerfest in der Orangerie im Günthersburgpark haben wir gemeinnützige Initiativen aus Frankfurt und Umgebung zu einem „Marktplatz der Initiativen“ zusammengebracht und damit einen Raum geschaffen, in dem s…",
+      "link": "https://www.fidev.org/post/nachbericht-marktplatz-der-initiativen-in-der-orangerie-im-g%C3%BCnthersburgpark"
+    },
+    {
+      "id": "house-of-one-492923b1b2",
+      "title": "Bau mit an unserer ersten Laubhütte!",
+      "date": "2026-09-17T00:00:00+00:00",
       "author": "House of One",
       "partnerName": "House of One",
       "partnerUrl": "https://house-of-one.org/",
-      "category": "Community",
-      "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-      "excerpt": "Es gibt Tage, an denen nichts leichtfällt. Momente, in denen das Licht am Ende des Tunnels kaum zu sehen ist. Wir sprechen in dieser Folge darüber, wa... Weiterlesen",
-      "link": "https://house-of-one.org/news/118-was-gibt-uns-hoffnung"
+      "category": "Dialog",
+      "image": "https://house-of-one.org/_next/image?url=&w=3840&q=75",
+      "excerpt": "Zum jüdischen Laubhüttenfest Sukkot baut das House of One in diesem Jahr zum ersten Mal eine eigene Laubhütte. Sie entsteht in jüdisch-muslimisch-chri... Weiterlesen",
+      "link": "https://house-of-one.org/news/bau-mit-unserer-ersten-laubhuette"
     },
     {
-      "id": "sdub-c1bd1343d7",
-      "title": "1. Juli – Gedenktag gegen antimuslimischen Rassismus",
-      "date": "2026-07-01T11:04:00+00:00",
-      "author": "Stiftung Dialog und Bildung",
-      "partnerName": "Stiftung Dialog und Bildung",
-      "partnerUrl": "https://sdub.de/",
+      "id": "house-of-one-19e840629e",
+      "title": "House of One baut eine Laubhütte",
+      "date": "2026-09-04T00:00:00+00:00",
+      "author": "House of One",
+      "partnerName": "House of One",
+      "partnerUrl": "https://house-of-one.org/",
       "category": "Dialog",
-      "image": "https://sdub.de/wp-content/uploads/2026/07/tag-gegen-antimuslimischen-rassismus-768x614.jpg",
-      "excerpt": "Rassismus hat keinen Platz in unserer Gesellschaft – gegen niemanden. Heute erinnern wir an die Menschen, die antimuslimischen Rassismus erfahren, und setzen ein Zeichen für Respekt, Menschenwürde und Zusammenhalt. Wer…",
-      "link": "https://sdub.de/gedenktag-gegen-antimuslimischen-rassismus/"
+      "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+      "excerpt": "Wir feiern Sukkot im House of One – und laden Dich ein, dabei zu sein Das Laubhüttenfest Sukkot zählt zu den wichtigsten Festen im jüdischen Kalender.... Weiterlesen",
+      "link": "https://house-of-one.org/news/house-one-baut-eine-laubhuette"
+    },
+    {
+      "id": "house-of-one-bc00b061c4",
+      "title": "Mendelssohn-Preis für Rabbiner Nachama",
+      "date": "2026-09-03T00:00:00+00:00",
+      "author": "House of One",
+      "partnerName": "House of One",
+      "partnerUrl": "https://house-of-one.org/",
+      "category": "Dialog",
+      "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+      "excerpt": "Andreas Nachama, Rabbiner im House of One und Gründungsmitglied der Stiftung, ist mit dem Moses-Mendelssohn-Preis des Landes Berlin 2026 ausgezeichnet... Weiterlesen",
+      "link": "https://house-of-one.org/news/mendelssohn-preis-fuer-rabbiner-nachama"
+    },
+    {
+      "id": "house-of-one-fc881ac030",
+      "title": "Helene Braun – die neue Stimme im House of One-Podcast",
+      "date": "2026-09-03T00:00:00+00:00",
+      "author": "House of One",
+      "partnerName": "House of One",
+      "partnerUrl": "https://house-of-one.org/",
+      "category": "Dialog",
+      "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+      "excerpt": "Wir sind aus der Sommerpause zurück – erholt und mit neuer Stimme in unserer Mitte: Helene Braun, alias Leni, ist die neue jüdische Stimme in unserer ... Weiterlesen",
+      "link": "https://house-of-one.org/news/helene-braun-die-neue-stimme-im-house-one-podcast"
     }
   ]
 }
