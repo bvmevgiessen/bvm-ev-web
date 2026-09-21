@@ -723,41 +723,5 @@
       "İngilizce program ve Almanca çeviri desteği"
     ],
     "fuerWenTr": "Doğayı keşfetmek ve mantarlar hakkında bilgi edinmek isteyen tüm doğaseverler."
-  },
-  {
-    "id": "gazelle-frankfurt-screening-2026",
-    "title": "Gazelle: Frankfurt Screening + Q&A mit Nadir Sarıbacak",
-    "category": "KULTUR",
-    "stream": "Kino & Kultur",
-    "date": "2026-10-06T20:00:00",
-    "location": "ASTOR Film Lounge, Zeil 106, 60313 Frankfurt am Main",
-    "image": "/assets/gazelle_film_poster.jpeg",
-    "image": "/assets/gazelle_poster.jpg",
-    "ticketLink": "https://events.gazellefilm.com/events/gazellefilm/2346017",
-    "ticketLabel": "Tickets buchen (events.gazellefilm.com)",
-    "ticketLabelTr": "Bilet Satın Al (events.gazellefilm.com)",
-    "description": "Die ASTOR Film Lounge in Frankfurt zeigt das preisgekrönte Drama »Gazelle« im Beisein von Co-Regisseur und Hauptdarsteller Nadir Sarıbacak (u. a. bekannt aus Nuri Bilge Ceylans 'Winterschlaf'). Im Anschluss moderiert Dr. Margrit Frölich (Evangelische Akademie Frankfurt) ein exklusives Live-Q&A. Der Film berührt existenzielle Erfahrungen, die viele unserer Vereinsmitglieder aus eigener Biografie kennen: Entwurzelung, Neuanfang im Exil und das Bewahren menschlicher Würde.",
-    "wasErwartetSie": [
-      "Filmvorführung von »Gazelle« (100 Min., OmeU/OmU in Englisch & Türkisch)",
-      "Live-Q&A mit Co-Regisseur und Hauptdarsteller Nadir Sarıbacak",
-      "Moderation durch Filmkuratorin Dr. Margrit Frölich (Ev. Akademie Frankfurt)",
-      "Exklusives Screening in der renommierten ASTOR Film Lounge Frankfurt",
-      "Gemeinsamer Austausch über Neuanfang und Identität im Exil"
-    ],
-    "fuerWen": "Mitglieder und Freundeskreis des BVM e.V., Filminteressierte sowie alle, die sich für Themen rund um Flucht, Exil und interkulturellen Dialog interessieren.",
-    "titleTr": "Gazelle: Frankfurt Özel Gösterimi & Nadir Sarıbacak ile Söyleşi",
-    "categoryTr": "KÜLTÜR",
-    "streamTr": "Sinema & Kültür Buluşmaları",
-    "descriptionTr": "Frankfurt ASTOR Film Lounge, ödüllü »Gazelle« filmini ortak yönetmen ve başrol oyuncusu Nadir Sarıbacak'ın katılımıyla seyirciyle buluşturuyor. Gösterimin ardından Frankfurt Protestan Akademisi Direktörü Dr. Margrit Frölich moderatörlüğünde canlı soru-cevap (Q&A) gerçekleştirilecektir. Film, sürgün, aidiyet ve yeniden başlama temasını işleyerek derneğimiz üyelerinin ortak deneyimlerine ayna tutuyor.",
-    "wasErwartetSieTr": [
-      "»Gazelle« filmi özel gösterimi (100 dk., İngilizce & Türkçe altyazılı)",
-      "Nadir Sarıbacak ile canlı soru-cevap ve söyleşi",
-      "Dr. Margrit Frölich moderatörlüğünde derinlemesine sohbet",
-      "ASTOR Film Lounge Frankfurt'ta seçkin sinema deneyimi",
-      "Sürgün, göç ve yeni başlangıçlar üzerine dayanışma ve paylaşım"
-    ],
-    "fuerWenTr": "Dernek üyelerimiz, sinemaseverler, kültür-sanat dostları ve sürgün deneyimini anlamak isteyen herkes.",
-    "badge": "Tickets verfügbar",
-    "badgeTr": "Biletler Satışta"
   }
 ]
