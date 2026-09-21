@@ -63,6 +63,12 @@ export default function NewsPhotoGallery({
             referrerPolicy="no-referrer"
             className="h-full w-full object-contain sm:object-cover cursor-pointer select-none"
             onClick={() => setLightboxOpen(true)}
+            onError={(e) => {
+              const target = e.currentTarget;
+              if (target.src.includes('gazelle_poster') && !target.src.includes('gazelle_still')) {
+                target.src = '/assets/gazelle_still.jpg';
+              }
+            }}
           />
         </AnimatePresence>
 

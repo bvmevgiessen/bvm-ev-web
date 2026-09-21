@@ -46,6 +46,12 @@ const streams: StreamInfo[] = [
     nameTr: "Dinlerarası Diyalog",
     description: "Dialog & Begegnung", 
     descriptionTr: "Birlikte Yaşam ve Ortak Değerler" 
+  },
+  { 
+    name: "Kino & Kultur", 
+    nameTr: "Sinema & Kültür Buluşmaları",
+    description: "Film, Kunst & gesellschaftlicher Dialog", 
+    descriptionTr: "Sinema, Sanat ve Toplumsal Diyalog" 
   }
 ];
 
@@ -235,4 +241,3 @@ export default function EventsPage() {
     </div>
   );
 }
-

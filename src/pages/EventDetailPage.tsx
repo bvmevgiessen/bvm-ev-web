@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useSearchParams } from 'react-router';
 import { motion, AnimatePresence } from 'motion/react';
-import { Calendar, MapPin, Clock, ArrowLeft, CheckCircle2, Users, Info, Sparkles, XCircle } from 'lucide-react';
+import { Calendar, MapPin, Clock, ArrowLeft, CheckCircle2, Users, Info, Sparkles, XCircle, Ticket, ExternalLink } from 'lucide-react';
 import { useForm, ValidationError } from '@formspree/react';
 import Navbar from '../components/Navbar';
 import ShareButtons from '../components/ShareButtons';
@@ -75,6 +75,7 @@ export default function EventDetailPage() {
     event.badge?.toLowerCase().includes('ohne anmeldung') || 
     event.badge?.toLowerCase().includes('keine anmeldung') ||
     event.badge?.toLowerCase().includes('kayıt gerekmez');
+  const hasTicketLink = Boolean((rawEvent as any)?.ticketLink);
 
   return (
     <div className="min-h-screen bg-white">
@@ -248,41 +249,81 @@ export default function EventDetailPage() {
               <div className="lg:col-span-1">
                 <div className="sticky top-28 bg-white p-8 rounded-[2rem] border border-slate-200 shadow-xl shadow-slate-200/50">
                   <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-2xl font-bold text-brand-navy">
-                      {isCancelled ? strings.registrationStatus : isNoRegistration ? strings.participation : strings.registration}
-                    </h2>
-                    <span className={`text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider ${
-                      isCancelled
-                        ? 'text-rose-700 bg-rose-100'
-                        : isPastEvent 
-                          ? 'text-slate-500 bg-slate-100' 
-                          : isNoRegistration
-                            ? 'text-emerald-700 bg-emerald-100'
-                            : 'text-brand-orange bg-brand-orange/10'
-                    }`}>
-                      {isCancelled 
-                        ? strings.cancelled 
-                        : isPastEvent 
-                          ? strings.pastEvent 
-                          : isNoRegistration 
-                            ? strings.openToAll 
-                            : strings.requestQuery}
-                    </span>
-                  </div>
-                  
-                  {isCancelled ? (
-                    <div className="text-center py-8 bg-rose-50/60 rounded-2xl border border-rose-100 p-6 space-y-4">
-                      <div className="w-16 h-16 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto">
-                        <XCircle size={32} />
+                        <h2 className="text-2xl font-bold text-brand-navy">
+                          {isCancelled
+                            ? strings.registrationStatus
+                            : hasTicketLink
+                              ? (currentLang === 'tr' ? 'Biletler' : 'Tickets')
+                              : isNoRegistration
+                                ? strings.participation
+                                : strings.registration}
+                        </h2>
+                        <span className={`text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider ${
+                          isCancelled
+                            ? 'text-rose-700 bg-rose-100'
+                            : hasTicketLink
+                              ? 'text-amber-800 bg-amber-100 font-extrabold'
+                              : isPastEvent 
+                                ? 'text-slate-500 bg-slate-100' 
+                                : isNoRegistration
+                                  ? 'text-emerald-700 bg-emerald-100'
+                                  : 'text-brand-orange bg-brand-orange/10'
+                        }`}>
+                          {isCancelled 
+                            ? strings.cancelled 
+                            : hasTicketLink
+                              ? (currentLang === 'tr' ? 'Biletler Satışta' : 'Vorverkauf läuft')
+                              : isPastEvent 
+                                ? strings.pastEvent 
+                                : isNoRegistration 
+                                  ? strings.openToAll 
+                                  : strings.requestQuery}
+                        </span>
                       </div>
-                      <div>
-                        <h3 className="text-lg font-bold text-brand-navy mb-1.5">{strings.cancelledNoticeTitle}</h3>
-                        <p className="text-slate-600 text-sm leading-relaxed">
-                          {strings.cancelledNoticeText}
-                        </p>
-                      </div>
-                    </div>
-                  ) : isPastEvent ? (
+                      
+                      {isCancelled ? (
+                        <div className="text-center py-8 bg-rose-50/60 rounded-2xl border border-rose-100 p-6 space-y-4">
+                          <div className="w-16 h-16 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto">
+                            <XCircle size={32} />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-bold text-brand-navy mb-1.5">{strings.cancelledNoticeTitle}</h3>
+                            <p className="text-slate-600 text-sm leading-relaxed">
+                              {strings.cancelledNoticeText}
+                            </p>
+                          </div>
+                        </div>
+                      ) : hasTicketLink ? (
+                        <div className="space-y-5">
+                          <div className="p-5 bg-amber-50/80 rounded-2xl border border-amber-200 text-amber-950 text-sm space-y-2">
+                            <div className="font-bold flex items-center gap-2 text-amber-800 text-base">
+                              <Ticket size={18} className="text-amber-600" />
+                              {currentLang === 'tr' ? 'Resmi Bilet Satışı' : 'Offizieller Ticketverkauf'}
+                            </div>
+                            <p className="text-xs leading-relaxed text-amber-900/80">
+                              {currentLang === 'tr'
+                                ? 'Bu özel film gösterimi için biletler ASTOR Film Lounge ve Gazelle Film resmi platformu üzerinden satışa sunulmuştur.'
+                                : 'Für dieses besondere Kinofilmevent mit Live-Q&A sind Tickets exklusiv über die offizielle Buchungsplattform von Gazelle Film erhältlich.'}
+                            </p>
+                            <p className="text-[11px] text-amber-800/70 font-mono">
+                              {currentLang === 'tr' ? 'Sınırlı kontenjan • Koltuk seçimi rezervasyon sırasına göredir.' : 'Begrenztes Kontingent • First-Come, First-Served.'}
+                            </p>
+                          </div>
+
+                          <a
+                            href={(rawEvent as any).ticketLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full flex items-center justify-center gap-2.5 py-4 px-6 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-2xl font-bold text-center transition-all shadow-lg shadow-amber-500/25 active:scale-95 text-base cursor-pointer"
+                          >
+                            <Ticket size={18} />
+                            {(rawEvent as any).ticketLabelTr && currentLang === 'tr'
+                              ? (rawEvent as any).ticketLabelTr
+                              : ((rawEvent as any).ticketLabel || (currentLang === 'tr' ? 'Bilet Satın Al' : 'Tickets online buchen'))}
+                            <ExternalLink size={16} />
+                          </a>
+                        </div>
+                      ) : isPastEvent ? (
                     <div className="text-center py-10 bg-slate-50 rounded-2xl border border-slate-100">
                       <div className="w-16 h-16 bg-slate-200 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Clock className="text-slate-500" size={32} />

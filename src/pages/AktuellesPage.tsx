@@ -181,8 +181,20 @@ export default function AktuellesPage() {
               >
                 <Card3D data-testid={`news-card-${n.id}`} className="h-full">
                   <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-md">
-                    <div className="relative h-52 overflow-hidden">
-                      <img src={n.image} alt={n.title} loading="lazy" className="h-full w-full object-cover" referrerPolicy="no-referrer" />
+                    <div className="relative h-52 overflow-hidden bg-slate-100">
+                      <img
+                        src={n.image}
+                        alt={n.title}
+                        loading="lazy"
+                        className="h-full w-full object-cover"
+                        referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (n.gallery && n.gallery.length > 1 && !target.src.includes('gazelle_still')) {
+                            target.src = '/assets/gazelle_still.jpg';
+                          }
+                        }}
+                      />
                       <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/50 to-transparent" />
                       <div className="absolute left-4 top-4 flex flex-wrap items-center gap-2">
                         <span className={`rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest ${n.category === 'Vorschau' ? 'bg-brand-orange text-white' : 'bg-white/95 text-brand-teal'}`}>
@@ -281,8 +293,20 @@ export default function AktuellesPage() {
               >
                 <Card3D data-testid={`event-card-${e.id}`} className="h-full">
                   <Link to={e.link} className="flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-md group">
-                    <div className="relative h-44 overflow-hidden">
-                      <img src={e.image} alt={e.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" referrerPolicy="no-referrer" />
+                    <div className="relative h-44 overflow-hidden bg-slate-100">
+                      <img
+                        src={e.image}
+                        alt={e.title}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (target.src.includes('gazelle_poster')) {
+                            target.src = '/assets/gazelle_still.jpg';
+                          }
+                        }}
+                      />
                       <span className="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-brand-orange shadow-sm">
                         {e.category}
                       </span>
