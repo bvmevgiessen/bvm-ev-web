@@ -723,5 +723,36 @@
       "İngilizce program ve Almanca çeviri desteği"
     ],
     "fuerWenTr": "Doğayı keşfetmek ve mantarlar hakkında bilgi edinmek isteyen tüm doğaseverler."
+  },
+  {
+    "id": "abrahamisches-cafe-namen-gottes-2026",
+    "title": "Abrahamisches Café – Namen Gottes",
+    "category": "DIALOG",
+    "stream": "Interreligiöser Austausch",
+    "date": "2026-09-30T18:00:00",
+    "location": "Siemensstraße 18, 35394 Gießen",
+    "image": "https://images.unsplash.com/photo-1532012164546-f432f2e3777a?q=80&w=1200&auto=format&fit=crop",
+    "badge": "Ohne Anmeldung",
+    "requiresRegistration": false,
+    "description": "Am Mittwoch, 30. September 2026, sprechen wir im Abrahamischen Café (18:00 – 20:00 Uhr) über die Namen Gottes in den Heiligen Schriften – speziell in Bibel und Koran. Vor Beginn können wir gemeinsam entscheiden, welche Namen wir auswählen möchten, um uns dann über diese auszutauschen und besser zu verstehen, was sie bedeuten und wie sie uns verbinden.",
+    "wasErwartetSie": [
+      "Austausch über die Namen und Eigenschaften Gottes in Bibel und Koran",
+      "Gemeinsame Auswahl von göttlichen Namen vor Gesprächsbeginn",
+      "Vergleichende Betrachtung von Bedeutung, Barmherzigkeit und Verbundenheit",
+      "Offene Gesprächsrunde bei Tee und Kaffee in herzlicher Atmosphäre"
+    ],
+    "fuerWen": "Für alle, die sich für religiöse Themen und interreligiösen Dialog interessieren. Bringt eure Gedanken, Perspektiven und Offenheit mit!",
+    "titleTr": "İbrahimi Kafe – Tanrı'nın İsimleri",
+    "categoryTr": "DİYALOG",
+    "streamTr": "Dinlerarası Diyalog",
+    "badgeTr": "Kayıt Gerekmez",
+    "descriptionTr": "30 Eylül 2026 Çarşamba günü 18:00 – 20:00 saatleri arasında İbrahimi Kafe'de kutsal metinlerde – özellikle İncil ve Kur'an'da – geçen Tanrı'nın isimleri üzerine konuşuyoruz. Başlangıçta birlikte hangi isimleri seçeceğimize karar verip bu isimlerin ne anlama geldiğini ve bizi nasıl birbirimize bağladığını keşfetmek üzere samimi bir sohbet gerçekleştireceğiz.",
+    "wasErwartetSieTr": [
+      "Kutsal metinlerde (İncil ve Kur'an) Tanrı'nın isimleri ve sıfatları üzerine diyalog",
+      "Katılımcılarla birlikte seçilecek isimlerin derinlemesine ele alınması",
+      "Farklı inanç geleneklerindeki ortak manevi değerler ve anlam dünyası",
+      "Çay ve kahve eşliğinde sıcak, samimi ve saygılı bir buluşma"
+    ],
+    "fuerWenTr": "Dini konulara ve dinlerarası diyaloğa ilgi duyan herkes davetlidir. Düşüncelerinizi, bakış açınızı ve samimiyetinizi getirin!"
   }
 ]
