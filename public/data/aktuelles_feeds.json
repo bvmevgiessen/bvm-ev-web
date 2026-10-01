@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-27T10:42:34.484175+00:00",
+  "generatedAt": "2026-10-01T12:02:36.331696+00:00",
   "lastUpdated": {
-    "news": "2026-09-27T10:42:34.484175+00:00",
-    "events": "2026-09-27T10:42:34.484175+00:00",
-    "blogs": "2026-09-27T10:42:34.484175+00:00"
+    "news": "2026-10-01T12:02:36.331696+00:00",
+    "events": "2026-10-01T12:02:36.331696+00:00",
+    "blogs": "2026-10-01T12:02:36.331696+00:00"
   },
   "news": [
     {
@@ -131,16 +131,6 @@
     }
   ],
   "events": [
-    {
-      "id": "abrahamisches-cafe-namen-gottes-2026",
-      "title": "Abrahamisches Café – Namen Gottes",
-      "date": "2026-09-30T18:00:00",
-      "location": "Siemensstraße 18, 35394 Gießen",
-      "category": "DIALOG",
-      "image": "https://images.unsplash.com/photo-1601921209216-60811afbc245?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "description": "Am Mittwoch, 30. September 2026, sprechen wir im Abrahamischen Café (18:00 – 20:00 Uhr) über die Namen Gottes in den Heiligen Schriften – speziell in Bibel und Koran. Vor Beginn können wir gemeinsam entscheiden, welche N",
-      "link": "/events/abrahamisches-cafe-namen-gottes-2026"
-    },
     {
       "id": "pilzwanderung-marburg-2026",
       "title": "Pilzwanderung in Marburg",
