@@ -1,38 +1,38 @@
 {
-  "generatedAt": "2026-09-21T10:57:35.806601+00:00",
+  "generatedAt": "2026-10-05T12:29:18.508129+00:00",
   "lastUpdated": {
-    "news": "2026-09-21T10:57:35.806601+00:00",
+    "news": "2026-10-05T12:29:18.508129+00:00",
     "reports": "2026-09-14T21:12:04.896886+00:00",
     "infographics": "2026-09-14T21:12:04.896886+00:00",
     "multimedia": "2026-09-14T21:12:04.896886+00:00"
   },
   "news": [
     {
-      "id": "boldmedya-2372282164",
-      "title": "Duşta gizli kamera bulundu: İşletmeden kumpas iddiası",
-      "date": "2026-09-21T07:35:44+00:00",
+      "id": "boldmedya-2880015579",
+      "title": "Yusuf Kerim’in vefatının 3. yılı: Anne Gülten Sayın hala demir parmaklıklar ardında",
+      "date": "2026-10-05T12:01:51+00:00",
       "source": "Bold Medya",
       "category": "Exil-Medien",
-      "summary": "İzmir’in Karşıyaka ilçesinde hizmet veren SlimShape adlı kilo verme merkezinin duş bölümünde gizli kamera lensi bulunması üzerine soruşturma başlatıldı. Kamerayı fark eden kadın üye H.C., görüntüleri cep telefonuyla kaydedip emniyete giderek şikayetçi oldu. …",
-      "url": "https://boldmedya.com/2026/09/21/dusta-gizli-kamera-slimshape-karsiyaka/"
+      "summary": "BOLD –Türkiye’de 15 Temmuz sonrası Gülen Hareketi’ne yönelik yürütülen soruşturma ve yargılamalar kapsamında hapse mahkûm edilen Gülten Sayın’ın cezaevinde bulunması, ağır kanser hastası oğlu Yusuf Kerim’in tedavi sürecinde kamuoyunun en çok tepki gösterdiği mağduriyetlerden biri olmuştu. …",
+      "url": "https://boldmedya.com/2026/10/05/yusuf-kerimin-vefatinin-3-yili-anne-gulten-sayin-hala-demir-parmakliklar-ardinda/"
     },
     {
-      "id": "turkishminute-2472418127",
-      "title": "Turkey detains 21 in İzmir over humanitarian aid to people linked to Gülen movement",
-      "date": "2026-09-19T11:49:34+00:00",
-      "source": "Turkish Minute",
-      "category": "Exil-Medien",
-      "summary": "Turkish authorities detained 21 people in the western province of İzmir on Friday in an investigation targeting people accused of both links to the Gülen movement and of providing humanitarian assistance to people in need, the Stockholm Center for Freedom reported, citing the TR724 news website. …",
-      "url": "https://turkishminute.com/2026/09/19/turkey-detains-21-in-izmir-over-humanitarian-aid-to-people-linked-to-gulen-movement/"
+      "id": "stockholmcf-7406214873",
+      "title": "European rights court faults Turkey for unfair trials of 591 people convicted over alleged Gülen links",
+      "date": "2026-10-02T15:01:00+00:00",
+      "source": "Stockholm Center for Freedom",
+      "category": "Gerichtsurteil",
+      "summary": "The European Court of Human Rights (ECtHR) ruled on Tuesday that Turkey violated the right to a fair trial of 591 people convicted of terrorism-related charges over alleged links to the faith-based Gülen movement. …",
+      "url": "https://stockholmcf.org/european-rights-court-faults-turkey-for-unfair-trials-of-591-people-convicted-over-alleged-gulen-links/"
     },
     {
-      "id": "stockholmcf-9987060389",
-      "title": "Turkey detains 21 in İzmir over humanitarian aid to people linked to Gülen movement",
-      "date": "2026-09-18T14:18:11+00:00",
+      "id": "stockholmcf-265590539",
+      "title": "Turkey’s forensic council says cancer patient jailed over Gülen links fit to remain in prison",
+      "date": "2026-10-01T15:39:27+00:00",
       "source": "Stockholm Center for Freedom",
       "category": "Exil-Medien",
-      "summary": "Turkish authorities detained 21 people in the western province of İzmir on Friday in an investigation targeting people accused of both links to the Gülen movement and of providing humanitarian assistance to people in need, the TR724 reported. The İzmir Chief Public Prosecutor’s Office issued detention warrants for 26 people. …",
-      "url": "https://stockholmcf.org/turkey-detains-21-in-izmir-over-humanitarian-aid-to-people-linked-to-gulen-movement/"
+      "summary": "Turkey’s Council of Forensic Medicine (ATK) has ruled that a cancer patient convicted over alleged links to the faith-based Gülen movement is fit to remain in prison, despite signs that his cancer has progressed after months of delays in his treatment and medical assessment, the TR724 news website reported. …",
+      "url": "https://stockholmcf.org/turkeys-forensic-council-says-cancer-patient-jailed-over-gulen-links-fit-to-remain-in-prison/"
     },
     {
       "id": "news-ecthr-yalcinkaya",
