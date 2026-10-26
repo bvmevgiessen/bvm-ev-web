@@ -1,5 +1,64 @@
 [
   {
+    "id": "sdub-bed0db81c3",
+    "title": "Zum zweiten Todestag von Fethullah Gülen",
+    "link": "https://sdub.de/zum-zweiten-todestag-von-fethullah-gulen/",
+    "date": "2026-10-20T12:10:48+00:00",
+    "source_name": "Stiftung Dialog und Bildung",
+    "image_url": "https://sdub.de/wp-content/uploads/2025/10/fethullah-guelen.png",
+    "category": "Dialog",
+    "author": "Stiftung Dialog und Bildung",
+    "partnerName": "Stiftung Dialog und Bildung",
+    "partnerUrl": "https://sdub.de/",
+    "image": "https://sdub.de/wp-content/uploads/2025/10/fethullah-guelen.png",
+    "excerpt": "Dialog verlangt Authentizität – ein Gedanke, der weiterwirkt Am 20. Oktober 2024 verstarb Fethullah Gülen Hocaefendi. Anlässlich seines zweiten Todestages erinnert die Stiftung Dialog und Bildung an sein Wirken und an G…",
+    "tags": [
+      "Dialog",
+      "Erinnerungskultur",
+      "Ethik"
+    ],
+    "external": true,
+    "sourceId": "sdub"
+  },
+  {
+    "id": "fidev-d41a92b8bb",
+    "title": "Auftakt für FRIEDEPlus: Gelungener Kick-off im Bibelhaus ErlebnisMuseum",
+    "link": "https://www.fidev.org/post/auftakt-f%C3%BCr-friedeplus-gelungener-kick-off-im-bibelhaus-erlebnismuseum",
+    "date": "2026-09-30T12:09:25+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/2d6f92_2303cbaa09354354a45ff8bc6eaa0425~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
+    "category": "Dialog",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/2d6f92_2303cbaa09354354a45ff8bc6eaa0425~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
+    "excerpt": "In Zeiten zunehmender gesellschaftlicher Polarisierung und spaltender Diskurse braucht es engagierte Menschen, die Brücken bauen und den interreligiösen Dialog aktiv gestalten. Genau hier setzt FRIEDEPlus an: Das Progra…",
+    "tags": [
+      "Dialog"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
+    "id": "fidev-c31648ba62",
+    "title": "Streetart-Workshop am Weltkindertag: Urbane Kunst als Raum für Dialog",
+    "link": "https://www.fidev.org/post/streetart-workshop-am-weltkindertag-urbane-kunst-als-raum-f%C3%BCr-dialog",
+    "date": "2026-09-30T10:44:40+00:00",
+    "source_name": "Forum für Interkulturellen Dialog",
+    "image_url": "https://static.wixstatic.com/media/2d6f92_07a83ea35f9748e1b1679293416e82c9~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
+    "category": "Jugend",
+    "author": "Forum für Interkulturellen Dialog",
+    "partnerName": "Forum für Interkulturellen Dialog",
+    "partnerUrl": "https://www.fidev.org/",
+    "image": "https://static.wixstatic.com/media/2d6f92_07a83ea35f9748e1b1679293416e82c9~mv2.jpeg/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
+    "excerpt": "Am Weltkindertag, dem 20. September 2026, verwandelte sich die Frankfurter Jugend-Kultur-Kirche sankt peter in ein lebendiges Kreativlabor. Im Rahmen unseres Projekts AGORA lud das Forum für Interkulturellen Dialog e.V.…",
+    "tags": [
+      "Jugend"
+    ],
+    "external": true,
+    "sourceId": "fidev"
+  },
+  {
     "id": "sdub-bca8a4b64c",
     "title": "DuB Essentials Nr. 4: Islamische Perspektiven für den interreligiösen Dialog",
     "link": "https://sdub.de/dub-essentials-nr-4-islamische-perspektiven/",
@@ -78,17 +137,36 @@
     "sourceId": "fidev"
   },
   {
+    "id": "house-of-one-6c5851dd57",
+    "title": "Gemeinsam für Frieden und Hoffnung",
+    "link": "https://house-of-one.org/news/gemeinsam-fuer-frieden-und-hoffnung",
+    "date": "2026-09-17T00:00:00+00:00",
+    "source_name": "House of One",
+    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "category": "Dialog",
+    "author": "House of One",
+    "partnerName": "House of One",
+    "partnerUrl": "https://house-of-one.org/",
+    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
+    "excerpt": "Zum Auftakt der 6. Muslimischen Kulturwoche (MKW) Berlin laden die Geistlichen des House of One gemeinsam mit der Wilmersdorfer Moschee zum interrelig... Weiterlesen",
+    "tags": [
+      "Dialog"
+    ],
+    "external": true,
+    "sourceId": "house-of-one"
+  },
+  {
     "id": "house-of-one-492923b1b2",
     "title": "Bau mit an unserer ersten Laubhütte!",
     "link": "https://house-of-one.org/news/bau-mit-unserer-ersten-laubhuette",
     "date": "2026-09-17T00:00:00+00:00",
     "source_name": "House of One",
-    "image_url": "https://house-of-one.org/_next/image?url=&w=3840&q=75",
+    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
     "category": "Dialog",
     "author": "House of One",
     "partnerName": "House of One",
     "partnerUrl": "https://house-of-one.org/",
-    "image": "https://house-of-one.org/_next/image?url=&w=3840&q=75",
+    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
     "excerpt": "Zum jüdischen Laubhüttenfest Sukkot baut das House of One in diesem Jahr zum ersten Mal eine eigene Laubhütte. Sie entsteht in jüdisch-muslimisch-chri... Weiterlesen",
     "tags": [
       "Dialog"
@@ -173,44 +251,6 @@
     "sourceId": "fidev"
   },
   {
-    "id": "fidev-962f06d182",
-    "title": "Erste DiscoverEU-Inklusionsreisen erfolgreich umgesetzt",
-    "link": "https://www.fidev.org/post/erste-discovereu-inklusionsreisen-erfolgreich-umgesetzt",
-    "date": "2026-09-02T10:27:12+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/2d6f92_7434e30e8f3f4f018ce2b036143f1ed7~mv2.jpg/v1/fit/w_1000,h_720,al_c,q_80/file.png",
-    "category": "Jugend",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/2d6f92_7434e30e8f3f4f018ce2b036143f1ed7~mv2.jpg/v1/fit/w_1000,h_720,al_c,q_80/file.png",
-    "excerpt": "Brücken bauen – Europa entdecken: Erste DiscoverEU-Inklusionsreisen erfolgreich umgesetzt Mit unseren ersten beiden DiscoverEU-Inklusionsprojekten über Ostern und im Sommer 2026 haben insgesamt 50 junge Menschen mit Mig…",
-    "tags": [
-      "Jugend"
-    ],
-    "external": true,
-    "sourceId": "fidev"
-  },
-  {
-    "id": "fidev-6992822c8b",
-    "title": "Erinnerung und Exil: Warum persönliche Geschichten unsere Stadtgesellschaft stärken",
-    "link": "https://www.fidev.org/post/erinnerung-exil-persoenliche-geschichten-frankfurt",
-    "date": "2026-09-02T09:25:23+00:00",
-    "source_name": "Forum für Interkulturellen Dialog",
-    "image_url": "https://static.wixstatic.com/media/2d6f92_9829299b97fb445eb438738d40c24f8c~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
-    "category": "Integration",
-    "author": "Forum für Interkulturellen Dialog",
-    "partnerName": "Forum für Interkulturellen Dialog",
-    "partnerUrl": "https://www.fidev.org/",
-    "image": "https://static.wixstatic.com/media/2d6f92_9829299b97fb445eb438738d40c24f8c~mv2.png/v1/fit/w_1000,h_1000,al_c,q_80/file.png",
-    "excerpt": "Persönliche Exilgeschichten verbinden Vergangenheit und Gegenwart. Ein verantwortungsvoller Umgang mit Erinnerung kann Empathie, Bildung und Dialog fördern.",
-    "tags": [
-      "Integration"
-    ],
-    "external": true,
-    "sourceId": "fidev"
-  },
-  {
     "id": "house-of-one-d835ae9fda",
     "title": "Für die Opfer des Anschlags auf den Berliner CSD",
     "link": "https://house-of-one.org/news/fuer-die-opfer-des-anschlags-auf-den-berliner-csd",
@@ -228,6 +268,27 @@
     ],
     "external": true,
     "sourceId": "house-of-one"
+  },
+  {
+    "id": "sdub-04b262d270",
+    "title": "Protone: Symposium in Berlin",
+    "link": "https://sdub.de/protonesymposiumberlin/",
+    "date": "2026-07-27T12:39:00+00:00",
+    "source_name": "Stiftung Dialog und Bildung",
+    "image_url": "https://sdub.de/wp-content/uploads/2023/11/protone_3-e1699544498288-768x542.jpg",
+    "category": "Dialog",
+    "author": "Stiftung Dialog und Bildung",
+    "partnerName": "Stiftung Dialog und Bildung",
+    "partnerUrl": "https://sdub.de/",
+    "image": "https://sdub.de/wp-content/uploads/2023/11/protone_3-e1699544498288-768x542.jpg",
+    "excerpt": "Entdecken Sie PROTONE – Ein EU-Projekt zur Sicherheit von Gebetsstätten. In Kooperation mit Organisationen aus fünf Ländern erforschen wir die Sicherheit von Synagogen, Kirchen und Moscheen. Durch wissenschaftliche Feld…",
+    "tags": [
+      "Dialog",
+      "Islam",
+      "Konferenzen"
+    ],
+    "external": true,
+    "sourceId": "sdub"
   },
   {
     "id": "sdub-a2e85c74b0",
@@ -249,25 +310,6 @@
     ],
     "external": true,
     "sourceId": "sdub"
-  },
-  {
-    "id": "house-of-one-d74f51f85d",
-    "title": "#119: Abschied – Was ist mit Rebecca?",
-    "link": "https://house-of-one.org/news/119-abschied-was-ist-mit-rebecca",
-    "date": "2026-07-20T00:00:00+00:00",
-    "source_name": "House of One",
-    "image_url": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "category": "Community",
-    "author": "House of One",
-    "partnerName": "House of One",
-    "partnerUrl": "https://house-of-one.org/",
-    "image": "data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27450%27%20height=%27250%27/%3e",
-    "excerpt": "In dieser Folge nehmen wir Abschied von Rebecca. Nach fünf Jahren voller Herzblut, Lachen und tiefgründigen Gesprächen dreht sie ihre letzte Runde mit... Weiterlesen",
-    "tags": [
-      "Community"
-    ],
-    "external": true,
-    "sourceId": "house-of-one"
   },
   {
     "id": "sdub-c1bd1343d7",
@@ -329,48 +371,6 @@
     ],
     "external": true,
     "sourceId": "timetohelp"
-  },
-  {
-    "id": "sdub-7799d125e0",
-    "title": "Podiumsdiskussion des Deutschen Dialogpreises: „Dialog: konkret“",
-    "link": "https://sdub.de/bddi-dialogkonkret/",
-    "date": "2026-05-08T01:21:40+00:00",
-    "source_name": "Stiftung Dialog und Bildung",
-    "image_url": "https://sdub.de/wp-content/uploads/2026/05/dialog-konkret-banner-1024x576.webp",
-    "category": "Dialog",
-    "author": "Stiftung Dialog und Bildung",
-    "partnerName": "Stiftung Dialog und Bildung",
-    "partnerUrl": "https://sdub.de/",
-    "image": "https://sdub.de/wp-content/uploads/2026/05/dialog-konkret-banner-1024x576.webp",
-    "excerpt": "Mit dem Deutschen Dialogpreis würdigt der Bund Deutscher Dialog Institutionen seit vielen Jahren Persönlichkeiten, die sich in besonderer Weise für den Dialog in unserer Gesellschaft einsetzen – Menschen, die Brücken ba…",
-    "tags": [
-      "Dialog",
-      "Partner",
-      "Asfa-Wossen Asserate"
-    ],
-    "external": true,
-    "sourceId": "sdub"
-  },
-  {
-    "id": "sdub-e50e58504a",
-    "title": "Nachruf auf Prof. Dr. Michael Langer: Ein unermüdlicher Brückenbauer",
-    "link": "https://sdub.de/gedenken-michael-langer/",
-    "date": "2026-04-15T12:04:08+00:00",
-    "source_name": "Stiftung Dialog und Bildung",
-    "image_url": "https://sdub.de/wp-content/uploads/2026/04/goranh-white-rose-42107191-768x512.jpg",
-    "category": "Dialog",
-    "author": "Stiftung Dialog und Bildung",
-    "partnerName": "Stiftung Dialog und Bildung",
-    "partnerUrl": "https://sdub.de/",
-    "image": "https://sdub.de/wp-content/uploads/2026/04/goranh-white-rose-42107191-768x512.jpg",
-    "excerpt": "Prof. Dr. Michael Langer, Theologe, Religionspädagoge und langjähriger Dialogpartner, ist vergangene Woche verstorben. Wir erinnern an einen Menschen, der das Gespräch zwischen den Religionen nicht als Pflicht, sondern…",
-    "tags": [
-      "Dialog",
-      "Erinnerungskultur",
-      "Religion"
-    ],
-    "external": true,
-    "sourceId": "sdub"
   },
   {
     "id": "bddi-edcae1cb5f",
