@@ -1,38 +1,29 @@
 {
-  "generatedAt": "2026-09-21T10:57:35.806601+00:00",
+  "generatedAt": "2026-10-26T11:22:39.781251+00:00",
   "lastUpdated": {
-    "news": "2026-09-21T10:57:35.806601+00:00",
+    "news": "2026-10-26T11:22:39.781251+00:00",
     "reports": "2026-09-14T21:12:04.896886+00:00",
     "infographics": "2026-09-14T21:12:04.896886+00:00",
     "multimedia": "2026-09-14T21:12:04.896886+00:00"
   },
   "news": [
     {
-      "id": "boldmedya-2372282164",
-      "title": "Duşta gizli kamera bulundu: İşletmeden kumpas iddiası",
-      "date": "2026-09-21T07:35:44+00:00",
+      "id": "boldmedya-1390926083",
+      "title": "Tarihçi-yazar Jon Pahl, Fethullah Gülen’in hoşgörü ve diyalog mirasını İspanya’da anlattı",
+      "date": "2026-10-26T07:03:59+00:00",
       "source": "Bold Medya",
       "category": "Exil-Medien",
-      "summary": "İzmir’in Karşıyaka ilçesinde hizmet veren SlimShape adlı kilo verme merkezinin duş bölümünde gizli kamera lensi bulunması üzerine soruşturma başlatıldı. Kamerayı fark eden kadın üye H.C., görüntüleri cep telefonuyla kaydedip emniyete giderek şikayetçi oldu. …",
-      "url": "https://boldmedya.com/2026/09/21/dusta-gizli-kamera-slimshape-karsiyaka/"
+      "summary": "BOLD- Madrid’de Universidad CEU San Pablo’nun ev sahipliğinde düzenlenen programın açılışını Fundación Cultural Ángel Herrera Oria yöneticisi Fernando Lostao gerçekleştirdi. …",
+      "url": "https://boldmedya.com/2026/10/26/tarihci-yazar-jon-pahl-fethullah-gulenin-hosgoru-ve-diyalog-mirasini-madrid-ve-barselonada-anlatti/"
     },
     {
-      "id": "turkishminute-2472418127",
-      "title": "Turkey detains 21 in İzmir over humanitarian aid to people linked to Gülen movement",
-      "date": "2026-09-19T11:49:34+00:00",
-      "source": "Turkish Minute",
-      "category": "Exil-Medien",
-      "summary": "Turkish authorities detained 21 people in the western province of İzmir on Friday in an investigation targeting people accused of both links to the Gülen movement and of providing humanitarian assistance to people in need, the Stockholm Center for Freedom reported, citing the TR724 news website. …",
-      "url": "https://turkishminute.com/2026/09/19/turkey-detains-21-in-izmir-over-humanitarian-aid-to-people-linked-to-gulen-movement/"
-    },
-    {
-      "id": "stockholmcf-9987060389",
-      "title": "Turkey detains 21 in İzmir over humanitarian aid to people linked to Gülen movement",
-      "date": "2026-09-18T14:18:11+00:00",
+      "id": "stockholmcf-8777925043",
+      "title": "Ailing Turkish prisoner has leg amputated after repeated ‘fit for prison’ assessments",
+      "date": "2026-10-23T14:36:29+00:00",
       "source": "Stockholm Center for Freedom",
       "category": "Exil-Medien",
-      "summary": "Turkish authorities detained 21 people in the western province of İzmir on Friday in an investigation targeting people accused of both links to the Gülen movement and of providing humanitarian assistance to people in need, the TR724 reported. The İzmir Chief Public Prosecutor’s Office issued detention warrants for 26 people. …",
-      "url": "https://stockholmcf.org/turkey-detains-21-in-izmir-over-humanitarian-aid-to-people-linked-to-gulen-movement/"
+      "summary": "A Turkish prisoner convicted over alleged links to the faith-based Gülen movement has had his left leg amputated below the knee after repeated medical assessments found him fit to remain incarcerated despite his deteriorating health, his daughter said on Friday. …",
+      "url": "https://stockholmcf.org/ailing-turkish-prisoner-has-leg-amputated-after-repeated-fit-for-prison-assessments/"
     },
     {
       "id": "news-ecthr-yalcinkaya",
