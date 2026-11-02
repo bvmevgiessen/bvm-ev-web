@@ -1,38 +1,47 @@
 {
-  "generatedAt": "2026-09-21T10:57:35.806601+00:00",
+  "generatedAt": "2026-11-02T13:43:42.485920+00:00",
   "lastUpdated": {
-    "news": "2026-09-21T10:57:35.806601+00:00",
+    "news": "2026-11-02T13:43:42.485920+00:00",
     "reports": "2026-09-14T21:12:04.896886+00:00",
     "infographics": "2026-09-14T21:12:04.896886+00:00",
     "multimedia": "2026-09-14T21:12:04.896886+00:00"
   },
   "news": [
     {
-      "id": "boldmedya-2372282164",
-      "title": "Duşta gizli kamera bulundu: İşletmeden kumpas iddiası",
-      "date": "2026-09-21T07:35:44+00:00",
+      "id": "boldmedya-6997389341",
+      "title": "Yardım etmek yine suç sayıldı: Gülen hareketi gönüllüsü iddiasıyla 32 ilde 41 tutuklama",
+      "date": "2026-11-02T11:18:33+00:00",
       "source": "Bold Medya",
       "category": "Exil-Medien",
-      "summary": "İzmir’in Karşıyaka ilçesinde hizmet veren SlimShape adlı kilo verme merkezinin duş bölümünde gizli kamera lensi bulunması üzerine soruşturma başlatıldı. Kamerayı fark eden kadın üye H.C., görüntüleri cep telefonuyla kaydedip emniyete giderek şikayetçi oldu. …",
-      "url": "https://boldmedya.com/2026/09/21/dusta-gizli-kamera-slimshape-karsiyaka/"
+      "summary": "Jandarma Genel Komutanlığı ve Cumhuriyet başsavcılıklarının talimatıyla il jandarma komutanlıkları tarafından Türkiye genelinde 32 ilde operasyon düzenlendi. …",
+      "url": "https://boldmedya.com/2026/11/02/yardim-etmek-yine-suc-sayildi-gulen-hareketi-gonullusu-iddiasiyla-32-ilde-41-tutuklama/"
     },
     {
-      "id": "turkishminute-2472418127",
-      "title": "Turkey detains 21 in İzmir over humanitarian aid to people linked to Gülen movement",
-      "date": "2026-09-19T11:49:34+00:00",
+      "id": "tr724-6311627222",
+      "title": "32 ilde ev baskını, 41 tutuklama: Yardım faaliyetleri suç sayıldı",
+      "date": "2026-11-02T10:41:46+00:00",
+      "source": "TR724",
+      "category": "Exil-Medien",
+      "summary": "TR724 HABER MERKEZİ Avrupa İnsan Hakları Mahkemesi’nin (AİHM) Gülen hareketine yönelik yargılamalarda verdiği hak ihlali kararlarına rağmen ev baskınları ve tutuklamalar devam ediyor. Jandarma tarafından 32 ilde düzenlenen operasyonlarda 41 kişi tutuklandı. …",
+      "url": "https://www.tr724.com/32-ilde-ev-baskini-41-tutuklama/"
+    },
+    {
+      "id": "turkishminute-8117332798",
+      "title": "Turkey detains 10 over alleged Gülen links in 3 provinces",
+      "date": "2026-10-30T16:44:46+00:00",
       "source": "Turkish Minute",
       "category": "Exil-Medien",
-      "summary": "Turkish authorities detained 21 people in the western province of İzmir on Friday in an investigation targeting people accused of both links to the Gülen movement and of providing humanitarian assistance to people in need, the Stockholm Center for Freedom reported, citing the TR724 news website. …",
-      "url": "https://turkishminute.com/2026/09/19/turkey-detains-21-in-izmir-over-humanitarian-aid-to-people-linked-to-gulen-movement/"
+      "summary": "Turkish police detained 10 people on Friday over alleged links to the faith-based Gülen movement in raids across three provinces, the TRT Haber state broadcaster reported. The simultaneous raids took place in İstanbul and the western provinces of Aydın and İzmir. …",
+      "url": "https://turkishminute.com/2026/10/30/turkey-detains-10-over-alleged-gulen-links-in-3-provinces/"
     },
     {
-      "id": "stockholmcf-9987060389",
-      "title": "Turkey detains 21 in İzmir over humanitarian aid to people linked to Gülen movement",
-      "date": "2026-09-18T14:18:11+00:00",
+      "id": "stockholmcf-6377882919",
+      "title": "Turkey detains 10 over alleged Gülen links in 3 provinces",
+      "date": "2026-10-30T14:32:20+00:00",
       "source": "Stockholm Center for Freedom",
       "category": "Exil-Medien",
-      "summary": "Turkish authorities detained 21 people in the western province of İzmir on Friday in an investigation targeting people accused of both links to the Gülen movement and of providing humanitarian assistance to people in need, the TR724 reported. The İzmir Chief Public Prosecutor’s Office issued detention warrants for 26 people. …",
-      "url": "https://stockholmcf.org/turkey-detains-21-in-izmir-over-humanitarian-aid-to-people-linked-to-gulen-movement/"
+      "summary": "Turkish police detained 10 people on Friday over alleged links to the faith-based Gülen movement in raids across three provinces, the TRT Haber state broadcaster reported. The simultaneous raids took place in İstanbul and the western provinces of Aydın and İzmir. …",
+      "url": "https://stockholmcf.org/turkey-detains-10-over-alleged-gulen-links-in-3-provinces/"
     },
     {
       "id": "news-ecthr-yalcinkaya",
