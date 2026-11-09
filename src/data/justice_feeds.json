@@ -1,38 +1,29 @@
 {
-  "generatedAt": "2026-09-21T10:57:35.806601+00:00",
+  "generatedAt": "2026-11-09T14:10:33.636684+00:00",
   "lastUpdated": {
-    "news": "2026-09-21T10:57:35.806601+00:00",
+    "news": "2026-11-09T14:10:33.636684+00:00",
     "reports": "2026-09-14T21:12:04.896886+00:00",
     "infographics": "2026-09-14T21:12:04.896886+00:00",
     "multimedia": "2026-09-14T21:12:04.896886+00:00"
   },
   "news": [
     {
-      "id": "boldmedya-2372282164",
-      "title": "Duşta gizli kamera bulundu: İşletmeden kumpas iddiası",
-      "date": "2026-09-21T07:35:44+00:00",
-      "source": "Bold Medya",
+      "id": "zamanamerika-3008108553",
+      "title": "Fidye yazılımı saldırısı Queens kütüphanelerinde dijital hizmetleri aksattı",
+      "date": "2026-11-09T11:24:23+00:00",
+      "source": "Zaman Amerika",
       "category": "Exil-Medien",
-      "summary": "İzmir’in Karşıyaka ilçesinde hizmet veren SlimShape adlı kilo verme merkezinin duş bölümünde gizli kamera lensi bulunması üzerine soruşturma başlatıldı. Kamerayı fark eden kadın üye H.C., görüntüleri cep telefonuyla kaydedip emniyete giderek şikayetçi oldu. …",
-      "url": "https://boldmedya.com/2026/09/21/dusta-gizli-kamera-slimshape-karsiyaka/"
+      "summary": "New York’un Queens ilçesindeki halk kütüphanelerini hedef alan fidye yazılımı saldırısının ardından bazı hizmetler yeniden devreye girdi. ABC7 New York’un haberine göre, açık şubelerde ücretsiz kablosuz internet yeniden çalışmaya başladı. Kitap ödünç alma ve iade makineleri ise sınırlı kapasiteyle hizmet veriyor. …",
+      "url": "https://zamanamerika.com/haberler/gundem/fidye-yazilimi-saldirisi-queens-kutuphanelerinde-dijital-hizmetleri-aksatti/"
     },
     {
-      "id": "turkishminute-2472418127",
-      "title": "Turkey detains 21 in İzmir over humanitarian aid to people linked to Gülen movement",
-      "date": "2026-09-19T11:49:34+00:00",
-      "source": "Turkish Minute",
-      "category": "Exil-Medien",
-      "summary": "Turkish authorities detained 21 people in the western province of İzmir on Friday in an investigation targeting people accused of both links to the Gülen movement and of providing humanitarian assistance to people in need, the Stockholm Center for Freedom reported, citing the TR724 news website. …",
-      "url": "https://turkishminute.com/2026/09/19/turkey-detains-21-in-izmir-over-humanitarian-aid-to-people-linked-to-gulen-movement/"
-    },
-    {
-      "id": "stockholmcf-9987060389",
-      "title": "Turkey detains 21 in İzmir over humanitarian aid to people linked to Gülen movement",
-      "date": "2026-09-18T14:18:11+00:00",
+      "id": "stockholmcf-6305035437",
+      "title": "Former Turkish military judge jailed over alleged Gülen links dies of cancer at 66",
+      "date": "2026-11-05T14:28:00+00:00",
       "source": "Stockholm Center for Freedom",
       "category": "Exil-Medien",
-      "summary": "Turkish authorities detained 21 people in the western province of İzmir on Friday in an investigation targeting people accused of both links to the Gülen movement and of providing humanitarian assistance to people in need, the TR724 reported. The İzmir Chief Public Prosecutor’s Office issued detention warrants for 26 people. …",
-      "url": "https://stockholmcf.org/turkey-detains-21-in-izmir-over-humanitarian-aid-to-people-linked-to-gulen-movement/"
+      "summary": "Haluk Zeybel, a former judge on Turkey’s military appeals court who was dismissed and imprisoned over alleged links to the faith-based Gülen movement following a 2016 coup attempt, has died of cancer at age 66, the TR724 news website reported. …",
+      "url": "https://stockholmcf.org/former-turkish-military-judge-jailed-over-alleged-gulen-links-dies-of-cancer-at-66/"
     },
     {
       "id": "news-ecthr-yalcinkaya",
