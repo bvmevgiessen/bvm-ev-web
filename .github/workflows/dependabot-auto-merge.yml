@@ -37,5 +37,4 @@ jobs:
             echo "::error::PR #$PR_NUMBER is not authored by dependabot[bot]."
             exit 1
           fi
-          gh pr review "$PR_NUMBER" --repo "$REPOSITORY" --approve
           gh pr merge "$PR_NUMBER" --repo "$REPOSITORY" --auto --merge
