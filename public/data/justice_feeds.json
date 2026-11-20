@@ -1,38 +1,56 @@
 {
-  "generatedAt": "2026-09-21T10:57:35.806601+00:00",
+  "generatedAt": "2026-11-16T13:53:44.326999+00:00",
   "lastUpdated": {
-    "news": "2026-09-21T10:57:35.806601+00:00",
+    "news": "2026-11-16T13:53:44.326999+00:00",
     "reports": "2026-09-14T21:12:04.896886+00:00",
     "infographics": "2026-09-14T21:12:04.896886+00:00",
     "multimedia": "2026-09-14T21:12:04.896886+00:00"
   },
   "news": [
     {
-      "id": "boldmedya-2372282164",
-      "title": "Duşta gizli kamera bulundu: İşletmeden kumpas iddiası",
-      "date": "2026-09-21T07:35:44+00:00",
-      "source": "Bold Medya",
+      "id": "zamanamerika-1087785377",
+      "title": "Sonradan ABD vatandaşı olanlara online ilk pasaport başvurusu",
+      "date": "2026-11-16T13:53:11+00:00",
+      "source": "Zaman Amerika",
       "category": "Exil-Medien",
-      "summary": "İzmir’in Karşıyaka ilçesinde hizmet veren SlimShape adlı kilo verme merkezinin duş bölümünde gizli kamera lensi bulunması üzerine soruşturma başlatıldı. Kamerayı fark eden kadın üye H.C., görüntüleri cep telefonuyla kaydedip emniyete giderek şikayetçi oldu. …",
-      "url": "https://boldmedya.com/2026/09/21/dusta-gizli-kamera-slimshape-karsiyaka/"
+      "summary": "ABD Dışişleri Bakanlığı, ilk kez pasaport alacak bazı yetişkinlerin başvurularını internet üzerinden yapmasına imkân veren pilot programı 16 Kasım’da başlattı. Programın ilk aşaması, ABD’de yaşayan ve vatandaşlığını ABD Vatandaşlık ve Göçmenlik Hizmetleri’nin (USCIS) verdiği vatandaşlığa kabul belgesiyle kanıtlayan yetişkinleri kapsıyor. …",
+      "url": "https://zamanamerika.com/haberler/gundem/sonradan-abd-vatandasi-olanlara-online-ilk-pasaport-basvurusu/"
     },
     {
-      "id": "turkishminute-2472418127",
-      "title": "Turkey detains 21 in İzmir over humanitarian aid to people linked to Gülen movement",
-      "date": "2026-09-19T11:49:34+00:00",
-      "source": "Turkish Minute",
-      "category": "Exil-Medien",
-      "summary": "Turkish authorities detained 21 people in the western province of İzmir on Friday in an investigation targeting people accused of both links to the Gülen movement and of providing humanitarian assistance to people in need, the Stockholm Center for Freedom reported, citing the TR724 news website. …",
-      "url": "https://turkishminute.com/2026/09/19/turkey-detains-21-in-izmir-over-humanitarian-aid-to-people-linked-to-gulen-movement/"
-    },
-    {
-      "id": "stockholmcf-9987060389",
-      "title": "Turkey detains 21 in İzmir over humanitarian aid to people linked to Gülen movement",
-      "date": "2026-09-18T14:18:11+00:00",
+      "id": "stockholmcf-795447860",
+      "title": "Turkish police detain 29 over alleged Gülen links in raids across 14 provinces",
+      "date": "2026-11-13T16:38:54+00:00",
       "source": "Stockholm Center for Freedom",
       "category": "Exil-Medien",
-      "summary": "Turkish authorities detained 21 people in the western province of İzmir on Friday in an investigation targeting people accused of both links to the Gülen movement and of providing humanitarian assistance to people in need, the TR724 reported. The İzmir Chief Public Prosecutor’s Office issued detention warrants for 26 people. …",
-      "url": "https://stockholmcf.org/turkey-detains-21-in-izmir-over-humanitarian-aid-to-people-linked-to-gulen-movement/"
+      "summary": "Turkish police on Friday detained 29 people in coordinated raids across 14 provinces over alleged links to the faith-based Gülen movement, targeting what authorities described as its women’s education network, the state-run Anadolu news agency reported. …",
+      "url": "https://stockholmcf.org/turkish-police-detain-29-over-alleged-gulen-links-in-raids-across-14-provinces/"
+    },
+    {
+      "id": "stockholmcf-8924865595",
+      "title": "Turkey jails 2 journalists, accountant over alleged financing of Gülen movement",
+      "date": "2026-11-13T16:36:19+00:00",
+      "source": "Stockholm Center for Freedom",
+      "category": "Exil-Medien",
+      "summary": "A Turkish court on Thursday ordered two journalists and an accountant jailed pending trial over allegations of financing the faith-based Gülen movement, which Ankara designates as a terrorist organization, the TR724 news website reported. …",
+      "url": "https://stockholmcf.org/turkey-jails-2-journalists-accountant-over-alleged-financing-of-gulen-movement/"
+    },
+    {
+      "id": "turkishminute-9419258452",
+      "title": "Turkish police detain 29 over alleged Gülen links in raids across 14 provinces",
+      "date": "2026-11-13T15:48:51+00:00",
+      "source": "Turkish Minute",
+      "category": "Exil-Medien",
+      "summary": "Turkish police on Friday detained 29 people in coordinated raids across 14 provinces over alleged links to the faith-based Gülen movement, targeting what authorities described as its women’s education network, the state-run Anadolu news agency reported. …",
+      "url": "https://turkishminute.com/2026/11/13/turkish-police-detain-29-over-alleged-gulen-links-in-raids-across-14-provinces/"
+    },
+    {
+      "id": "stockholmcf-3443618738",
+      "title": "Turkey detains 4 former police, military personnel over alleged Gülen links",
+      "date": "2026-11-12T15:28:39+00:00",
+      "source": "Stockholm Center for Freedom",
+      "category": "Exil-Medien",
+      "summary": "Turkish police on Thursday detained four former police and military personnel dismissed over alleged links to the faith-based Gülen movement who authorities said were preparing to flee the country, the state-run TRT Haber news website reported. …",
+      "url": "https://stockholmcf.org/turkey-detains-4-former-police-military-personnel-over-alleged-gulen-links/"
     },
     {
       "id": "news-ecthr-yalcinkaya",
