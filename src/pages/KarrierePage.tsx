@@ -25,7 +25,7 @@ const quickFacts = [
   { icon: Clock, label: 'Wochenarbeitszeit', value: '30 Stunden' },
   { icon: MapPin, label: 'Arbeitsort', value: 'Siemensstr. 18, 35394 Gießen' },
   { icon: FileText, label: 'Anstellungsart', value: 'Festanstellung (30 Std./Woche)' },
-  { icon: CalendarDays, label: 'Befristung', value: 'Befristet bis 29. September 2028' },
+  { icon: CalendarDays, label: 'Befristung', value: 'bis 21. Dezember 2028' },
 ];
 
 const tasks = [
@@ -70,7 +70,7 @@ const profileItems = [
 
 const benefits = [
   { icon: Briefcase, title: 'Abwechslungsreiche Tätigkeit', text: 'Verantwortungsvolle Aufgaben mit echtem Mehrwert' },
-  { icon: Clock, title: '30 Wochenstunden', text: 'Geregelte Anstellung mit  pro Woche' },
+  { icon: Clock, title: '30 Wochenstunden', text: 'Geregelte Anstellung mit 30 Stunden pro Woche' },
   { icon: Heart, title: 'Motiviertes & wertschätzendes Team', text: 'Familiäre Atmosphäre und offener Austausch' },
   { icon: GraduationCap, title: 'Weiterbildung', text: 'Möglichkeiten zur fachlichen und persönlichen Qualifizierung' },
   { icon: Lightbulb, title: 'Eigene Ideen & Projekte', text: 'Viel Gestaltungsspielraum und Raum für Innovation' },
@@ -269,14 +269,14 @@ export default function KarrierePage() {
                   <User size={18} className="text-brand-teal shrink-0 mt-0.5" />
                   <div>
                     <p className="text-xs font-bold uppercase tracking-wider text-white/50">Ansprechpartner</p>
-                    <p className="font-semibold text-white">Hakan Dönmez</p>
+                    <p className="font-semibold text-white">Serdar Gülec</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <CalendarCheck size={18} className="text-brand-teal shrink-0 mt-0.5" />
                   <div>
                     <p className="text-xs font-bold uppercase tracking-wider text-white/50">Befristung</p>
-                    <p className="font-semibold text-white">29. September 2028</p>
+                    <p className="font-semibold text-white">bis 21. Dezember 2028</p>
                   </div>
                 </div>
               </div>
