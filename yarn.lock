@@ -508,6 +508,11 @@
   dependencies:
     pako "^1.0.10"
 
+"@remix-run/route-pattern@^0.22.1":
+  version "0.22.1"
+  resolved "https://registry.yarnpkg.com/@remix-run/route-pattern/-/route-pattern-0.22.1.tgz#4937466528a59a7c9d882f725aac92536d20e010"
+  integrity sha512-czdGJWh09Lapvcqt7Vb09KlrU2PhRJ8xQaI+AItTuD9aDJ5MAgxnS38lnys6Ll+6RJEqPiaUqTwIQhVLwFvv+w==
+
 "@rolldown/binding-android-arm-eabi@1.2.5":
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/@rolldown/binding-android-arm-eabi/-/binding-android-arm-eabi-1.2.5.tgz#165b80910de7cd33f772d5b7b045b259acb7420c"
@@ -1787,11 +1792,20 @@ react-router-dom@^7.18.3:
   dependencies:
     react-router "7.18.3"
 
-react-router@^8.3.1:
-  version "8.3.1"
-  resolved "https://registry.npmjs.org/react-router/-/react-router-8.3.1.tgz"
-  integrity sha512-TEOpiO2g0TJHEOJeRVv4amUFun9v1npCKszvcquNvzETUtJ8udV86ah5eFoHT7g26bsBvT6EiIhqulR8eDF++A==
+react-router@7.18.3:
+  version "7.18.3"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-7.18.3.tgz#2a3257aa7c5edd5a71f878063e4c7f3fcfc4b76a"
+  integrity sha512-gyXgtdr5uACJ5b1Q4udzjVV+tb/rlHIMJKuJ0e89R4Kzgz47z/rgP0dIKxktqIEUhDHluGTPJJH/wRha7CyqsA==
   dependencies:
+    cookie "^1.0.1"
+    set-cookie-parser "^2.6.0"
+
+react-router@^8.4.0:
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-8.4.0.tgz#fa3c0ba58555cfb120a9ed8042518e374000fb4b"
+  integrity sha512-JtydAkBvU9UTEe5qNC+POhu+ZBNM7rlKY2IegwXc7Idj7xfRG16x5RZrw3mju+XlqBxfvb2ky9P3jUp9WyWC1g==
+  dependencies:
+    "@remix-run/route-pattern" "^0.22.1"
     cookie-es "^3.1.1"
 
 react-router@7.18.3:
