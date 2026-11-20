@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-21T21:50:23.731712+00:00",
+  "generatedAt": "2026-11-16T14:52:02.152226+00:00",
   "lastUpdated": {
-    "news": "2026-09-21T21:50:23.731712+00:00",
-    "events": "2026-09-21T21:50:23.731712+00:00",
-    "blogs": "2026-09-21T21:50:23.731712+00:00"
+    "news": "2026-11-16T14:52:02.152226+00:00",
+    "events": "2026-09-27T10:42:34.484175+00:00",
+    "blogs": "2026-09-27T10:42:34.484175+00:00"
   },
   "news": [
     {
@@ -130,18 +130,7 @@
       ]
     }
   ],
-  "events": [
-    {
-      "id": "pilzwanderung-marburg-2026",
-      "title": "Pilzwanderung in Marburg",
-      "date": "2026-10-04T11:00:00",
-      "location": "Marburg Botanischer Garten – Lahnberge Parkplatz (Uni Marburg)",
-      "category": "SOZIALES",
-      "image": "https://plus.unsplash.com/premium_photo-1675727579781-48c0cfefc835?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "description": "Eine geführte Pilzwanderung im Waldgebiet rund um den Botanischen Garten in Marburg. Während der Tour erhalten die Teilnehmenden spannende Erklärungen zu verschiedenen Pilzarten – ob essbar oder giftig – und haben die Mö",
-      "link": "/events/pilzwanderung-marburg-2026"
-    }
-  ],
+  "events": [],
   "blogs": [
     {
       "id": "sdub-bca8a4b64c",
