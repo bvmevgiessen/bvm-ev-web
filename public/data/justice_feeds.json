@@ -1,56 +1,65 @@
 {
-  "generatedAt": "2026-11-16T13:53:44.326999+00:00",
+  "generatedAt": "2026-11-23T16:19:31.954036+00:00",
   "lastUpdated": {
-    "news": "2026-11-16T13:53:44.326999+00:00",
+    "news": "2026-11-23T16:19:31.954036+00:00",
     "reports": "2026-09-14T21:12:04.896886+00:00",
     "infographics": "2026-09-14T21:12:04.896886+00:00",
     "multimedia": "2026-09-14T21:12:04.896886+00:00"
   },
   "news": [
     {
-      "id": "zamanamerika-1087785377",
-      "title": "Sonradan ABD vatandaşı olanlara online ilk pasaport başvurusu",
-      "date": "2026-11-16T13:53:11+00:00",
+      "id": "stockholmcf-4783475948",
+      "title": "Turkish woman jailed over alleged Gülen links says she was strip-searched, her baby undressed by prison guards",
+      "date": "2026-11-23T14:31:05+00:00",
+      "source": "Stockholm Center for Freedom",
+      "category": "Exil-Medien",
+      "summary": "A Turkish woman jailed over alleged links to the Gülen movement says she was strip-searched and that her breastfeeding daughter was partly undressed by guards at a prison in 2020, the TR724 news website reported on Sunday. …",
+      "url": "https://stockholmcf.org/turkish-woman-jailed-over-alleged-gulen-links-says-she-was-strip-searched-her-baby-undressed-by-prison-guards/"
+    },
+    {
+      "id": "zamanamerika-7137050947",
+      "title": "Michigan’da Amazon teslimat drone’u elektrik hattına takılarak bir garajın üzerine düştü",
+      "date": "2026-11-23T13:12:16+00:00",
       "source": "Zaman Amerika",
       "category": "Exil-Medien",
-      "summary": "ABD Dışişleri Bakanlığı, ilk kez pasaport alacak bazı yetişkinlerin başvurularını internet üzerinden yapmasına imkân veren pilot programı 16 Kasım’da başlattı. Programın ilk aşaması, ABD’de yaşayan ve vatandaşlığını ABD Vatandaşlık ve Göçmenlik Hizmetleri’nin (USCIS) verdiği vatandaşlığa kabul belgesiyle kanıtlayan yetişkinleri kapsıyor. …",
-      "url": "https://zamanamerika.com/haberler/gundem/sonradan-abd-vatandasi-olanlara-online-ilk-pasaport-basvurusu/"
+      "summary": "Amazon’un Prime Air teslimat hizmetine ait bir insansız hava aracı, Michigan eyaletindeki Huntington Woods kentinde internet ve elektrik kablolarına takılarak bir evin garajına düştü. ABD Ulusal Ulaşım Güvenliği Kurulu (NTSB), soruşturma açıp açmayacağına karar vermek için bilgi topluyor. …",
+      "url": "https://zamanamerika.com/haberler/bilim-teknoloji/michiganda-amazon-teslimat-droneu-elektrik-hattina-takilarak-bir-garajin-uzerine-dustu/"
     },
     {
-      "id": "stockholmcf-795447860",
-      "title": "Turkish police detain 29 over alleged Gülen links in raids across 14 provinces",
-      "date": "2026-11-13T16:38:54+00:00",
+      "id": "stockholmcf-1554574347",
+      "title": "Ailing Turkish prisoner repeatedly denied medical release freed after Constitutional Court ruling",
+      "date": "2026-11-23T12:14:00+00:00",
+      "source": "Stockholm Center for Freedom",
+      "category": "Gerichtsurteil",
+      "summary": "A former Turkish court clerk imprisoned over alleged links to the faith-based Gülen movement and repeatedly denied release despite serious kidney disease was freed Friday only after a Constitutional Court ruling found a violation of his rights, ending more than four years in prison. …",
+      "url": "https://stockholmcf.org/ailing-turkish-prisoner-repeatedly-denied-medical-release-freed-after-constitutional-court-ruling/"
+    },
+    {
+      "id": "zamanamerika-2680275829",
+      "title": "ABD istihbarat direktöründen yeni teknoloji kesintileri uyarısı",
+      "date": "2026-11-23T09:38:42+00:00",
+      "source": "Zaman Amerika",
+      "category": "Exil-Medien",
+      "summary": "ABD Ulusal İstihbarat Direktörü Jay Clayton, şirketler ve kamu kurumları eskiyen teknoloji altyapısını yenilerken ülkede yeni hizmet kesintileri yaşanabileceğini söyledi. Clayton, CNN’e yaptığı açıklamada, sistemler değiştirilirken geçici arızalar ve erişim sorunları beklediklerini belirtti. …",
+      "url": "https://zamanamerika.com/haberler/gundem/abd-istihbarat-direktorunden-yeni-teknoloji-kesintileri-uyarisi/"
+    },
+    {
+      "id": "stockholmcf-9037858847",
+      "title": "Turkish courts jail 47 over alleged Gülen links after raids across 28 provinces",
+      "date": "2026-11-20T16:27:52+00:00",
       "source": "Stockholm Center for Freedom",
       "category": "Exil-Medien",
-      "summary": "Turkish police on Friday detained 29 people in coordinated raids across 14 provinces over alleged links to the faith-based Gülen movement, targeting what authorities described as its women’s education network, the state-run Anadolu news agency reported. …",
-      "url": "https://stockholmcf.org/turkish-police-detain-29-over-alleged-gulen-links-in-raids-across-14-provinces/"
+      "summary": "Turkish courts ordered 47 people jailed pending trial over alleged links to the faith-based Gülen movement following police raids in 28 provinces, the state-run TRT Haber reported Friday, citing the Interior Ministry. The 47 were among 83 people detained during operations over the past 10 days. …",
+      "url": "https://stockholmcf.org/turkish-courts-jail-47-over-alleged-gulen-links-after-raids-across-28-provinces/"
     },
     {
-      "id": "stockholmcf-8924865595",
-      "title": "Turkey jails 2 journalists, accountant over alleged financing of Gülen movement",
-      "date": "2026-11-13T16:36:19+00:00",
+      "id": "stockholmcf-3797585724",
+      "title": "Wife seeks release of ailing 73-year-old Turkish Islamic scholar jailed over alleged Gülen links",
+      "date": "2026-11-20T16:24:00+00:00",
       "source": "Stockholm Center for Freedom",
       "category": "Exil-Medien",
-      "summary": "A Turkish court on Thursday ordered two journalists and an accountant jailed pending trial over allegations of financing the faith-based Gülen movement, which Ankara designates as a terrorist organization, the TR724 news website reported. …",
-      "url": "https://stockholmcf.org/turkey-jails-2-journalists-accountant-over-alleged-financing-of-gulen-movement/"
-    },
-    {
-      "id": "turkishminute-9419258452",
-      "title": "Turkish police detain 29 over alleged Gülen links in raids across 14 provinces",
-      "date": "2026-11-13T15:48:51+00:00",
-      "source": "Turkish Minute",
-      "category": "Exil-Medien",
-      "summary": "Turkish police on Friday detained 29 people in coordinated raids across 14 provinces over alleged links to the faith-based Gülen movement, targeting what authorities described as its women’s education network, the state-run Anadolu news agency reported. …",
-      "url": "https://turkishminute.com/2026/11/13/turkish-police-detain-29-over-alleged-gulen-links-in-raids-across-14-provinces/"
-    },
-    {
-      "id": "stockholmcf-3443618738",
-      "title": "Turkey detains 4 former police, military personnel over alleged Gülen links",
-      "date": "2026-11-12T15:28:39+00:00",
-      "source": "Stockholm Center for Freedom",
-      "category": "Exil-Medien",
-      "summary": "Turkish police on Thursday detained four former police and military personnel dismissed over alleged links to the faith-based Gülen movement who authorities said were preparing to flee the country, the state-run TRT Haber news website reported. …",
-      "url": "https://stockholmcf.org/turkey-detains-4-former-police-military-personnel-over-alleged-gulen-links/"
+      "summary": "The wife of a 73-year-old Turkish theologian imprisoned over alleged links to the faith-based Gülen movement has called for his release, citing his deteriorating health including a heart attack in September, the Bold Medya news website reported. …",
+      "url": "https://stockholmcf.org/wife-seeks-release-of-ailing-73-year-old-turkish-islamic-scholar-jailed-over-alleged-gulen-links/"
     },
     {
       "id": "news-ecthr-yalcinkaya",
