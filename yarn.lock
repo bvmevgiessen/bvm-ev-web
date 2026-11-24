@@ -606,7 +606,7 @@
     protobufjs "^7.5.4"
     ws "^8.18.0"
 
-"@grpc/grpc-js@1.13.6":
+"@grpc/grpc-js@1.13.6", "@grpc/grpc-js@~1.9.0":
   version "1.13.6"
   resolved "https://registry.npmjs.org/@grpc/grpc-js/-/grpc-js-1.13.6.tgz"
   integrity sha512-S9U8ioEds9fo8zCt4K8CyWHLJPg63FBgZo/hYUPVTiKppwsx/ykTnFg4g4/70beoa/DYao9uROQRcoahVH8PVQ==
@@ -623,11 +623,6 @@
     long "^5.0.0"
     protobufjs "^7.2.5"
     yargs "^17.7.2"
-
-"@js-sdsl/ordered-map@^4.4.2":
-  version "4.4.2"
-  resolved "https://registry.npmjs.org/@js-sdsl/ordered-map/-/ordered-map-4.4.2.tgz"
-  integrity sha512-iUKgm52T8HOE/makSxjqoWhe95ZJA1/G1sYsGev2JDKUSS14KAgg1LHb+Ba+IPow0xflbnSkOsZcO08C7w1gYw==
 
 "@jridgewell/gen-mapping@^0.3.5":
   version "0.3.13"
@@ -662,6 +657,11 @@
   dependencies:
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
+
+"@js-sdsl/ordered-map@^4.4.2":
+  version "4.4.2"
+  resolved "https://registry.npmjs.org/@js-sdsl/ordered-map/-/ordered-map-4.4.2.tgz"
+  integrity sha512-iUKgm52T8HOE/makSxjqoWhe95ZJA1/G1sYsGev2JDKUSS14KAgg1LHb+Ba+IPow0xflbnSkOsZcO08C7w1gYw==
 
 "@napi-rs/wasm-runtime@1.2.6":
   version "1.2.6"
@@ -955,7 +955,7 @@
   resolved "https://registry.npmjs.org/@types/http-errors/-/http-errors-2.0.5.tgz"
   integrity sha512-r8Tayk8HJnX0FztbZN7oVqGccWgw98T/0neJphO91KkmOzug1KkofZURD4UaD5uH8AqcFLfdPErnBod0u71/qg==
 
-"@types/node@*", "@types/node@>=12.12.47":
+"@types/node@*":
   version "26.5.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-26.5.1.tgz#b19c390e15813f402a94b86e3af9042f792138be"
   integrity sha512-CzNm2FezW4VR/LjG6yUdiEgLE/rAQ9Slj5gCu/C2VrdcW7I0ahNZ8DRbHT7zOZ6r3ONgd/bsQIeSaoDGrd1C6g==
@@ -1289,11 +1289,6 @@ cookie@^0.7.1:
   version "0.7.2"
   resolved "https://registry.npmjs.org/cookie/-/cookie-0.7.2.tgz"
   integrity sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==
-
-cookie@^1.0.1:
-  version "1.1.1"
-  resolved "https://registry.npmjs.org/cookie/-/cookie-1.1.1.tgz"
-  integrity sha512-ei8Aos7ja0weRpFzJnEA9UHJ/7XQmqglbRwnf2ATjcB9Wq874VKH9kfjjirM6UhU2/E5fFYadylyhFldcqSidQ==
 
 core-js@^3.6.0, core-js@^3.8.3:
   version "3.49.0"
@@ -2203,15 +2198,7 @@ proxy-addr@^2.0.7:
     forwarded "0.2.0"
     ipaddr.js "1.9.1"
 
-qs@6.16.1:
-  version "6.16.1"
-  resolved "https://registry.npmjs.org/qs/-/qs-6.16.1.tgz"
-  integrity sha512-5Px6J7rfHBAGUhNQ3es4YzcOdBBw0SDcVtThJml4RdnKw4tKs2epA0kPZ+K8X+WiHktT93RHVcQ/3ym5aTCgtg==
-  dependencies:
-    es-define-property "^1.0.1"
-    side-channel "^1.1.1"
-
-qs@^6.16.1:
+qs@6.16.1, qs@^6.14.0, qs@^6.16.1:
   version "6.16.1"
   resolved "https://registry.npmjs.org/qs/-/qs-6.16.1.tgz"
   integrity sha512-5Px6J7rfHBAGUhNQ3es4YzcOdBBw0SDcVtThJml4RdnKw4tKs2epA0kPZ+K8X+WiHktT93RHVcQ/3ym5aTCgtg==
@@ -2255,21 +2242,6 @@ react-is@^16.13.1:
   version "16.13.1"
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
-
-react-router-dom@^7.18.4:
-  version "7.18.4"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-7.18.4.tgz#07b72b8aab2d80af847425107f966f1688c703d0"
-  integrity sha512-yrfmJHIpDG7taCpqKjT1G5B6q3O2K+RN8/fgNf0lTjCwiPbQ0ei6vXX9ZjQR+7ld8Tr7Z5xmyMnZ8YJrphWQUw==
-  dependencies:
-    react-router "7.18.4"
-
-react-router@7.18.4:
-  version "7.18.4"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-7.18.4.tgz#dc30cbb27e936f06d9e1d75ab648b317deb698a4"
-  integrity sha512-PUPQcMhMGRAslLcvtlPz/kmzBEWPhLdgLFrL7pLNepBL6dX0lWj4WD2cUYVgYCuT3jxvghYFg81cDTj44DhetQ==
-  dependencies:
-    cookie "^1.0.1"
-    set-cookie-parser "^2.6.0"
 
 react-router@^8.3.1:
   version "8.5.2"
@@ -2376,11 +2348,6 @@ serve-static@^2.2.0:
     escape-html "^1.0.3"
     parseurl "^1.3.3"
     send "^1.2.0"
-
-set-cookie-parser@^2.6.0:
-  version "2.7.2"
-  resolved "https://registry.npmjs.org/set-cookie-parser/-/set-cookie-parser-2.7.2.tgz"
-  integrity sha512-oeM1lpU/UvhTxw+g3cIfxXHyJRc/uidd3yK1P242gzHds0udQBYzs3y8j4gCCW+ZJ7ad0yctld8RYO+bdurlvw==
 
 setprototypeof@~1.2.0:
   version "1.2.0"
