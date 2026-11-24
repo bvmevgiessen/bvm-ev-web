@@ -28,6 +28,8 @@ jobs:
       contents: write
       # Required to create or update pull requests
       pull-requests: write
+      # Required by deploy-pages to read the uploaded workflow artifact.
+      actions: read
       # Required to deploy GitHub Pages and authenticate with OIDC.
       pages: write
       id-token: write
